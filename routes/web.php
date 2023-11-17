@@ -18,7 +18,7 @@ use App\Http\Controllers\FastoAdminController;
     return view('welcome');
 }); */
 
-Route::controller(FastoAdminController::class)->group(function() {
+Route::middleware(['auth'])->controller(FastoAdminController::class)->group(function() {
     Route::get('/','dashboard');
     Route::get('/index','dashboard');
     Route::get('/index-2','dashboard_2');
@@ -89,3 +89,7 @@ Route::controller(FastoAdminController::class)->group(function() {
     Route::get('/page-forgot-password','page_forgot_password');
     Route::post('/ajax/contact-list','contact_list_ajax');
 });
+
+Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

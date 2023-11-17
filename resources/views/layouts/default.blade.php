@@ -40,6 +40,7 @@
             <link href="{{ asset($style) }}" rel="stylesheet" type="text/css"/>
         @endforeach
     @endif
+    @yield('css')
 
 </head>
 <body>
@@ -66,6 +67,7 @@
         <!--**********************************
             Nav header start
         ***********************************-->
+
         <div class="nav-header">
             <a href="{{ url('index') }}" class="brand-logo">
                 <svg class="logo-abbr" width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -97,7 +99,9 @@
 		<!--**********************************
             Chat box start
         ***********************************-->
+
 		@include('elements.header')
+
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -105,7 +109,9 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-		@include('elements.sidebar')	
+
+		@include('elements.sidebar')
+
         <!--**********************************
             Sidebar end
         ***********************************-->
