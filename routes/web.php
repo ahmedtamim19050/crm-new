@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FastoAdminController;
+use App\Http\Controllers\LeadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +89,7 @@ Route::middleware(['auth'])->controller(FastoAdminController::class)->group(func
     Route::get('/page-lock-screen','page_lock_screen');
     Route::get('/page-forgot-password','page_forgot_password');
     Route::post('/ajax/contact-list','contact_list_ajax');
+    Route::resource('leads', LeadController::class);
 });
 
 Auth::routes();

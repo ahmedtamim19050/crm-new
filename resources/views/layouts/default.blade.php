@@ -40,6 +40,7 @@
             <link href="{{ asset($style) }}" rel="stylesheet" type="text/css"/>
         @endforeach
     @endif
+    @livewireStyles
     @yield('css')
 
 </head>
@@ -149,6 +150,7 @@
         Scripts
     ***********************************-->
 	<!-- Required vendors -->
+
     @if(!empty(config('dz.public.global.js.top')))
         @foreach(config('dz.public.global.js.top') as $script)
             <script src="{{ asset($script) }}" type="text/javascript"></script>
@@ -164,7 +166,7 @@
             <script src="{{ asset($script) }}" type="text/javascript"></script>
         @endforeach
     @endif
-
+    @livewireScripts
     @stack('scripts')
 	
 </body>
