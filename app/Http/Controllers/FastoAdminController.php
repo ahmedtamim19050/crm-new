@@ -297,7 +297,7 @@ class FastoAdminController extends Controller{
     // TABLE BOOTSTRAP BASIC
     public function table_bootstrap_basic(){
         $page_title = 'Table Basic';
-     $page_description = 'Some description for the page';
+        $page_description = 'Some description for the page';
         return view('fasto.table.bootstrap_basic', compact('page_title', 'page_description'));
     }
 	

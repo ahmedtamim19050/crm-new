@@ -1,5 +1,6 @@
-<form method="POST" action="{{ url(route('leads.store')) }}">
+<form method="POST" action="{{ url(route('leads.update',$lead)) }}">
     @csrf
+    @method('PUT')
      
 
         @component('components.card')

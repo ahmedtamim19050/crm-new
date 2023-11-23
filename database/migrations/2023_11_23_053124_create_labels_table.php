@@ -13,19 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-
-        Schema::create('organisation_types', function (Blueprint $table) {
+        Schema::create('labels', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('team_id')->index()->nullable();
+            $table->string('external_id');
             $table->string('name');
-            $table->text('description')->nullable();
-            $table->unsignedBigInteger('organisation_type_id')->index()->nullable();
+            $table->string('hex');
             $table->timestamps();
             $table->softDeletes();
-        });
-        
-        Schema::table('organisations', function (Blueprint $table) {
-            $table->bigInteger('organisation_type_id')->nullable();
         });
     }
 
@@ -36,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organisations');
+        Schema::dropIfExists('labels');
     }
 };

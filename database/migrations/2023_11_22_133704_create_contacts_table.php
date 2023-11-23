@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('external_id')->nullable();
             $table->unsignedBigInteger('team_id')->index()->nullable();
-            $table->string('name')->nullable();
-            $table->string('clientable_type')->nullable()->change();
-            $table->unsignedBigInteger('clientable_id')->nullable()->change();
-            $table->morphs('clientable');
+            $table->string('external_id')->nullable();
+            $table->morphs('contactable');
+            $table->morphs('entityable');
             $table->unsignedBigInteger('user_created_id')->nullable();
             $table->foreign('user_created_id')->references('id')->on('users');
             $table->unsignedBigInteger('user_updated_id')->nullable();
@@ -29,13 +27,8 @@ return new class extends Migration
             $table->foreign('user_deleted_id')->references('id')->on('users');
             $table->unsignedBigInteger('user_restored_id')->nullable();
             $table->foreign('user_restored_id')->references('id')->on('users');
-            $table->unsignedBigInteger('user_owner_id')->nullable();
-            $table->foreign('user_owner_id')->references('id')->on('users');
-            $table->unsignedBigInteger('user_assigned_id')->nullable();
-            $table->foreign('user_assigned_id')->references('id')->on('users');
-            
+            $table->softDeletes();
             $table->timestamps();
-            $table->softDeletes();  
         });
     }
 
@@ -46,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('contacts');
     }
 };

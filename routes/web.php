@@ -90,6 +90,7 @@ Route::middleware(['auth'])->controller(FastoAdminController::class)->group(func
     Route::get('/page-forgot-password','page_forgot_password');
     Route::post('/ajax/contact-list','contact_list_ajax');
     Route::resource('leads', LeadController::class);
+    Route::post('notes/create/{lead}',[LeadController::class,'noteCreate'])->name('note.create');
 });
 
 Auth::routes();

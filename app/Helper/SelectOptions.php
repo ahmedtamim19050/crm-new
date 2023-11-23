@@ -13,12 +13,12 @@ class SelectOptions
     public static function currencies()
     {
         // Your logic to retrieve currencies goes here
-        return ['USD', 'EUR', 'GBP'];
+        return  ['USD'=>'USD', 'EUR'=>'EUR', 'GBP'=>'GBP'];
     }
     public static function labels($null = true)
     {
         // Your logic to retrieve currencies goes here
-        return ['USD', 'EUR', 'GBP'];
+        return ['hot'=>'Hot', 'cold'=>'Cold', 'warm'=>'Warm'];
     }
     public static function users($null = true)
     {

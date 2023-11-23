@@ -51,17 +51,17 @@ class Lead extends Model
 
     public function client()
     {
-        return $this->belongsTo(\VentureDrake\LaravelCrm\Models\Client::class);
+        return $this->belongsTo(Client::class,'user_owner_id');
     }
 
     public function organisation()
     {
-        return $this->belongsTo(\VentureDrake\LaravelCrm\Models\Organisation::class);
+        return $this->belongsTo(Organisation::class);
     }
 
     public function person()
     {
-        return $this->belongsTo(\VentureDrake\LaravelCrm\Models\Person::class);
+        return $this->belongsTo(Person::class);
     }
 
     /**
@@ -69,15 +69,16 @@ class Lead extends Model
      */
     public function emails()
     {
-        return $this->morphMany(\VentureDrake\LaravelCrm\Models\Email::class, 'emailable');
+        return $this->morphMany(Email::class, 'emailable');
     }
 
     public function getPrimaryEmail()
     {
+
         if ($this->person) {
             return $this->person->getPrimaryEmail();
         } else {
-            return $this->emails()->where('primary', 1)->first();
+            return $this->emails()->first();
         }
     }
 
@@ -86,7 +87,7 @@ class Lead extends Model
      */
     public function phones()
     {
-        return $this->morphMany(\VentureDrake\LaravelCrm\Models\Phone::class, 'phoneable');
+        return $this->morphMany(Phone::class, 'phoneable');
     }
 
     public function getPrimaryPhone()
@@ -94,7 +95,7 @@ class Lead extends Model
         if ($this->person) {
             return $this->person->getPrimaryPhone();
         } else {
-            return $this->phones()->where('primary', 1)->first();
+            return $this->phones()->first();
         }
     }
 
@@ -103,7 +104,7 @@ class Lead extends Model
      */
     public function addresses()
     {
-        return $this->morphMany(\VentureDrake\LaravelCrm\Models\Address::class, 'addressable');
+        return $this->morphMany(Address::class, 'addressable');
     }
 
     public function getPrimaryAddress()
@@ -140,27 +141,27 @@ class Lead extends Model
 
     public function updatedByUser()
     {
-        return $this->belongsTo(\App\User::class, 'user_updated_id');
+        return $this->belongsTo(User::class, 'user_updated_id');
     }
 
     public function deletedByUser()
     {
-        return $this->belongsTo(\App\User::class, 'user_deleted_id');
+        return $this->belongsTo(User::class, 'user_deleted_id');
     }
 
     public function restoredByUser()
     {
-        return $this->belongsTo(\App\User::class, 'user_restored_id');
+        return $this->belongsTo(User::class, 'user_restored_id');
     }
 
     public function ownerUser()
     {
-        return $this->belongsTo(\App\User::class, 'user_owner_id');
+        return $this->belongsTo(User::class, 'user_owner_id');
     }
 
     public function assignedToUser()
     {
-        return $this->belongsTo(\App\User::class, 'user_assigned_id');
+        return $this->belongsTo(User::class, 'user_assigned_id');
     }
 
     /**
@@ -168,7 +169,16 @@ class Lead extends Model
      */
     public function labels()
     {
-        return $this->morphToMany(\VentureDrake\LaravelCrm\Models\Label::class, config('laravel-crm.db_table_prefix').'labelable');
+        return $this->morphToMany(Label::class,'labelable');
     }
+    public function notes()
+    {
+        return $this->morphMany(Note::class, 'noteable');
+    }
+    public function activities()
+    {
+        return $this->morphMany(Activity::class, 'timelineable');
+    }
+
 }
 
