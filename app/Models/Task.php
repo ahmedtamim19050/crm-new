@@ -2,42 +2,51 @@
 
 namespace App\Models;
 
+use App\Traits\HasCrmActivities;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Note extends Model
+class Task extends Model
 {
     use HasFactory;
+    use HasCrmActivities;
+
     protected $guarded = ['id'];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
     protected $casts = [
-        'noted_at' => 'datetime',
+        'due_at' => 'datetime',
+        'completed_at' => 'datetime',
     ];
+
+    protected $searchable = [
+        'name',
+        'description',
+    ];
+
+    public function getSearchable()
+    {
+        return $this->searchable;
+    }
 
     public function getTable()
     {
-        return 'notes';
+        return 'tasks';
     }
 
-    // public function setNotedAtAttribute($value)
-    // {
-    //     if ($value) {
-    //         $this->attributes['noted_at'] = Carbon::createFromFormat($this->dateFormat().' H:i', $value);
-    //     }
-    // }
+    public function setDueAtAttribute($value)
+    {
+        if ($value) {
+            $this->attributes['due_at'] = Carbon::createFromFormat($this->dateFormat().' H:i', $value);
+        }
+    }
 
     /**
-     * Get all of the owning noteable models.
+     * Get all of the owning taskable models.
      */
-    public function noteable()
+    public function taskable()
     {
-        return $this->morphTo('noteable');
+        return $this->morphTo('taskable');
     }
 
     public function createdByUser()
@@ -60,14 +69,18 @@ class Note extends Model
         return $this->belongsTo(User::class, 'user_restored_id');
     }
 
-    public function relatedNote()
+    public function ownerUser()
     {
-        return $this->belongsTo(Note::class, 'related_note_id');
+        return $this->belongsTo(User::class, 'user_owner_id');
+    }
+
+    public function assignedToUser()
+    {
+        return $this->belongsTo(User::class, 'user_assigned_id');
     }
 
     public function activity()
     {
         return $this->morphOne(Activity::class, 'recordable');
     }
-    
 }

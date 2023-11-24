@@ -2,42 +2,26 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Note extends Model
+class File extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'noted_at' => 'datetime',
-    ];
+    protected $guarded = ['id'];
 
     public function getTable()
     {
-        return 'notes';
+        return 'files';
     }
 
-    // public function setNotedAtAttribute($value)
-    // {
-    //     if ($value) {
-    //         $this->attributes['noted_at'] = Carbon::createFromFormat($this->dateFormat().' H:i', $value);
-    //     }
-    // }
-
     /**
-     * Get all of the owning noteable models.
+     * Get all of the owning fileable models.
      */
-    public function noteable()
+    public function fileable()
     {
-        return $this->morphTo('noteable');
+        return $this->morphTo('fileable');
     }
 
     public function createdByUser()
@@ -60,14 +44,13 @@ class Note extends Model
         return $this->belongsTo(User::class, 'user_restored_id');
     }
 
-    public function relatedNote()
+    public function relatedFile()
     {
-        return $this->belongsTo(Note::class, 'related_note_id');
+        return $this->belongsTo(File::class, 'related_file_id');
     }
 
     public function activity()
     {
         return $this->morphOne(Activity::class, 'recordable');
     }
-    
 }

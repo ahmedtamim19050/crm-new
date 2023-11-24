@@ -91,6 +91,11 @@ Route::middleware(['auth'])->controller(FastoAdminController::class)->group(func
     Route::post('/ajax/contact-list','contact_list_ajax');
     Route::resource('leads', LeadController::class);
     Route::post('notes/create/{lead}',[LeadController::class,'noteCreate'])->name('note.create');
+    Route::post('task/create/{lead}',[LeadController::class,'taskCreate'])->name('task.create');
+    Route::post('calls/create/{lead}',[LeadController::class,'callsCreate'])->name('calls.create');
+    Route::post('meeting/create/{lead}',[LeadController::class,'meetingCreate'])->name('meeting.create');
+    Route::post('lunches/create/{lead}',[LeadController::class,'lunchesCreate'])->name('lunches.create');
+    Route::post('file/create/{lead}',[LeadController::class,'fileCreate'])->name('file.create');
 });
 
 Auth::routes();

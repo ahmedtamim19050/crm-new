@@ -5,22 +5,20 @@
             'label' => 'Title',
         ])
     </div>
-    <div class="col-md-6">
-        @include('partials.form.text', [
-            'name' => 'from',
-            'label' => 'From',
-        ])
+    <div class="col-md-6 mb-3">
+
+            <label class="form-label">Form</label>
+            <input type="datetime-local" class="form-control" name="form">
+
     </div>
-    <div class="col-md-6">
-        @include('partials.form.text', [
-            'name' => 'to',
-            'label' => 'To',
-        ])
+    <div class="col-md-6 mb-3">
+        <label class="form-label">To</label>
+        <input type="datetime-local" class="form-control" name="to">
     </div>
 
     <div class="col-md-6">
         @include('partials.form.select',[
-            'name' => 'guests',
+            'name' => 'guests[]',
             'label' => 'Guest',
             'options' => $persons,      
          

@@ -102,8 +102,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-7">
-                <div class="card">
+            <div class="col-xl-7" style="height: 100vh; ">
+                <div class="card " style="overflow:hidden;overflow-y: scroll;">
                     {{-- <div class="card-header">
 					<h4 class="card-title">Custom Tab 1</h4>
 				</div> --}}
@@ -112,7 +112,7 @@
                         <div class="custom-tab-1">
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-bs-toggle="tab" href="#activity"> Activity</a>
+                                    <a class="nav-link active px-2" data-bs-toggle="tab" href="#activity"> Activity</a>
                                 </li>
 
                                 <li class="nav-item">
@@ -137,13 +137,10 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="activity" role="tabpanel">
                                     <div class="pt-4">
-                                        <h4>This is home title</h4>
-                                        <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                            Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.
-                                        </p>
-                                        <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                            Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.
-                                        </p>
+                                        @foreach ($lead->activities as $activity)
+                                            
+                                        @include('partials.activity',['activity'=>$activity])
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="notes1">
@@ -163,13 +160,14 @@
                                         </form>
                                         @foreach ($lead->notes as $note)
                                             
-                                        @include('dashboard.leads.partials.note-content',['note'=>$note,])
+                                        @include('partials.note-content',['note'=>$note,])
                                         @endforeach
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="tasks">
                                     <div class="pt-4">
-                                        <form action="" method="post">
+                                        <form action="{{route('task.create',$lead)}}" method="post">
+                                            @csrf
                                             @include('partials.form.text', [
                                                 'name' => 'name',
                                                 'label' => 'Name',
@@ -180,47 +178,73 @@
                                                 'rows' => 5,
                                             ])
                                             <div class=" mb-3">
-                                                <label class="form-label">Noted at</label>
-                                                <input type="datetime-local" class="form-control">
+                                                <label class="form-label">Due</label>
+                                                <input type="datetime-local" name="due" class="form-control">
                                             </div>
                                             <button type="submit" class="btn btn-primary">Save</button>
                                         </form>
+
+                                        @foreach ($lead->tasks as $task)
+                                            
+                                        @include('partials.task-content',['task'=>$task,])
+                                        @endforeach
                            
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="calls">
                                     <div class="pt-4">
-                                        <form action="" method="post">
-                                            @include('dashboard.leads.partials.activities')
+                                        <form action="{{route('calls.create',$lead)}}" method="post">
+                                            @csrf
+                                            @include('partials.activities')
                                             <button type="submit" class="btn btn-primary">Save</button>
                                         </form>
+                                        @foreach ($lead->calls as $call)
+                                            
+                                        @include('partials.call-content',['call'=>$call])
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="meeting">
                                     <div class="pt-4">
-                                        <form action="" method="post">
-                                            @include('dashboard.leads.partials.activities')
+                                        <form action="{{route('meeting.create',$lead)}}" method="post">
+                                            @csrf
+                                            @include('partials.activities')
                                             <button type="submit" class="btn btn-primary">Save</button>
                                         </form>
+                                        @foreach ($lead->meetings as $call)
+                                            
+                                        @include('partials.call-content',['call'=>$call])
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="lunches">
                                     <div class="pt-4">
-                                        <form action="" method="post">
-                                            @include('dashboard.leads.partials.activities')
+                                        <form action="{{route('lunches.create',$lead)}}" method="post">
+                                            @csrf
+                                            @include('partials.activities')
                                             <button type="submit" class="btn btn-primary">Save</button>
+                                            @foreach ($lead->lunches as $call)
+                                            
+                                            @include('partials.call-content',['call'=>$call])
+                                            @endforeach
                                         </form>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="files">
                                     <div class="pt-4">
-                                        <form action="" method="post">
+                                        <form action="{{route('file.create',$lead)}}" method="post" enctype="multipart/form-data">
+                                            @csrf
                                             @include('partials.form.file', [
                                                 'name' => 'file',
                                                 'label' => 'File',
                                            
                                             ])
+                                         <button type="submit" class="btn btn-primary">Save</button>
                                         </form>
+                                        @foreach ($lead->files as $file)
+                                            
+                                        @include('partials.file-content',['file'=>$file])
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

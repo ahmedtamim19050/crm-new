@@ -1,6 +1,6 @@
 <div class="rounded border p-4 mt-3 shadow-sm">
     <div class="d-flex justify-content-between">
-        <h4>{{ $lead->created_at->diffForHumans() }} - {{ $note->createdByUser ? $note->createdByUser->name : '' }} </h4> 
+        <h4>{{$task->name}}</h4> 
 
         <div class="dropdown">
             <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
@@ -14,6 +14,9 @@
         </div>
     </div>
 
-    <small>Lorem ipsum dolor sit amet consectetur adipisicing.</small>
-    <span class="badge badge-success light d-inline mt-2">Note at {{ $note->noted_at ? $note->noted_at->format('h:i A') : '' }} on {{ $note->noted_at ? $note->noted_at->toFormattedDateString() : '' }}</span>
+    <small class="d-block">{{$task->description}}</small>
+    <p class="mt-2">
+        <span class="badge light badge-warning">Pending</span>
+        <span class="badge badge-success light d-inline ">Due at {{ $task->due ? $task->due->format('h:i A') : '' }} on {{ $task->due ? $task->due->toFormattedDateString() : '' }}</span>
+    </p>
 </div>

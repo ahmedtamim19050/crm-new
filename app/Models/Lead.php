@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasCrmActivities;
 
 
 class Lead extends Model
 {
-
+    use HasCrmActivities;
 
     protected $guarded = ['id'];
 
@@ -171,14 +172,14 @@ class Lead extends Model
     {
         return $this->morphToMany(Label::class,'labelable');
     }
-    public function notes()
-    {
-        return $this->morphMany(Note::class, 'noteable');
-    }
-    public function activities()
-    {
-        return $this->morphMany(Activity::class, 'timelineable');
-    }
+    // public function notes()
+    // {
+    //     return $this->morphMany(Note::class, 'noteable');
+    // }
+    // public function activities()
+    // {
+    //     return $this->morphMany(Activity::class, 'timelineable');
+    // }
 
 }
 
