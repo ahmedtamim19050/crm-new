@@ -31,21 +31,22 @@
 					</form>
 				</div>
 			</div>
-		</div>
-	</div> --}}
+		</div> --}}
+	</div>
         <div class="row page-titles mx-0">
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
                     <h4>Hi, welcome back!</h4>
-                    <span>{{ $lead->title }}</span>
+                    <span>{{ $deal->title }}</span>
                 </div>
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('leads.create') }}">Create</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ $lead->title }}</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ $deal->title }}</a></li>
                 </ol>
             </div>
+
         </div>
         <div class="row">
             <div class="col-xl-5">
@@ -55,36 +56,36 @@
                         <h6 class="text-uppercase">DETAILS</h6>
                         <hr />
                         <p><span class="fa fa-tag" aria-hidden="true"></span>
-                            @foreach ($lead->labels as $label)
+                            @foreach ($deal->labels as $label)
                                 <span class="badge light badge-success">{{ $label->name }}</span></td>
                             @endforeach
                         </p>
                         <p><i class="las la-dollar-sign"
-                                style="font-size: 20px;font-weight:900"></i>{{ $lead->amount, $lead->currency }}</p>
-                        <p><span class="fa fa-info" aria-hidden="true"></span> {{ $lead->description }}</p>
+                                style="font-size: 20px;font-weight:900"></i>{{ $deal->amount, $deal->currency }}</p>
+                        <p><span class="fa fa-info" aria-hidden="true"></span> {{ $deal->description }}</p>
                         <p><span class="fa fa-user-circle" aria-hidden="true"></span> <a
-                                href="">{{ $lead->ownerUser->name ?? null }}</a></p>
+                                href="">{{ $deal->ownerUser->name ?? null }}</a></p>
                         <h6 class="mt-4 text-uppercase"> CUSTOMER</h6>
                         <hr />
                         <p><span class="fa fa-address-card" aria-hidden="true"></span>
-                            @if ($lead->client)
-                                <a href="">{{ $lead->client->name }}</a>
+                            @if ($deal->client)
+                                <a href="">{{ $deal->client->name }}</a>
                             @endif
                         </p>
                         <h6 class="mt-4 text-uppercase"> ORGANIZATION</h6>
                         <hr />
                         <p><span class="fa fa-building" aria-hidden="true"></span>
-                            @if ($lead->organisation)
-                                <a href="">{{ $lead->organisation->name }}</a>
+                            @if ($deal->organisation)
+                                <a href="">{{ $deal->organisation->name }}</a>
                             @endif
                         </p>
-                        <p><span class="fa fa-map-marker me-1"
-                                aria-hidden="true"></span>{{ App\Helper\AddressLine::addressSingleLine($address) }} </p>
+                        {{-- <p><span class="fa fa-map-marker me-1"
+                                aria-hidden="true"></span>{{ App\Helper\AddressLine::addressSingleLine($address) }} </p> --}}
                         <h6 class="mt-4 text-uppercase">CONTACT PERSON</h6>
                         <hr />
                         <p><span class="fa fa-user" aria-hidden="true"></span>
-                            @if ($lead->person)
-                                <a href="">{{ $lead->person->name }}</a>
+                            @if ($deal->person)
+                                <a href="">{{ $deal->person->name }}</a>
                             @endif
                         </p>
                         @if ($email)
@@ -135,7 +136,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="activity" role="tabpanel">
                                     <div class="pt-4">
-                                        @foreach ($lead->activities as $activity)
+                                        @foreach ($deal->activities as $activity)
                                             
                                         @include('partials.activity',['activity'=>$activity])
                                         @endforeach
@@ -143,7 +144,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="notes1">
                                     <div class="pt-4">
-                                        <form action="{{route('note.create',$lead)}}" method="post">
+                                        <form action="{{route('note.create',$deal)}}" method="post">
                                             @csrf
                                             @include('partials.form.textarea', [
                                                 'name' => 'note',
@@ -156,7 +157,7 @@
                                             </div>
                                             <button type="submit" class="btn btn-primary">Save</button>
                                         </form>
-                                        @foreach ($lead->notes as $note)
+                                        @foreach ($deal->notes as $note)
                                             
                                         @include('partials.note-content',['note'=>$note,])
                                         @endforeach
@@ -164,7 +165,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="tasks">
                                     <div class="pt-4">
-                                        <form action="{{route('task.create',$lead)}}" method="post">
+                                        <form action="{{route('task.create',$deal)}}" method="post">
                                             @csrf
                                             @include('partials.form.text', [
                                                 'name' => 'name',
@@ -182,7 +183,7 @@
                                             <button type="submit" class="btn btn-primary">Save</button>
                                         </form>
 
-                                        @foreach ($lead->tasks as $task)
+                                        @foreach ($deal->tasks as $task)
                                             
                                         @include('partials.task-content',['task'=>$task,])
                                         @endforeach
@@ -191,12 +192,12 @@
                                 </div>
                                 <div class="tab-pane fade" id="calls">
                                     <div class="pt-4">
-                                        <form action="{{route('calls.create',$lead)}}" method="post">
+                                        <form action="{{route('calls.create',$deal)}}" method="post">
                                             @csrf
                                             @include('partials.activities')
                                             <button type="submit" class="btn btn-primary">Save</button>
                                         </form>
-                                        @foreach ($lead->calls as $call)
+                                        @foreach ($deal->calls as $call)
                                             
                                         @include('partials.call-content',['call'=>$call])
                                         @endforeach
@@ -204,12 +205,12 @@
                                 </div>
                                 <div class="tab-pane fade" id="meeting">
                                     <div class="pt-4">
-                                        <form action="{{route('meeting.create',$lead)}}" method="post">
+                                        <form action="{{route('meeting.create',$deal)}}" method="post">
                                             @csrf
                                             @include('partials.activities')
                                             <button type="submit" class="btn btn-primary">Save</button>
                                         </form>
-                                        @foreach ($lead->meetings as $call)
+                                        @foreach ($deal->meetings as $call)
                                             
                                         @include('partials.call-content',['call'=>$call])
                                         @endforeach
@@ -217,11 +218,11 @@
                                 </div>
                                 <div class="tab-pane fade" id="lunches">
                                     <div class="pt-4">
-                                        <form action="{{route('lunches.create',$lead)}}" method="post">
+                                        <form action="{{route('lunches.create',$deal)}}" method="post">
                                             @csrf
                                             @include('partials.activities')
                                             <button type="submit" class="btn btn-primary">Save</button>
-                                            @foreach ($lead->lunches as $call)
+                                            @foreach ($deal->lunches as $call)
                                             
                                             @include('partials.call-content',['call'=>$call])
                                             @endforeach
@@ -230,7 +231,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="files">
                                     <div class="pt-4">
-                                        <form action="{{route('file.create',$lead)}}" method="post" enctype="multipart/form-data">
+                                        <form action="{{route('file.create',$deal)}}" method="post" enctype="multipart/form-data">
                                             @csrf
                                             @include('partials.form.file', [
                                                 'name' => 'file',
@@ -239,7 +240,7 @@
                                             ])
                                          <button type="submit" class="btn btn-primary">Save</button>
                                         </form>
-                                        @foreach ($lead->files as $file)
+                                        @foreach ($deal->files as $file)
                                             
                                         @include('partials.file-content',['file'=>$file])
                                         @endforeach

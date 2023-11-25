@@ -1,52 +1,6 @@
-{{-- <table class="table mb-0 card-table table-hover">
-    <thead>
-    <tr>
-        <th scope="col">Created</th>
-        <th scope="col">Title</th>
-        <th scope="col">Label</th>
-        <th scope="col">Value</th>
-        <th scope="col">Customer</th>
-        <th scope="col">Organisation</th>
-        <th scope="col">Contact Person</th>
-        <th scope="col">Owner</th>
-        <th scope="col" width="210"></th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach($leads as $lead)
-        <tr class="has-link" data-url="{{ url(route('leads.show',$lead)) }}">
-            <td>{{ $lead->created_at->diffForHumans() }}</td>
-            <td>{{ $lead->title }}</td>
-          
-            <td>{{ $lead->amount, $lead->currency }}</td>
-            <td>{{ $lead->client->name ?? null}}</td>
-            <td>{{ $lead->organisation->name ?? null}}</td>
-            <td>{{ $lead->person->name ??  null }}</td>
-            <td>{{ $lead->ownerUser->name ?? null }}</td>
-            <td class="disable-link text-right">
-                @hasdealsenabled
-                    @can('edit crm leads')
-                    <a href="{{ route('laravel-crm.leads.convert-to-deal',$lead) }}" class="btn btn-success btn-sm"> {{ ucfirst(__('laravel-crm::lang.convert')) }}</a>
-                    @endcan
-                @endhasdealsenabled
-                @can('view crm leads')
-                <a href="{{ route('laravel-crm.leads.show',$lead) }}" class="btn btn-outline-secondary btn-sm"><span class="fa fa-eye" aria-hidden="true"></span></a>
-                @endcan
-                @can('edit crm leads')
-                <a href="{{ route('laravel-crm.leads.edit',$lead) }}" class="btn btn-outline-secondary btn-sm"><span class="fa fa-edit" aria-hidden="true"></span></a>
-                @endcan
-                @can('delete crm leads')
-                <form action="{{ route('laravel-crm.leads.destroy',$lead) }}" method="POST" class="form-check-inline mr-0 form-delete-button">
-                {{ method_field('DELETE') }}
-                {{ csrf_field() }}
-                    <button class="btn btn-danger btn-sm" type="submit" data-model="{{ __('laravel-crm::lang.lead') }}"><span class="fa fa-trash-o" aria-hidden="true"></span></button>
-                </form>
-                @endcan
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
-</table> --}}
+@extends('layouts.default')
+
+@section('content')
 <div class="container-fluid">
     <!-- Add Project -->
     <div class="modal fade" id="addProjectSidebar">
@@ -123,31 +77,30 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($leads as $lead)
+                                @foreach($deals as $deal)
                          
                                 <tr>
                                     <td><strong>{{$loop->index +1}}</strong></td>
-                                    <td>{{ $lead->created_at->diffForHumans() }}</td>
-                                    <td>{{ $lead->title }}</td>
+                                    <td>{{ $deal->created_at->diffForHumans() }}</td>
+                                    <td>{{ $deal->title }}</td>
                                     <td>
-                                        @foreach($lead->labels as $label)
+                                        @foreach($deal->labels as $label)
                                         <span class="badge light badge-success">{{$label->name}}</span></td>
                                         @endforeach
-                                    <td>{{ $lead->amount, $lead->currency }}</td>
+                                    <td>{{ $deal->amount, $deal->currency }}</td>
                      
-                                    <td>{{ $lead->client->name ?? null}}</td>
-                                    <td>{{ $lead->organisation->name ?? null}}</td>
-                                    <td>{{ $lead->person->name ??  null }}</td>
-                                    <td>{{ $lead->ownerUser->name ?? null }}</td>
+                                    <td>{{ $deal->client->name ?? null}}</td>
+                                    <td>{{ $deal->organisation->name ?? null}}</td>
+                                    <td>{{ $deal->person->name ??  null }}</td>
+                                    <td>{{ $deal->ownerUser->name ?? null }}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
                                                 <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="{{route('leads.convert',$lead)}}">Convert</a>
-                                                <a class="dropdown-item" href="{{route('leads.show',$lead)}}">Show</a>
-                                                <a class="dropdown-item" href="{{route('leads.edit',$lead)}}">Edit</a>
+                                                <a class="dropdown-item" href="{{route('deals.show',$deal->id)}}">Show</a>
+                                                <a class="dropdown-item" href="{{route('deals.edit',$deal->id)}}">Edit</a>
                                                 <a class="dropdown-item" href="javascript:void(0);">Delete</a>
                                             </div>
                                         </div>
@@ -164,3 +117,4 @@
 
     </div>
 </div>
+@endsection

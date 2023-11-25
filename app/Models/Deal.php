@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasCrmActivities;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Deal extends Model
 {
     use HasFactory;
+    use HasCrmActivities;
 
     protected $guarded = ['id'];
 
@@ -69,7 +71,7 @@ class Deal extends Model
 
     public function client()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class,'user_owner_id');
     }
 
     public function dealProducts()
@@ -121,5 +123,17 @@ class Deal extends Model
     public function labels()
     {
         return $this->morphToMany(Label::class,'labelable');
+    }
+    public function addresses()
+    {
+        return $this->morphMany(Address::class, 'addressable');
+    }
+    public function getPrimaryAddress()
+    {
+        if ($this->organisation) {
+            return $this->organisation->getPrimaryAddress();
+        } else {
+            return $this->addresses()->first();
+        }
     }
 }

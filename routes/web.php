@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DealsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FastoAdminController;
 use App\Http\Controllers\LeadController;
@@ -98,6 +99,8 @@ Route::middleware(['auth'])->controller(FastoAdminController::class)->group(func
     Route::post('file/create/{lead}',[LeadController::class,'fileCreate'])->name('file.create');
     Route::get('convert/create/{lead}',[LeadController::class,'convert'])->name('leads.convert');
     Route::post('convert/store/{lead}',[LeadController::class,'convertStore'])->name('leads.convert.store');
+
+    Route::resource('deals', DealsController::class);
 });
 
 Auth::routes();
