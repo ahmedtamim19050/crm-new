@@ -9,10 +9,12 @@ use App\Models\Label;
 use App\Models\Lead;
 use App\Models\Organisation;
 use App\Models\Person;
+use App\Services\DealService;
 use Illuminate\Http\Request;
 use App\Services\LeadService;
 use App\Services\OrganisationService;
 use App\Services\PersonService;
+use Carbon\Carbon;
 use Ramsey\Uuid\Uuid;
 
 
@@ -36,13 +38,19 @@ class LeadController extends Controller
         /**
      * @var OrganisationService
      */
+        /**
+     * @var DealService
+     */
+    private $dealService;
+
     private $organisationService;
 
-     public function __construct(LeadService $leadService ,PersonService $personService, OrganisationService $organisationService)
+     public function __construct(LeadService $leadService ,DealService $dealService,PersonService $personService, OrganisationService $organisationService)
      {
          $this->leadService = $leadService;
          $this->personService = $personService;
          $this->organisationService = $organisationService;
+         $this->dealService = $dealService;
 
      }
 
@@ -100,6 +108,7 @@ class LeadController extends Controller
      */
     public function store(StoreLeadRequest $request)
     {
+ 
 
         if ($request->person_name && ! $request->person_id) {
             $person = $this->personService->createFromRelated($request);
@@ -435,6 +444,40 @@ class LeadController extends Controller
             'recordable_type' => $fileModel->getMorphClass(),
             'recordable_id' => $fileModel->id,
             'external_id' => Uuid::uuid4()->toString(),
+        ]);
+        return back();
+    }
+    public function convert(Lead $lead) {
+        $email = $lead->getPrimaryEmail();
+        $phone = $lead->getPrimaryPhone();
+        $address = $lead->getPrimaryAddress();
+        $labels=Label::pluck('name','id')->toArray();
+
+        return view('dashboard.leads.convert', [
+            'lead' => $lead,
+            'email' => $email ?? null,
+            'phone' => $phone ?? null,
+            'address' => $address ?? null,
+            'labels'=>$labels,
+        ]);
+    }
+    public function convertStore(StoreLeadRequest $request, Lead $lead) {
+        if ($request->person_name && ! $request->person_id) {
+            $person = $this->personService->createFromRelated($request);
+        } elseif ($request->person_id) {
+            $person = Person::find($request->person_id);
+        }
+
+        if ($request->organisation_name && ! $request->organisation_id) {
+            $organisation = $this->organisationService->createFromRelated($request);
+        } elseif ($request->organisation_id) {
+            $organisation = Organisation::find($request->organisation_id);
+        }
+
+        $this->dealService->create($request, $person ?? null, $organisation ?? null);
+
+        $lead->update([
+            'converted_at' => Carbon::now(),
         ]);
         return back();
     }

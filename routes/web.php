@@ -96,6 +96,8 @@ Route::middleware(['auth'])->controller(FastoAdminController::class)->group(func
     Route::post('meeting/create/{lead}',[LeadController::class,'meetingCreate'])->name('meeting.create');
     Route::post('lunches/create/{lead}',[LeadController::class,'lunchesCreate'])->name('lunches.create');
     Route::post('file/create/{lead}',[LeadController::class,'fileCreate'])->name('file.create');
+    Route::get('convert/create/{lead}',[LeadController::class,'convert'])->name('leads.convert');
+    Route::post('convert/store/{lead}',[LeadController::class,'convertStore'])->name('leads.convert.store');
 });
 
 Auth::routes();
