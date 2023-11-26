@@ -36,8 +36,9 @@ class Task extends Model
 
     public function setDueAtAttribute($value)
     {
+        // dd( Carbon::createFromFormat('Y-m-d\TH:i', $value));
         if ($value) {
-            $this->attributes['due_at'] = Carbon::createFromFormat($this->dateFormat().' H:i', $value);
+            $this->attributes['due_at'] =  Carbon::createFromFormat('Y-m-d\TH:i', $value);
         }
     }
 

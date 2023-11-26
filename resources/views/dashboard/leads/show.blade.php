@@ -143,7 +143,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="notes1">
                                     <div class="pt-4">
-                                        <form action="{{route('note.create',$lead)}}" method="post">
+                                        <form action="{{route('note.create',['model' => class_basename(get_class($lead)), 'id' => $lead->id])}}" method="post">
                                             @csrf
                                             @include('partials.form.textarea', [
                                                 'name' => 'note',
@@ -158,13 +158,13 @@
                                         </form>
                                         @foreach ($lead->notes as $note)
                                             
-                                        @include('partials.note-content',['note'=>$note,])
+                                        @include('partials.note-content',['note' => $note])
                                         @endforeach
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="tasks">
                                     <div class="pt-4">
-                                        <form action="{{route('task.create',$lead)}}" method="post">
+                                        <form action="{{route('task.create',['model' => class_basename(get_class($lead)), 'id' => $lead->id])}}" method="post">
                                             @csrf
                                             @include('partials.form.text', [
                                                 'name' => 'name',
@@ -184,40 +184,40 @@
 
                                         @foreach ($lead->tasks as $task)
                                             
-                                        @include('partials.task-content',['task'=>$task,])
+                                        @include('partials.task-content',['task' => $task])
                                         @endforeach
                            
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="calls">
                                     <div class="pt-4">
-                                        <form action="{{route('calls.create',$lead)}}" method="post">
+                                        <form action="{{route('calls.create',['model' => class_basename(get_class($lead)), 'id' => $lead->id])}}" method="post">
                                             @csrf
                                             @include('partials.activities')
                                             <button type="submit" class="btn btn-primary">Save</button>
                                         </form>
                                         @foreach ($lead->calls as $call)
                                             
-                                        @include('partials.call-content',['call'=>$call])
+                                        @include('partials.call-content',['call' => $call])
                                         @endforeach
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="meeting">
                                     <div class="pt-4">
-                                        <form action="{{route('meeting.create',$lead)}}" method="post">
+                                        <form action="{{route('meeting.create',['model' => class_basename(get_class($lead)), 'id' => $lead->id])}}" method="post">
                                             @csrf
                                             @include('partials.activities')
                                             <button type="submit" class="btn btn-primary">Save</button>
                                         </form>
                                         @foreach ($lead->meetings as $call)
                                             
-                                        @include('partials.call-content',['call'=>$call])
+                                        @include('partials.call-content',['call' =>  $call])
                                         @endforeach
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="lunches">
                                     <div class="pt-4">
-                                        <form action="{{route('lunches.create',$lead)}}" method="post">
+                                        <form action="{{route('lunches.create',['model' => class_basename(get_class($lead)), 'id' => $lead->id])}}" method="post">
                                             @csrf
                                             @include('partials.activities')
                                             <button type="submit" class="btn btn-primary">Save</button>
@@ -230,7 +230,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="files">
                                     <div class="pt-4">
-                                        <form action="{{route('file.create',$lead)}}" method="post" enctype="multipart/form-data">
+                                        <form action="{{route('file.create',['model' => class_basename(get_class($lead)), 'id' => $lead->id])}}" method="post" enctype="multipart/form-data">
                                             @csrf
                                             @include('partials.form.file', [
                                                 'name' => 'file',

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\DealsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FastoAdminController;
@@ -91,16 +92,18 @@ Route::middleware(['auth'])->controller(FastoAdminController::class)->group(func
     Route::get('/page-forgot-password','page_forgot_password');
     Route::post('/ajax/contact-list','contact_list_ajax');
     Route::resource('leads', LeadController::class);
-    Route::post('notes/create/{lead}',[LeadController::class,'noteCreate'])->name('note.create');
-    Route::post('task/create/{lead}',[LeadController::class,'taskCreate'])->name('task.create');
-    Route::post('calls/create/{lead}',[LeadController::class,'callsCreate'])->name('calls.create');
-    Route::post('meeting/create/{lead}',[LeadController::class,'meetingCreate'])->name('meeting.create');
-    Route::post('lunches/create/{lead}',[LeadController::class,'lunchesCreate'])->name('lunches.create');
-    Route::post('file/create/{lead}',[LeadController::class,'fileCreate'])->name('file.create');
+    
     Route::get('convert/create/{lead}',[LeadController::class,'convert'])->name('leads.convert');
     Route::post('convert/store/{lead}',[LeadController::class,'convertStore'])->name('leads.convert.store');
 
     Route::resource('deals', DealsController::class);
+
+    Route::post('notes/create/{model}/{id}',[ActivityController::class,'noteCreate'])->name('note.create');
+    Route::post('task/create/{model}/{id}',[ActivityController::class,'taskCreate'])->name('task.create');
+    Route::post('calls/create/{model}/{id}',[ActivityController::class,'callsCreate'])->name('calls.create');
+    Route::post('meeting/create/{model}/{id}',[ActivityController::class,'meetingCreate'])->name('meeting.create');
+    Route::post('lunches/create/{model}/{id}',[ActivityController::class,'lunchesCreate'])->name('lunches.create');
+    Route::post('file/create/{model}/{id}',[ActivityController::class,'fileCreate'])->name('file.create');
 });
 
 Auth::routes();

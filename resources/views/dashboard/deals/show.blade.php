@@ -144,7 +144,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="notes1">
                                     <div class="pt-4">
-                                        <form action="{{route('note.create',$deal)}}" method="post">
+                                        <form action="{{route('note.create',['model' => class_basename(get_class($deal)), 'id' => $deal->id])}}" method="post">
                                             @csrf
                                             @include('partials.form.textarea', [
                                                 'name' => 'note',
@@ -165,7 +165,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="tasks">
                                     <div class="pt-4">
-                                        <form action="{{route('task.create',$deal)}}" method="post">
+                                        <form action="{{route('task.create',['model' => class_basename(get_class($deal)), 'id' => $deal->id])}}" method="post">
                                             @csrf
                                             @include('partials.form.text', [
                                                 'name' => 'name',
@@ -192,7 +192,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="calls">
                                     <div class="pt-4">
-                                        <form action="{{route('calls.create',$deal)}}" method="post">
+                                        <form action="{{route('calls.create',['model' => class_basename(get_class($deal)), 'id' => $deal->id])}}" method="post">
                                             @csrf
                                             @include('partials.activities')
                                             <button type="submit" class="btn btn-primary">Save</button>
@@ -205,7 +205,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="meeting">
                                     <div class="pt-4">
-                                        <form action="{{route('meeting.create',$deal)}}" method="post">
+                                        <form action="{{route('meeting.create',['model' => class_basename(get_class($deal)), 'id' => $deal->id])}}" method="post">
                                             @csrf
                                             @include('partials.activities')
                                             <button type="submit" class="btn btn-primary">Save</button>
@@ -218,7 +218,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="lunches">
                                     <div class="pt-4">
-                                        <form action="{{route('lunches.create',$deal)}}" method="post">
+                                        <form action="{{route('lunches.create',['model' => class_basename(get_class($deal)), 'id' => $deal->id])}}" method="post">
                                             @csrf
                                             @include('partials.activities')
                                             <button type="submit" class="btn btn-primary">Save</button>
@@ -231,7 +231,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="files">
                                     <div class="pt-4">
-                                        <form action="{{route('file.create',$deal)}}" method="post" enctype="multipart/form-data">
+                                        <form action="{{route('file.create',['model' => class_basename(get_class($deal)), 'id' => $deal->id])}}" method="post" enctype="multipart/form-data">
                                             @csrf
                                             @include('partials.form.file', [
                                                 'name' => 'file',
