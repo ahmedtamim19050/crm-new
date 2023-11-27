@@ -46,7 +46,7 @@ class ProductController extends Controller
     {
         // dd($request->all());
         $product = $this->productService->create($request);
-        return back();
+        return redirect('/products')->with('success','Product create successfully');
     }
 
     /**
@@ -82,7 +82,7 @@ class ProductController extends Controller
     public function update(StoreProductRequest $request, Product $product)
     {
         $product = $this->productService->update($product, $request);
-        return back();
+        return redirect('/products')->with('success','Product update successfully');
     }
 
     /**

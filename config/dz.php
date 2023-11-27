@@ -21,11 +21,15 @@ return [
 			'css' => [
 				'vendor/bootstrap-select/dist/css/bootstrap-select.min.css',
 				'css/style.css',
+				'vendor/toastr/css/toastr.min.css',
 			],
 			'js' => [
+	
 				'top'=> [
 					'vendor/global/global.min.js',
 					'vendor/bootstrap-select/dist/js/bootstrap-select.min.js',
+					'vendor/toastr/js/toastr.min.js',
+					'js/plugins-init/toastr-init.js',
 				],
 				'bottom'=> [
 					'js/custom.min.js',

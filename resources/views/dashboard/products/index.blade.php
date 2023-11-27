@@ -1,6 +1,8 @@
 @extends('layouts.default')
 
 @section('content')
+<button type="button" class="btn btn-dark mb-2 me-2" id="toastr-success-top-right">Top
+    Right</button>
 <div class="container-fluid">
     <div class="row page-titles mx-0">
         <div class="col-sm-6 p-md-0">
