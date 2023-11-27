@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\HasCrmActivities;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
     use HasFactory;
+    use HasCrmActivities;
 
     protected $guarded = [];
 
@@ -69,5 +71,10 @@ class Client extends Model
     public function contacts()
     {
         return $this->morphMany(Contact::class, 'contactable');
+    }
+    
+    public function ownerUser()
+    {
+        return $this->belongsTo(Client::class,'user_owner_id');
     }
 }

@@ -150,6 +150,7 @@
         Scripts
     ***********************************-->
 	<!-- Required vendors -->
+    
 
     @if(!empty(config('dz.public.global.js.top')))
         @foreach(config('dz.public.global.js.top') as $script)
@@ -166,8 +167,8 @@
             <script src="{{ asset($script) }}" type="text/javascript"></script>
         @endforeach
     @endif
-    @livewireScripts
+    {{-- @livewireScripts --}}
     @stack('scripts')
-	
+
 </body>
 </html>

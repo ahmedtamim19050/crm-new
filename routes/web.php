@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DealsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FastoAdminController;
 use App\Http\Controllers\LeadController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\QuoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,6 +107,10 @@ Route::middleware(['auth'])->controller(FastoAdminController::class)->group(func
     Route::post('meeting/create/{model}/{id}',[ActivityController::class,'meetingCreate'])->name('meeting.create');
     Route::post('lunches/create/{model}/{id}',[ActivityController::class,'lunchesCreate'])->name('lunches.create');
     Route::post('file/create/{model}/{id}',[ActivityController::class,'fileCreate'])->name('file.create');
+
+    // Route::resource('quotes', QuoteController::class);
+    Route::resource('clients', ClientController::class);
+    Route::resource('products', ProductController::class);
 });
 
 Auth::routes();
