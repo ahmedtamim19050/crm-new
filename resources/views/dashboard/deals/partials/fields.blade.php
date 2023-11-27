@@ -63,7 +63,7 @@
                     @include('partials.form.text', [
                         'name' => 'amount',
                         'label' => 'Value',
-                        'value' => old('amount', (isset($deal->amount) ? $deal->amount / 100 : null) ?? null),
+                        'value' => old('amount', $deal->amount ?? null),
                     ])
                 </div>
                 <div class="col-sm-6">

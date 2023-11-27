@@ -288,6 +288,6 @@ class LeadController extends Controller
         $lead->update([
             'converted_at' => Carbon::now(),
         ]);
-        return back();
+        return redirect(route('deals.index'))->with('success','Lead Convert successfully');
     }
 }
