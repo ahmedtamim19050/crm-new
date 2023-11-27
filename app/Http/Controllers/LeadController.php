@@ -147,7 +147,7 @@ class LeadController extends Controller
         }
 
         $lead = $this->leadService->create($request, $person ?? null, $organisation ?? null, $client ?? null);
-        return redirect('/leads');
+        return redirect(route('leads.index'))->with('success','Lead update successfully');
     }
 
     /**
@@ -209,15 +209,16 @@ class LeadController extends Controller
 
         if ($request->client_name && ! $request->client_id) {
           
-            // $client = Client::create([
-            //     'name' => $request->client_name,
-            //     'user_owner_id' => $request->user_owner_id,
-            // ]);
+            $client = Client::create([
+                'name' => $request->client_name,
+                'user_owner_id' => $request->user_owner_id,
+            ]);
+           
+        } elseif ($request->client_id) {
+            $client = Client::find($request->client_id);
             $lead->client->update([
                 'name'=>$request->client_name,
             ]);
-        } elseif ($request->client_id) {
-            $client = Client::find($request->client_id);
         }
 
         // if (isset($client)) {
@@ -239,7 +240,7 @@ class LeadController extends Controller
         $lead = $this->leadService->update($request, $lead, $person ?? null, $organisation ?? null, $client ?? null);
            
 
-        return redirect(route('leads.show', $lead));
+        return redirect(route('leads.index'))->with('success','Lead update successfully');
     }
 
     /**
@@ -250,7 +251,9 @@ class LeadController extends Controller
      */
     public function destroy(Lead $lead)
     {
-        //
+        $lead->delete();
+        
+        return redirect(route('leads.index'))->with('success','Lead Delete successfully');
     }
     
     public function convert(Lead $lead) {

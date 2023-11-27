@@ -51,8 +51,9 @@
                                     <td>{{ $client->name }}</td>
                                     <td>
                                         @foreach($client->labels as $label)
-                                        <span class="badge light badge-success">{{$label->name}}</span></td>
+                                        <span class="badge light badge-success">{{$label->name}}</span>
                                         @endforeach
+                                     </td>
                                     <td>{{ $client->ownerUser->name ?? null }}</td>
                                     <td>
                                         <div class="dropdown">
@@ -62,7 +63,7 @@
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="{{route('clients.show',$client->id)}}">Show</a>
                                                 <a class="dropdown-item" href="{{route('clients.edit',$client->id)}}">Edit</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                                <x-delete class="dropdown-item" :route="route('clients.destroy',$client->id)"/>
                                             </div>
                                         </div>
                                     </td>

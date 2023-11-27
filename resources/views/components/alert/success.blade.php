@@ -1,6 +1,6 @@
 <script>
     $(document).ready(function() {
-        toastr.success("{{session('success')}}", "Top Right", {
+        toastr.success("", "{{session('success')}}", {
             timeOut: 500000000,
             closeButton: !0,
             debug: !1,

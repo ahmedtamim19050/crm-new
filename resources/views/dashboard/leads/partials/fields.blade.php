@@ -24,7 +24,13 @@
                 'organisation' => $organisation ?? null,
                 'person' => $person ?? null
             ]) --}}
+            @if($lead->client ?? null)
+            @include('partials.form.hidden', [
+                'name' => 'client_id',
+                'value' => $lead->client->id ,
+            ])
 
+            @endif
 
             @include('partials.form.text', [
                 'name' => 'client_name',

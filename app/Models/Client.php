@@ -75,6 +75,6 @@ class Client extends Model
     
     public function ownerUser()
     {
-        return $this->belongsTo(Client::class,'user_owner_id');
+        return $this->belongsTo(User::class,'user_owner_id');
     }
 }

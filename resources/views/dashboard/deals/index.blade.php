@@ -47,7 +47,7 @@
             </ol>
         </div>
         <div class="col-md-3 mt-3">
-            <a href="{{route('leads.create')}}" class="btn btn-primary">Create a Lead</a>
+            <a href="{{route('deals.create')}}" class="btn btn-primary">Create a Lead</a>
         </div>
     </div>
     <!-- row -->
@@ -101,7 +101,7 @@
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="{{route('deals.show',$deal->id)}}">Show</a>
                                                 <a class="dropdown-item" href="{{route('deals.edit',$deal->id)}}">Edit</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                                <x-delete class="dropdown-item" :route="route('deals.destroy',$deal->id)"/>
                                             </div>
                                         </div>
                                     </td>

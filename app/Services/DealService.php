@@ -28,9 +28,9 @@ class DealService
         $deal = Deal::create([
             'external_id' => Uuid::uuid4()->toString(),
             'lead_id' => $request->lead_id ?? null,
+            'client_id' => $client->id ?? null,
             'person_id' => $person->id ?? null,
             'organisation_id' => $organisation->id ?? null,
-            'client_id' => $client->id ?? null,
             'title' => $request->title,
             'description' => $request->description,
             'amount' => $request->amount,
@@ -53,6 +53,7 @@ class DealService
                 ]);
             }
         }
+        
 
         return $deal;
     }
@@ -73,20 +74,20 @@ class DealService
 
         $deal->labels()->sync($request->labels ?? []);
 
-        if (isset($request->item_deal_product_id)) {
-            foreach ($request->item_deal_product_id as $dealProductKey => $dealProductValue) {
-                $dealProduct = DealProduct::find($dealProductValue);
+        // if (isset($request->item_deal_product_id)) {
+        //     foreach ($request->item_deal_product_id as $dealProductKey => $dealProductValue) {
+        //         $dealProduct = DealProduct::find($dealProductValue);
 
-                if ($dealProduct) {
-                    $dealProduct->update([
-                        'product_id' => $request->item_product_id[$dealProductKey],
-                        'price' => $request->item_price[$dealProductKey],
-                        'quantity' => $request->item_quantity[$dealProductKey],
-                        'amount' => $request->item_amount[$dealProductKey],
-                    ]);
-                }
-            }
-        }
+        //         if ($dealProduct) {
+        //             $dealProduct->update([
+        //                 'product_id' => $request->item_product_id[$dealProductKey],
+        //                 'price' => $request->item_price[$dealProductKey],
+        //                 'quantity' => $request->item_quantity[$dealProductKey],
+        //                 'amount' => $request->item_amount[$dealProductKey],
+        //             ]);
+        //         }
+        //     }
+        // }
 
         return $deal;
     }

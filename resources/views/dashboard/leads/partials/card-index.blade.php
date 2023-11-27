@@ -148,7 +148,8 @@
                                                 <a class="dropdown-item" href="{{route('leads.convert',$lead)}}">Convert</a>
                                                 <a class="dropdown-item" href="{{route('leads.show',$lead)}}">Show</a>
                                                 <a class="dropdown-item" href="{{route('leads.edit',$lead)}}">Edit</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                                {{-- <a class="dropdown-item" href="javascript:void(0);">Delete</a> --}}
+                                                <x-delete class="dropdown-item" :route="route('leads.destroy',$lead)"/>
                                             </div>
                                         </div>
                                     </td>

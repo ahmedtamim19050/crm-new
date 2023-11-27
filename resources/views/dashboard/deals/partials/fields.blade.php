@@ -24,8 +24,13 @@
                 'organisation' => $organisation ?? null,
                 'person' => $person ?? null
             ]) --}}
+            @if($deal->client)
+            @include('partials.form.hidden', [
+                'name' => 'client_id',
+                'value' => $deal->client->id ,
+            ])
 
-    
+            @endif
             @include('partials.form.text', [
                 'name' => 'client_name',
                 'label' => 'Customer',

@@ -50,7 +50,7 @@ class ClientController extends Controller
         ]);
 
        $client->labels()->sync($request->labels ?? []);
-       return redirect('/clients');
+       return redirect('/clients')->with('success','Client Create Successfully');
     }
 
     /**
@@ -105,7 +105,7 @@ class ClientController extends Controller
         ]);
 
        $client->labels()->sync($request->labels ?? []);
-       return redirect('/clients');
+       return redirect('/clients')->with('success','Client Update Successfully');
     }
 
     /**
@@ -116,6 +116,8 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $client=Client::find($id);
+        $client->delete();
+        return redirect('/clients')->with('success','Client Delete Successfully');
     }
 }

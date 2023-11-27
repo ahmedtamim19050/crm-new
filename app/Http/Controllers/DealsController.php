@@ -114,6 +114,8 @@ class DealsController extends Controller
             ]);
         } elseif ($request->client_id) {
             $client = Client::find($request->client_id);
+
+       
         }
 
         if (isset($client)) {
@@ -133,7 +135,7 @@ class DealsController extends Controller
         }
 
         $this->dealService->create($request, $person ?? null, $organisation ?? null, $client ?? null);
-        return back();
+        return redirect('/deals')->with('success','Deal Create Successfully');
     }
 
     /**
@@ -217,11 +219,16 @@ class DealsController extends Controller
         }
 
         if ($request->client_name && ! $request->client_id) {
-            $deal->client->update([
-                'name'=>$request->client_name,
+     
+            $client = Client::create([
+                'name' => $request->client_name,
+                'user_owner_id' => $request->user_owner_id,
             ]);
         } elseif ($request->client_id) {
             $client = Client::find($request->client_id);
+            $deal->client->update([
+                'name'=>$request->client_name,
+            ]);
         }
 
         if (isset($client)) {
@@ -241,7 +248,7 @@ class DealsController extends Controller
         }
 
         $deal = $this->dealService->update($request, $deal, $person ?? null, $organisation ?? null, $client ?? null);
-        return back();
+        return redirect('/deals')->with('success','Deal Update Successfully');
 
     }
 
@@ -253,6 +260,8 @@ class DealsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deal=Deal::find($id);
+        $deal->delete();
+        return redirect('/deals')->with('success','Deal Delete Successfully');
     }
 }

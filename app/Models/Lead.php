@@ -49,10 +49,18 @@ class Lead extends Model
             $this->attributes['amount'] = null;
         }
     }
+    public function getAmountAttribute($value)
+    {
+        if (isset($value)) {
+            return $value / 100;
+        } else {
+            return null;
+        }
+    }
 
     public function client()
     {
-        return $this->belongsTo(Client::class,'user_owner_id');
+        return $this->belongsTo(Client::class,'client_id');
     }
 
     public function organisation()

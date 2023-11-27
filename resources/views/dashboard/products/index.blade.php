@@ -77,7 +77,8 @@
                                                 
                                                 <a class="dropdown-item" href="{{route('products.show',$product)}}">Show</a>
                                                 <a class="dropdown-item" href="{{route('products.edit',$product)}}">Edit</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                                <x-delete class="dropdown-item" :route="route('products.destroy',$product)"/>
+                                                {{-- <a class="dropdown-item" href="javascript:void(0);">Delete</a> --}}
                                             </div>
                                         </div>
                                     </td>
