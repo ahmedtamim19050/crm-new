@@ -239,4 +239,14 @@ class ActivityController extends Controller
         ]);
         return back();
     }
+    public function activityDelete($model,$id)  {
+        $modelClass = "App\\Models\\{$model}";
+        if (!class_exists($modelClass)) {
+            abort(404); 
+        }
+        $modelData=$modelClass::findOrFail($id);
+
+        $modelData->delete();
+        return back()->with('success','Note Delete Successfully');
+    }
 }

@@ -1,3 +1,4 @@
+@if($call)
 <div class="rounded border p-4 mt-3 shadow-sm">
     <div class="pb-2" style="border-bottom: 1px solid #c0c0c0">
         <div class="d-flex justify-content-between">
@@ -8,9 +9,10 @@
                     <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="">Pin</a>
+                    {{-- <a class="dropdown-item" href="">Pin</a>
                     <a class="dropdown-item" href="">Edit</a>
-                    <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                    <a class="dropdown-item" href="javascript:void(0);">Delete</a> --}}
+                    <x-delete class="dropdown-item" :route="route('activity.delete',['model' => class_basename(get_class($call)), 'id' => $call->id])"/>
                 </div>
             </div>
         </div>
@@ -42,3 +44,4 @@
         <p style="font-size: 14px"> {{$call->location}}</p>
     </div>
 </div>
+@endif

@@ -107,6 +107,8 @@ Route::middleware(['auth'])->controller(FastoAdminController::class)->group(func
     Route::post('meeting/create/{model}/{id}',[ActivityController::class,'meetingCreate'])->name('meeting.create');
     Route::post('lunches/create/{model}/{id}',[ActivityController::class,'lunchesCreate'])->name('lunches.create');
     Route::post('file/create/{model}/{id}',[ActivityController::class,'fileCreate'])->name('file.create');
+    Route::DELETE('note/delete/{model}/{id}',[ActivityController::class,'noteDelete'])->name('note.delete');
+    Route::DELETE('activity/delete/{model}/{id}',[ActivityController::class,'activityDelete'])->name('activity.delete');
 
     // Route::resource('quotes', QuoteController::class);
     Route::resource('clients', ClientController::class);
