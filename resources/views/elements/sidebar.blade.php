@@ -1,48 +1,69 @@
 <div class="deznav">
     <div class="deznav-scroll">
-        <a class="add-project-sidebar btn btn-primary" href="javascript:void(0)"  data-bs-toggle="modal" data-bs-target="#addProjectSidebar" >+ New Project</a>
+        {{-- <a class="add-project-sidebar btn btn-primary" href="javascript:void(0)"  data-bs-toggle="modal" data-bs-target="#addProjectSidebar" >+ New Project</a> --}}
         <ul class="metismenu" id="menu">
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-layout"></i>
+            <li><a class="has-arrow ai-icon" href="{{ route('leads.index') }}" aria-expanded="false">
+                    <i class="flaticon-381-controls-7"></i>
                     <span class="nav-text">Leads</span>
                 </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{ route('leads.index')}}">Index</a></li>
+                {{-- <ul aria-expanded="false">
+                    <li><a href="">Index</a></li>
  
-                </ul>
+                </ul> --}}
 
             </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-layout"></i>
+            <li><a class="has-arrow ai-icon" href="{{ route('deals.index') }}" aria-expanded="false">
+                    <i class="flaticon-381-menu-3"></i>
                     <span class="nav-text">Deals</span>
                 </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{ route('deals.index')}}">Index</a></li>
+                {{-- <ul aria-expanded="false">
+                    <li><a href="">Index</a></li>
  
-                </ul>
+                </ul> --}}
 
             </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-layout"></i>
+            <li><a class="has-arrow ai-icon" href="{{ route('clients.index') }}" aria-expanded="false">
+                    <i class="flaticon-381-user-9"></i>
                     <span class="nav-text">Clients</span>
                 </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{ route('clients.index')}}">Index</a></li>
+                {{-- <ul aria-expanded="false">
+                    <li><a href="">Index</a></li>
  
-                </ul>
+                </ul> --}}
 
             </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-layout"></i>
+            <li><a class="has-arrow ai-icon" href="{{ route('products.index') }}" aria-expanded="false">
+                    <i class="flaticon-381-binoculars"></i>
                     <span class="nav-text">Products</span>
                 </a>
-                <ul aria-expanded="false">
+                {{-- <ul aria-expanded="false">
                     <li><a href="{{ route('products.index')}}">Index</a></li>
  
-                </ul>
+                </ul> --}}
 
             </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            <li>
+                <form action="{{ route('logout') }}" method="post" class="has-arrow ai-icon">
+                    @csrf
+                    <button type="submit" aria-expanded="false" class="ms-4"
+                        style="border: none;background:transparent">
+                        <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-muted" width="18"
+                            height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                        <span class="nav-text ms-3 text-muted">Logout</span>
+                    </button>
+                </form>
+                {{-- <ul aria-expanded="false">
+                    <li><a href="{{ route('products.index')}}">Index</a></li>
+ 
+                </ul> --}}
+
+            </li>
+            {{-- <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-layout"></i>
                     <span class="nav-text">Dashboard</span>
                 </a>
@@ -56,8 +77,8 @@
                     <li><a href="{{ url('messages')}}">Messages</a></li>
                 </ul>
 
-            </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            </li> --}}
+            {{-- <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                 <i class="flaticon-monitor"></i>
                     <span class="nav-text">Apps</span>
                 </a>
@@ -84,8 +105,8 @@
                         </ul>
                     </li>
                 </ul>
-            </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            </li> --}}
+            {{-- <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-bar-chart-1"></i>
                     <span class="nav-text">Charts</span>
                 </a>
@@ -97,8 +118,8 @@
                     <li><a href="{{ url('chart-sparkline')}}">Sparkline</a></li>
                     <li><a href="{{ url('chart-peity')}}">Peity</a></li>
                 </ul>
-            </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            </li> --}}
+            {{-- <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-web"></i>
                     <span class="nav-text">Bootstrap</span>
                 </a>
@@ -122,8 +143,8 @@
                     <li><a href="{{ url('ui-grid')}}">Grid</a></li>
 
                 </ul>
-            </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            </li> --}}
+            {{-- <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-plugin"></i>
                     <span class="nav-text">Plugins</span>
                 </a>
@@ -136,13 +157,13 @@
                     <li><a href="{{ url('map-jqvmap')}}">Jqv Map</a></li>
                     <li><a href="{{ url('uc-lightgallery')}}">Light Gallery</a></li>
                 </ul>
-            </li>
-            <li><a href="{{ url('widget-basic')}}" class="ai-icon" aria-expanded="false">
+            </li> --}}
+            {{-- <li><a href="{{ url('widget-basic')}}" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-admin"></i>
                     <span class="nav-text">Widget</span>
                 </a>
-            </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            </li> --}}
+            {{-- <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-contract"></i>
                     <span class="nav-text">Forms</span>
                 </a>
@@ -153,8 +174,8 @@
                     <li><a href="{{ url('form-pickers')}}">Pickers</a></li>
                     <li><a href="{{ url('form-validation-jquery')}}">Jquery Validate</a></li>
                 </ul>
-            </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            </li> --}}
+            {{-- <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-table"></i>
                     <span class="nav-text">Table</span>
                 </a>
@@ -162,8 +183,8 @@
                     <li><a href="{{ url('table-bootstrap-basic')}}">Bootstrap</a></li>
                     <li><a href="{{ url('table-datatable-basic')}}">Datatable</a></li>
                 </ul>
-            </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            </li> --}}
+            {{-- <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-newsletter"></i>
                     <span class="nav-text">Pages</span>
                 </a>
@@ -181,7 +202,7 @@
                     </li>
                     <li><a href="{{ url('page-lock-screen')}}">Lock Screen</a></li>
                 </ul>
-            </li>
+            </li> --}}
         </ul>
         <div class="copyright">
             <p><strong>Fasto Saas Admin Dashboard</strong> © 2023 All Rights Reserved</p>
