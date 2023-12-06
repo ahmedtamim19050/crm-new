@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\Label;
+use App\Models\Organisation;
 use App\Models\Person;
 use Illuminate\Http\Request;
 
@@ -28,8 +29,9 @@ class ClientController extends Controller
     public function create()
     {
         $labels=Label::pluck('name','id')->toArray();
+        $organisations=Organisation::pluck('name','id')->toArray();
 
-        return view('dashboard.clients.create',compact('labels'));
+        return view('dashboard.clients.create',compact('labels','organisations'));
     }
 
     /**
@@ -43,10 +45,15 @@ class ClientController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'user_owner_id' => 'required',
+        
         ]);
         $client = Client::create([
             'name' => $request->name,
             'user_owner_id' => $request->user_owner_id,
+            'organisation_id' => $request->organisation_id,
+            'email' => $request->email,
+            'phone' => $request->phone,
+
         ]);
 
        $client->labels()->sync($request->labels ?? []);
@@ -79,9 +86,11 @@ class ClientController extends Controller
     {
         $client=Client::find($id);
         $labels=Label::pluck('name','id')->toArray();
+        $organisations=Organisation::pluck('name','id')->toArray();
         return view('dashboard.clients.edit', [
             'client' => $client,
             'labels'=>$labels,
+            'organisations'=>$organisations,
         ]);
     }
 
@@ -102,6 +111,9 @@ class ClientController extends Controller
         $client->update([
             'name' => $request->name,
             'user_owner_id' => $request->user_owner_id,
+            'organisation_id' => $request->organisation_id,
+            'email' => $request->email,
+            'phone' => $request->phone,
         ]);
 
        $client->labels()->sync($request->labels ?? []);

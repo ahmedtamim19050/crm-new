@@ -77,4 +77,8 @@ class Client extends Model
     {
         return $this->belongsTo(User::class,'user_owner_id');
     }
+    public function organisation()
+    {
+        return $this->belongsTo(Organisation::class);
+    }
 }

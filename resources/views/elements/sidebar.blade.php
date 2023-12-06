@@ -42,6 +42,13 @@
                 </ul> --}}
 
             </li>
+            <li><a class="has-arrow ai-icon" href="{{ route('organisations.index') }}" aria-expanded="false">
+                    <i class="flaticon-381-bookmark-1"></i>
+                    <span class="nav-text">Organisations</span>
+                </a>
+             
+
+            </li>
             <li>
                 <form action="{{ route('logout') }}" method="post" class="has-arrow ai-icon">
                     @csrf

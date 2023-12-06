@@ -23,17 +23,36 @@
                 'label' => 'Name',
                 'value' => old('client_name', $client->name ?? null),
             ])
+            {{-- @dd($client->organisation->pluck('id')->toArray() ); --}}
+            @include('partials.form.select', [
+                'name' => 'organisation_id',
+                'label' => 'Organisation',
+                'options' => $organisations,
+                'value' => old('organisation', isset($client) ? $client->organisation->id : null),
+            ])
             @include('partials.form.select', [
                 'name' => 'labels',
                 'label' => 'Labels',
                 'options' => $labels,
-                'value' => old('labels', isset($deal) ? $deal->labels->pluck('id')->toArray() : null),
+                'value' => old('labels', isset($client) ? $client->labels->pluck('id')->toArray() : null),
             ])
             @include('partials.form.select', [
                 'name' => 'user_owner_id',
                 'label' => 'owner',
                 'options' => App\Helper\SelectOptions::users(false),
-                'value' => old('user_owner_id', $deal->user_owner_id ?? auth()->user()->id),
+                'value' => old('user_owner_id', $client->user_owner_id ?? auth()->user()->id),
+            ])
+        </div>
+        <div class="col-md-6">
+            @include('partials.form.text', [
+                'name' => 'phone',
+                'label' => 'Phone',
+                'value' => old('phone', $client->phone ?? null),
+            ])
+            @include('partials.form.text', [
+                'name' => 'email',
+                'label' => 'Email',
+                'value' => old('email', $client->email ?? null),
             ])
         </div>
     </div>

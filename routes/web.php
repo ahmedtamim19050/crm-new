@@ -6,6 +6,7 @@ use App\Http\Controllers\DealsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FastoAdminController;
 use App\Http\Controllers\LeadController;
+use App\Http\Controllers\OrganisationController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\QuoteController;
 
@@ -113,6 +114,7 @@ Route::middleware(['auth'])->controller(FastoAdminController::class)->group(func
     // Route::resource('quotes', QuoteController::class);
     Route::resource('clients', ClientController::class);
     Route::resource('products', ProductController::class);
+    Route::resource('organisations', OrganisationController::class);
 });
 
 Auth::routes();

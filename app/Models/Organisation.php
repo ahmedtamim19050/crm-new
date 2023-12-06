@@ -94,7 +94,7 @@ class Organisation extends Model
 
     public function deals()
     {
-        return $this->hasMany(\VentureDrake\LaravelCrm\Models\Deal::class);
+        return $this->hasMany(Deal::class);
     }
 
     /**
@@ -102,7 +102,7 @@ class Organisation extends Model
      */
     public function labels()
     {
-        return $this->morphToMany(\VentureDrake\LaravelCrm\Models\Label::class, config('laravel-crm.db_table_prefix').'labelable');
+        return $this->morphToMany(Label::class,'labelable');
     }
 
     public function organisationType()
@@ -126,5 +126,9 @@ class Organisation extends Model
     public function client()
     {
         return $this->morphOne(\VentureDrake\LaravelCrm\Models\Client::class, 'clientable');
+    }
+    public function ownerUser()
+    {
+        return $this->belongsTo(User::class,'user_owner_id');
     }
 }
