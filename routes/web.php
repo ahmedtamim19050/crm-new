@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DealsController;
 use Illuminate\Support\Facades\Route;
@@ -115,6 +116,9 @@ Route::middleware(['auth'])->controller(FastoAdminController::class)->group(func
     Route::resource('clients', ClientController::class);
     Route::resource('products', ProductController::class);
     Route::resource('organisations', OrganisationController::class);
+    Route::resource('categories', CategoryController::class);
+    Route::get('deals-kanvan',[DealsController::class,'kanvan'])->name('kanvan');
+    Route::post('category-drop',[CategoryController::class,'drop'])->name('category.kanvan');
 });
 
 Auth::routes();

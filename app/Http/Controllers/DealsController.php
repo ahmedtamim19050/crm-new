@@ -264,4 +264,7 @@ class DealsController extends Controller
         $deal->delete();
         return redirect('/deals')->with('success','Deal Delete Successfully');
     }
+    function kanvan() {
+        return view('dashboard.deals.kanvan');
+    }
 }

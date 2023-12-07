@@ -49,7 +49,14 @@
              
 
             </li>
-            <li>
+            <li><a class="has-arrow ai-icon" href="{{ route('categories.index') }}" aria-expanded="false">
+                <i class="fas fa-bars "></i>
+                <span class="nav-text">Stages</span>
+            </a>
+         
+
+        </li>
+            <li class="mt-2">
                 <form action="{{ route('logout') }}" method="post" class="has-arrow ai-icon">
                     @csrf
                     <button type="submit" aria-expanded="false" class="ms-4"
