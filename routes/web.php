@@ -118,6 +118,7 @@ Route::middleware(['auth'])->controller(FastoAdminController::class)->group(func
     Route::resource('organisations', OrganisationController::class);
     Route::resource('categories', CategoryController::class);
     Route::get('deals-kanvan',[DealsController::class,'kanvan'])->name('kanvan');
+    Route::post('deals-kanvan/update',[DealsController::class,'kanvanUpdate'])->name('kanvan.update');
     Route::post('category-drop',[CategoryController::class,'drop'])->name('category.kanvan');
 });
 

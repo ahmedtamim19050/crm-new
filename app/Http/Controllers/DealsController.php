@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDealRequest;
+use App\Models\Category;
 use App\Models\Client;
 use App\Models\Deal;
 use App\Models\Label;
@@ -21,7 +22,7 @@ class DealsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-        /**
+    /**
      * @var DealService
      */
     private $dealService;
@@ -44,10 +45,10 @@ class DealsController extends Controller
     }
     public function index(Request $request)
     {
-       
 
-     
-        $deals = Deal::where('user_id',auth()->id())->latest()->paginate(30);
+
+
+        $deals = Deal::where('user_id', auth()->id())->latest()->paginate(30);
 
         return view('dashboard.deals.index', [
             'deals' => $deals,
@@ -61,13 +62,13 @@ class DealsController extends Controller
      */
     public function create(Request $request)
     {
-    
-        $clients=Client::where('user_id',auth()->id())->pluck('name','id')->toArray();
-        $organisations=Organisation::where('user_id',auth()->id())->pluck('name','id')->toArray();
+
+        $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
+        $organisations = Organisation::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
 
         return view('dashboard.deals.create', [
             'clients' => $clients ?? null,
-            'organisations'=>$organisations,
+            'organisations' => $organisations,
         ]);
     }
 
@@ -86,7 +87,7 @@ class DealsController extends Controller
         // }
 
         $this->dealService->create($request, $person ?? null);
-        return redirect('/deals')->with('success','Deal Create Successfully');
+        return redirect('/deals')->with('success', 'Deal Create Successfully');
     }
 
     /**
@@ -97,7 +98,7 @@ class DealsController extends Controller
      */
     public function show($id)
     {
-        $deal=Deal::find($id);
+        $deal = Deal::find($id);
         if ($deal->person) {
             $email = $deal->person->getPrimaryEmail();
             $phone = $deal->person->getPrimaryPhone();
@@ -107,7 +108,7 @@ class DealsController extends Controller
         if ($deal->organisation) {
             $organisation_address = $deal->organisation->getPrimaryAddress();
         }
-        $persons=Person::pluck('last_name','id')->toArray();
+        $persons = Person::pluck('last_name', 'id')->toArray();
 
         return view('dashboard.deals.show', [
             'deal' => $deal,
@@ -115,7 +116,7 @@ class DealsController extends Controller
             'phone' => $phone ?? null,
             'address' => $address ?? null,
             'organisation_address' => $organisation_address ?? null,
-            'persons'=>$persons,
+            'persons' => $persons,
         ]);
     }
 
@@ -127,14 +128,14 @@ class DealsController extends Controller
      */
     public function edit($id)
     {
-        $deal=Deal::find($id);
-        $clients=Client::where('user_id',auth()->id())->pluck('name','id')->toArray();
-        $organisations=Organisation::where('user_id',auth()->id())->pluck('name','id')->toArray();
+        $deal = Deal::find($id);
+        $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
+        $organisations = Organisation::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
 
         return view('dashboard.deals.edit', [
             'deal' => $deal,
-            'organisations'=>$organisations,
-            'clients'=>$clients,
+            'organisations' => $organisations,
+            'clients' => $clients,
         ]);
     }
 
@@ -147,7 +148,7 @@ class DealsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $deal=Deal::find($id);
+        $deal = Deal::find($id);
         // if ($request->person_name && ! $request->person_id) {
         //     $person = $this->personService->createFromRelated($request);
         // } elseif ($request->person_id) {
@@ -161,7 +162,7 @@ class DealsController extends Controller
         // }
 
         // if ($request->client_name && ! $request->client_id) {
-     
+
         //     $client = Client::create([
         //         'name' => $request->client_name,
         //         'user_owner_id' => $request->user_owner_id,
@@ -190,8 +191,7 @@ class DealsController extends Controller
         // }
 
         $deal = $this->dealService->update($request, $deal);
-        return redirect('/deals')->with('success','Deal Update Successfully');
-
+        return redirect('/deals')->with('success', 'Deal Update Successfully');
     }
 
     /**
@@ -202,11 +202,24 @@ class DealsController extends Controller
      */
     public function destroy($id)
     {
-        $deal=Deal::find($id);
+        $deal = Deal::find($id);
         $deal->delete();
-        return redirect('/deals')->with('success','Deal Delete Successfully');
+        return redirect('/deals')->with('success', 'Deal Delete Successfully');
     }
-    function kanvan() {
-        return view('dashboard.deals.kanvan');
+    function kanvan()
+    {
+        $stages = Category::where('user_id', auth()->id())->orderBy('order', 'asc')->get();
+        return view('dashboard.deals.kanvan', compact('stages'));
+    }
+    public function kanvanUpdate(Request $request)
+    {
+        // Retrieve data from the AJAX request
+        $dealId = $request->input('dealId');
+        $newStageId = $request->input('newStageId');
+        $deal=Deal::find($dealId);
+        $deal->update([
+            'category_id'=>$newStageId,
+        ]);
+        return response()->json(['message' => 'Deal updated successfully']);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Category;
 use App\Models\Deal;
 use Ramsey\Uuid\Uuid;
 use VentureDrake\LaravelCrm\Models\DealProduct;
@@ -25,6 +26,8 @@ class DealService
 
     public function create($request, $person = null)
     {
+        $stage=Category::where('user_id',auth()->id())->orderBy('order','asc')->first();
+
         $deal = Deal::create([
             'external_id' => Uuid::uuid4()->toString(),
             'lead_id' => $request->lead_id ?? null,
@@ -46,6 +49,7 @@ class DealService
             'post_code' => $request->code,
             'country' => $request->country,
             'label' => $request->label,
+            'category_id' => $stage->id,
  
             // 'external_id' => Uuid::uuid4()->toString(),
         ]);
