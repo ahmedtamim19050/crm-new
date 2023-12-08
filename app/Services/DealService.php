@@ -26,7 +26,12 @@ class DealService
 
     public function create($request, $person = null)
     {
-        $stage=Category::where('user_id',auth()->id())->orderBy('order','asc')->first();
+      
+        if($request->category_id){
+            $stage=$request->category_id;
+        }else{
+            $stage=Category::where('user_id',auth()->id())->orderBy('order','asc')->first()->id;
+        }
 
         $deal = Deal::create([
             'external_id' => Uuid::uuid4()->toString(),
@@ -49,7 +54,7 @@ class DealService
             'post_code' => $request->code,
             'country' => $request->country,
             'label' => $request->label,
-            'category_id' => $stage->id,
+            'category_id' => $stage,
  
             // 'external_id' => Uuid::uuid4()->toString(),
         ]);

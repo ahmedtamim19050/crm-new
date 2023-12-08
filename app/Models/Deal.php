@@ -137,12 +137,12 @@ class Deal extends Model
     {
         return $this->morphMany(Address::class, 'addressable');
     }
-    public function getPrimaryAddress()
-    {
-        if ($this->organisation) {
-            return $this->organisation->getPrimaryAddress();
-        } else {
-            return $this->addresses()->first();
-        }
-    }
+    // public function getPrimaryAddress()
+    // {
+    //     if ($this->organisation) {
+    //         return $this->organisation->getPrimaryAddress();
+    //     } else {
+    //         return $this->addresses()->first();
+    //     }
+    // }
 }

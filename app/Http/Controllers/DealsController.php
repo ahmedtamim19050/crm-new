@@ -87,7 +87,12 @@ class DealsController extends Controller
         // }
 
         $this->dealService->create($request, $person ?? null);
-        return redirect('/deals')->with('success', 'Deal Create Successfully');
+        if($request->category_id){
+            return redirect('/deals-kanvan')->with('success', 'Deal Create Successfully');
+        }else{
+
+            return redirect('/deals')->with('success', 'Deal Create Successfully');
+        }
     }
 
     /**
@@ -105,9 +110,9 @@ class DealsController extends Controller
             $address = $deal->person->getPrimaryAddress();
         }
 
-        if ($deal->organisation) {
-            $organisation_address = $deal->organisation->getPrimaryAddress();
-        }
+        // if ($deal->organisation) {
+        //     $organisation_address = $deal->organisation->getPrimaryAddress();
+        // }
         $persons = Person::pluck('last_name', 'id')->toArray();
 
         return view('dashboard.deals.show', [
@@ -208,8 +213,10 @@ class DealsController extends Controller
     }
     function kanvan()
     {
+        $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
+        $organisations = Organisation::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
         $stages = Category::where('user_id', auth()->id())->orderBy('order', 'asc')->get();
-        return view('dashboard.deals.kanvan', compact('stages'));
+        return view('dashboard.deals.kanvan', compact('stages','clients','organisations'));
     }
     public function kanvanUpdate(Request $request)
     {

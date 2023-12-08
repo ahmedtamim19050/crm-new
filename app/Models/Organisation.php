@@ -77,10 +77,10 @@ class Organisation extends Model
         return $this->morphMany(Address::class, 'addressable');
     }
 
-    public function getPrimaryAddress()
-    {
-        return $this->addresses()->where('primary', 1)->first();
-    }
+    // public function getPrimaryAddress()
+    // {
+    //     return $this->addresses()->where('primary', 1)->first();
+    // }
 
     public function getBillingAddress()
     {

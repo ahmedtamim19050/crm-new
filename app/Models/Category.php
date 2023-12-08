@@ -11,6 +11,6 @@ class Category extends Model
     protected $guarded=[];
 
     public function deals() {
-      return $this->hasMany(Deal::class);
+      return $this->hasMany(Deal::class)->latest();
     }
 }
