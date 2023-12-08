@@ -23,24 +23,33 @@ class DealService
     //     $this->dealRepository = $dealRepository;
     // }
 
-    public function create($request, $person = null, $organisation = null, $client = null)
+    public function create($request, $person = null)
     {
         $deal = Deal::create([
             'external_id' => Uuid::uuid4()->toString(),
             'lead_id' => $request->lead_id ?? null,
-            'client_id' => $client->id ?? null,
-            'person_id' => $person->id ?? null,
-            'organisation_id' => $organisation->id ?? null,
+            'client_id' => $request->client_id,
+            // 'person_id' => $person->id,
+            'organisation_id' => $request->organisation_id,
             'title' => $request->title,
             'description' => $request->description,
             'amount' => $request->amount,
             'currency' => $request->currency,
             'expected_close' => $request->expected_close,
             'user_owner_id' => $request->user_owner_id,
-            'external_id' => Uuid::uuid4()->toString(),
+            'user_id' => auth()->id(),
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'state' => $request->state,
+            'city' => $request->city,
+            'address' => $request->address,
+            'post_code' => $request->code,
+            'country' => $request->country,
+            'label' => $request->label,
+ 
+            // 'external_id' => Uuid::uuid4()->toString(),
         ]);
 
-        $deal->labels()->sync($request->labels ?? []);
 
         if (isset($request->item_deal_product_id)) {
             foreach ($request->item_deal_product_id as $dealProductKey => $dealProductValue) {
@@ -61,18 +70,26 @@ class DealService
     public function update($request, Deal $deal, $person = null, $organisation = null, $client = null)
     {
         $deal->update([
-            'person_id' => $person->id ?? null,
-            'organisation_id' => $organisation->id ?? null,
-            'client_id' => $client->id ?? null,
+            // 'person_id' => $person->id ?? null,
+            'organisation_id' => $request->organisation_id,
+            'client_id' => $request->client_id ?? null,
             'title' => $request->title,
             'description' => $request->description,
             'amount' => $request->amount,
             'currency' => $request->currency,
             'expected_close' => $request->expected_close,
             'user_owner_id' => $request->user_owner_id,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'state' => $request->state,
+            'city' => $request->city,
+            'address' => $request->address,
+            'post_code' => $request->code,
+            'country' => $request->country,
+            'label' => $request->label,
         ]);
 
-        $deal->labels()->sync($request->labels ?? []);
+        // $deal->labels()->sync($request->labels ?? []);
 
         // if (isset($request->item_deal_product_id)) {
         //     foreach ($request->item_deal_product_id as $dealProductKey => $dealProductValue) {

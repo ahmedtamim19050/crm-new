@@ -31,10 +31,10 @@
                 'value' => old('organisation', isset($client) ? $client->organisation->id : null),
             ])
             @include('partials.form.select', [
-                'name' => 'labels',
-                'label' => 'Labels',
-                'options' => $labels,
-                'value' => old('labels', isset($client) ? $client->labels->pluck('id')->toArray() : null),
+                'name' => 'label',
+                'label' => 'Label',
+                'options' => App\Helper\SelectOptions::labels(),
+                'value' => old('labels', isset($client) ? $client->label : null),
             ])
             @include('partials.form.select', [
                 'name' => 'user_owner_id',

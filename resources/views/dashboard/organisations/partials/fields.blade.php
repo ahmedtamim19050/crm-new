@@ -4,17 +4,16 @@
     <div class="row">
         <div class="col-sm-6 border-right">
 
-
             @include('partials.form.text', [
                 'name' => 'name',
                 'label' => 'Name',
                 'value' => old('client_name', $organisation->name ?? null),
             ])
-            @include('partials.form.select', [
-                'name' => 'labels',
-                'label' => 'Labels',
-                'options' => $labels,
-                'value' => old('labels', isset($organisation) ? $organisation->labels->pluck('id')->toArray() : null),
+              @include('partials.form.select', [
+                'name' => 'label',
+                'label' => 'Label',
+                  'options' => App\Helper\SelectOptions::labels(),
+                 'value' => old('labels', isset($organisation) ? $organisation->label : null),
             ])
             @include('partials.form.select', [
                 'name' => 'user_owner_id',

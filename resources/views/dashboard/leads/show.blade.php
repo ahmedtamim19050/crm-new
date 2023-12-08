@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xl-5">
+            <div class="col-xl-12">
                 <div class="card">
                  
                     <div class="card-body">
@@ -79,34 +79,32 @@
                             @endif
                         </p>
                         <p><span class="fa fa-map-marker me-1"
-                                aria-hidden="true"></span>{{ App\Helper\AddressLine::addressSingleLine($address) }} </p>
+                                aria-hidden="true"></span>{{ $lead->address }} </p>
                         <h6 class="mt-4 text-uppercase">CONTACT PERSON</h6>
                         <hr />
-                        <p><span class="fa fa-user" aria-hidden="true"></span>
+                        {{-- <p><span class="fa fa-user" aria-hidden="true"></span>
                             @if ($lead->person)
                                 <a href="">{{ $lead->person->name }}</a>
                             @endif
-                        </p>
-                        @if ($email)
+                        </p> --}}
+                  
                             <p><span class="fa fa-envelope" aria-hidden="true"></span> <a
-                                    href="mailto:{{ $email->address }}">{{ $email->address }}</a>
-                                ({{ ucfirst($email->type) }})</p>
-                        @endif
-                        @if ($phone)
+                                    href="mailto:{{ $lead->email }}">{{ $lead->email }}</a>
+                                </p>
+              
+                 
                             <p><span class="fa fa-phone" aria-hidden="true"></span> <a
-                                    href="tel:{{ $phone->number }}">{{ $phone->number }}</a>
-                                ({{ ucfirst($phone->type) }})</p>
-                        @endif
+                                    href="tel:{{ $lead->phone }}">{{ $lead->phone }}</a>
+                              </p>
+                    
                     </div>
                 </div>
             </div>
-            <div class="col-xl-7" style="height: 100vh; ">
+            {{-- <div class="col-xl-7" style="height: 100vh; ">
                 <div class="card " style="overflow:hidden;overflow-y: scroll;">
-                    {{-- <div class="card-header">
-					<h4 class="card-title">Custom Tab 1</h4>
-				</div> --}}
+                 
                     <div class="card-body">
-                        <!-- Nav tabs -->
+                
                         <div class="custom-tab-1">
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
@@ -249,7 +247,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
 
         </div>

@@ -116,7 +116,7 @@
                                     <th><strong>Value</strong></th>
                                     <th><strong>Customer</strong></th>
                                     <th> <strong> Organisation </strong></th>
-                                    <th> <strong>Contact Person </strong></th>
+                                    {{-- <th> <strong>Contact Person </strong></th> --}}
                                     <th> <strong>Owner </strong></th>
                                     {{-- <th><strong>PRICE</strong></th> --}}
                                     <th></th>
@@ -130,14 +130,14 @@
                                     <td>{{ $lead->created_at->diffForHumans() }}</td>
                                     <td>{{ $lead->title }}</td>
                                     <td>
-                                        @foreach($lead->labels as $label)
-                                        <span class="badge light badge-success">{{$label->name}}</span></td>
-                                        @endforeach
+                                     
+                                        <span class="badge light badge-success">{{$lead->label}}</span></td>
+                                     
                                     <td>{{ $lead->amount, $lead->currency }}</td>
                      
                                     <td>{{ $lead->client->name ?? null}}</td>
                                     <td>{{ $lead->organisation->name ?? null}}</td>
-                                    <td>{{ $lead->person->name ??  null }}</td>
+                                    {{-- <td>{{ $lead->person->name ??  null }}</td> --}}
                                     <td>{{ $lead->ownerUser->name ?? null }}</td>
                                     <td>
                                         <div class="dropdown">
@@ -145,7 +145,7 @@
                                                 <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="{{route('leads.convert',$lead)}}">Convert</a>
+                                                {{-- <a class="dropdown-item" href="{{route('leads.convert',$lead)}}">Convert</a> --}}
                                                 <a class="dropdown-item" href="{{route('leads.show',$lead)}}">Show</a>
                                                 <a class="dropdown-item" href="{{route('leads.edit',$lead)}}">Edit</a>
                                                 {{-- <a class="dropdown-item" href="javascript:void(0);">Delete</a> --}}

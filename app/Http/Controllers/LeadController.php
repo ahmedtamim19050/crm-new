@@ -60,7 +60,7 @@ class LeadController extends Controller
     {
 
 
-        $leads = Lead::whereNull('converted_at')->latest()->get();
+        $leads = Lead::where('user_id',auth()->id())->latest()->get();
 
         return view('dashboard.leads.index', [
             'leads' => $leads,
@@ -74,29 +74,13 @@ class LeadController extends Controller
      */
     public function create(Request $request)
     {
-        switch ($request->model) {
-            case 'client':
-                $client = Client::find($request->id);
-
-                break;
-
-            case 'organisation':
-                $organisation = Organisation::find($request->id);
-
-                break;
-
-            case 'person':
-                $person = Person::find($request->id);
-
-                break;
-        }
-        $labels=Label::pluck('name','id')->toArray();
+        $clients=Client::where('user_id',auth()->id())->pluck('name','id')->toArray();
+        $organisations=Organisation::where('user_id',auth()->id())->pluck('name','id')->toArray();
 
         return view('dashboard.leads.create', [
-            'client' => $client ?? null,
-            'organisation' => $organisation ?? null,
-            'person' => $person ?? null,
-            'labels'=>$labels,
+            'clients' => $clients,
+            'organisations' => $organisations,
+        
         ]);
     }
 
@@ -110,44 +94,10 @@ class LeadController extends Controller
     {
  
 
-        if ($request->person_name && ! $request->person_id) {
-            $person = $this->personService->createFromRelated($request);
-        } elseif ($request->person_id) {
-            $person = Person::find($request->person_id);
-        }
-        if ($request->organisation_name && ! $request->organisation_id) {
-            $organisation = $this->organisationService->createFromRelated($request);
-        } elseif ($request->organisation_id) {
-            $organisation = Organisation::find($request->organisation_id);
-        }
-        if ($request->client_name && !$request->client_id) {
-            $client = Client::create([
-                'name' => $request->client_name,
-                'user_owner_id' => $request->user_owner_id,
-            ]);
-        } elseif ($request->client_id) {
-            $client = Client::find($request->client_id);
-        }
+        
 
-        if (isset($client)) {
-            if (isset($organisation)) {
-                // dd($organisation->id);
-                $client->contacts()->firstOrCreate([
-                    'entityable_type' => $organisation->getMorphClass(),
-                    'entityable_id' => $organisation->id,
-                ]);
-            }
-
-            if (isset($person)) {
-                $client->contacts()->firstOrCreate([
-                    'entityable_type' => $person->getMorphClass(),
-                    'entityable_id' => $person->id,
-                ]);
-            }
-        }
-
-        $lead = $this->leadService->create($request, $person ?? null, $organisation ?? null, $client ?? null);
-        return redirect(route('leads.index'))->with('success','Lead update successfully');
+        $lead = $this->leadService->create($request);
+        return redirect()->route('leads.index')->with('success','Lead update successfully');
     }
 
     /**
@@ -158,11 +108,11 @@ class LeadController extends Controller
      */
     public function show(Lead $lead)
     {
-        $email = $lead->getPrimaryEmail();
-        $phone = $lead->getPrimaryPhone();
-        $address = $lead->getPrimaryAddress();
-        $persons=Person::pluck('last_name','id')->toArray();
-        return view('dashboard.leads.show',compact('lead','email','phone','address','persons'));
+        // $email = $lead->getPrimaryEmail();
+        // $phone = $lead->getPrimaryPhone();
+        // $address = $lead->getPrimaryAddress();
+        // $persons=Person::pluck('last_name','id')->toArray();
+        return view('dashboard.leads.show',compact('lead'));
     }
 
     /**
@@ -173,16 +123,12 @@ class LeadController extends Controller
      */
     public function edit(Lead $lead)
     {
-        $email = $lead->getPrimaryEmail();
-        $phone = $lead->getPrimaryPhone();
-        $address = $lead->getPrimaryAddress();
-        $labels=Label::pluck('name','id')->toArray();
+        $clients=Client::where('user_id',auth()->id())->pluck('name','id')->toArray();
+        $organisations=Organisation::where('user_id',auth()->id())->pluck('name','id')->toArray();
         return view('dashboard.leads.edit', [
             'lead' => $lead,
-            'email' => $email ?? null,
-            'phone' => $phone ?? null,
-            'address' => $address ?? null,
-            'labels' => $labels,
+            'clients'=>$clients,
+            'organisations'=>$organisations,
         ]);
     }
 
@@ -200,47 +146,12 @@ class LeadController extends Controller
         } elseif ($request->person_id) {
             $person = Person::find($request->person_id);
         }
+        
 
-        if ($request->organisation_name && ! $request->organisation_id) {
-            $organisation = $this->organisationService->createFromRelated($request);
-        } elseif ($request->person_id) {
-            $organisation = Organisation::find($request->organisation_id);
-        }
-
-        if ($request->client_name && ! $request->client_id) {
-          
-            $client = Client::create([
-                'name' => $request->client_name,
-                'user_owner_id' => $request->user_owner_id,
-            ]);
-           
-        } elseif ($request->client_id) {
-            $client = Client::find($request->client_id);
-            $lead->client->update([
-                'name'=>$request->client_name,
-            ]);
-        }
-
-        // if (isset($client)) {
-        //     if (isset($organisation)) {
-        //         $client->contacts()->firstOrCreate([
-        //             'entityable_type' => $organisation->getMorphClass(),
-        //             'entityable_id' => $organisation->id,
-        //         ]);
-        //     }
-
-        //     if (isset($person)) {
-        //         $client->contacts()->firstOrCreate([
-        //             'entityable_type' => $person->getMorphClass(),
-        //             'entityable_id' => $person->id,
-        //         ]);
-        //     }
-        // }
-
-        $lead = $this->leadService->update($request, $lead, $person ?? null, $organisation ?? null, $client ?? null);
+        $lead = $this->leadService->update($request, $lead);
            
 
-        return redirect(route('leads.index'))->with('success','Lead update successfully');
+        return redirect()->route('leads.index')->with('success','Lead update successfully');
     }
 
     /**

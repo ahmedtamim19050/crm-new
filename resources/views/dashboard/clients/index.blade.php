@@ -34,7 +34,7 @@
                             <thead>
                                 <tr>
                                     <th style="width:80px;"><strong>#</strong></th>
-                                    <th><strong>Created</strong></th>
+                                    {{-- <th><strong>Created</strong></th> --}}
                                     <th><strong>Name</strong></th>
                                     <th><strong>Organisation</strong></th>
                                     <th><strong>Email</strong></th>
@@ -50,15 +50,15 @@
                          
                                 <tr>
                                     <td><strong>{{$loop->index +1}}</strong></td>
-                                    <td>{{ $client->created_at->diffForHumans() }}</td>
+                                    {{-- <td>{{ $client->created_at->diffForHumans() }}</td> --}}
                                     <td>{{ $client->name }}</td>
                                     <td>{{ $client->organisation->name ?? null  }}</td>
                                     <td>{{ $client->email   }}</td>
                                     <td>{{ $client->phone }}</td>
                                     <td>
-                                        @foreach($client->labels as $label)
-                                        <span class="badge light badge-success">{{$label->name}}</span>
-                                        @endforeach
+                           
+                                        <span class="badge light badge-success">{{$client->label}}</span>
+                                
                                      </td>
                                     <td>{{ $client->ownerUser->name ?? null }}</td>
                                     <td>

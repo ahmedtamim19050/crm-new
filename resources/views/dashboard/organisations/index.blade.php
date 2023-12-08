@@ -53,9 +53,9 @@
                                     <td>{{ $organisation->name }}</td>
                                     <td>{{ $organisation->address }}</td>
                                     <td>
-                                        @foreach($organisation->labels as $label)
-                                        <span class="badge light badge-success">{{$label->name}}</span>
-                                        @endforeach
+                                        
+                                        <span class="badge light badge-success">{{$organisation->label}}</span>
+
                                      </td>
                                     <td>{{ $organisation->ownerUser->name ?? null }}</td>
                                     <td>

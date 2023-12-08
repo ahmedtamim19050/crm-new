@@ -88,16 +88,15 @@
                                 <a href="">{{ $deal->person->name }}</a>
                             @endif
                         </p>
-                        @if ($email)
+        
                             <p><span class="fa fa-envelope" aria-hidden="true"></span> <a
-                                    href="mailto:{{ $email->address }}">{{ $email->address }}</a>
-                                ({{ ucfirst($email->type) }})</p>
-                        @endif
-                        @if ($phone)
+                                    href="mailto:{{ $deal->email }}">{{ $deal->email }}</a>
+                              </p>
+                      
+             
                             <p><span class="fa fa-phone" aria-hidden="true"></span> <a
-                                    href="tel:{{ $phone->number }}">{{ $phone->number }}</a>
-                                ({{ ucfirst($phone->type) }})</p>
-                        @endif
+                                    href="tel:{{ $deal->phone }}">{{ $deal->phone }}</a>
+                            </p>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@
 
         @component('components.card-body')
   
-            @include('dashboard.leads.partials.fields')
+            @include('dashboard.deals.partials.fields')
 
         @endcomponent
 

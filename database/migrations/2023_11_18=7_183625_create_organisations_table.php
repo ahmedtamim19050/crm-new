@@ -13,19 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('addresses', function (Blueprint $table) {
+        Schema::create('organisations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('external_id');
-            $table->string('address')->nullable();
-            $table->string('line1')->nullable();
-            $table->string('line2')->nullable();
-            $table->string('line3')->nullable();
-            $table->string('code')->nullable();
-            $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('country')->nullable();
-            $table->morphs('addressable');
-            $table->boolean('primary')->default(false);
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->string('label')->nullable();
             $table->unsignedBigInteger('user_created_id')->nullable();
             $table->foreign('user_created_id')->references('id')->on('users');
             $table->unsignedBigInteger('user_updated_id')->nullable();
@@ -34,6 +27,8 @@ return new class extends Migration
             $table->foreign('user_deleted_id')->references('id')->on('users');
             $table->unsignedBigInteger('user_restored_id')->nullable();
             $table->foreign('user_restored_id')->references('id')->on('users');
+            $table->foreign('user_owner_id')->references('id')->on('users');
+            $table->unsignedBigInteger('user_owner_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -46,6 +41,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('addresses');
+        Schema::dropIfExists('organisations');
     }
 };

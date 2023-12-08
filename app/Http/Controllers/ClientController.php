@@ -17,7 +17,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients=Client::latest()->get();
+        $clients=Client::where('user_id',auth()->id())->latest()->get();
         return view('dashboard.clients.index',compact('clients'));
     }
 
@@ -28,10 +28,10 @@ class ClientController extends Controller
      */
     public function create()
     {
-        $labels=Label::pluck('name','id')->toArray();
-        $organisations=Organisation::pluck('name','id')->toArray();
+        
+        $organisations=Organisation::where('user_id',auth()->id())->pluck('name','id')->toArray();
 
-        return view('dashboard.clients.create',compact('labels','organisations'));
+        return view('dashboard.clients.create',compact('organisations'));
     }
 
     /**
@@ -45,6 +45,7 @@ class ClientController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'user_owner_id' => 'required',
+            'label' => 'required',
         
         ]);
         $client = Client::create([
@@ -53,10 +54,11 @@ class ClientController extends Controller
             'organisation_id' => $request->organisation_id,
             'email' => $request->email,
             'phone' => $request->phone,
+            'user_id'=>auth()->id(),
+            'label'=>$request->label,
 
         ]);
 
-       $client->labels()->sync($request->labels ?? []);
        return redirect('/clients')->with('success','Client Create Successfully');
     }
 
@@ -85,11 +87,9 @@ class ClientController extends Controller
     public function edit($id)
     {
         $client=Client::find($id);
-        $labels=Label::pluck('name','id')->toArray();
-        $organisations=Organisation::pluck('name','id')->toArray();
+        $organisations=Organisation::where('user_id',auth()->id())->pluck('name','id')->toArray();
         return view('dashboard.clients.edit', [
             'client' => $client,
-            'labels'=>$labels,
             'organisations'=>$organisations,
         ]);
     }
@@ -106,6 +106,7 @@ class ClientController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'user_owner_id' => 'required',
+            'label'=>'required',
         ]);
         $client=Client::find($id);
         $client->update([
@@ -114,9 +115,8 @@ class ClientController extends Controller
             'organisation_id' => $request->organisation_id,
             'email' => $request->email,
             'phone' => $request->phone,
+            'label' => $request->label,
         ]);
-
-       $client->labels()->sync($request->labels ?? []);
        return redirect('/clients')->with('success','Client Update Successfully');
     }
 

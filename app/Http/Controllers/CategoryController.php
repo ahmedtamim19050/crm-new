@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories=Category::orderBy('order','asc')->get();
+        $categories=Category::where('user_id',auth()->id())->orderBy('order','asc')->get();
         return view('dashboard.category.index',compact('categories'));
     }
 
@@ -54,6 +54,7 @@ class CategoryController extends Controller
             'name'=>$request->name,
             'slug'=>$slug,
             'order'=>$order,
+            'user_id'=>auth()->id(),
         ]);
         return back()->with('success','Category add successfully');
     }
@@ -94,6 +95,7 @@ class CategoryController extends Controller
         ]);
         $category->update([
             'name'=>$request->name,
+            'user_id'=>auth()->id(),
         ]);
         return back()->with('success','Category update successfully');
     }

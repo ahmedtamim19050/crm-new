@@ -88,8 +88,8 @@ class SelectOptions
         }
     
         $array = array_merge($array, [
-            'work' => 'Work',
-            'home' => 'Home',
+            'US' => 'Us',
+            'UK' => 'UK',
             'other' => "Other",
         ]);
     

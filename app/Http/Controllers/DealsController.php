@@ -47,7 +47,7 @@ class DealsController extends Controller
        
 
      
-            $deals = Deal::latest()->paginate(30);
+        $deals = Deal::where('user_id',auth()->id())->latest()->paginate(30);
 
         return view('dashboard.deals.index', [
             'deals' => $deals,
@@ -61,29 +61,13 @@ class DealsController extends Controller
      */
     public function create(Request $request)
     {
-        switch ($request->model) {
-            case 'client':
-                $client = Client::find($request->id);
-
-                break;
-
-            case 'organisation':
-                $organisation = Organisation::find($request->id);
-
-                break;
-
-            case 'person':
-                $person = Person::find($request->id);
-
-                break;
-        }
-        $labels=Label::pluck('name','id')->toArray();
+    
+        $clients=Client::where('user_id',auth()->id())->pluck('name','id')->toArray();
+        $organisations=Organisation::where('user_id',auth()->id())->pluck('name','id')->toArray();
 
         return view('dashboard.deals.create', [
-            'client' => $client ?? null,
-            'organisation' => $organisation ?? null,
-            'person' => $person ?? null,
-            'labels'=>$labels,
+            'clients' => $clients ?? null,
+            'organisations'=>$organisations,
         ]);
     }
 
@@ -95,46 +79,13 @@ class DealsController extends Controller
      */
     public function store(StoreDealRequest $request)
     {
-        if ($request->person_name && ! $request->person_id) {
-            $person = $this->personService->createFromRelated($request);
-        } elseif ($request->person_id) {
-            $person = Person::find($request->person_id);
-        }
+        // if ($request->person_name && ! $request->person_id) {
+        //     $person = $this->personService->createFromRelated($request);
+        // } elseif ($request->person_id) {
+        //     $person = Person::find($request->person_id);
+        // }
 
-        if ($request->organisation_name && ! $request->organisation_id) {
-            $organisation = $this->organisationService->createFromRelated($request);
-        } elseif ($request->organisation_id) {
-            $organisation = Organisation::find($request->organisation_id);
-        }
-
-        if ($request->client_name && ! $request->client_id) {
-            $client = Client::create([
-                'name' => $request->client_name,
-                'user_owner_id' => $request->user_owner_id,
-            ]);
-        } elseif ($request->client_id) {
-            $client = Client::find($request->client_id);
-
-       
-        }
-
-        if (isset($client)) {
-            if (isset($organisation)) {
-                $client->contacts()->firstOrCreate([
-                    'entityable_type' => $organisation->getMorphClass(),
-                    'entityable_id' => $organisation->id,
-                ]);
-            }
-
-            if (isset($person)) {
-                $client->contacts()->firstOrCreate([
-                    'entityable_type' => $person->getMorphClass(),
-                    'entityable_id' => $person->id,
-                ]);
-            }
-        }
-
-        $this->dealService->create($request, $person ?? null, $organisation ?? null, $client ?? null);
+        $this->dealService->create($request, $person ?? null);
         return redirect('/deals')->with('success','Deal Create Successfully');
     }
 
@@ -177,22 +128,13 @@ class DealsController extends Controller
     public function edit($id)
     {
         $deal=Deal::find($id);
-        if ($deal->person) {
-            $email = $deal->person->getPrimaryEmail();
-            $phone = $deal->person->getPrimaryPhone();
-        }
-
-        if ($deal->organisation) {
-            $address = $deal->organisation->getPrimaryAddress();
-        }
-        $labels=Label::pluck('name','id')->toArray();
+        $clients=Client::where('user_id',auth()->id())->pluck('name','id')->toArray();
+        $organisations=Organisation::where('user_id',auth()->id())->pluck('name','id')->toArray();
 
         return view('dashboard.deals.edit', [
             'deal' => $deal,
-            'email' => $email ?? null,
-            'phone' => $phone ?? null,
-            'address' => $address ?? null,
-            'labels'=>$labels,
+            'organisations'=>$organisations,
+            'clients'=>$clients,
         ]);
     }
 
@@ -206,48 +148,48 @@ class DealsController extends Controller
     public function update(Request $request, $id)
     {
         $deal=Deal::find($id);
-        if ($request->person_name && ! $request->person_id) {
-            $person = $this->personService->createFromRelated($request);
-        } elseif ($request->person_id) {
-            $person = Person::find($request->person_id);
-        }
+        // if ($request->person_name && ! $request->person_id) {
+        //     $person = $this->personService->createFromRelated($request);
+        // } elseif ($request->person_id) {
+        //     $person = Person::find($request->person_id);
+        // }
 
-        if ($request->organisation_name && ! $request->organisation_id) {
-            $organisation = $this->organisationService->createFromRelated($request);
-        } elseif ($request->organisation_id) {
-            $organisation = Organisation::find($request->organisation_id);
-        }
+        // if ($request->organisation_name && ! $request->organisation_id) {
+        //     $organisation = $this->organisationService->createFromRelated($request);
+        // } elseif ($request->organisation_id) {
+        //     $organisation = Organisation::find($request->organisation_id);
+        // }
 
-        if ($request->client_name && ! $request->client_id) {
+        // if ($request->client_name && ! $request->client_id) {
      
-            $client = Client::create([
-                'name' => $request->client_name,
-                'user_owner_id' => $request->user_owner_id,
-            ]);
-        } elseif ($request->client_id) {
-            $client = Client::find($request->client_id);
-            $deal->client->update([
-                'name'=>$request->client_name,
-            ]);
-        }
+        //     $client = Client::create([
+        //         'name' => $request->client_name,
+        //         'user_owner_id' => $request->user_owner_id,
+        //     ]);
+        // } elseif ($request->client_id) {
+        //     $client = Client::find($request->client_id);
+        //     $deal->client->update([
+        //         'name'=>$request->client_name,
+        //     ]);
+        // }
 
-        if (isset($client)) {
-            if (isset($organisation)) {
-                $client->contacts()->firstOrCreate([
-                    'entityable_type' => $organisation->getMorphClass(),
-                    'entityable_id' => $organisation->id,
-                ]);
-            }
+        // if (isset($client)) {
+        //     if (isset($organisation)) {
+        //         $client->contacts()->firstOrCreate([
+        //             'entityable_type' => $organisation->getMorphClass(),
+        //             'entityable_id' => $organisation->id,
+        //         ]);
+        //     }
 
-            if (isset($person)) {
-                $client->contacts()->firstOrCreate([
-                    'entityable_type' => $person->getMorphClass(),
-                    'entityable_id' => $person->id,
-                ]);
-            }
-        }
+        //     if (isset($person)) {
+        //         $client->contacts()->firstOrCreate([
+        //             'entityable_type' => $person->getMorphClass(),
+        //             'entityable_id' => $person->id,
+        //         ]);
+        //     }
+        // }
 
-        $deal = $this->dealService->update($request, $deal, $person ?? null, $organisation ?? null, $client ?? null);
+        $deal = $this->dealService->update($request, $deal);
         return redirect('/deals')->with('success','Deal Update Successfully');
 
     }

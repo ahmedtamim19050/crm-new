@@ -24,28 +24,34 @@
                 'organisation' => $organisation ?? null,
                 'person' => $person ?? null
             ]) --}}
-            @if($deal->client)
-            @include('partials.form.hidden', [
+            {{-- @if ($deal->client)
+                @include('partials.form.hidden', [
+                    'name' => 'client_id',
+                    'value' => $deal->client->id,
+                ])
+            @endif --}}
+            @include('partials.form.select', [
                 'name' => 'client_id',
-                'value' => $deal->client->id ,
+                'label' => 'Customer',
+                'options' => $clients,
+                'value' => old('organisation', isset($deal) ? $deal->client->id : null),
             ])
-
-            @endif
-            @include('partials.form.text', [
+            {{-- @include('partials.form.text', [
                 'name' => 'client_name',
                 'label' => 'Customer',
                 'value' => old('client_name', $deal->client->name ?? null),
+            ]) --}}
+            @include('partials.form.select', [
+                'name' => 'organisation_id',
+                'label' => 'Organisation',
+                'options' => $organisations,
+                'value' => old('organisation', isset($deal) ? $deal->organisation->id : null),
             ])
-            @include('partials.form.text', [
-                'name' => 'organisation_name',
-                'label' => 'Organization',
-                'value' => old('organisation_name', $deal->organisation->name ?? null),
-            ])
-            @include('partials.form.text', [
+            {{-- @include('partials.form.text', [
                 'name' => 'person_name',
                 'label' => 'Contact Person',
                 'value' => old('person_name', $deal->person->name ?? null),
-            ])
+            ]) --}}
             @include('partials.form.text', [
                 'name' => 'title',
                 'label' => 'Title',
@@ -76,10 +82,10 @@
                 </div>
             </div>
             @include('partials.form.select', [
-                'name' => 'labels',
-                'label' => 'Labels',
-                'options' => $labels,
-                'value' => old('labels', isset($deal) ? $deal->labels->pluck('id')->toArray() : null),
+                'name' => 'label',
+                'label' => 'Label',
+                  'options' => App\Helper\SelectOptions::labels(),
+                 'value' => old('labels', isset($deal) ? $deal->label : null),
             ])
 
             @include('partials.form.select', [
@@ -93,51 +99,29 @@
             <h6 class="text-uppercase"><span class="fa fa-user" aria-hidden="true"></span> Person</h6>
             <hr />
             <span class="autocomplete-person">
-                <div class="row">
-                    <div class="col-sm-6">
-                        @include('partials.form.text', [
-                            'name' => 'phone',
-                            'label' => 'Phone',
-                            'value' => old('phone', $phone->number ?? null),
-                            //  'attributes' => [
-                            //      'disabled' => 'disabled'
-                            //  ]
-                        ])
-                    </div>
-                    <div class="col-sm-6">
-                        @include('partials.form.select', [
-                            'name' => 'phone_type',
-                            'label' => 'Type',
-                            'options' => App\Helper\SelectOptions::phoneTypes(),
-                            'value' => old('phone_type', $phone->type ?? 'mobile'),
-                            //  'attributes' => [
-                            //      'disabled' => 'disabled'
-                            //  ]
-                        ])
-                    </div>
-                </div>
+              
                 <div class="row">
                     <div class="col-sm-6">
                         @include('partials.form.text', [
                             'name' => 'email',
                             'label' => 'Email',
-                            'value' => old('email', $email->address ?? null),
+                            'value' => old('email', $deal->email ?? null),
                             //  'attributes' => [
                             //      'disabled' => 'disabled'
                             //  ]
                         ])
                     </div>
                     <div class="col-sm-6">
-                        @include('partials.form.select', [
-                            'name' => 'email_type',
-                            'label' => 'type',
-                            'options' => App\Helper\SelectOptions::emailTypes(),
-                            'value' => old('email_type', $email->type ?? 'work'),
+                        @include('partials.form.text', [
+                            'name' => 'phone',
+                            'label' => 'Phone',
+                            'value' => old('phone', $deal->phone ?? null),
                             //  'attributes' => [
                             //      'disabled' => 'disabled'
                             //  ]
                         ])
                     </div>
+     
                 </div>
             </span>
             <h6 class="text-uppercase mt-4"><span class="fa fa-building" aria-hidden="true"></span> Organization </h6>
@@ -149,14 +133,14 @@
                     'value' => old('address', $address ?? null)
                 ]) --}}
                 @include('partials.form.text', [
-                    'name' => 'line1',
-                    'label' => 'Address line 1',
-                    'value' => old('line1', $address->line1 ?? null),
+                    'name' => 'address',
+                    'label' => 'Address',
+                    'value' => old('address', $deal->address ?? null),
                     //    'attributes' => [
                     //              'disabled' => 'disabled'
                     //          ]
                 ])
-                @include('partials.form.text', [
+                {{-- @include('partials.form.text', [
                     'name' => 'line2',
                     'label' => 'Address line 2',
                     'value' => old('line2', $address->line2 ?? null),
@@ -171,13 +155,13 @@
                     //    'attributes' => [
                     //              'disabled' => 'disabled'
                     //          ]
-                ])
+                ]) --}}
                 <div class="row">
                     <div class="col-sm-6">
                         @include('partials.form.text', [
                             'name' => 'city',
                             'label' => 'City',
-                            'value' => old('city', $address->city ?? null),
+                            'value' => old('city', $deal->city ?? null),
                             // 'attributes' => [
                             //     'disabled' => 'disabled'
                             //  ]
@@ -187,7 +171,7 @@
                         @include('partials.form.text', [
                             'name' => 'state',
                             'label' => 'state',
-                            'value' => old('state', $address->state ?? null),
+                            'value' => old('state', $deal->state ?? null),
                             //    'attributes' => [
                             //              'disabled' => 'disabled'
                             //     ]
@@ -199,7 +183,7 @@
                         @include('partials.form.text', [
                             'name' => 'code',
                             'label' => 'Post code',
-                            'value' => old('code', $address->code ?? null),
+                            'value' => old('code', $deal->post_code ?? null),
                             // 'attributes' => [
                             //  'disabled' => 'disabled'
                             // ]
@@ -210,7 +194,7 @@
                             'name' => 'country',
                             'label' => 'Country',
                             'options' => App\Helper\SelectOptions::countries(),
-                            'value' => old('country', $address->country ?? 'United States'),
+                            'value' => old('country', $deal->country ?? 'United States'),
                             //  'attributes' => [
                             //      'disabled' => 'disabled'
                             //  ]

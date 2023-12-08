@@ -38,6 +38,7 @@ class ProductService
             'description' => $request->description ?? null,
             'user_owner_id' => $request->user_owner_id,
             'external_id' => Uuid::uuid4()->toString(),
+            'user_id'=>auth()->id(),
         ]);
 
         $product->productPrices()->create([
@@ -95,6 +96,7 @@ class ProductService
             'user_owner_id' => $request->user_owner_id,
             'unit_price' => $request->unit_price ?? null,
             'description' => $request->description ?? null,
+            'user_id'=>auth()->id(),
         ]);
 
         // $productPrice = $product->getDefaultPrice();

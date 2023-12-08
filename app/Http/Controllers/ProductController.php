@@ -22,7 +22,7 @@ class ProductController extends Controller
     }
     public function index()
     {
-        $products = Product::latest()->paginate(30);
+        $products = Product::where('user_id',auth()->id())->latest()->paginate(30);
         return view('dashboard.products.index',compact('products'));
     }
 

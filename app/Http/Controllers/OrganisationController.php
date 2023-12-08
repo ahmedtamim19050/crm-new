@@ -16,7 +16,7 @@ class OrganisationController extends Controller
      */
     public function index()
     {
-        $organisations=Organisation::latest()->get();
+        $organisations=Organisation::where('user_id',auth()->id())->latest()->get();
         return view('dashboard.organisations.index',compact('organisations'));
     }
 
@@ -27,8 +27,8 @@ class OrganisationController extends Controller
      */
     public function create()
     {
-        $labels=Label::pluck('name','id')->toArray();
-        return view('dashboard.organisations.create',compact('labels'));
+   
+        return view('dashboard.organisations.create');
     }
 
     /**
@@ -42,18 +42,18 @@ class OrganisationController extends Controller
         // dd($request->all());
         $request->validate([
             'name'=>'required',
-            'labels'=>'required',
             'user_owner_id'=>'required',
             'address'=>'nullable',
+            'label'=>'required'
         ]);
         $organisation = Organisation::create([
             'name' => $request->name,
             'user_owner_id' => $request->user_owner_id,
             'address' => $request->address,
             'external_id' => Uuid::uuid4()->toString(),
+            'user_id'=>auth()->id(),
+            'label'=>$request->label,
         ]);
-
-       $organisation->labels()->sync($request->labels ?? []);
        return redirect('/organisations')->with('success','Organisation Create Successfully');
     }
 
@@ -76,8 +76,8 @@ class OrganisationController extends Controller
      */
     public function edit(Organisation $organisation)
     {
-        $labels=Label::pluck('name','id')->toArray();
-        return view('dashboard.organisations.edit',compact('labels','organisation'));
+
+        return view('dashboard.organisations.edit',compact('organisation'));
     }
 
     /**
@@ -91,17 +91,18 @@ class OrganisationController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'labels'=>'required',
             'user_owner_id'=>'required',
             'address'=>'nullable',
+            'label'=>'required'
         ]);
         $organisation->update([
             'name' => $request->name,
             'user_owner_id' => $request->user_owner_id,
             'address' => $request->address,
+            'user_id'=>auth()->id(),
+            'label'=>$request->label,
         ]);
 
-       $organisation->labels()->sync($request->labels ?? []);
        return redirect('/organisations')->with('success','Organisation Update Successfully');
     }
 

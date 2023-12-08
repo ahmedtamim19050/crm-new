@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('labelables', function (Blueprint $table) {
-            $table->bigInteger('label_id');
-            $table->bigInteger('labelable_id');
-            $table->string('labelable_type');
+        Schema::table('categories', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('user_id')->nullable();
         });
     }
 
@@ -27,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('labelables');
+        Schema::table('categories', function (Blueprint $table) {
+            $table->dropColumn('user_id');
+        });
     }
 };
