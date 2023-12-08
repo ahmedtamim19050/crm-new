@@ -48,16 +48,7 @@
                 <div class="d-sm-flex d-block align-items-center">
                     <a href="{{ route('categories.index') }}" class="btn btn-light rounded me-3 mb-sm-0 mb-2"><i
                             class="fas fa-stream"></i> Stages</a>
-                    {{-- <a href="javascript:void(0);" class="btn btn-light rounded mb-sm-0 mb-2"><i class="fa fa-lock me-3 scale5" aria-hidden="true"></i>Private</a> --}}
-                    {{-- <ul class="users-lg ms-sm-5 ms-0">
-					<li><img src="{{ asset('images/kanban/Untitled-1.jpg')}}" alt=""></li>
-					<li><img src="{{ asset('images/kanban/Untitled-2.jpg')}}" alt=""></li>
-					<li><img src="{{ asset('images/kanban/Untitled-3.jpg')}}" alt=""></li>
-					<li><img src="{{ asset('images/kanban/Untitled-4.jpg')}}" alt=""></li>
-					<li><img src="{{ asset('images/kanban/Untitled-5.jpg')}}" alt=""></li>
-					<li><img src="{{ asset('images/kanban/Untitled-6.jpg')}}" alt=""></li>
-					<li><img src="{{ asset('images/kanban/Untitled-7.jpg')}}" alt=""></li>
-				</ul> --}}
+        
                 </div>
             </div>
             <div class="mt-3">
