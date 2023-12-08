@@ -2,6 +2,23 @@
     <div class="deznav-scroll">
         {{-- <a class="add-project-sidebar btn btn-primary" href="javascript:void(0)"  data-bs-toggle="modal" data-bs-target="#addProjectSidebar" >+ New Project</a> --}}
         <ul class="metismenu" id="menu">
+            <li><a class="has-arrow ai-icon" href="{{ route('organisations.index') }}" aria-expanded="false">
+                <i class="flaticon-381-bookmark-1"></i>
+                <span class="nav-text">Organisations</span>
+            </a>
+         
+
+        </li>
+        <li><a class="has-arrow ai-icon" href="{{ route('clients.index') }}" aria-expanded="false">
+            <i class="flaticon-381-user-9"></i>
+            <span class="nav-text">Clients</span>
+        </a>
+        {{-- <ul aria-expanded="false">
+            <li><a href="">Index</a></li>
+
+        </ul> --}}
+
+    </li>
             <li><a class="has-arrow ai-icon" href="{{ route('leads.index') }}" aria-expanded="false">
                     <i class="flaticon-381-controls-7"></i>
                     <span class="nav-text">Leads</span>
@@ -22,16 +39,7 @@
                 </ul> --}}
 
             </li>
-            <li><a class="has-arrow ai-icon" href="{{ route('clients.index') }}" aria-expanded="false">
-                    <i class="flaticon-381-user-9"></i>
-                    <span class="nav-text">Clients</span>
-                </a>
-                {{-- <ul aria-expanded="false">
-                    <li><a href="">Index</a></li>
- 
-                </ul> --}}
-
-            </li>
+        
             <li><a class="has-arrow ai-icon" href="{{ route('products.index') }}" aria-expanded="false">
                     <i class="flaticon-381-binoculars"></i>
                     <span class="nav-text">Products</span>
@@ -42,13 +50,7 @@
                 </ul> --}}
 
             </li>
-            <li><a class="has-arrow ai-icon" href="{{ route('organisations.index') }}" aria-expanded="false">
-                    <i class="flaticon-381-bookmark-1"></i>
-                    <span class="nav-text">Organisations</span>
-                </a>
-             
-
-            </li>
+            
             <li><a class="has-arrow ai-icon" href="{{ route('categories.index') }}" aria-expanded="false">
                 <i class="fas fa-bars "></i>
                 <span class="nav-text">Stages</span>
