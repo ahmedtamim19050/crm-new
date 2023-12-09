@@ -189,6 +189,12 @@
     <x-alert.success/>
     @endif
 
+    @if(session()->has('errors'))
+    @foreach (session('errors')->all() as $item)
+    <x-alert.error :error="$item"/>
+    @endforeach
+    @endif
+
 </body>
 
 </html>

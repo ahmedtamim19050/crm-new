@@ -62,6 +62,7 @@ class DealsController extends Controller
      */
     public function create(Request $request)
     {
+       
 
         $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
         $organisations = Organisation::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
@@ -85,7 +86,10 @@ class DealsController extends Controller
         // } elseif ($request->person_id) {
         //     $person = Person::find($request->person_id);
         // }
-
+        $stage=Category::where('user_id',auth()->id())->orderBy('order','asc')->first();
+        if(!$stage){
+            return redirect()->route('categories.index')->withErrors('Please insert atleast one stages');
+        }
         $this->dealService->create($request, $person ?? null);
         if($request->category_id){
             return redirect('/deals-kanvan')->with('success', 'Deal Create Successfully');

@@ -108,6 +108,13 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        if($category->deals){
+            foreach($category->deals as $deal){
+                $deal->update([
+                    'category_id'=>null,
+                ]);
+            }
+        }
         $category->delete();
         return back()->with('success','Category Delete successfully');
     }
