@@ -3,45 +3,36 @@
         {{-- <a class="add-project-sidebar btn btn-primary" href="javascript:void(0)"  data-bs-toggle="modal" data-bs-target="#addProjectSidebar" >+ New Project</a> --}}
         <ul class="metismenu" id="menu">
             <li><a class="has-arrow ai-icon" href="{{ route('organisations.index') }}" aria-expanded="false">
-                <i class="flaticon-381-bookmark-1"></i>
-                <span class="nav-text">Organisations</span>
-            </a>
-         
+                <i class="far fa-building"></i>
+                    <span class="nav-text">Organisations</span>
+                </a>
 
-        </li>
-        <li><a class="has-arrow ai-icon" href="{{ route('clients.index') }}" aria-expanded="false">
-            <i class="flaticon-381-user-9"></i>
-            <span class="nav-text">Clients</span>
-        </a>
-        {{-- <ul aria-expanded="false">
-            <li><a href="">Index</a></li>
 
-        </ul> --}}
+            </li>
+            <li><a class="has-arrow ai-icon" href="{{ route('clients.index') }}" aria-expanded="false">
+                    <i class="flaticon-381-user-9"></i>
+                    <span class="nav-text">Clients</span>
+                </a>
+           
 
-    </li>
+            </li>
             <li><a class="has-arrow ai-icon" href="{{ route('leads.index') }}" aria-expanded="false">
                     <i class="flaticon-381-controls-7"></i>
                     <span class="nav-text">Leads</span>
                 </a>
-                {{-- <ul aria-expanded="false">
-                    <li><a href="">Index</a></li>
- 
-                </ul> --}}
+        
 
             </li>
             <li><a class="has-arrow ai-icon" href="{{ route('deals.index') }}" aria-expanded="false">
-                    <i class="flaticon-381-menu-3"></i>
+                <i class="far fa-money-bill-alt"></i>
                     <span class="nav-text">Deals</span>
                 </a>
-                {{-- <ul aria-expanded="false">
-                    <li><a href="">Index</a></li>
- 
-                </ul> --}}
+           
 
             </li>
-        
+
             <li><a class="has-arrow ai-icon" href="{{ route('products.index') }}" aria-expanded="false">
-                    <i class="flaticon-381-binoculars"></i>
+                <i class="fab fa-product-hunt"></i>
                     <span class="nav-text">Products</span>
                 </a>
                 {{-- <ul aria-expanded="false">
@@ -50,14 +41,14 @@
                 </ul> --}}
 
             </li>
-            
-            <li><a class="has-arrow ai-icon" href="{{ route('categories.index') }}" aria-expanded="false">
-                <i class="fas fa-bars "></i>
-                <span class="nav-text">Stages</span>
-            </a>
-         
 
-        </li>
+            <li><a class="has-arrow ai-icon" href="{{ route('categories.index') }}" aria-expanded="false">
+                    <i class="fas fa-bars "></i>
+                    <span class="nav-text">Stages</span>
+                </a>
+
+
+            </li>
             <li class="mt-2">
                 <form action="{{ route('logout') }}" method="post" class="has-arrow ai-icon">
                     @csrf
@@ -220,9 +211,9 @@
                 </ul>
             </li> --}}
         </ul>
-        <div class="copyright">
+        {{-- <div class="copyright">
             <p><strong>Fasto Saas Admin Dashboard</strong> © 2023 All Rights Reserved</p>
             <p class="fs-12">Made with <span class="heart"></span> by DexignZone</p>
-        </div>
+        </div> --}}
     </div>
 </div>

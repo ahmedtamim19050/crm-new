@@ -509,7 +509,7 @@
                         @yield('page_title',$page_title??'')
                     </div>
                 </div>
-                <ul class="navbar-nav header-right">
+                {{-- <ul class="navbar-nav header-right">
                     <li class="nav-item">
                         <div class="input-group search-area d-lg-inline-flex d-none">
                             <div class="input-group-append">
@@ -640,7 +640,7 @@
                         </form>
                         </div>
                     </li>
-                </ul>
+                </ul> --}}
             </div>
         </nav>
     </div>

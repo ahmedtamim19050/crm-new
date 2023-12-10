@@ -5,6 +5,11 @@
         height: 150px;
         padding: 0.5em;
     }
+	.card-footer {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+	}
 </style>
 @section('content')
     <div class="container-fluid">
@@ -122,25 +127,18 @@
             </div>
         </div>
         <div class="row kanban-bx connectedSortable">
-            @foreach ($categories as $key=>$category)
-                <div class="col" id="drop-item" >
-                    <div class="card kanbanPreview-bx" >
+            @foreach ($categories as $key => $category)
+                <div class="col" id="drop-item">
+                    <div class="card kanbanPreview-bx">
                         <div class="card-body draggable-zone dropzoneContainer" item-id="{{ $category->order }}">
 
-                            <div class="sub-card draggable-handle draggable p-0">
-                                <div class="sub-card bg-secondary align-items-center d-flex text-white border-0">
+                            <div class="sub-card draggable-handle draggable p-0" style="height: 60vh">
+                                <div
+                                    class="sub-card align-items-center d-flex text-white border-0 py-3 border-bottom shadow-none">
                                     <div class="me-auto pe-2">
-                                        <h4 class="fs-20 mb-0 font-w600 text-white">{{ $category->name }} </h4>
+                                        <h4 class="fs-20 mb-0 font-w600 ">{{ $category->name }} </h4>
                                     </div>
-									<form action="{{ route('categories.destroy',$category) }}" method="POST" style="display:block;">
-										@csrf
-										@method('Delete')
-									 
-										<button type="submit" class="btn btn-danger p-2 mt-3"  onclick="return confirm('Are you sure you want to delete this item?');">
-											<i class="fas fa-trash-alt"></i>
-											
-										</button>
-									</form>
+
 
                                 </div>
                                 <form id="categoryEditForm-{{ $category->id }}"
@@ -156,10 +154,18 @@
                                     {{-- <button class="btn btn-primary text-white" id="categoryBtn-{{ $category->id }}"
                                         style="display: none" type="submit">Update</button> --}}
                                 </form>
+                                <div class="card-footer p-0" >
+                                    <form action="{{ route('categories.destroy', $category) }}" method="POST"
+                                        style="display:block;">
+                                        @csrf
+                                        @method('Delete')
 
-                                <div class="row justify-content-between align-items-center">
-
-
+                                        <button type="submit" class="btn"
+                                            onclick="return confirm('Are you sure you want to delete this item?');">
+                                            <i class="fas fa-trash-alt me-2"></i>
+                                         Delete Stage
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
 
@@ -388,40 +394,40 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-	<script>
-		$(document).ready(function() {
-			$(".connectedSortable").sortable({
-				update: function(event, ui) {
-					var pending = [];
-	
-					// Use the :visible selector to only select visible items
-					$(".connectedSortable #drop-item div:visible").each(function(index) {
-						var itemId = $(this).attr('item-id');
-						if (itemId) {
-							pending.push(itemId);
-						}
-					});
-	
-					console.log(pending);
-	
-					$.ajax({
-						url: "{{ route('category.kanvan') }}",
-						method: 'POST',
-						headers: {
-							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-						},
-						data: {
-							pending: pending, // Send the array of IDs
-						},
-						success: function(data) {
-							console.log('success');
-						}
-					});
-				}
-			});
-		});
-	</script>
-	
+    <script>
+        $(document).ready(function() {
+            $(".connectedSortable").sortable({
+                update: function(event, ui) {
+                    var pending = [];
+
+                    // Use the :visible selector to only select visible items
+                    $(".connectedSortable #drop-item div:visible").each(function(index) {
+                        var itemId = $(this).attr('item-id');
+                        if (itemId) {
+                            pending.push(itemId);
+                        }
+                    });
+
+                    console.log(pending);
+
+                    $.ajax({
+                        url: "{{ route('category.kanvan') }}",
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: {
+                            pending: pending, // Send the array of IDs
+                        },
+                        success: function(data) {
+                            console.log('success');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
     <script>
         function showCategoryButton(category) {
             $('#categoryBtn-' + category).show();
