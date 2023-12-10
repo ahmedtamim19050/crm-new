@@ -130,7 +130,7 @@
             @foreach ($categories as $key => $category)
                 <div class="col" id="drop-item">
                     <div class="card kanbanPreview-bx">
-                        <div class="card-body draggable-zone dropzoneContainer" item-id="{{ $category->order }}">
+                        <div class="card-body draggable-zone dropzoneContainer" item-id="{{ $category->id }}">
 
                             <div class="sub-card draggable-handle draggable p-0" style="height: 60vh">
                                 <div

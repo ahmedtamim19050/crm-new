@@ -5,6 +5,10 @@
         height: 150px;
         padding: 0.5em;
     }
+     /* .sub-card{
+        /* margin-bottom: 0 !important; */
+        margin:0 20px;
+    } */
 </style>
 @section('content')
     <div class="container-fluid">
@@ -76,12 +80,12 @@
         </div>
         <div class="row kanban-bx ">
             @foreach ($stages as $stage)
-                <div class="col ">
-                    <div class="card kanbanPreview-bx">
+                <div class="col mt-3">
+                    <div class="card kanbanPreview-bx shadow">
                         <div class="card-body draggable-zone dropzoneContainer " data-stage-id="{{ $stage->id }}">
-                            <div class="sub-card bg-secondary align-items-center d-flex text-white">
+                            <div class="sub-card align-items-center d-flex shadow-0 mb-0" style="background-color: transparent">
                                 <div class="me-auto pe-2">
-                                    <h4 class="fs-20 mb-0 font-w600 text-white">{{ $stage->name }} (<span
+                                    <h4 class="fs-20 mb-0 font-w600 ">{{ $stage->name }} (<span
                                             class="totalCount">{{ $stage->deals->count() }}</span>)</h4>
                                     {{-- <span class="fs-14 font-w200 op6">Lorem ipsum dolor sit amet</span> --}}
                                 </div>
@@ -89,7 +93,7 @@
                             </div>
                             @if ($stage->deals->count() > 0)
                                 @foreach ($stage->deals as $deal)
-                                    <div class="connectedSortable">
+                                    <div class="connectedSortable mx-3 mt-2">
                                         <div class="sub-card draggable-handle draggable " id="drop-item"
                                             data-item-id="{{ $deal->id }}">
                                             <span class="text-primary sub-title">{{ $deal->title }}</span>
@@ -100,7 +104,7 @@
                                     </div>
                                 @endforeach
                             @else
-                                <div class="connectedSortable">
+                                <div class="connectedSortable mx-3 mt-2">
                                     <div class="sub-card draggable-handle draggable ">
                                         <span class="text-danger sub-title">This Stage no deals found</span>
 
