@@ -109,7 +109,7 @@
                 <div class="row align-items-center justify-content-center justify-content-lg-between">
                     <div class="col-lg-6 col-md-10">
                         <div class="header-hero-content">
-                            <h3 class="header-title wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.2s"><span>XYou're Using</span> Free Lite Version of AppLand</h3>
+                            <h3 class="header-title wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.2s"><span>One solution</span> All in one CRM, SoMe and newsletter system</h3>
                             <p class="text wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.6s">Please, purchase the full version of template get all pages, features, elements, documentation, commercial license and permission to remove footer credit.</p>
                             <ul class="d-flex">
                                 <li><a href="https://crm.xainia.com/login" rel="nofollow" class="main-btn wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.8s">Try for free</a></li>
