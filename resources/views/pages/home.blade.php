@@ -65,7 +65,7 @@
                         </div>
                         <div class="services-content">
                             <h4 class="services-title"><a href="#">Project tool</a></h4>
-                            <p class="text">Keep track on the client projects and calculate the consume with thew time tracker for best ROI.</p>
+                            <p class="text">Keep track on the client projects and use time tracker for best <b>ROI</B>.</p>
                         </div>
                     </div> <!-- single services -->
 				</div>
@@ -76,7 +76,7 @@
                         </div>
                         <div class="services-content">
                             <h4 class="services-title"><a href="#">Contracts</a></h4>
-                            <p class="text">Save your ready made contracts to speed up the process with your leads.</p>
+                            <p class="text">Save your ready made <b>contracts</b> to speed up the process with your leads.</p>
                         </div>
                     </div> <!-- single services -->
 				</div>
@@ -86,8 +86,8 @@
                             <i class="lni lni-protection"></i>
                         </div>
                         <div class="services-content">
-                            <h4 class="services-title"><a href="#">Chat & support. </a></h4>
-                            <p class="text">Interact thru different AI channels and provide best customer experience.</p>
+                            <h4 class="services-title"><a href="#">Chat & support </a></h4>
+                            <p class="text">Interact thru different AI channels and provide best customer <b>experience</b>.</p>
                         </div>
                     </div> <!-- single services -->
 				</div>
@@ -98,7 +98,7 @@
                         </div>
                         <div class="services-content">
                             <h4 class="services-title"><a href="#">Analytics</a></h4>
-                            <p class="text">Our platform give you all the data you need for follow up your leads.</p>
+                            <p class="text">Our platform give you all the data you <b>need</b> for follow up your leads.</p>
                         </div>
                     </div> <!-- single services -->
 				</div>
