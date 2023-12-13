@@ -109,8 +109,8 @@
                 <div class="row align-items-center justify-content-center justify-content-lg-between">
                     <div class="col-lg-6 col-md-10">
                         <div class="header-hero-content">
-                            <h3 class="header-title wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.2s"><span>Get started for free</span> All in one CRM, SoMe and newsletter in one plattform</h3>
-                            <p class="text wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.6s">Manage your leads, your social media and your newsletters from ONE plattform.</p>
+                            <h3 class="header-title wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.2s"><span>Get started for free</span> CRM, SoMe and newsletter in All-in-One Platform</h3>
+                            <p class="text wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.6s">Manage your leads, your social media and your newsletters from All-in-One Platform.</p>
                             <ul class="d-flex">
                                 <li><a href="/login" rel="nofollow" class="main-btn wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.8s">Get started for free</a></li>
                             </ul>
