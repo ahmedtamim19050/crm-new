@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     
     <!--====== Title ======-->
-    <title>AppLand - App Landing Page Template</title>
+    <title>Xainia - All in one CRM, SoMe and newsletter system</title>
     
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
