@@ -84,7 +84,7 @@
                         </div>
                         <div class="services-content">
                             <h4 class="services-title"><a href="#">CRM</a></h4>
-                            <p class="text">Controll all your leads what a intuitiv solution that convert them into clients.</p>
+                            <p class="text">Controll all your leads what a intuitiv solution that convert them into paying clients.</p>
                         </div>
                     </div> <!-- single services -->
                 </div>
@@ -106,7 +106,7 @@
                         </div>
                         <div class="services-content">
                             <h4 class="services-title"><a href="#">Newsletter</a></h4>
-                            <p class="text">Target your new leads with the automation tool.</p>
+                            <p class="text">Target your new leads with the automation tool that integrate directly to mailchimp.</p>
                         </div>
                     </div> <!-- single services -->
                 </div>
@@ -117,7 +117,7 @@
                         </div>
                         <div class="services-content">
                             <h4 class="services-title"><a href="#">AI Bot</a></h4>
-                            <p class="text">Our snippet tool make it easy to set up your AI bot in your own website, and get all the data back in to our CRM platform.</p>
+                            <p class="text">Use our snippet AI bot in your own website, and get all the data back in to our CRM platform.</p>
                         </div>
                     </div> <!-- single services -->
                 </div>
