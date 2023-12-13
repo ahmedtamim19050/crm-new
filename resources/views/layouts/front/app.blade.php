@@ -112,7 +112,7 @@
                             <h3 class="header-title wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.2s"><span>XYou're Using</span> Free Lite Version of AppLand</h3>
                             <p class="text wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.6s">Please, purchase the full version of template get all pages, features, elements, documentation, commercial license and permission to remove footer credit.</p>
                             <ul class="d-flex">
-                                <li><a href="https://crm.xainia.com/login" rel="nofollow" class="main-btn wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.8s">Purchase Now</a></li>
+                                <li><a href="https://crm.xainia.com/login" rel="nofollow" class="main-btn wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.8s">Try for free</a></li>
                             </ul>
                         </div> <!-- header hero content -->
                     </div>
@@ -155,7 +155,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="footer-about mt-50 wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.2s">
                             <a class="logo" href="#" >
-                                <img src="{{asset('frontend-assets/images/logo.png')}}" alt="Logo">
+                                <img src="{{asset('frontend-assets/images/xainia-logo.png')}}" alt="Logo">
                             </a>
                             <p class="text">Lorem ipsum dolor sit amet consetetur sadipscing elitr, sederfs diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam.</p>
                             <ul class="social">
