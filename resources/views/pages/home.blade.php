@@ -71,8 +71,8 @@
             <div class="row justify-content-center">
                 <div class="col-lg-7">
                     <div class="section-title text-center pb-25">
-                        <h3 class="title">Why You Should Choose AppLand</h3>
-                        <p class="text">Alii nusquam cu duo, vim eu consulatu percipitur, meis dolor comprehensam at vis. Vel ut percipitur dignissim signiferumque.</p>
+                        <h3 class="title">Speed up your convertion rate for your clients and increase customer satisfaction</h3>
+                        <p class="text">Our one-in-all solution makes it easy to manage all clients in one platform.</p>
                     </div> <!-- section title -->
                 </div>
             </div> <!-- row -->
@@ -121,6 +121,17 @@
                         </div>
                     </div> <!-- single services -->
                 </div>
+				<div class="col-lg-3 col-sm-6">
+                    <div class="single-services services-color-4 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
+                        <div class="services-icon d-flex align-items-center justify-content-center">
+                            <i class="lni lni-protection"></i>
+                        </div>
+                        <div class="services-content">
+                            <h4 class="services-title"><a href="#">AI Bot</a></h4>
+                            <p class="text">Use our snippet AI bot in your own website, and get all the <b>data back</b> in to our CRM platform.</p>
+                        </div>
+                    </div> <!-- single services -->
+				</div>
             </div> <!-- row -->
         </div> <!-- container -->
     </section>
