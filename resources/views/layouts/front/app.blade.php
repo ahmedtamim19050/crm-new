@@ -112,7 +112,7 @@
                             <h3 class="header-title wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.2s"><span>XYou're Using</span> Free Lite Version of AppLand</h3>
                             <p class="text wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.6s">Please, purchase the full version of template get all pages, features, elements, documentation, commercial license and permission to remove footer credit.</p>
                             <ul class="d-flex">
-                                <li><a href="https://rebrand.ly/appland-ud" rel="nofollow" class="main-btn wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.8s">Purchase Now</a></li>
+                                <li><a href="https://crm.xainia.com/login" rel="nofollow" class="main-btn wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.8s">Purchase Now</a></li>
                             </ul>
                         </div> <!-- header hero content -->
                     </div>
