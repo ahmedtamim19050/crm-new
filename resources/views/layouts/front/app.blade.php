@@ -236,7 +236,7 @@
             </div> <!-- container -->
         </div> <!-- footer widget -->
         
-        <div class="footer-copyright">
+        //<div class="footer-copyright">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -249,7 +249,7 @@
                                 <a href="#">Report Issues</a>
                             </div> <!-- copyright privacy -->
                         </div> <!-- copyright -->
-                    </div>
+                    </div>//
                 </div> <!-- row -->
             </div> <!-- container -->
         </div> <!-- footer copyright -->
