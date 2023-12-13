@@ -20,8 +20,8 @@
                             <i class="lni lni-layers"></i>
                         </div>
                         <div class="services-content">
-                            <h4 class="services-title"><a href="#">XXXClean Design</a></h4>
-                            <p class="text">Lorem ipsum dolor sitam etco snsetetur sadipscing elitr sed diam nonumy.</p>
+                            <h4 class="services-title"><a href="#">CRM</a></h4>
+                            <p class="text">Controll all your leads what a intuitiv solution that convert them into clients.</p>
                         </div>
                     </div> <!-- single services -->
                 </div>
@@ -31,8 +31,8 @@
                             <i class="lni lni-layout"></i>
                         </div>
                         <div class="services-content">
-                            <h4 class="services-title"><a href="#">Easy to Use</a></h4>
-                            <p class="text">Lorem ipsum dolor sitam etco snsetetur sadipscing elitr sed diam nonumy.</p>
+                            <h4 class="services-title"><a href="#">SoMe</a></h4>
+                            <p class="text">Schedule all social media content and target each post against your leads spesific needs.</p>
                         </div>
                     </div> <!-- single services -->
                 </div>
@@ -42,8 +42,8 @@
                             <i class="lni lni-bolt"></i>
                         </div>
                         <div class="services-content">
-                            <h4 class="services-title"><a href="#">Fast Loading</a></h4>
-                            <p class="text">Lorem ipsum dolor sitam etco snsetetur sadipscing elitr sed diam nonumy.</p>
+                            <h4 class="services-title"><a href="#">Newsletter</a></h4>
+                            <p class="text">Target your new leads with the automation tool.</p>
                         </div>
                     </div> <!-- single services -->
                 </div>
@@ -53,10 +53,58 @@
                             <i class="lni lni-protection"></i>
                         </div>
                         <div class="services-content">
-                            <h4 class="services-title"><a href="#">All Elements</a></h4>
-                            <p class="text">Lorem ipsum dolor sitam etco snsetetur sadipscing elitr sed diam nonumy.</p>
+                            <h4 class="services-title"><a href="#">AI Bot</a></h4>
+                            <p class="text">Our snippet tool make it easy to set up your AI bot in your own website, and get all the data back in to our CRM platform.</p>
                         </div>
                     </div> <!-- single services -->
+					<div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-services services-color-1 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.2s">
+                        <div class="services-icon d-flex align-items-center justify-content-center">
+                            <i class="lni lni-layers"></i>
+                        </div>
+                        <div class="services-content">
+                            <h4 class="services-title"><a href="#">CRM</a></h4>
+                            <p class="text">Controll all your leads what a intuitiv solution that convert them into clients.</p>
+                        </div>
+                    </div> <!-- single services -->
+                </div>
+				<div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-services services-color-1 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.2s">
+                        <div class="services-icon d-flex align-items-center justify-content-center">
+                            <i class="lni lni-layers"></i>
+                        </div>
+                        <div class="services-content">
+                            <h4 class="services-title"><a href="#">CRM</a></h4>
+                            <p class="text">Controll all your leads what a intuitiv solution that convert them into clients.</p>
+                        </div>
+                    </div> <!-- single services -->
+                </div>
+				<div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-services services-color-1 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.2s">
+                        <div class="services-icon d-flex align-items-center justify-content-center">
+                            <i class="lni lni-layers"></i>
+                        </div>
+                        <div class="services-content">
+                            <h4 class="services-title"><a href="#">CRM</a></h4>
+                            <p class="text">Controll all your leads what a intuitiv solution that convert them into clients.</p>
+                        </div>
+                    </div> <!-- single services -->
+                </div>
+				<div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-services services-color-1 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.2s">
+                        <div class="services-icon d-flex align-items-center justify-content-center">
+                            <i class="lni lni-layers"></i>
+                        </div>
+                        <div class="services-content">
+                            <h4 class="services-title"><a href="#">CRM</a></h4>
+                            <p class="text">Controll all your leads what a intuitiv solution that convert them into clients.</p>
+                        </div>
+                    </div> <!-- single services -->
+                </div>
                 </div>
             </div> <!-- row -->
         </div> <!-- container -->
