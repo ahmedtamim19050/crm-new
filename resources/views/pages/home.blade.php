@@ -9,114 +9,7 @@
                 <div class="col-lg-7">
                     <div class="section-title text-center pb-25">
                         <h3 class="title">Speed up your convertion rate for your clients and increase customer satisfaction</h3>
-                        <p class="text">Our one-in-all solution makes it easy to manage all clients in one platform.</p>
-                    </div> <!-- section title -->
-                </div>
-            </div> <!-- row -->
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-services services-color-1 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.2s">
-                        <div class="services-icon d-flex align-items-center justify-content-center">
-                            <i class="lni lni-layers"></i>
-                        </div>
-                        <div class="services-content">
-                            <h4 class="services-title"><a href="#">CRM</a></h4>
-                            <p class="text">Controll all your leads what a intuitiv solution that convert them into clients.</p>
-                        </div>
-                    </div> <!-- single services -->
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-services services-color-2 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.4s">
-                        <div class="services-icon d-flex align-items-center justify-content-center">
-                            <i class="lni lni-layout"></i>
-                        </div>
-                        <div class="services-content">
-                            <h4 class="services-title"><a href="#">SoMe</a></h4>
-                            <p class="text">Schedule all social media content and target each post against your leads spesific needs.</p>
-                        </div>
-                    </div> <!-- single services -->
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-services services-color-3 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.6s">
-                        <div class="services-icon d-flex align-items-center justify-content-center">
-                            <i class="lni lni-bolt"></i>
-                        </div>
-                        <div class="services-content">
-                            <h4 class="services-title"><a href="#">Newsletter</a></h4>
-                            <p class="text">Target your new leads with the automation tool.</p>
-                        </div>
-                    </div> <!-- single services -->
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-services services-color-4 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
-                        <div class="services-icon d-flex align-items-center justify-content-center">
-                            <i class="lni lni-protection"></i>
-                        </div>
-                        <div class="services-content">
-                            <h4 class="services-title"><a href="#">AI Bot</a></h4>
-                            <p class="text">Our snippet tool make it easy to set up your AI bot in your own website, and get all the data back in to our CRM platform.</p>
-                        </div>
-                    </div> <!-- single services -->
-                </div>
-				<div class="col-lg-3 col-sm-6">
-                    <div class="single-services services-color-4 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
-                        <div class="services-icon d-flex align-items-center justify-content-center">
-                            <i class="lni lni-protection"></i>
-                        </div>
-                        <div class="services-content">
-                            <h4 class="services-title"><a href="#">AI Bot</a></h4>
-                            <p class="text">Use our snippet AI bot in your own website, and get all the <b>data back</b> in to our CRM platform.</p>
-                        </div>
-                    </div> <!-- single services -->
-				</div>
-				<div class="col-lg-3 col-sm-6">
-                    <div class="single-services services-color-4 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
-                        <div class="services-icon d-flex align-items-center justify-content-center">
-                            <i class="lni lni-protection"></i>
-                        </div>
-                        <div class="services-content">
-                            <h4 class="services-title"><a href="#">AI Bot</a></h4>
-                            <p class="text">Use our snippet AI bot in your own website, and get all the <b>data back</b> in to our CRM platform.</p>
-                        </div>
-                    </div> <!-- single services -->
-				</div>
-				<div class="col-lg-3 col-sm-6">
-                    <div class="single-services services-color-4 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
-                        <div class="services-icon d-flex align-items-center justify-content-center">
-                            <i class="lni lni-protection"></i>
-                        </div>
-                        <div class="services-content">
-                            <h4 class="services-title"><a href="#">AI Bot</a></h4>
-                            <p class="text">Use our snippet AI bot in your own website, and get all the <b>data back</b> in to our CRM platform.</p>
-                        </div>
-                    </div> <!-- single services -->
-				</div>
-				<div class="col-lg-3 col-sm-6">
-                    <div class="single-services services-color-4 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
-                        <div class="services-icon d-flex align-items-center justify-content-center">
-                            <i class="lni lni-protection"></i>
-                        </div>
-                        <div class="services-content">
-                            <h4 class="services-title"><a href="#">AI Bot</a></h4>
-                            <p class="text">Use our snippet AI bot in your own website, and get all the <b>data back</b> in to our CRM platform.</p>
-                        </div>
-                    </div> <!-- single services -->
-				</div>
-            </div> <!-- row -->
-        </div> <!-- container -->
-    </section>
-    
-    <!--====== SERVICES PART1 ENDS ======-->
-	
-	<!--====== SERVICES PART2 START ======-->
-    
-    <section id="why" class="services-area pt-110 pb-120">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-7">
-                    <div class="section-title text-center pb-25">
-                        <h3 class="title">Speed up your convertion rate for your clients and increase customer satisfaction</h3>
-                        <p class="text">Our one-in-all solution makes it easy to manage all clients in one platform.</p>
+                        <p class="text">Our one-in-all solution makes it <b>easy</b> to manage all clients in one platform.</p>
                     </div> <!-- section title -->
                 </div>
             </div> <!-- row -->
@@ -176,11 +69,46 @@
                         </div>
                     </div> <!-- single services -->
 				</div>
+				<div class="col-lg-3 col-sm-6">
+                    <div class="single-services services-color-4 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
+                        <div class="services-icon d-flex align-items-center justify-content-center">
+                            <i class="lni lni-protection"></i>
+                        </div>
+                        <div class="services-content">
+                            <h4 class="services-title"><a href="#">AI Bot</a></h4>
+                            <p class="text">Use our snippet AI bot in your own website, and get all the <b>data back</b> in to our CRM platform.</p>
+                        </div>
+                    </div> <!-- single services -->
+				</div>
+				<div class="col-lg-3 col-sm-6">
+                    <div class="single-services services-color-4 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
+                        <div class="services-icon d-flex align-items-center justify-content-center">
+                            <i class="lni lni-protection"></i>
+                        </div>
+                        <div class="services-content">
+                            <h4 class="services-title"><a href="#">AI Bot</a></h4>
+                            <p class="text">Use our snippet AI bot in your own website, and get all the <b>data back</b> in to our CRM platform.</p>
+                        </div>
+                    </div> <!-- single services -->
+				</div>
+				<div class="col-lg-3 col-sm-6">
+                    <div class="single-services services-color-4 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
+                        <div class="services-icon d-flex align-items-center justify-content-center">
+                            <i class="lni lni-protection"></i>
+                        </div>
+                        <div class="services-content">
+                            <h4 class="services-title"><a href="#">AI Bot</a></h4>
+                            <p class="text">Use our snippet AI bot in your own website, and get all the <b>data back</b> in to our CRM platform.</p>
+                        </div>
+                    </div> <!-- single services -->
+				</div>
             </div> <!-- row -->
         </div> <!-- container -->
     </section>
     
-    <!--====== SERVICES PART2 ENDS ======-->
+    <!--====== SERVICES PART1 ENDS ======-->
+	
+	
     
     <!--====== ABOUT PART START ======-->
     
