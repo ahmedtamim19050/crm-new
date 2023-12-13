@@ -118,7 +118,7 @@
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-10">
                         <div class="header-image">
-                            <img src="{{asset('frontend-assets/images/header-app.png')}}" alt="app" class="image wow fadeInRightBig" data-wow-duration="1.3s" data-wow-delay="0.5s">
+                            <img src="{{asset('frontend-assets/images/hero.png')}}" alt="app" class="image wow fadeInRightBig" data-wow-duration="1.3s" data-wow-delay="0.5s">
                             <div class="image-shape wow fadeInRightBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
                                 <img src="{{asset('frontend-assets/images/image-shape.svg')}}" alt="shape">
                             </div>
