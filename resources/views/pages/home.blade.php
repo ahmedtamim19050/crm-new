@@ -58,6 +58,50 @@
                         </div>
                     </div> <!-- single services -->
                 </div>
+				<div class="col-lg-3 col-sm-6">
+                    <div class="single-services services-color-4 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
+                        <div class="services-icon d-flex align-items-center justify-content-center">
+                            <i class="lni lni-protection"></i>
+                        </div>
+                        <div class="services-content">
+                            <h4 class="services-title"><a href="#">AI Bot</a></h4>
+                            <p class="text">Use our snippet AI bot in your own website, and get all the <b>data back</b> in to our CRM platform.</p>
+                        </div>
+                    </div> <!-- single services -->
+				</div>
+				<div class="col-lg-3 col-sm-6">
+                    <div class="single-services services-color-4 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
+                        <div class="services-icon d-flex align-items-center justify-content-center">
+                            <i class="lni lni-protection"></i>
+                        </div>
+                        <div class="services-content">
+                            <h4 class="services-title"><a href="#">AI Bot</a></h4>
+                            <p class="text">Use our snippet AI bot in your own website, and get all the <b>data back</b> in to our CRM platform.</p>
+                        </div>
+                    </div> <!-- single services -->
+				</div>
+				<div class="col-lg-3 col-sm-6">
+                    <div class="single-services services-color-4 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
+                        <div class="services-icon d-flex align-items-center justify-content-center">
+                            <i class="lni lni-protection"></i>
+                        </div>
+                        <div class="services-content">
+                            <h4 class="services-title"><a href="#">AI Bot</a></h4>
+                            <p class="text">Use our snippet AI bot in your own website, and get all the <b>data back</b> in to our CRM platform.</p>
+                        </div>
+                    </div> <!-- single services -->
+				</div>
+				<div class="col-lg-3 col-sm-6">
+                    <div class="single-services services-color-4 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
+                        <div class="services-icon d-flex align-items-center justify-content-center">
+                            <i class="lni lni-protection"></i>
+                        </div>
+                        <div class="services-content">
+                            <h4 class="services-title"><a href="#">AI Bot</a></h4>
+                            <p class="text">Use our snippet AI bot in your own website, and get all the <b>data back</b> in to our CRM platform.</p>
+                        </div>
+                    </div> <!-- single services -->
+				</div>
             </div> <!-- row -->
         </div> <!-- container -->
     </section>
