@@ -8,7 +8,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-7">
                     <div class="section-title text-center pb-25">
-                        <h3 class="title">Why You Should Choose AppLand</h3>
+                        <h3 class="header-title"><span>Speed up your convertion rate for your clients and increase customer satisfaction</span></h3>
                         <p class="text">Alii nusquam cu duo, vim eu consulatu percipitur, meis dolor comprehensam at vis. Vel ut percipitur dignissim signiferumque.</p>
                     </div> <!-- section title -->
                 </div>
