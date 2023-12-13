@@ -72,13 +72,13 @@
                                         <a class="page-scroll" href="#why">Why</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll" href="#features">Features</a>
+                                        <a class="page-scroll" href="#features">?Features</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll" href="#screenshots">Screenshots</a>
+                                        <a class="page-scroll" href="#screenshots">?Screenshots</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll" href="#pricing">Pricing</a>
+                                        <a class="page-scroll" href="#pricing">?Pricing</a>
                                     </li>
                                     <li class="nav-item">
                                         @guest
