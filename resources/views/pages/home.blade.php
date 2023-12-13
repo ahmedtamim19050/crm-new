@@ -59,7 +59,7 @@
                     </div> <!-- single services -->
 					<div class="row">
                 <div class="col-lg-3 col-sm-6">
-                    <div class="single-services services-color-1 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.2s">
+                    <div class="single-services services-color-5 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.2s">
                         <div class="services-icon d-flex align-items-center justify-content-center">
                             <i class="lni lni-layers"></i>
                         </div>
@@ -71,7 +71,7 @@
                 </div>
 				<div class="row">
                 <div class="col-lg-3 col-sm-6">
-                    <div class="single-services services-color-1 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.2s">
+                    <div class="single-services services-color-6 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.2s">
                         <div class="services-icon d-flex align-items-center justify-content-center">
                             <i class="lni lni-layers"></i>
                         </div>
@@ -83,7 +83,7 @@
                 </div>
 				<div class="row">
                 <div class="col-lg-3 col-sm-6">
-                    <div class="single-services services-color-1 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.2s">
+                    <div class="single-services services-color-7 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.2s">
                         <div class="services-icon d-flex align-items-center justify-content-center">
                             <i class="lni lni-layers"></i>
                         </div>
@@ -95,7 +95,7 @@
                 </div>
 				<div class="row">
                 <div class="col-lg-3 col-sm-6">
-                    <div class="single-services services-color-1 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.2s">
+                    <div class="single-services services-color-8 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.2s">
                         <div class="services-icon d-flex align-items-center justify-content-center">
                             <i class="lni lni-layers"></i>
                         </div>
