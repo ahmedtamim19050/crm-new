@@ -8,8 +8,8 @@
             <div class="row justify-content-center">
                 <div class="col-lg-7">
                     <div class="section-title text-center pb-25">
-                        <h3 class="header-title wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.2s"><span>Speed up your convertion rate for your clients and increase customer satisfaction</span></h3>
-                        <p class="text">Alii nusquam cu duo, vim eu consulatu percipitur, meis dolor comprehensam at vis. Vel ut percipitur dignissim signiferumque.</p>
+                        <h3 class="title">Speed up your convertion rate for your clients and increase customer satisfaction</h3>
+                        <p class="text">Our one-in-all solution makes it easy to manage all clients in one platform.</p>
                     </div> <!-- section title -->
                 </div>
             </div> <!-- row -->
