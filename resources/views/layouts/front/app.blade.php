@@ -236,20 +236,20 @@
             </div> <!-- container -->
         </div> <!-- footer widget -->
         
-        //<div class="footer-copyright">
+        <div class="footer-copyright">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="copyright d-sm-flex justify-content-between">
                             <div class="copyright-text text-center">
-                                <p class="text">Template Crafted by <a rel="nofollow" href="https://uideck.com">UIdeck</a></p>
+                                <p class="text"> <a rel="nofollow" href=""></a></p>
                             </div> <!-- copyright text -->
                             
                             <div class="copyright-privacy text-center">
-                                <a href="#">Report Issues</a>
+                                <a href="#"></a>
                             </div> <!-- copyright privacy -->
                         </div> <!-- copyright -->
-                    </div>//
+                    </div>
                 </div> <!-- row -->
             </div> <!-- container -->
         </div> <!-- footer copyright -->
