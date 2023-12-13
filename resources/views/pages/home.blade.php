@@ -37,7 +37,7 @@
                     </div> <!-- single services -->
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <div class="single-services services-color-1 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.6s">
+                    <div class="single-services services-color-3 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.6s">
                         <div class="services-icon d-flex align-items-center justify-content-center">
                             <i class="lni lni-bolt"></i>
                         </div>
@@ -59,7 +59,7 @@
                     </div> <!-- single services -->
                 </div>
 				<div class="col-lg-3 col-sm-6">
-                    <div class="single-services services-color-4 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
+                    <div class="single-services services-color-5 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
                         <div class="services-icon d-flex align-items-center justify-content-center">
                             <i class="lni lni-protection"></i>
                         </div>
@@ -70,7 +70,7 @@
                     </div> <!-- single services -->
 				</div>
 				<div class="col-lg-3 col-sm-6">
-                    <div class="single-services services-color-4 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
+                    <div class="single-services services-color-6 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
                         <div class="services-icon d-flex align-items-center justify-content-center">
                             <i class="lni lni-protection"></i>
                         </div>
@@ -81,7 +81,7 @@
                     </div> <!-- single services -->
 				</div>
 				<div class="col-lg-3 col-sm-6">
-                    <div class="single-services services-color-4 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
+                    <div class="single-services services-color-7 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
                         <div class="services-icon d-flex align-items-center justify-content-center">
                             <i class="lni lni-protection"></i>
                         </div>
@@ -92,7 +92,7 @@
                     </div> <!-- single services -->
 				</div>
 				<div class="col-lg-3 col-sm-6">
-                    <div class="single-services services-color-4 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
+                    <div class="single-services services-color-8 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
                         <div class="services-icon d-flex align-items-center justify-content-center">
                             <i class="lni lni-protection"></i>
                         </div>
