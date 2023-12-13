@@ -65,7 +65,7 @@
                         </div>
                         <div class="services-content">
                             <h4 class="services-title"><a href="#">Project tool</a></h4>
-                            <p class="text">Keep track on the client projects and calculate the consume for best ROI.</p>
+                            <p class="text">Keep track on the client projects and calculate the consume with thew time tracker for best ROI.</p>
                         </div>
                     </div> <!-- single services -->
 				</div>
@@ -75,8 +75,8 @@
                             <i class="lni lni-protection"></i>
                         </div>
                         <div class="services-content">
-                            <h4 class="services-title"><a href="#">Time tracker</a></h4>
-                            <p class="text">Never miss the time spent on a client again.</p>
+                            <h4 class="services-title"><a href="#">Contracts</a></h4>
+                            <p class="text">Save your ready made contracts to speed up the process with your leads.</p>
                         </div>
                     </div> <!-- single services -->
 				</div>
@@ -86,8 +86,8 @@
                             <i class="lni lni-protection"></i>
                         </div>
                         <div class="services-content">
-                            <h4 class="services-title"><a href="#">AI Based Chat, support and ticket system. </a></h4>
-                            <p class="text">Let the customer interact with your company thru different AI channels for best performance. Let the AI automaticly fetch information from your KB to support you, and the customers. </p>
+                            <h4 class="services-title"><a href="#">Chat & support. </a></h4>
+                            <p class="text">Interact thru different AI channels and provide best customer experience.</p>
                         </div>
                     </div> <!-- single services -->
 				</div>
@@ -97,8 +97,8 @@
                             <i class="lni lni-protection"></i>
                         </div>
                         <div class="services-content">
-                            <h4 class="services-title"><a href="#">Analytics and statistic</a></h4>
-                            <p class="text">Our platform give you all the data you need for smoothly follow up your leads.</p>
+                            <h4 class="services-title"><a href="#">Analytics</a></h4>
+                            <p class="text">Our platform give you all the data you need for follow up your leads.</p>
                         </div>
                     </div> <!-- single services -->
 				</div>
