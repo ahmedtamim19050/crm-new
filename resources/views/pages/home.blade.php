@@ -20,7 +20,7 @@
                             <i class="lni lni-layers"></i>
                         </div>
                         <div class="services-content">
-                            <h4 class="services-title"><a href="#">Clean Design</a></h4>
+                            <h4 class="services-title"><a href="#">XXXClean Design</a></h4>
                             <p class="text">Lorem ipsum dolor sitam etco snsetetur sadipscing elitr sed diam nonumy.</p>
                         </div>
                     </div> <!-- single services -->
