@@ -157,12 +157,17 @@
                             <a class="logo" href="#" >
                                 <img src="{{asset('frontend-assets/images/xainia-logo.png')}}" alt="Logo">
                             </a>
-                            <p class="text">Xainia is made for helping you, increase your customer satisfaction.</p>
+                            <p class="text">Xainia is made for helping you, increase your customer satisfaction. With the all-in-one platform you and your customers are more productive.</p>
                             <ul class="social">
                                 <li><a href="#"><i class="lni lni-facebook"></i></a></li>
                                 <li><a href="#"><i class="lni lni-twitter"></i></a></li>
                                 <li><a href="#"><i class="lni lni-instagram"></i></a></li>
                                 <li><a href="#"><i class="lni lni-linkedin"></i></a></li>
+								<li><a href="#"><i class="lni lni-pinterest"></i></a></li>
+                                <li><a href="#"><i class="lni lni-whatsapp"></i></a></li>
+								<li><a href="#"><i class="lni lni-tiktok"></i></a></li>
+								<li><a href="#"><i class="lni lni-youtube"></i></a></li>
+								
                             </ul>
                         </div> <!-- footer about -->
                     </div> 
