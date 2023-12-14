@@ -102,6 +102,17 @@
                         </div>
                     </div> <!-- single services -->
 				</div>
+				<div class="col-lg-3 col-sm-6">
+                    <div class="single-services services-color-8 text-center mt-30 wow fadeInUpBig" data-wow-duration="1.3s" data-wow-delay="0.8s">
+                        <div class="services-icon d-flex align-items-center justify-content-center">
+                            <i class="lni lni-protection"></i>
+                        </div>
+                        <div class="services-content">
+                            <h4 class="services-title"><a href="#">Personas</a></h4>
+                            <p class="text">Our AI Generator generates a user persona based on product or service. </p>
+                        </div>
+                    </div> <!-- single services -->
+				</div>
             </div> <!-- row -->
         </div> <!-- container -->
     </section>
