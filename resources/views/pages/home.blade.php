@@ -157,9 +157,10 @@
                         <h3 class="download-title">What are you waiting for?</h3>
                         <p class="text">Test our free version that are full specked of functions. <b>No credit card required</b>.</p>
                         <ul>
-                            <li><a class="app-store" href="#"><img src="{{asset('frontend-assets/images/app-store.png')}}" alt="store"></a></li>
-                            <li><a class="play-store" href="#"><img src="{{asset('frontend-assets/images/play-store.png')}}" alt="store"></a></li>
-							<a href="/login" rel="nofollow" class="main-btn">Get started for free!</a>
+                            <li> <p class="text">Test our free version that are full specked of functions. <b>No credit card required</b>.</p></li>
+                        </ul>
+						<ul>
+                            <a href="/login" rel="nofollow" class="main-btn">Get started for free!</a>
                         </ul>
                     </div> <!-- download image -->
                 </div>
