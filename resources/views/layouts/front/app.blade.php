@@ -157,7 +157,7 @@
                             <a class="logo" href="#" >
                                 <img src="{{asset('frontend-assets/images/xainia-logo.png')}}" alt="Logo">
                             </a>
-                            <p class="text">Lorem ipsum dolor sit amet consetetur sadipscing elitr, sederfs diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam.</p>
+                            <p class="text">Xainia is made for helping you, increase your customer satisfaction.</p>
                             <ul class="social">
                                 <li><a href="#"><i class="lni lni-facebook"></i></a></li>
                                 <li><a href="#"><i class="lni lni-twitter"></i></a></li>
