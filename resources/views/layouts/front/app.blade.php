@@ -112,7 +112,7 @@
                             <h3 class="header-title wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.2s"><span>Get started for free!</span><br> CRM, SoMe and newsletter in ONE Platform</h3>
                             <p class="text wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.6s">Manage your leads, your social media and your newsletters from ONE Platform.</p>
                             <ul class="d-flex">
-                                <li><a href="/login" rel="nofollow" class="main-btn wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.8s">Get started for free</a></li>
+                                <li><a href="/login" rel="nofollow" class="main-btn wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.8s">Get started for free</a><br><b>No credit card required</b></li>
                             </ul>
                         </div> <!-- header hero content -->
                     </div>
