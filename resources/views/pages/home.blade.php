@@ -109,7 +109,7 @@
                         </div>
                         <div class="services-content">
                             <h4 class="services-title"><a href="#">Personas</a></h4>
-                            <p class="text">Our AI Generator generates a user persona based on product or service. </p>
+                            <p class="text">Our AI generates a user persona based on product or service. </p>
                         </div>
                     </div> <!-- single services -->
 				</div>
