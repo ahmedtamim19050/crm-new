@@ -155,7 +155,7 @@
                 <div class="col-lg-6">
                     <div class="download-content mt-45 wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.5s">
                         <h3 class="download-title">What are you waiting for?</h3>
-                        <p class="text">Test our free version that are full specked of functions.<br> <b>No credit card required</b>.</p>
+                        <p class="text">Test our free version that are full specked of functions.<br> <b>No setup fee. No credit card required</b>.</p>
                         <ul>
                             <a href="/login" rel="nofollow" class="main-btn">Get started for free!</a>
                         </ul>
