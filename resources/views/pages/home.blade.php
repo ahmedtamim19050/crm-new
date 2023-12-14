@@ -124,10 +124,10 @@
                 <div class="col-lg-6">
                     <div class="about-content mt-50 wow fadeInRightBig" data-wow-duration="1.3s" data-wow-delay="0.5s">
                         <div class="section-title">
-                            <h3 class="title">You're Using Free Lite Version</h3>
-                            <p class="text">Please, purchase the full version of template get all pages, features, elements, documentation, commercial license and permission to remove footer credit.</p>
+                            <h3 class="title"><span>Get started for free!</span><br> CRM, SoMe and newsletter in ONE Platform</h3>
+                            <p class="text">Manage your leads, your social media and your newsletters from ONE Platform.</p>
                         </div> <!-- section title -->
-                        <a href="https://rebrand.ly/appland-ud" rel="nofollow" class="main-btn">Get Full Version</a>
+                        <a href="/login" rel="nofollow" class="main-btn">Get started for free!</a>
                     </div> <!-- about content -->
                 </div>
             </div> <!-- row -->
@@ -154,8 +154,8 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="download-content mt-45 wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.5s">
-                        <h3 class="download-title">Download and Start Using!</h3>
-                        <p class="text">Alii nusquam cu duo, vim eu consulatu percipitur, meis doorcomprehen sam at vis. Vel ut dignissim signiferumq Alii nusquam cuduo, vim eusde consulatu percipitur, meis dolor comprehensam at vij. Alii nusquam cu duo, vim eu consulatu percipitur, meis doorcomprehen sam at vis. Vel ut dignissim signiferumq nusquam.</p>
+                        <h3 class="download-title">What are you waiting for?</h3>
+                        <p class="text">Test our free version that are full specked of functions. <b>No credit card required</b>.</p>
                         <ul>
                             <li><a class="app-store" href="#"><img src="{{asset('frontend-assets/images/app-store.png')}}" alt="store"></a></li>
                             <li><a class="play-store" href="#"><img src="{{asset('frontend-assets/images/play-store.png')}}" alt="store"></a></li>
