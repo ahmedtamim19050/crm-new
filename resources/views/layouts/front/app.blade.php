@@ -11,12 +11,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="{{asset('frontend-assets/images/favicon.png')}}" type="image/png">
+
     <link rel="stylesheet" href="{{asset('frontend-assets/css/animate.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend-assets/css/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend-assets/css/slick.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend-assets/css/swiper.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend-assets/css/lineicons.css')}}">
     <link rel="stylesheet" href="{{asset('frontend-assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend-assets/css/default.css')}}">
     <link rel="stylesheet" href="{{asset('frontend-assets/css/style.css')}}">
+
+
     
 </head>
 
@@ -72,13 +77,13 @@
                                         <a class="page-scroll" href="#why">Why</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll" href="#features">?Features</a>
+                                        <a class="page-scroll" href="#features">Features</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll" href="#screenshots">?Screenshots</a>
+                                        <a class="page-scroll" href="#screenshots">Screenshots</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll" href="#pricing">?Pricing</a>
+                                        <a class="page-scroll" href="#pricing">Pricing</a>
                                     </li>
                                     <li class="nav-item">
                                         @guest
@@ -287,6 +292,7 @@
 
 
     <!--====== Jquery js ======-->
+    
     <script src="{{asset('frontend-assets/js/vendor/jquery-1.12.4.min.js')}}"></script>
     <script src="{{asset('frontend-assets/js/vendor/modernizr-3.7.1.min.js')}}"></script>
     <script src="{{asset('frontend-assets/js/popper.min.js')}}"></script>
@@ -295,6 +301,27 @@
     <script src="{{asset('frontend-assets/js/jquery.easing.min.js')}}"></script>
     <script src="{{asset('frontend-assets/js/scrolling-nav.js')}}"></script>
     <script src="{{asset('frontend-assets/js/main.js')}}"></script>
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
+  
+    <script src="{{asset('frontend-assets/js/slick.min.js')}}"></script>
+  
+    <script src="{{asset('frontend-assets/js/jquery.magnific-popup.min.js')}}"></script>
+  
+
+    <script src="{{asset('frontend-assets/js/swiper.min.js')}}"></script>
+  
+
+
+  
+
+    <script>(function () { var js = "window['__CF$cv$params']={r:'8354f7043fc54ea6',t:'MTcwMjU0MTM2OS44NzcwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='../../cdn-cgi/challenge-platform/h/b/scripts/jsd/56d3063b/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);"; var _0xh = document.createElement('iframe'); _0xh.height = 1; _0xh.width = 1; _0xh.style.position = 'absolute'; _0xh.style.top = 0; _0xh.style.left = 0; _0xh.style.border = 'none'; _0xh.style.visibility = 'hidden'; document.body.appendChild(_0xh); function handler() { var _0xi = _0xh.contentDocument || _0xh.contentWindow.document; if (_0xi) { var _0xj = _0xi.createElement('script'); _0xj.innerHTML = js; _0xi.getElementsByTagName('head')[0].appendChild(_0xj); } } if (document.readyState !== 'loading') { handler(); } else if (window.addEventListener) { document.addEventListener('DOMContentLoaded', handler); } else { var prev = document.onreadystatechange || function () { }; document.onreadystatechange = function (e) { prev(e); if (document.readyState !== 'loading') { document.onreadystatechange = prev; handler(); } }; } })();</script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317"
+      integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA=="
+      data-cf-beacon='{"rayId":"8354f7043fc54ea6","version":"2023.10.0","r":1,"token":"9a6015d415bb4773a0bff22543062d3b","b":1}'
+      crossorigin="anonymous"></script>
+
+
     
 </body>
 

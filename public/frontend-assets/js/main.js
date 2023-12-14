@@ -58,6 +58,23 @@ $(function () {
 
 
 
+    //====== Magnific Popup
+
+    $('.video-popup').magnificPopup({
+        type: 'iframe'
+        // other options
+    });
+
+
+    //===== Magnific Popup
+
+    $('.image-popup').magnificPopup({
+        type: 'image',
+        gallery: {
+            enabled: true
+        }
+    });
+
 
     //===== Back to top
 
@@ -116,6 +133,69 @@ $(function () {
     //=====  WOW active
 
     new WOW().init();
+
+
+    //=====  Swiper Slider
+
+    var swiper = new Swiper('.swiper-container', {
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'bullets',
+            clickable: true,
+        },
+//        autoplay: {
+//            delay: 3000,
+//        },
+        speed: 1000,
+        effect: 'coverflow',
+        loop: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 40,
+            depth: 150,
+            modifier: 1,
+            slideShadows: false,
+        }
+    });
+    
+
+    //===== Slick Slider
+
+    $('.testimonial-content').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.testimonial-author'
+    });
+    
+    $('.testimonial-author').slick({
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        asNavFor: '.testimonial-content',
+        dots: false,
+        arrows: false,
+        centerMode: true,
+        focusOnSelect: true,
+        centerPadding: "0",
+        responsive: [{
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 3
+            }
+        },{
+            breakpoint: 576,
+            settings: {
+                slidesToShow: 3
+            }
+        }]
+    });
+
+
+
+
 
 
 
