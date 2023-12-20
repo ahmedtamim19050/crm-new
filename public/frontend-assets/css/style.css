@@ -1024,6 +1024,33 @@ p {
       background-color: rgba(8, 152, 231, 0.2); }
   .single-services.services-color-4 .services-content .services-title a:hover {
     color: #0898E7; }
+	
+  .single-services.services-color-5 .services-icon {
+    background-color: #E7A019; }
+  .single-services.services-color-5 .services-icon::before {
+      background-color: rgba(231, 160, 25, 0.2); }
+  .single-services.services-color-5 .services-content .services-title a:hover {
+    color: #E7A019; }
+  .single-services.services-color-6 .services-icon {
+    background-color: #E54F4F; }
+    .single-services.services-color-6 .services-icon::before {
+      background-color: rgba(229, 79, 79, 0.2); }
+  .single-services.services-color-6 .services-content .services-title a:hover {
+    color: #E54F4F; }
+  .single-services.services-color-7 .services-icon {
+    background-color: #8950E4; }
+    .single-services.services-color-7 .services-icon::before {
+      background-color: rgba(137, 80, 228, 0.2); }
+  .single-services.services-color-7 .services-content .services-title a:hover {
+    color: #8950E4; }
+  .single-services.services-color-8 .services-icon {
+    background-color: #0898E7; }
+    .single-services.services-color-8 .services-icon::before {
+      background-color: rgba(8, 152, 231, 0.2); }
+  .single-services.services-color-8 .services-content .services-title a:hover {
+    color: #0898E7; }
+	
+	
   .single-services:hover {
     -webkit-box-shadow: 0px 15px 17px 0px rgba(154, 154, 154, 0.16);
     -moz-box-shadow: 0px 15px 17px 0px rgba(154, 154, 154, 0.16);
