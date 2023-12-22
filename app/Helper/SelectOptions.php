@@ -2,6 +2,7 @@
 
 namespace App\Helper;
 
+use App\Models\Label;
 use App\Models\User;
 use Carbon\Carbon;
 use Rinvex\Country\CountryLoader;
@@ -18,7 +19,14 @@ class SelectOptions
     public static function labels($null = true)
     {
         // Your logic to retrieve currencies goes here
-        return ['hot'=>'Hot', 'cold'=>'Cold', 'warm'=>'Warm'];
+        // return ['hot'=>'Hot', 'cold'=>'Cold', 'warm'=>'Warm'];
+        $labels= Label::all();
+        foreach ($labels as $item) {
+            $array[$item->name] = $item->name;
+        }
+
+        return $array;
+   
     }
     public static function users($null = true)
     {

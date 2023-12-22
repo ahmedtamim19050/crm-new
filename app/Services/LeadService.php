@@ -18,15 +18,15 @@ class LeadService
      * @param LeadRepository $leadRepository
      */
 
-    public function create($request, $person = null, $organisation = null, $client = null)
+    public function create($request,$client = null,$organisation)
     {
   
         $lead = Lead::create([
             'external_id' => Uuid::uuid4()->toString(),
             'lead_id' => $request->lead_id ?? null,
-            'client_id' => $request->client_id,
+            'client_id' => $client,
             // 'person_id' => $person->id,
-            'organisation_id' => $request->organisation_id,
+            'organisation_id' => $organisation,
             'title' => $request->title,
             'description' => $request->description,
             'amount' => $request->amount,

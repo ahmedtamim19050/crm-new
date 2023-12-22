@@ -17,7 +17,7 @@
             </ol>
         </div>
         <div class="col-md-3 mt-3">
-            <a href="{{route('clients.create')}}" class="btn btn-primary">Contact a Client</a>
+            <a href="{{route('clients.create')}}" class="btn btn-primary">Create a Contact</a>
         </div>
     </div>
     <!-- row -->

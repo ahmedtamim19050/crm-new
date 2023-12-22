@@ -23,7 +23,7 @@
         
 
             </li>
-            <li><a class="has-arrow ai-icon" href="{{ route('deals.index') }}" aria-expanded="false">
+            <li><a class="has-arrow ai-icon" href="{{route('kanvan')}}" aria-expanded="false">
                 <i class="far fa-money-bill-alt"></i>
                     <span class="nav-text">Deals</span>
                 </a>
@@ -41,14 +41,14 @@
                 </ul> --}}
 
             </li>
-
+{{-- 
             <li><a class="has-arrow ai-icon" href="{{ route('categories.index') }}" aria-expanded="false">
                     <i class="fas fa-bars "></i>
                     <span class="nav-text">Stages</span>
                 </a>
 
 
-            </li>
+            </li> --}}
             <li class="mt-2">
                 <form action="{{ route('logout') }}" method="post" class="has-arrow ai-icon">
                     @csrf

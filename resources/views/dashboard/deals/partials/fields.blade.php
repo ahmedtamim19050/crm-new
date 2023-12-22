@@ -17,41 +17,42 @@
     <div class="row">
         <div class="col-sm-6 border-right">
 
-            {{-- @livewire('live-lead-form',[
-                'lead' => $deal ?? null,
-                'generateTitle' => $generateTitle ?? true,
-                'client' => $client ?? null,
-                'organisation' => $organisation ?? null,
-                'person' => $person ?? null
-            ]) --}}
-            {{-- @if ($deal->client)
-                @include('partials.form.hidden', [
+        
+            @if(isset($deal))
+                @include('partials.form.select', [
                     'name' => 'client_id',
-                    'value' => $deal->client->id,
-                ])
-            @endif --}}
-            @include('partials.form.select', [
+                    'label' => 'Customer',
+                    'options' => $clients,
+                    'value' => old('client_id', isset($deal) ? $deal->client->id : null),
+                ])  
+            
+            @else
+            @include('partials.form.dynamicSelect', [
                 'name' => 'client_id',
                 'label' => 'Customer',
                 'options' => $clients,
-                'value' => old('organisation', isset($deal) ? $deal->client->id : null),
+                'value' => old('client_id', isset($deal) ? $deal->client->id : null),
             ])
-            {{-- @include('partials.form.text', [
-                'name' => 'client_name',
-                'label' => 'Customer',
-                'value' => old('client_name', $deal->client->name ?? null),
-            ]) --}}
-            @include('partials.form.select', [
-                'name' => 'organisation_id',
-                'label' => 'Organisation',
-                'options' => $organisations,
-                'value' => old('organisation', isset($deal) ? $deal->organisation->id : null),
-            ])
-            {{-- @include('partials.form.text', [
-                'name' => 'person_name',
-                'label' => 'Contact Person',
-                'value' => old('person_name', $deal->person->name ?? null),
-            ]) --}}
+            @endif
+ 
+        
+            @if(isset($deal))
+               @include('partials.form.select', [
+                   'name' => 'organisation_id',
+                   'label' => 'Organisation',
+                   'options' => $organisations,
+                   'value' => old('organisation_id', isset($deal) ? $deal->organisation->id : null),
+               ])  
+           
+           @else
+           @include('partials.form.dynamicSelect', [
+               'name' => 'organisation_id',
+               'label' => 'Organisation',
+               'options' => $organisations,
+               'value' => old('organisation_id', isset($deal) ? $deal->organisation->id : null),
+           ])
+           @endif
+         
             @include('partials.form.text', [
                 'name' => 'title',
                 'label' => 'Title',

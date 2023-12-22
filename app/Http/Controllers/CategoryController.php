@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories=Category::where('user_id',auth()->id())->orderBy('order','asc')->get();
+        $categories=Category::orderBy('order','asc')->get();
         return view('dashboard.category.index',compact('categories'));
     }
 

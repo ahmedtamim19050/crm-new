@@ -22,6 +22,7 @@ return [
 				'vendor/bootstrap-select/dist/css/bootstrap-select.min.css',
 				'css/style.css',
 				'vendor/toastr/css/toastr.min.css',
+				'vendor/select2/css/select2.min.css'
 			],
 			'js' => [
 	
@@ -30,6 +31,8 @@ return [
 					'vendor/bootstrap-select/dist/js/bootstrap-select.min.js',
 					'vendor/toastr/js/toastr.min.js',
 					'js/plugins-init/toastr-init.js',
+					'vendor/select2/js/select2.full.min.js',
+					'js/plugins-init/select2-init.js',
 				],
 				'bottom'=> [
 					'js/custom.min.js',

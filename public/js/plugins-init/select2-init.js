@@ -167,7 +167,7 @@
 
 
   // dynamic option
-  $('#dynamic-option-creation').select2({
+  $('.dynamic-option-creation').select2({
       tags: true
   });
 

@@ -24,36 +24,45 @@
                 'organisation' => $organisation ?? null,
                 'person' => $person ?? null
             ]) --}}
-         
 
-            @include('partials.form.select', [
-                'name' => 'client_id',
-                'label' => 'Customer',
-                'options' => $clients,
-                'value' => old('organisation', isset($lead) ? $lead->client->id : null),
-            ])
-            @include('partials.form.select', [
-                'name' => 'organisation_id',
-                'label' => 'Organisation',
-                'options' => $organisations,
-                'value' => old('organisation', isset($lead) ? $lead->organisation->id : null),
-            ])
-            {{-- @include('partials.form.text', [
-                'name' => 'person_name',
-                'label' => 'Contact Person',
-                'value' => old('person_name', $lead->person->name ?? null),
-            ]) --}}
+
+            @if (isset($lead))
+                @include('partials.form.select', [
+                    'name' => 'client_id',
+                    'label' => 'Customer',
+                    'options' => $clients,
+                    'value' => old('client_id', isset($lead) ? $lead->client->id : null),
+                ])
+            @else
+                @include('partials.form.dynamicSelect', [
+                    'name' => 'client_id',
+                    'label' => 'Customer',
+                    'options' => $clients,
+                    'value' => old('client_id', isset($lead) ? $lead->client->id : null),
+                ])
+            @endif
+            @if (isset($deal))
+                @include('partials.form.select', [
+                    'name' => 'organisation_id',
+                    'label' => 'Organisation',
+                    'options' => $organisations,
+                    'value' => old('organisation_id', isset($deal) ? $deal->organisation->id : null),
+                ])
+            @else
+                @include('partials.form.dynamicSelect', [
+                    'name' => 'organisation_id',
+                    'label' => 'Organisation',
+                    'options' => $organisations,
+                    'value' => old('organisation_id', isset($deal) ? $deal->organisation->id : null),
+                ])
+            @endif
+
             @include('partials.form.text', [
                 'name' => 'title',
                 'label' => 'Title',
                 'value' => old('title', $lead->title ?? null),
             ])
-            {{-- @include('partials.form.textarea', [
-                'name' => 'description',
-                'label' => 'Description',
-                'rows' => 5,
-                'value' => old('description', $lead->description ?? null),
-            ]) --}}
+
 
             <div class="row">
                 <div class="col-sm-6">
@@ -75,7 +84,7 @@
             @include('partials.form.select', [
                 'name' => 'label',
                 'label' => 'Label',
-                  'options' => App\Helper\SelectOptions::labels(),
+                'options' => App\Helper\SelectOptions::labels(),
                 'value' => old('labels', isset($lead) ? $lead->label : null),
             ])
 
@@ -90,7 +99,7 @@
             <h6 class="text-uppercase"><span class="fa fa-user" aria-hidden="true"></span> Person</h6>
             <hr />
             <span class="autocomplete-person">
-              
+
                 <div class="row">
                     <div class="col-sm-6">
                         @include('partials.form.text', [
@@ -112,7 +121,7 @@
                             //  ]
                         ])
                     </div>
-     
+
                 </div>
             </span>
             <h6 class="text-uppercase mt-4"><span class="fa fa-building" aria-hidden="true"></span> Organization </h6>

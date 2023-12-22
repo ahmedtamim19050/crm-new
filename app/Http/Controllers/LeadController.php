@@ -93,10 +93,33 @@ class LeadController extends Controller
     public function store(StoreLeadRequest $request)
     {
  
+        if (!is_numeric($request->organisation_id)) {
+            $organisation=Organisation::create([
+                'name'=>$request->organisation_id,
+                'user_id'=>auth()->id(),
+                'user_owner_id'=>auth()->id(),
+                'external_id' => Uuid::uuid4()->toString(),
+             
+            ]);
+            $organisation=$organisation->id;
+        }else{
+            $organisation=$request->organisation_id;
+        }
 
+        if (!is_numeric($request->client_id)) {
+            $client=Client::create([
+                'name'=>$request->client_id,
+                'user_id'=>auth()->id(),
+                'user_owner_id'=>auth()->id(),
+                'organisation_id'=>$organisation,
+            ]);
+            $client=$client->id;
+        }else{
+            $client=$request->client_id;
+        }
         
 
-        $lead = $this->leadService->create($request);
+        $lead = $this->leadService->create($request,$client,$organisation);
         return redirect()->route('leads.index')->with('success','Lead update successfully');
     }
 

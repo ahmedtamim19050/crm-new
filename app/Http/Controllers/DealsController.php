@@ -13,6 +13,7 @@ use App\Services\DealService;
 use App\Services\OrganisationService;
 use App\Services\PersonService;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Uuid;
 
 class DealsController extends Controller
 {
@@ -81,21 +82,42 @@ class DealsController extends Controller
      */
     public function store(StoreDealRequest $request)
     {
-        // if ($request->person_name && ! $request->person_id) {
-        //     $person = $this->personService->createFromRelated($request);
-        // } elseif ($request->person_id) {
-        //     $person = Person::find($request->person_id);
-        // }
-        $stage=Category::where('user_id',auth()->id())->orderBy('order','asc')->first();
+        // dd($request->all());
+        if (!is_numeric($request->organisation_id)) {
+            $organisation=Organisation::create([
+                'name'=>$request->organisation_id,
+                'user_id'=>auth()->id(),
+                'user_owner_id'=>auth()->id(),
+                'external_id' => Uuid::uuid4()->toString(),
+             
+            ]);
+            $organisation=$organisation->id;
+        }else{
+            $organisation=$request->organisation_id;
+        }
+
+        if (!is_numeric($request->client_id)) {
+            $client=Client::create([
+                'name'=>$request->client_id,
+                'user_id'=>auth()->id(),
+                'user_owner_id'=>auth()->id(),
+                'organisation_id'=>$organisation,
+            ]);
+            $client=$client->id;
+        }else{
+            $client=$request->client_id;
+        }
+  
+        $stage=Category::orderBy('order','asc')->first();
         if(!$stage){
             return redirect()->route('categories.index')->withErrors('Please insert atleast one stages');
         }
-        $this->dealService->create($request, $person ?? null);
+        $this->dealService->create($request, $person ?? null,$client,$organisation);
         if($request->category_id){
-            return redirect('/deals-kanvan')->with('success', 'Deal Create Successfully');
+            return redirect()->route('kanvan')->with('success', 'Deal Create Successfully');
         }else{
 
-            return redirect('/deals')->with('success', 'Deal Create Successfully');
+            return redirect()->route('deals.index')->with('success', 'Deal Create Successfully');
         }
     }
 
@@ -113,10 +135,6 @@ class DealsController extends Controller
             $phone = $deal->person->getPrimaryPhone();
             $address = $deal->person->getPrimaryAddress();
         }
-
-        // if ($deal->organisation) {
-        //     $organisation_address = $deal->organisation->getPrimaryAddress();
-        // }
         $persons = Person::pluck('last_name', 'id')->toArray();
 
         return view('dashboard.deals.show', [
@@ -158,49 +176,10 @@ class DealsController extends Controller
     public function update(Request $request, $id)
     {
         $deal = Deal::find($id);
-        // if ($request->person_name && ! $request->person_id) {
-        //     $person = $this->personService->createFromRelated($request);
-        // } elseif ($request->person_id) {
-        //     $person = Person::find($request->person_id);
-        // }
 
-        // if ($request->organisation_name && ! $request->organisation_id) {
-        //     $organisation = $this->organisationService->createFromRelated($request);
-        // } elseif ($request->organisation_id) {
-        //     $organisation = Organisation::find($request->organisation_id);
-        // }
-
-        // if ($request->client_name && ! $request->client_id) {
-
-        //     $client = Client::create([
-        //         'name' => $request->client_name,
-        //         'user_owner_id' => $request->user_owner_id,
-        //     ]);
-        // } elseif ($request->client_id) {
-        //     $client = Client::find($request->client_id);
-        //     $deal->client->update([
-        //         'name'=>$request->client_name,
-        //     ]);
-        // }
-
-        // if (isset($client)) {
-        //     if (isset($organisation)) {
-        //         $client->contacts()->firstOrCreate([
-        //             'entityable_type' => $organisation->getMorphClass(),
-        //             'entityable_id' => $organisation->id,
-        //         ]);
-        //     }
-
-        //     if (isset($person)) {
-        //         $client->contacts()->firstOrCreate([
-        //             'entityable_type' => $person->getMorphClass(),
-        //             'entityable_id' => $person->id,
-        //         ]);
-        //     }
-        // }
 
         $deal = $this->dealService->update($request, $deal);
-        return redirect('/deals')->with('success', 'Deal Update Successfully');
+        return redirect()->route('deals.index')->with('success', 'Deal Update Successfully');
     }
 
     /**
@@ -213,13 +192,13 @@ class DealsController extends Controller
     {
         $deal = Deal::find($id);
         $deal->delete();
-        return redirect('/deals')->with('success', 'Deal Delete Successfully');
+        return redirect()->route('deals.index')->with('success', 'Deal Delete Successfully');
     }
     function kanvan()
     {
         $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
         $organisations = Organisation::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
-        $stages = Category::where('user_id', auth()->id())->orderBy('order', 'asc')->get();
+        $stages = Category::orderBy('order', 'asc')->get();
         return view('dashboard.deals.kanvan', compact('stages','clients','organisations'));
     }
     public function kanvanUpdate(Request $request)

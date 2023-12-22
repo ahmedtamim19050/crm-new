@@ -24,21 +24,21 @@ class DealService
     //     $this->dealRepository = $dealRepository;
     // }
 
-    public function create($request, $person = null)
+    public function create($request, $person = null,$client,$organisation)
     {
       
         if($request->category_id){
             $stage=$request->category_id;
         }else{
-            $stage=Category::where('user_id',auth()->id())->orderBy('order','asc')->first()->id;
+            $stage=Category::orderBy('order','asc')->first()->id;
         }
 
         $deal = Deal::create([
             'external_id' => Uuid::uuid4()->toString(),
             'lead_id' => $request->lead_id ?? null,
-            'client_id' => $request->client_id,
+            'client_id' => $client,
             // 'person_id' => $person->id,
-            'organisation_id' => $request->organisation_id,
+            'organisation_id' => $organisation,
             'title' => $request->title,
             'description' => $request->description,
             'amount' => $request->amount,

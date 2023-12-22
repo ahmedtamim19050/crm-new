@@ -46,11 +46,11 @@
                     <h2 class="title-num text-black font-w700">Deals</h2>
                     {{-- <span class="fs-14">Created by Lidya Chan on June 31, 2021</span> --}}
                 </div>
-                <div class="d-sm-flex d-block align-items-center">
+                {{-- <div class="d-sm-flex d-block align-items-center">
                     <a href="{{ route('categories.index') }}" class="btn btn-light rounded me-3 mb-sm-0 mb-2"><i
                             class="fas fa-stream"></i> Stages</a>
         
-                </div>
+                </div> --}}
             </div>
             <div class="mt-3">
                 {{-- <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addContactModal"
@@ -301,7 +301,7 @@
 
                     ui.draggable.detach().appendTo($(this).find(".connectedSortable"));
                     $.ajax({
-                        url: '/deals-kanvan/update',
+                        url: '/dashboard/deals-kanvan/update',
                         type: 'POST',
                         data: {
                             dealId: dealId,

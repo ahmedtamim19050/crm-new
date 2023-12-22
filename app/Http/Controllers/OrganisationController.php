@@ -127,6 +127,6 @@ class OrganisationController extends Controller
             }
         }
         $organisation->delete();
-        return redirect('/organisations')->with('success','Organisation Delete Successfully');
+        return redirect()->route('organisations.index')->with('success','Organisation Delete Successfully');
     }
 }

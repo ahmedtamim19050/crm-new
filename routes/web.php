@@ -73,7 +73,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function() {
     // Route::get('/ui-typography','ui_typography');
     // Route::get('/ui-pagination','ui_pagination');
     // Route::get('/ui-grid','ui_grid');
-    // Route::get('/uc-select2','uc_select2');
+    Route::get('/uc-select2',[FastoAdminController::class,'uc_select2']);
     // Route::get('/uc-nestable','uc_nestable');
     // Route::get('/uc-noui-slider','uc_noui_slider');
     // Route::get('/uc-sweetalert','uc_sweetalert');
@@ -129,3 +129,8 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function() {
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
