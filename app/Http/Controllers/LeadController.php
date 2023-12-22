@@ -120,6 +120,7 @@ class LeadController extends Controller
         
 
         $lead = $this->leadService->create($request,$client,$organisation);
+        $lead->createMetas($request->meta);
         return redirect()->route('leads.index')->with('success','Lead update successfully');
     }
 
@@ -172,7 +173,7 @@ class LeadController extends Controller
         
 
         $lead = $this->leadService->update($request, $lead);
-           
+        $lead->createMetas($request->meta);
 
         return redirect()->route('leads.index')->with('success','Lead update successfully');
     }

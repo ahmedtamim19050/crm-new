@@ -22,7 +22,7 @@ class SelectOptions
         // return ['hot'=>'Hot', 'cold'=>'Cold', 'warm'=>'Warm'];
         $labels= Label::all();
         foreach ($labels as $item) {
-            $array[$item->name] = $item->name;
+            $array[$item->id] = $item->name;
         }
 
         return $array;

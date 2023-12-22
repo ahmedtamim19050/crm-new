@@ -57,8 +57,7 @@
                     <hr />
                     <p><span class="fa fa-tag" aria-hidden="true"></span>
 
-                        <span class="badge light badge-success">{{ $deal->label }}</span></td>
-
+                        <span class="badge light badge-success text-white" style="background-color:{{$deal->labelName->color ?? null}}">{{ $deal->labelName->name  ?? null}}</span>
                     </p>
                     <p><i class="las la-dollar-sign"
                             style="font-size: 20px;font-weight:900"></i>{{ $deal->amount, $deal->currency }}</p>

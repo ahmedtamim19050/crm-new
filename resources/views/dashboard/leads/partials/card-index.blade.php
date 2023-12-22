@@ -124,14 +124,14 @@
                             </thead>
                             <tbody>
                                 @foreach($leads as $lead)
-                         
+                    
                                 <tr>
                                     <td><strong>{{$loop->index +1}}</strong></td>
                                     <td>{{ $lead->created_at->diffForHumans() }}</td>
                                     <td>{{ $lead->title }}</td>
                                     <td>
                                      
-                                        <span class="badge light badge-success">{{$lead->label}}</span></td>
+                                        <span class="badge light badge-success text-white" style="background-color:{{$lead->labelName->color ?? null}}">{{ $lead->labelName->name  ?? null}}</span></td>
                                      
                                     <td>{{ $lead->amount, $lead->currency }}</td>
                      

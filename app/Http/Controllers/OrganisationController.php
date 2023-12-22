@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Label;
 use App\Models\Organisation;
+use App\Models\Person;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 
@@ -68,9 +69,10 @@ class OrganisationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Organisation $organisation)
     {
-        //
+        $persons=Person::pluck('last_name','id')->toArray();
+        return view('dashboard.organisations.show',compact('organisation','persons'));
     }
 
     /**

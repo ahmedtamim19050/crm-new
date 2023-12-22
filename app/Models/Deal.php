@@ -128,9 +128,9 @@ class Deal extends Model
     /**
      * Get all of the labels for the lead.
      */
-    public function labels()
+    public function labelName()
     {
-        return $this->morphToMany(Label::class,'labelable');
+        return $this->belongsTo(Label::class,'label');
     }
 
     public function addresses()

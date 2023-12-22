@@ -122,7 +122,7 @@
                                             <td>{{ $deal->title }}</td>
                                             <td>
 
-                                                <span class="badge light badge-success">{{ $deal->label }}</span>
+                                                <span class="badge light badge-success text-white" style="background-color:{{$deal->labelName->color ?? null}}">{{ $deal->labelName->name  ?? null}}</span>
                                             </td>
 
                                             <td>{{ $deal->amount, $deal->currency }}</td>

@@ -67,6 +67,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     @include('partials.form.text', [
+                         'type'=>'number',
                         'name' => 'amount',
                         'label' => 'Value',
                         'value' => old('amount', $lead->amount ?? null),
@@ -93,6 +94,12 @@
                 'label' => 'owner',
                 'options' => App\Helper\SelectOptions::users(false),
                 'value' => old('user_owner_id', $lead->user_owner_id ?? auth()->user()->id),
+            ])
+            @include('partials.form.text', [
+                'type'=>'date',
+                'name' => 'meta[close_date]',
+                'label' => 'Expected Close Date',
+                'value' => old('close_date', isset($lead) ? $lead->close_date : null),
             ])
         </div>
         <div class="col-sm-6">
@@ -121,6 +128,7 @@
                             //  ]
                         ])
                     </div>
+
 
                 </div>
             </span>

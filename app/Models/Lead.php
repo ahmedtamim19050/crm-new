@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasMeta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasCrmActivities;
@@ -9,7 +10,7 @@ use App\Traits\HasCrmActivities;
 
 class Lead extends Model
 {
-    use HasCrmActivities;
+    use HasCrmActivities,HasMeta;
 
     protected $guarded = ['id'];
 
@@ -17,18 +18,9 @@ class Lead extends Model
         'converted_at' => 'datetime',
     ];
 
-    protected $searchable = [
-        'title',
-        'person.first_name',
-        'person.middle_name',
-        'person.last_name',
-        'person.maiden_name',
-        'organisation.name',
-    ];
+    protected $meta_attributes = [
+        "close_date",
 
-    protected $filterable = [
-        'user_owner_id',
-        'labels.id',
     ];
 
     public function getSearchable()
@@ -176,9 +168,9 @@ class Lead extends Model
     /**
      * Get all of the labels for the lead.
      */
-    public function labels()
+    public function labelName()
     {
-        return $this->morphToMany(Label::class,'labelable');
+        return $this->belongsTo(Label::class,'label');
     }
     // public function notes()
     // {
