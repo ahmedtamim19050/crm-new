@@ -11,7 +11,7 @@
             </li>
             <li><a class="has-arrow ai-icon" href="{{ route('clients.index') }}" aria-expanded="false">
                     <i class="flaticon-381-user-9"></i>
-                    <span class="nav-text">Clients</span>
+                    <span class="nav-text">Contacts</span>
                 </a>
            
 

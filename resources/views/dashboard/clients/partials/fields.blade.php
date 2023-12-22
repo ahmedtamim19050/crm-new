@@ -17,12 +17,24 @@
     <div class="row">
         <div class="col-sm-6 border-right">
 
+            <div class="row">
+                <div class="col-sm-6">
 
-            @include('partials.form.text', [
-                'name' => 'name',
-                'label' => 'Name',
-                'value' => old('client_name', $client->name ?? null),
-            ])
+                    @include('partials.form.text', [
+                        'name' => 'name',
+                        'label' => 'Name',
+                        'value' => old('client_name', $client->name ?? null),
+                    ])
+                </div>
+                <div class="col-sm-6">
+
+                    @include('partials.form.text', [
+                        'name' => 'meta[l_name]',
+                        'label' => 'Last name',
+                        'value' => old('client_name', isset($client) ? $client->l_name : null ),
+                    ])
+                </div>
+            </div>
             {{-- @dd($client->organisation->pluck('id')->toArray() ); --}}
             @include('partials.form.select', [
                 'name' => 'organisation_id',
@@ -30,12 +42,12 @@
                 'options' => $organisations,
                 'value' => old('organisation', isset($client) ? $client->organisation->id : null),
             ])
-            @include('partials.form.select', [
+            {{-- @include('partials.form.select', [
                 'name' => 'label',
                 'label' => 'Label',
                 'options' => App\Helper\SelectOptions::labels(),
                 'value' => old('labels', isset($client) ? $client->label : null),
-            ])
+            ]) --}}
             @include('partials.form.select', [
                 'name' => 'user_owner_id',
                 'label' => 'owner',

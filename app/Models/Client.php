@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasMeta;
 use App\Traits\HasCrmActivities;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +11,12 @@ class Client extends Model
 {
     use HasFactory;
     use HasCrmActivities;
+    use HasMeta;
+
+    protected $meta_attributes = [
+        "l_name",
+
+    ];
 
     protected $guarded = [];
 

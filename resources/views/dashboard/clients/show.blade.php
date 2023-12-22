@@ -26,9 +26,14 @@
                     <div class="card-body">
                         <h6 class="text-uppercase">DETAILS</h6>
                         <hr />
-                        <p ><span style="font-weight: 700">Name</span> 
+                        <p ><span style="font-weight: 700">First Name :</span> 
 
                                 <span >{{ $client->name }}</span></td>
+
+                        </p>
+                        <p ><span style="font-weight: 700">Last Name :</span> 
+
+                                <span >{{ $client->l_name }}</span></td>
 
                         </p>
                         <h6 class="text-uppercase">Owner</h6>

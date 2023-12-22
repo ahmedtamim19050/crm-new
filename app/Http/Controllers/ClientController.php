@@ -45,7 +45,7 @@ class ClientController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'user_owner_id' => 'required',
-            'label' => 'required',
+            // 'label' => 'required',
         
         ]);
         $client = Client::create([
@@ -58,8 +58,8 @@ class ClientController extends Controller
             'label'=>$request->label,
 
         ]);
-
-       return redirect('/clients')->with('success','Client Create Successfully');
+        $client->createMetas($request->meta);
+       return redirect()->route('clients.index')->with('success','Contact Create Successfully');
     }
 
     /**
@@ -106,7 +106,7 @@ class ClientController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'user_owner_id' => 'required',
-            'label'=>'required',
+            // 'label'=>'required',
         ]);
         $client=Client::find($id);
         $client->update([
@@ -117,7 +117,8 @@ class ClientController extends Controller
             'phone' => $request->phone,
             'label' => $request->label,
         ]);
-       return redirect('/clients')->with('success','Client Update Successfully');
+        $client->createMetas($request->meta);
+       return redirect()->route('clients.index')->with('success','Client Update Successfully');
     }
 
     /**

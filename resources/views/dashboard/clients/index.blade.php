@@ -7,17 +7,17 @@
         <div class="col-sm-6 p-md-0">
             <div class="welcome-text">
                 <h4>Hi, welcome back!</h4>
-                <p class="mb-0">Clients Table</p>
+                <p class="mb-0">Contacts Table</p>
             </div>
         </div>
         <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Clients</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Contacts</a></li>
             </ol>
         </div>
         <div class="col-md-3 mt-3">
-            <a href="{{route('clients.create')}}" class="btn btn-primary">Create a Client</a>
+            <a href="{{route('clients.create')}}" class="btn btn-primary">Contact a Client</a>
         </div>
     </div>
     <!-- row -->
@@ -26,7 +26,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Recent Client Queue</h4>
+                    <h4 class="card-title">Recent Contact Queue</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -39,7 +39,7 @@
                                     <th><strong>Organisation</strong></th>
                                     <th><strong>Email</strong></th>
                                     <th><strong>Phone</strong></th>
-                                    <th><strong>Label</strong></th>
+                                    {{-- <th><strong>Label</strong></th> --}}
                                     <th> <strong>Owner </strong></th>
                                     {{-- <th><strong>PRICE</strong></th> --}}
                                     <th></th>
@@ -55,11 +55,11 @@
                                     <td>{{ $client->organisation->name ?? null  }}</td>
                                     <td>{{ $client->email   }}</td>
                                     <td>{{ $client->phone }}</td>
-                                    <td>
+                                    {{-- <td>
                            
                                         <span class="badge light badge-success">{{$client->label}}</span>
                                 
-                                     </td>
+                                     </td> --}}
                                     <td>{{ $client->ownerUser->name ?? null }}</td>
                                     <td>
                                         <div class="dropdown">

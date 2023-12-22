@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('metas', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('metable_id');
+            $table->string('metable_type');
+            $table->string('column_name');
+            $table->longText('column_value')->nullable();
             $table->timestamps();
         });
     }

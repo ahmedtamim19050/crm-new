@@ -27,8 +27,10 @@ class OrganisationController extends Controller
      */
     public function create()
     {
+        $organisation=new Organisation();
+        // dd($organisation);
    
-        return view('dashboard.organisations.create');
+        return view('dashboard.organisations.create',compact('organisation'));
     }
 
     /**
@@ -44,8 +46,10 @@ class OrganisationController extends Controller
             'name'=>'required',
             'user_owner_id'=>'required',
             'address'=>'nullable',
-            'label'=>'required'
+            'label'=>'required',
+        
         ]);
+        // dd($request->meta);
         $organisation = Organisation::create([
             'name' => $request->name,
             'user_owner_id' => $request->user_owner_id,
@@ -54,7 +58,8 @@ class OrganisationController extends Controller
             'user_id'=>auth()->id(),
             'label'=>$request->label,
         ]);
-       return redirect('/organisations')->with('success','Organisation Create Successfully');
+        $organisation->createMetas($request->meta);
+       return redirect()->route('organisations.index')->with('success','Organisation Create Successfully');
     }
 
     /**
@@ -102,8 +107,8 @@ class OrganisationController extends Controller
             'user_id'=>auth()->id(),
             'label'=>$request->label,
         ]);
-
-       return redirect('/organisations')->with('success','Organisation Update Successfully');
+        $organisation->createMetas($request->meta);
+       return redirect()->route('organisations.index')->with('success','Organisation Update Successfully');
     }
 
     /**

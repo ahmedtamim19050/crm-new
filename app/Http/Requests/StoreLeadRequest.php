@@ -31,7 +31,7 @@ class StoreLeadRequest extends FormRequest
             'title' => 'required|max:255',
             'amount' => 'nullable|numeric',
             'user_owner_id' => 'required',
-            'code' => 'nullable|numeric',
+            'code' => 'nullable',
         ];
     }
     public function messages()
