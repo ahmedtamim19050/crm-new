@@ -6,6 +6,7 @@ use App\Traits\HasCrmActivities;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Deal extends Model
 {
@@ -82,29 +83,14 @@ class Deal extends Model
         return $this->belongsTo(Client::class,'client_id');
     }
 
-    public function dealProducts()
-    {
-        return $this->hasMany(DealProduct::class);
-    }
-
-    /**
-     * Get all of the lead's custom field values.
-     */
-    public function customFieldValues()
-    {
-        return $this->morphMany(FieldValue::class, 'custom_field_valueable');
-    }
+  
 
     public function createdByUser()
     {
         return $this->belongsTo(User::class, 'user_created_id');
     }
 
-    public function updatedByUser()
-    {
-        return $this->belongsTo(\App\User::class, 'user_updated_id');
-    }
-
+ 
     public function deletedByUser()
     {
         return $this->belongsTo(User::class, 'user_deleted_id');
@@ -145,4 +131,10 @@ class Deal extends Model
     //         return $this->addresses()->first();
     //     }
     // }
+    protected static function booted()
+    {
+        static::addGlobalScope('myDeal', function (Builder $builder) {
+            $builder->where('user_id', auth()->id());
+        });
+    }
 }

@@ -5,6 +5,10 @@
         height: 150px;
         padding: 0.5em;
     }
+    .kanbanPreview-bx{
+        background-color: #fff;
+        min-height: 60vh;
+    }
    
 </style>
 @section('content')
@@ -116,8 +120,10 @@
 
                         </div>
 
-                        <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addContactModal"
-                            data-id={{ $stage->id }} class="btn btn-primary text-white">+Add Deal</a>
+                         <div class="d-flex justify-content-center border-top">
+                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addContactModal"
+                            data-id={{ $stage->id }} class="text-dark py-3">+Add Deal</a>
+                         </div>
                     </div>
                 </div>
             @endforeach
