@@ -121,7 +121,7 @@
                             </ul>
                         </div> <!-- header hero content -->
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-10">
+                    <div class="col-lg-5 col-md-6 col-sm-6 col-10">
                         <div class="header-image">
                             <img src="{{asset('frontend-assets/images/xainia-hero.png')}}" alt="app" class="image wow fadeInRightBig" data-wow-duration="1.3s" data-wow-delay="0.5s">
                             <div class="image-shape wow fadeInRightBig" data-wow-duration="1.3s" data-wow-delay="0.8s">

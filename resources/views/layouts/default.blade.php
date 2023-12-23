@@ -42,6 +42,11 @@
     @endif
     @livewireStyles
     @yield('css')
+    <style>
+        .table-responsive{
+            height: 70vh !important;
+        }
+    </style>
 
 </head>
 
