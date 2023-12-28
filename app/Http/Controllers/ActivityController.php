@@ -13,12 +13,17 @@ class ActivityController extends Controller
         if (!class_exists($modelClass)) {
             abort(404); 
         }
+        if($request->noted_at){
+            $note_at=$request->noted_at;
+        }else{
+            $note_at=today();
+        }
 
         $data=$modelClass::findOrFail($id);
         $note = $data->notes()->create([
             'external_id' => Uuid::uuid4()->toString(),
             'content' => $request->note,
-            'noted_at' => $request->noted_at,
+            'noted_at' => $note_at,
             'user_created_id'=>auth()->id(),
         ]);
 
@@ -65,6 +70,7 @@ class ActivityController extends Controller
         if (!class_exists($modelClass)) {
             abort(404); 
         }
+        // dd($request->all());
 
         $modelData=$modelClass::findOrFail($id);
 
@@ -86,17 +92,18 @@ class ActivityController extends Controller
             'user_owner_id' => auth()->user()->id,
             'user_assigned_id' => auth()->user()->id,
             'external_id' => Uuid::uuid4()->toString(),
+            'client_id'=>$request->guest,
         ]);
 
 
-        foreach ($request->guests as $personId) {
-            if ($person = Person::find($personId)) {
-                $call->contacts()->create([
-                    'entityable_type' => $person->getMorphClass(),
-                    'entityable_id' => $person->id,
-                ]);
-            }
-        }
+        // foreach ($request->guests as $personId) {
+        //     if ($person = Person::find($personId)) {
+        //         $call->contacts()->create([
+        //             'entityable_type' => $person->getMorphClass(),
+        //             'entityable_id' => $person->id,
+        //         ]);
+        //     }
+        // }
 
         $modelData->activities()->create([
             'causable_type' => auth()->user()->getMorphClass(),
@@ -115,6 +122,7 @@ class ActivityController extends Controller
         if (!class_exists($modelClass)) {
             abort(404); 
         }
+        // dd($request->all());
 
         $modelData=$modelClass::findOrFail($id);
         $data = $request->validate([
@@ -135,16 +143,17 @@ class ActivityController extends Controller
             'user_owner_id' => auth()->user()->id,
             'user_assigned_id' => auth()->user()->id,
             'external_id' => Uuid::uuid4()->toString(),
+            'client_id'=>$request->guest,
         ]);
 
-        foreach ($request->guests as $personId) {
-            if ($person = Person::find($personId)) {
-                $meeting->contacts()->create([
-                    'entityable_type' => $person->getMorphClass(),
-                    'entityable_id' => $person->id,
-                ]);
-            }
-        }
+        // foreach ($request->guests as $personId) {
+        //     if ($person = Person::find($personId)) {
+        //         $meeting->contacts()->create([
+        //             'entityable_type' => $person->getMorphClass(),
+        //             'entityable_id' => $person->id,
+        //         ]);
+        //     }
+        // }
 
         $modelData->activities()->create([
             'causable_type' => auth()->user()->getMorphClass(),
@@ -182,16 +191,17 @@ class ActivityController extends Controller
             'user_owner_id' => auth()->user()->id,
             'user_assigned_id' => auth()->user()->id,
             'external_id' => Uuid::uuid4()->toString(),
+            'client_id'=>$request->guest,
         ]);
 
-        foreach ($request->guests as $personId) {
-            if ($person = Person::find($personId)) {
-                $lunch->contacts()->create([
-                    'entityable_type' => $person->getMorphClass(),
-                    'entityable_id' => $person->id,
-                ]);
-            }
-        }
+        // foreach ($request->guests as $personId) {
+        //     if ($person = Person::find($personId)) {
+        //         $lunch->contacts()->create([
+        //             'entityable_type' => $person->getMorphClass(),
+        //             'entityable_id' => $person->id,
+        //         ]);
+        //     }
+        // }
 
         $modelData->activities()->create([
             'causable_type' => auth()->user()->getMorphClass(),

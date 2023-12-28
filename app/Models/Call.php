@@ -49,6 +49,10 @@ class Call extends Model
     {
         return $this->belongsTo(User::class, 'user_created_id');
     }
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
 
     public function updatedByUser()
     {

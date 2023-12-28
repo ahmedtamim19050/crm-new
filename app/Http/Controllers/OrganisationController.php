@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use App\Models\Label;
 use App\Models\Organisation;
 use App\Models\Person;
@@ -71,7 +72,7 @@ class OrganisationController extends Controller
      */
     public function show(Organisation $organisation)
     {
-        $persons=Person::pluck('last_name','id')->toArray();
+        $persons=Client::pluck('name','id')->toArray();
         return view('dashboard.organisations.show',compact('organisation','persons'));
     }
 

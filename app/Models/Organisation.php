@@ -95,4 +95,8 @@ class Organisation extends Model
     {
         return $this->belongsTo(User::class,'user_owner_id');
     }
+    public function labelName()
+    {
+        return $this->belongsTo(Label::class,'label');
+    }
 }

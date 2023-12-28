@@ -30,6 +30,10 @@ class Meeting extends Model
     {
         return 'meetings';
     }
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
 
     // public function setStartAtAttribute($value)
     // {

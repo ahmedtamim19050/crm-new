@@ -18,7 +18,7 @@
 
     <div class="col-md-6">
         @include('partials.form.select',[
-            'name' => 'guests[]',
+            'name' => 'guest',
             'label' => 'Guest',
             'options' => $persons,      
          

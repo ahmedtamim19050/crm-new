@@ -52,6 +52,10 @@ class Lunch extends Model
     {
         return $this->morphTo('lunchable');
     }
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
 
     public function createdByUser()
     {

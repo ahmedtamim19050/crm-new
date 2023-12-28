@@ -29,10 +29,10 @@
     <div class="pb-2 mt-3" style="border-bottom: 1px solid #c0c0c0">
         <h5>Guest</h5>
         <p style="font-size: 14px"><i class="far fa-user"></i> 
-            @foreach ($call->contacts as $contact)
+
                 
-            <a href="" class="text-primary">{{$contact->contactable->name}}</a>
-            @endforeach
+            <a href="" class="text-primary">{{$call->client->name ?? null}}</a>
+ 
         </p>
     </div>
     {{-- <div class="pb-2 mt-3" style="border-bottom: 1px solid #c0c0c0">
