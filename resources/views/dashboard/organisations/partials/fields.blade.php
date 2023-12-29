@@ -20,16 +20,13 @@
                 'options' => App\Helper\SelectOptions::users(false),
                 'value' => old('user_owner_id', $organisation->user_owner_id ?? auth()->user()->id),
             ])
-            @include('partials.form.textarea', [
+            {{-- @include('partials.form.textarea', [
                 'name' => 'address',
                 'label' => 'Address',
                 'rows' => 5,
                 'value' => old('address', $organisation->address ?? null),
-            ])
-
-        </div>
-        <div class="col-sm-6">
-            @include('partials.form.text', [
+            ]) --}}
+               @include('partials.form.text', [
                 'name' => 'meta[street]',
                 'label' => 'Street address',
                 'value' => old('meta', $organisation->street),
@@ -50,6 +47,10 @@
                     ])
                 </div>
             </div>
+
+        </div>
+        <div class="col-sm-6">
+         
          
             <h6 class="text-uppercase"><span class="fa fa-user" aria-hidden="true"></span> Company Info</h6>
             <hr />
@@ -92,6 +93,13 @@
                             'name' => 'meta[company_youtube]',
                             'label' => 'Youtube profile',
                             'value' => old('company_youtube', $organisation->company_youtube),
+                        ])
+                    </div>
+                    <div class="col-sm-6">
+                        @include('partials.form.text', [
+                            'name' => 'meta[company_fb]',
+                            'label' => 'Facebook profile',
+                            'value' => old('company_youtube', $organisation->company_fb),
                         ])
                     </div>
                     <div class="col-sm-6">

@@ -20,19 +20,43 @@
 
         </div>
         <div class="row">
-            {{-- <div class="col-xl-5">
+            <div class="col-xl-5">
                 <div class="card">
                  
                     <div class="card-body">
                         <h6 class="text-uppercase">DETAILS</h6>
                         <hr />
-                        <p ><span style="font-weight: 700">Name :</span> 
+                        <p ><i class="far fa-building"></i>
 
-                                <span >{{ $organisation->name }}</span></td>
+                                <span class="ms-2">{{ $organisation->name }}</span>
 
                         </p>
+                        <p>
+                            <i class="fas fa-phone-square-alt"></i>
+                            <span class="ms-2">{{ $organisation->company_phone }}</span>
+                        </p>
+                        <p>
+                            <i class="fas fa-envelope-open-text"></i>
+                            <span class="ms-2">{{ $organisation->company_email }}</span>
+                        </p>
+                        <p>
+                            <i class="fab fa-facebook"></i>
+                            <span class="ms-2"><a class="text-decoration-underline text-primary" href="{{ $organisation->company_fb }} " target="_blank"> {{ $organisation->company_email }}</a> </span>
+                        </p>
+                        <p>
+                            <i class="fab fa-twitter-square"></i>
+                            <span class="ms-2"><a class="text-decoration-underline text-primary" href="{{ $organisation->company_twitter }} " target="_blank"> {{ $organisation->company_email }}</a> </span>
+                        </p>
+                        <p>
+                            <i class="fab fa-youtube"></i>
+                            <span class="ms-2"><a class="text-decoration-underline text-primary" href="{{ $organisation->company_youtube }} " target="_blank"> {{ $organisation->company_email }}</a> </span>
+                        </p>
+                        <p>
+                            <i class="fab fa-tiktok"></i>
+                            <span class="ms-2"><a class="text-decoration-underline text-primary" href="{{ $organisation->company_tiktok }} " target="_blank"> {{ $organisation->company_email }}</a> </span>
+                        </p>
                       
-                        <h6 class="text-uppercase">Owner</h6>
+                        {{-- <h6 class="text-uppercase">Owner</h6>
                         <hr />
  
                         <p>
@@ -40,12 +64,12 @@
                             @if ($organisation->ownerUser)
                                 <a href="">{{ $organisation->ownerUser->name }}</a>
                             @endif
-                        </p>
+                        </p> --}}
    
                     </div>
                 </div>
-            </div> --}}
-            <div class="col-xl-10" style="height: 100vh; ">
+            </div>
+            <div class="col-xl-7" style="height: 100vh; ">
                 <div class="card " style="overflow:hidden;overflow-y: scroll;">
                     {{-- <div class="card-header">
 					<h4 class="card-title">Custom Tab 1</h4>

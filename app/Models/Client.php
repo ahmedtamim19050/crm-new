@@ -15,6 +15,7 @@ class Client extends Model
 
     protected $meta_attributes = [
         "l_name",
+        "position",
 
     ];
 

@@ -66,6 +66,11 @@
                 'label' => 'Email',
                 'value' => old('email', $client->email ?? null),
             ])
+            @include('partials.form.text', [
+                'name' => 'meta[position]',
+                'label' => 'Position',
+                'value' => old('position', isset($client) ? $client->position : null ),
+            ])
         </div>
     </div>
 </div>

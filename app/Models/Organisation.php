@@ -22,9 +22,7 @@ class Organisation extends Model
         "company_youtube",
         "company_phone",
         "niche",
-
-
-
+        "company_fb",
     ];
 
     protected $guarded = ['id'];
