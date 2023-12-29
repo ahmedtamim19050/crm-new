@@ -132,11 +132,10 @@ class LeadController extends Controller
      */
     public function show(Lead $lead)
     {
-        // $email = $lead->getPrimaryEmail();
-        // $phone = $lead->getPrimaryPhone();
-        // $address = $lead->getPrimaryAddress();
-        // $persons=Person::pluck('last_name','id')->toArray();
-        return view('dashboard.leads.show',compact('lead'));
+        $clients=Client::where('user_id',auth()->id())->pluck('name','id')->toArray();
+        $organisations=Organisation::where('user_id',auth()->id())->pluck('name','id')->toArray();
+
+        return view('dashboard.leads.show',compact('lead','clients','organisations'));
     }
 
     /**
@@ -163,19 +162,23 @@ class LeadController extends Controller
      * @param  \App\Models\Lead  $lead
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateLeadRequest $request, Lead $lead)
+    public function update(Request $request, $leadId)
     {
-        if ($request->person_name && ! $request->person_id) {
+        $lead = Lead::find($leadId);
+
+        if ($request->person_name && !$request->person_id) {
             $person = $this->personService->createFromRelated($request);
         } elseif ($request->person_id) {
             $person = Person::find($request->person_id);
         }
-        
 
         $lead = $this->leadService->update($request, $lead);
-        $lead->createMetas($request->meta);
 
-        return redirect()->route('leads.index')->with('success','Lead update successfully');
+        if ($request->meta) {
+            $lead->createMetas($request->meta);
+        }
+
+        return response()->json(['success' => true, 'message' => 'Lead updated successfully']);
     }
 
     /**

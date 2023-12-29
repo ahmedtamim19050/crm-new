@@ -128,7 +128,9 @@
                                 <tr>
                                     <td><strong>{{$loop->index +1}}</strong></td>
                                     <td>{{ $lead->created_at->diffForHumans() }}</td>
-                                    <td>{{ $lead->title }}</td>
+                                    <td>
+                                        <a href="{{route('leads.show',$lead)}}" class="text-primary text-decoration-underline">{{ $lead->title }}</a>
+                                        </td>
                                     <td>
                                      
                                         <span class="badge light badge-success text-white" style="background-color:{{$lead->labelName->color ?? null}}">{{ $lead->labelName->name  ?? null}}</span></td>
@@ -140,18 +142,20 @@
                                     {{-- <td>{{ $lead->person->name ??  null }}</td> --}}
                                     <td>{{ $lead->ownerUser->name ?? null }}</td>
                                     <td>
+                                        <x-delete class="btn btn-danger btn-sm" :route="route('leads.destroy',$lead)"/>
+{{-- 
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
                                                 <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
                                             </button>
                                             <div class="dropdown-menu">
-                                                {{-- <a class="dropdown-item" href="{{route('leads.convert',$lead)}}">Convert</a> --}}
+                                                <a class="dropdown-item" href="{{route('leads.convert',$lead)}}">Convert</a>
                                                 <a class="dropdown-item" href="{{route('leads.show',$lead)}}">Show</a>
                                                 <a class="dropdown-item" href="{{route('leads.edit',$lead)}}">Edit</a>
-                                                {{-- <a class="dropdown-item" href="javascript:void(0);">Delete</a> --}}
+                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
                                                 <x-delete class="dropdown-item" :route="route('leads.destroy',$lead)"/>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </td>
                                 </tr>
                                 @endforeach
