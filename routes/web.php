@@ -117,7 +117,10 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function() {
     // Route::resource('quotes', QuoteController::class);
     Route::resource('clients', ClientController::class);
     Route::resource('products', ProductController::class);
+
     Route::resource('organisations', OrganisationController::class);
+    Route::post('organisation/create',[OrganisationController::class,'organisationAjax'])->name('organisation.ajax');
+
     Route::resource('categories', CategoryController::class);
     Route::get('deals-kanvan',[DealsController::class,'kanvan'])->name('kanvan');
     Route::post('deals-kanvan/update',[DealsController::class,'kanvanUpdate'])->name('kanvan.update');

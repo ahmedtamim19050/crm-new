@@ -1,61 +1,35 @@
-<div class="row page-titles mx-0">
-    <div class="col-sm-6 p-md-0">
-        <div class="welcome-text">
-            <h4>Hi, welcome back!</h4>
-            <span>Element</span>
-        </div>
-    </div>
-    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Form</a></li>
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Element</a></li>
-        </ol>
-    </div>
-</div>
+<style>
+    select {
+        height: 46px !important;
+    }
+</style>
 
 <div class="card p-4">
     <div class="row">
         <div class="col-sm-6 border-right">
 
-            {{-- @livewire('live-lead-form',[
-                'lead' => $lead ?? null,
-                'generateTitle' => $generateTitle ?? true,
-                'client' => $client ?? null,
-                'organisation' => $organisation ?? null,
-                'person' => $person ?? null
-            ]) --}}
+            @include('partials.form.select', [
+                'name' => 'client_id',
+                'label' => 'Customer',
+                'options' => $clients,
+                'value' => old('client_id', isset($lead) ? $lead->client->id : null),
+            ])
+            <div class="d-flex align-items-center">
+                <div class="col-md-10">
 
-
-            @if (isset($lead))
-                @include('partials.form.select', [
-                    'name' => 'client_id',
-                    'label' => 'Customer',
-                    'options' => $clients,
-                    'value' => old('client_id', isset($lead) ? $lead->client->id : null),
-                ])
-            @else
-                @include('partials.form.dynamicSelect', [
-                    'name' => 'client_id',
-                    'label' => 'Customer',
-                    'options' => $clients,
-                    'value' => old('client_id', isset($lead) ? $lead->client->id : null),
-                ])
-            @endif
-            @if (isset($deal))
-                @include('partials.form.select', [
-                    'name' => 'organisation_id',
-                    'label' => 'Organisation',
-                    'options' => $organisations,
-                    'value' => old('organisation_id', isset($deal) ? $deal->organisation->id : null),
-                ])
-            @else
-                @include('partials.form.dynamicSelect', [
-                    'name' => 'organisation_id',
-                    'label' => 'Organisation',
-                    'options' => $organisations,
-                    'value' => old('organisation_id', isset($deal) ? $deal->organisation->id : null),
-                ])
-            @endif
+                    @include('partials.form.select', [
+                        'name' => 'organisation_id',
+                        'label' => 'Organisation',
+                        'options' => $organisations,
+                        'value' => old('organisation_id', isset($deal) ? $deal->organisation->id : null),
+                    ])
+                </div>
+                <div class="col-md-2 ms-2 mt-2">
+                    <button type="button" class="btn btn-dark btn-sm showmodal" data-show-modal="infoModal">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
 
             @include('partials.form.text', [
                 'name' => 'title',
@@ -67,7 +41,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     @include('partials.form.text', [
-                         'type'=>'number',
+                        'type' => 'number',
                         'name' => 'amount',
                         'label' => 'Value',
                         'value' => old('amount', $lead->amount ?? null),
@@ -96,7 +70,7 @@
                 'value' => old('user_owner_id', $lead->user_owner_id ?? auth()->user()->id),
             ])
             @include('partials.form.text', [
-                'type'=>'date',
+                'type' => 'date',
                 'name' => 'meta[close_date]',
                 'label' => 'Expected Close Date',
                 'value' => old('close_date', isset($lead) ? $lead->close_date : null),
@@ -113,9 +87,6 @@
                             'name' => 'email',
                             'label' => 'Email',
                             'value' => old('email', $lead->email ?? null),
-                            //  'attributes' => [
-                            //      'disabled' => 'disabled'
-                            //  ]
                         ])
                     </div>
                     <div class="col-sm-6">
@@ -123,9 +94,6 @@
                             'name' => 'phone',
                             'label' => 'Phone',
                             'value' => old('phone', $lead->phone ?? null),
-                            //  'attributes' => [
-                            //      'disabled' => 'disabled'
-                            //  ]
                         ])
                     </div>
 
@@ -135,44 +103,18 @@
             <h6 class="text-uppercase mt-4"><span class="fa fa-building" aria-hidden="true"></span> Organization </h6>
             <hr />
             <span class="autocomplete-organisation">
-                {{-- @include('laravel-crm::partials.form.text',[
-                    'name' => 'address',
-                    'label' => ucfirst(__('laravel-crm::lang.address')),
-                    'value' => old('address', $address ?? null)
-                ]) --}}
                 @include('partials.form.text', [
                     'name' => 'address',
                     'label' => 'Address',
                     'value' => old('address', $lead->address ?? null),
-                    //    'attributes' => [
-                    //              'disabled' => 'disabled'
-                    //          ]
                 ])
-                {{-- @include('partials.form.text', [
-                    'name' => 'line2',
-                    'label' => 'Address line 2',
-                    'value' => old('line2', $address->line2 ?? null),
-                    //    'attributes' => [
-                    //              'disabled' => 'disabled'
-                    //          ]
-                ])
-                @include('partials.form.text', [
-                    'name' => 'line3',
-                    'label' => 'address line 3',
-                    'value' => old('line3', $address->line3 ?? null),
-                    //    'attributes' => [
-                    //              'disabled' => 'disabled'
-                    //          ]
-                ]) --}}
+
                 <div class="row">
                     <div class="col-sm-6">
                         @include('partials.form.text', [
                             'name' => 'city',
                             'label' => 'City',
                             'value' => old('city', $lead->city ?? null),
-                            // 'attributes' => [
-                            //     'disabled' => 'disabled'
-                            //  ]
                         ])
                     </div>
                     <div class="col-sm-6">
@@ -180,9 +122,6 @@
                             'name' => 'state',
                             'label' => 'state',
                             'value' => old('state', $lead->state ?? null),
-                            //    'attributes' => [
-                            //              'disabled' => 'disabled'
-                            //     ]
                         ])
                     </div>
                 </div>
@@ -192,9 +131,6 @@
                             'name' => 'code',
                             'label' => 'Post code',
                             'value' => old('code', $lead->post_code ?? null),
-                            // 'attributes' => [
-                            //  'disabled' => 'disabled'
-                            // ]
                         ])
                     </div>
                     <div class="col-sm-6">
@@ -203,9 +139,6 @@
                             'label' => 'Country',
                             'options' => App\Helper\SelectOptions::countries(),
                             'value' => old('country', $lead->country ?? 'United States'),
-                            //  'attributes' => [
-                            //      'disabled' => 'disabled'
-                            //  ]
                         ])
                     </div>
                 </div>
@@ -213,3 +146,9 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+

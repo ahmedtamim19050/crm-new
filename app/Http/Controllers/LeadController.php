@@ -61,9 +61,14 @@ class LeadController extends Controller
 
 
         $leads = Lead::where('user_id',auth()->id())->latest()->get();
+        $clients=Client::where('user_id',auth()->id())->pluck('name','id')->toArray();
+        $organisations=Organisation::where('user_id',auth()->id())->pluck('name','id')->toArray();
+
 
         return view('dashboard.leads.index', [
             'leads' => $leads,
+            'clients'=>$clients,
+            'organisations'=>$organisations,
         ]);
     }
 

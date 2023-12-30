@@ -8,6 +8,7 @@ use App\Models\Organisation;
 use App\Models\Person;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Facades\DB;
 
 class OrganisationController extends Controller
 {
@@ -122,7 +123,11 @@ class OrganisationController extends Controller
      */
     public function destroy(Organisation $organisation)
     {
-        if($organisation->deals){
+    
+        // dd($organisation->deals);
+        DB::beginTransaction();
+        try {
+        if($organisation->deals->count() > 0){
             foreach($organisation->deals as $deal){
                 $deal->update([
                     'organisation_id'=>null,
@@ -130,6 +135,31 @@ class OrganisationController extends Controller
             }
         }
         $organisation->delete();
+        DB::commit();
         return redirect()->route('organisations.index')->with('success','Organisation Delete Successfully');
+    } catch (\Exception $e) {
+        // dd($e);
+        DB::rollback();
+        return redirect()->route('organisations.index')->with('error', 'Error deleting organisation: ' . $e->getMessage());
+    }
+    }
+    function organisationAjax(Request $request) {
+        $request->validate([
+            'name'=>'required'
+        ]);
+        $organisation = Organisation::create([
+            'name' => $request->name,
+            'user_owner_id' => $request->user_owner_id,
+            'external_id' => Uuid::uuid4()->toString(),
+            'user_id'=>auth()->id(),
+            'label'=>$request->label,
+        ]);
+        $organisations = Organisation::all();
+        return response()->json([
+            'success' => true,
+            'message' => 'Organisation added successfully',
+            'data' => $organisation,
+            'organisations' => $organisations, // Include the updated list of organisations
+        ]);
     }
 }

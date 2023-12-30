@@ -65,7 +65,7 @@ class Organisation extends Model
 
     public function deals()
     {
-        return $this->hasMany(Deal::class);
+        return $this->hasMany(Deal::class,'organisation_id');
     }
 
     /**

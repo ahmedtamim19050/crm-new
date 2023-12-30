@@ -1,84 +1,6 @@
-{{-- <table class="table mb-0 card-table table-hover">
-    <thead>
-    <tr>
-        <th scope="col">Created</th>
-        <th scope="col">Title</th>
-        <th scope="col">Label</th>
-        <th scope="col">Value</th>
-        <th scope="col">Customer</th>
-        <th scope="col">Organisation</th>
-        <th scope="col">Contact Person</th>
-        <th scope="col">Owner</th>
-        <th scope="col" width="210"></th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach($leads as $lead)
-        <tr class="has-link" data-url="{{ url(route('leads.show',$lead)) }}">
-            <td>{{ $lead->created_at->diffForHumans() }}</td>
-            <td>{{ $lead->title }}</td>
-          
-            <td>{{ $lead->amount, $lead->currency }}</td>
-            <td>{{ $lead->client->name ?? null}}</td>
-            <td>{{ $lead->organisation->name ?? null}}</td>
-            <td>{{ $lead->person->name ??  null }}</td>
-            <td>{{ $lead->ownerUser->name ?? null }}</td>
-            <td class="disable-link text-right">
-                @hasdealsenabled
-                    @can('edit crm leads')
-                    <a href="{{ route('laravel-crm.leads.convert-to-deal',$lead) }}" class="btn btn-success btn-sm"> {{ ucfirst(__('laravel-crm::lang.convert')) }}</a>
-                    @endcan
-                @endhasdealsenabled
-                @can('view crm leads')
-                <a href="{{ route('laravel-crm.leads.show',$lead) }}" class="btn btn-outline-secondary btn-sm"><span class="fa fa-eye" aria-hidden="true"></span></a>
-                @endcan
-                @can('edit crm leads')
-                <a href="{{ route('laravel-crm.leads.edit',$lead) }}" class="btn btn-outline-secondary btn-sm"><span class="fa fa-edit" aria-hidden="true"></span></a>
-                @endcan
-                @can('delete crm leads')
-                <form action="{{ route('laravel-crm.leads.destroy',$lead) }}" method="POST" class="form-check-inline mr-0 form-delete-button">
-                {{ method_field('DELETE') }}
-                {{ csrf_field() }}
-                    <button class="btn btn-danger btn-sm" type="submit" data-model="{{ __('laravel-crm::lang.lead') }}"><span class="fa fa-trash-o" aria-hidden="true"></span></button>
-                </form>
-                @endcan
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
-</table> --}}
 <div class="container-fluid">
-    <!-- Add Project -->
-    <div class="modal fade" id="addProjectSidebar">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Create Project</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        @csrf
-                        <div class="form-group">
-                            <label class="text-black font-w500">Project Name</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                                    <label class="text-black font-w500">Dadeline</label>
-                                    <div class="cal-icon"><input type="date" class="form-control"><i class="far fa-calendar-alt"></i></div>
-                                </div>
-                        <div class="form-group">
-                            <label class="text-black font-w500">Client Name</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <button type="button" class="btn btn-primary">CREATE</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
     <div class="row page-titles mx-0">
         <div class="col-sm-6 p-md-0">
             <div class="welcome-text">
@@ -88,15 +10,16 @@
         </div>
         <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                 <li class="breadcrumb-item active"><a href="javascript:void(0)">Leads</a></li>
             </ol>
         </div>
         <div class="col-md-3 mt-3">
-            <a href="{{route('leads.create')}}" class="btn btn-primary">Create a Lead</a>
+
+            <a href="javascript:void(0);" data-bs-toggle="modal" class="btn btn-primary"
+                data-bs-target="#addContactModal" class="text-dark py-3">+Add Lead</a>
         </div>
     </div>
-    <!-- row -->
 
     <div class="row">
         <div class="col-lg-12">
@@ -116,50 +39,37 @@
                                     <th><strong>Value</strong></th>
                                     <th><strong>Customer</strong></th>
                                     <th> <strong> Organisation </strong></th>
-                                    {{-- <th> <strong>Contact Person </strong></th> --}}
                                     <th> <strong>Owner </strong></th>
-                                    {{-- <th><strong>PRICE</strong></th> --}}
+
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($leads as $lead)
-                    
-                                <tr>
-                                    <td><strong>{{$loop->index +1}}</strong></td>
-                                    <td>{{ $lead->created_at->diffForHumans() }}</td>
-                                    <td>
-                                        <a href="{{route('leads.show',$lead)}}" class="text-primary text-decoration-underline">{{ $lead->title }}</a>
+                                @foreach ($leads as $lead)
+                                    <tr>
+                                        <td><strong>{{ $loop->index + 1 }}</strong></td>
+                                        <td>{{ $lead->created_at->diffForHumans() }}</td>
+                                        <td>
+                                            <a href="{{ route('leads.show', $lead) }}"
+                                                class="text-primary text-decoration-underline">{{ $lead->title }}</a>
                                         </td>
-                                    <td>
-                                     
-                                        <span class="badge light badge-success text-white" style="background-color:{{$lead->labelName->color ?? null}}">{{ $lead->labelName->name  ?? null}}</span></td>
-                                     
-                                    <td>{{ $lead->amount, $lead->currency }}</td>
-                     
-                                    <td>{{ $lead->client->name ?? null}}</td>
-                                    <td>{{ $lead->organisation->name ?? null}}</td>
-                                    {{-- <td>{{ $lead->person->name ??  null }}</td> --}}
-                                    <td>{{ $lead->ownerUser->name ?? null }}</td>
-                                    <td>
-                                        <x-delete class="btn btn-danger btn-sm" :route="route('leads.destroy',$lead)"/>
-                                    {{-- 
-                                        <div class="dropdown">
-                                            <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
-                                                <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="{{route('leads.convert',$lead)}}">Convert</a>
-                                                <a class="dropdown-item" href="{{route('leads.show',$lead)}}">Show</a>
-                                                <a class="dropdown-item" href="{{route('leads.edit',$lead)}}">Edit</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                                <x-delete class="dropdown-item" :route="route('leads.destroy',$lead)"/>
-                                            </div>
-                                        </div> --}}
-                                    </td>
-                                </tr>
+                                        <td>
+
+                                            <span class="badge light badge-success text-white"
+                                                style="background-color:{{ $lead->labelName->color ?? null }}">{{ $lead->labelName->name ?? null }}</span>
+                                        </td>
+
+                                        <td>{{ $lead->amount, $lead->currency }}</td>
+
+                                        <td>{{ $lead->client->name ?? null }}</td>
+                                        <td>{{ $lead->organisation->name ?? null }}</td>
+                                        <td>{{ $lead->ownerUser->name ?? null }}</td>
+                                        <td>
+                                            <x-delete class="btn btn-danger btn-sm" :route="route('leads.destroy', $lead)" />
+                                        </td>
+                                    </tr>
                                 @endforeach
-                        
+
                             </tbody>
                         </table>
                     </div>
@@ -169,3 +79,114 @@
 
     </div>
 </div>
+
+<div class="modal fade " id="addContactModal">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Lead</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+
+                <form method="POST" action="{{ url(route('leads.store')) }}">
+                    @csrf
+
+                    @include('dashboard.leads.partials.fields')
+
+                    <a href="" class="btn btn-outline-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Save</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal mt-5 ms-5" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true"
+    data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="infoModalLabel">Add Organisation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ route('organisation.ajax') }}" id="organizationForm">
+                    @csrf
+                    @include('partials.form.text', [
+                        'name' => 'name',
+                        'label' => 'Name',
+                        'value' => old('client_name', $organisation->name ?? null),
+                        'attributes' => [
+                            'required' => true,
+                        ],
+                    ])
+                    @include('partials.form.select', [
+                        'name' => 'label',
+                        'label' => 'Label',
+                        'options' => App\Helper\SelectOptions::labels(),
+                        'value' => old('labels', isset($organisation) ? $organisation->label : null),
+                    ])
+                    @include('partials.form.select', [
+                        'name' => 'user_owner_id',
+                        'label' => 'owner',
+                        'options' => App\Helper\SelectOptions::users(false),
+                        'value' => old('user_owner_id', $organisation->user_owner_id ?? auth()->user()->id),
+                    ])
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="createOrganisation()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    Array.from(document.getElementsByClassName('showmodal')).forEach((e) => {
+        e.addEventListener('click', function(element) {
+            element.preventDefault();
+            if (e.hasAttribute('data-show-modal')) {
+                showModal(e.getAttribute('data-show-modal'));
+            }
+        });
+    });
+    // Show modal dialog
+    function showModal(modal) {
+        const mid = document.getElementById(modal);
+        let myModal = new bootstrap.Modal(mid);
+        myModal.show();
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    function createOrganisation() {
+        var formData = $('#organizationForm').serialize();
+        // console.log(formData);
+        $.ajax({
+            url: $('#organizationForm').attr('action'),
+            type: 'POST',
+            data: formData,
+            success: function(response) {
+        //    console.log(response.organisations)
+                $('#select_organisation_id').empty();
+                $.each(response.organisations, function(index, organisation) {
+                    $('#select_organisation_id').append('<option selected value="' + organisation.id + '">' +
+                        organisation.name + '</option>');
+                });
+
+                $('#infoModal').modal('hide');
+                $('#select_organisation_id').trigger('change');
+
+
+            },
+            error: function(error) {
+                // Handle error, if needed
+                console.error(error);
+            }
+        });
+    }
+</script>

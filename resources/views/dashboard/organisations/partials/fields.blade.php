@@ -29,21 +29,21 @@
                @include('partials.form.text', [
                 'name' => 'meta[street]',
                 'label' => 'Street address',
-                'value' => old('meta', $organisation->street),
+                'value' => old('meta', isset($organisation) ? $organisation->street :null),
             ])
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     @include('partials.form.text', [
                         'name' => 'meta[place]',
                         'label' => 'Place',
-                        'value' => old('place', $organisation->place),
+                        'value' => old('place', isset($organisation) ? $organisation->place : null),
                     ])
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     @include('partials.form.text', [
                         'name' => 'meta[post_code]',
                         'label' => 'Zip',
-                        'value' => old('post_code', $organisation->post_code),
+                        'value' => old('post_code',isset($organisation) ? $organisation->post_code : null),
                     ])
                 </div>
             </div>
@@ -57,56 +57,56 @@
             <span class="autocomplete-person">
 
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         @include('partials.form.text', [
                             'name' => 'meta[company_email]',
                             'label' => 'Email',
-                            'value' => old('company_email', $organisation->company_email),
+                            'value' => old('company_email',isset($organisation) ? $organisation->company_email : null),
                         ])
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         @include('partials.form.text', [
                             'name' => 'meta[company_phone]',
                             'label' => 'Phone',
-                            'value' => old('company_phone', $organisation->company_phone),
+                            'value' => old('company_phone',isset($organisation) ? $organisation->company_phone :null),
                         ])
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         @include('partials.form.text', [
                             'name' => 'meta[company_twitter]',
                             'label' => 'X/Twitter Profile',
-                            'value' => old('company_twitter', $organisation->company_twitter),
+                            'value' => old('company_twitter',isset($organisation) ? $organisation->company_twitter : null),
                         ])
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         @include('partials.form.text', [
                             'name' => 'meta[company_tiktok]',
                             'label' => 'Tiktok Profile',
-                            'value' => old('company_tiktok', $organisation->company_tiktok),
+                            'value' => old('company_tiktok',isset($organisation) ? $organisation->company_tiktok :null),
                         ])
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         @include('partials.form.text', [
                             'name' => 'meta[company_youtube]',
                             'label' => 'Youtube profile',
-                            'value' => old('company_youtube', $organisation->company_youtube),
+                            'value' => old('company_youtube',isset($organisation) ? $organisation->company_youtube :null),
                         ])
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         @include('partials.form.text', [
                             'name' => 'meta[company_fb]',
                             'label' => 'Facebook profile',
-                            'value' => old('company_youtube', $organisation->company_fb),
+                            'value' => old('company_youtube',isset($organisation) ? $organisation->company_fb :null),
                         ])
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         @include('partials.form.text', [
                             'name' => 'meta[niche]',
                             'label' => 'Niche',
-                            'value' => old('niche', $organisation->niche),
+                            'value' => old('niche',isset($organisation) ? $organisation->niche :null),
                         ])
                     </div>
                 </div>

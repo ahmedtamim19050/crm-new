@@ -16,7 +16,9 @@
                 </ol>
             </div>
             <div class="col-md-3 mt-3">
-                <a href="{{ route('organisations.create') }}" class="btn btn-primary">Create a new Organisation</a>
+                <a href="javascript:void(0);" data-bs-toggle="modal" class="btn btn-primary"
+                    data-bs-target="#addContactModal" class="text-dark py-3">+Add Organisation</a>
+                {{-- <a href="{{ route('organisations.create') }}" class="btn btn-primary">Create a new Organisation</a> --}}
             </div>
         </div>
         <!-- row -->
@@ -47,7 +49,8 @@
                                         <tr>
                                             <td><strong>{{ $loop->index + 1 }}</strong></td>
                                             <td>{{ $organisation->created_at->diffForHumans() }}</td>
-                                            <td><a class="text-primary text-decoration-underline" href="{{route('organisations.show',$organisation)}}">
+                                            <td><a class="text-primary text-decoration-underline"
+                                                    href="{{ route('organisations.show', $organisation) }}">
                                                     {{ $organisation->name }}
 
                                                 </a>
@@ -96,6 +99,33 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <div class="modal fade " id="addContactModal">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Deal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form method="POST" action="{{ route('organisations.store') }}">
+                        @csrf
+
+
+
+                        @include('dashboard.organisations.partials.fields')
+
+
+
+                        <a href="" class="btn btn-outline-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Save</button>
+
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

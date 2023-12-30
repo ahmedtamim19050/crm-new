@@ -17,8 +17,10 @@ class ClientController extends Controller
      */
     public function index()
     {
+        $organisations=Organisation::where('user_id',auth()->id())->pluck('name','id')->toArray();
+
         $clients=Client::where('user_id',auth()->id())->latest()->get();
-        return view('dashboard.clients.index',compact('clients'));
+        return view('dashboard.clients.index',compact('clients','organisations'));
     }
 
     /**
