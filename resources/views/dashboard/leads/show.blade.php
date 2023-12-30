@@ -59,18 +59,22 @@
                                     @method('PUT')
                                     <span class="fa fa-tag" aria-hidden="true"></span>
 
+                                    <div class="d-inline-block"
+                                        onmouseover="myFunction(this, 'labelInput', 'editButtonLabel')"
+                                        onmouseout="hideEditLink(this, 'labelInput', 'editButtonLabel')">
 
-                                    <select class="edit-input" name="label" id="" style="border: 0"
-                                        onfocus="myFunction(this, 'labelInput', 'editButtonLabel')">
-                                        @foreach ($labels as $key => $label)
-                                            <option value="{{ $key }}"
-                                                {{ $key == $lead->labelName->id ? 'selected' : '' }}>{{ $label }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonLabel"
-                                        style="display: none" onclick="updateDescription()">Edit</button>
 
+                                        <select class="edit-input" name="label" id="labelInput" style="border: 0">
+                                            @foreach ($labels as $key => $label)
+                                                <option value="{{ $key }}"
+                                                    {{ $key == $lead->labelName->id ? 'selected' : '' }}>{{ $label }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonLabel"
+                                            style="display: none" onclick="updateDescription()"><i
+                                                class="fas fa-pencil-alt"></i></button>
+                                    </div>
                                 </form>
                             @endif
                             </td>
@@ -83,11 +87,14 @@
                             @csrf
                             @method('PUT')
                             <span class="las la-dollar-sign" aria-hidden="true"></span>
-                            <input type="text" class="edit-input" style="border: 0"
-                                onfocus="myFunction(this, 'priceInput', 'editButtonPrice')" name="amount"
-                                value="{{ $lead->amount }}">
-                            <button type="button" class="btn editBtn btn-primary btn-sm" onclick="updateDescription()"
-                                id="editButtonPrice" style="display: none">Edit</button>
+                            <div class="d-inline-block" onmouseover="myFunction(this, 'amountInput', 'editButtonPrice')"
+                                onmouseout="hideEditLink(this, 'amountInput', 'editButtonPrice')">
+
+                                <input type="text" class="edit-input" id="amountInput" style="border: 0" name="amount"
+                                    value="{{ $lead->amount }}">
+                                <button type="button" class="btn editBtn btn-primary btn-sm" onclick="updateDescription()"
+                                    id="editButtonPrice" style="display: none"><i class="fas fa-pencil-alt"></i></button>
+                            </div>
                         </form>
                         </p>
                         <p>
@@ -98,11 +105,14 @@
                             @csrf
                             @method('PUT')
                             <span class="fa fa-info mt-2" aria-hidden="true"></span>
-                            <textarea class="edit-input" style="border:0" onfocus="myFunction(this, 'descriptionInput', 'editButtonDescription')"
-                                name="description" rows="">{{ $lead->description }} </textarea>
-                            <div>
-                                <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonDescription"
-                                    style="display: none" onclick="updateDescription()">Edit</button>
+                            <div class="d-inline d-flex align-items-center"
+                                onmouseover="myFunction(this, 'descriptionInput', 'editButtonDescription')"
+                                onmouseout="hideEditLink(this, 'descriptionInput', 'editButtonDescription')">
+                                <textarea class="edit-input" style="border:0" name="description" rows="" id="descriptionInput">{{ $lead->description }} </textarea>
+
+                                <button type="button" class="btn editBtn btn-primary btn-sm ms-2"
+                                    id="editButtonDescription" style="display: none" onclick="updateDescription()"><i
+                                        class="fas fa-pencil-alt"></i></button>
                             </div>
                         </form>
                         </p>
@@ -119,11 +129,15 @@
                             @csrf
                             @method('PUT')
                             <span class="fa fa-calendar me-1" aria-hidden="true"></span>
-                            <input type="date" class="edit-input" style="border: 0"
-                                onfocus="myFunction(this, 'closeDateInput', 'editButtonCloseDate')" name="meta[close_date]"
-                                value="{{ $lead->close_date }}">
-                            <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonCloseDate"
-                                style="display: none" onclick="updateDescription()">Edit</button>
+                            <div class="d-inline-block"
+                                onmouseover="myFunction(this, 'closeDateInput', 'editButtonCloseDate')"
+                                onmouseout="hideEditLink(this, 'closeDateInput', 'editButtonCloseDate')">
+
+                                <input type="date" class="edit-input" style="border: 0" name="meta[close_date]"
+                                    id="closeDateInput" value="{{ $lead->close_date }}">
+                                <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonCloseDate"
+                                    style="display: none" onclick="updateDescription()">Edit</button>
+                            </div>
                         </form>
                         </p>
                         <h6 class="mt-4 text-uppercase"> CUSTOMER</h6>
@@ -135,17 +149,21 @@
                                     @method('PUT')
                                     <span class="fa fa-address-card" aria-hidden="true"></span>
 
+                                    <div class="d-inline-block"
+                                        onmouseover="myFunction(this, 'clientInput', 'editButtonClient')"
+                                        onmouseout="hideEditLink(this, 'clientInput', 'editButtonClient')">
 
-                                    <select class="edit-input" name="client_id" id="" style="border: 0"
-                                        onfocus="myFunction(this, 'clientInput', 'editButtonClient')">
-                                        @foreach ($clients as $key => $client)
-                                            <option value="{{ $key }}"
-                                                {{ $key == $lead->client_id ? 'selected' : '' }}>{{ $client }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonClient"
-                                        style="display: none" onclick="updateDescription()">Edit</button>
+                                        <select class="edit-input" name="client_id" id="clientInput" style="border: 0">
+                                            @foreach ($clients as $key => $client)
+                                                <option value="{{ $key }}"
+                                                    {{ $key == $lead->client_id ? 'selected' : '' }}>{{ $client }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <button type="button" class="btn editBtn btn-primary btn-sm"
+                                            id="editButtonClient" style="display: none"
+                                            onclick="updateDescription()">Edit</button>
+                                    </div>
                                 </form>
                             @endif
                         </p>
@@ -158,18 +176,23 @@
                                     @method('PUT')
                                     <span class="fa fa-building" aria-hidden="true"></span>
 
+                                    <div class="d-inline-block"
+                                        onmouseover="myFunction(this, 'organisationInput', 'editButtonOrganisation')"
+                                        onmouseout="hideEditLink(this, 'organisationInput', 'editButtonOrganisation')">
 
-                                    <select class="edit-input" name="organisation_id" id="" style="border: 0"
-                                        onfocus="myFunction(this, 'organisationInput', 'editButtonOrganisation')">
-                                        @foreach ($organisations as $key => $organisation)
-                                            <option value="{{ $key }}"
-                                                {{ $key == $lead->organisation_id ? 'selected' : '' }}>{{ $organisation }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <button type="button" class="btn editBtn btn-primary btn-sm"
-                                        id="editButtonOrganisation" style="display: none"
-                                        onclick="updateDescription()">Edit</button>
+                                        <select class="edit-input" name="organisation_id" id="organisationInput"
+                                            style="border: 0">
+                                            @foreach ($organisations as $key => $organisation)
+                                                <option value="{{ $key }}"
+                                                    {{ $key == $lead->organisation_id ? 'selected' : '' }}>
+                                                    {{ $organisation }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <button type="button" class="btn editBtn btn-primary btn-sm"
+                                            id="editButtonOrganisation" style="display: none"
+                                            onclick="updateDescription()">Edit</button>
+                                    </div>
                                 </form>
                             @endif
                         </p>
@@ -179,11 +202,13 @@
                             @csrf
                             @method('PUT')
                             <span class="fa fa-map-marker me-1" aria-hidden="true"></span>
-                            <input type="text" class="edit-input" style="border: 0"
-                                onfocus="myFunction(this, 'addressInput', 'editButtonAddress')" name="address"
-                                value="{{ $lead->address }}">
-                            <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonAddress"
-                                style="display: none" onclick="updateDescription()">Edit</button>
+                            <div class="d-inline-block" onmouseover="myFunction(this, 'addressInput', 'editButtonAddress')" onmouseout="hideEditLink(this, 'addressInput', 'editButtonAddress')">
+                                <input type="text" class="edit-input" id="addressInput" style="border: 0"
+                                     name="address"
+                                    value="{{ $lead->address }}">
+                                <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonAddress"
+                                    style="display: none" onclick="updateDescription()">Edit</button>
+                            </div>
                         </form>
                         </p>
                         <h6 class="mt-4 text-uppercase">CONTACT PERSON</h6>
@@ -199,11 +224,15 @@
                             @csrf
                             @method('PUT')
                             <span class="fa fa-envelope" aria-hidden="true"></span>
-                            <input type="text" class="edit-input" style="border: 0"
-                                onfocus="myFunction(this, 'emailInput', 'editButtonEmail')" name="email"
-                                value="{{ $lead->email }}">
-                            <button type="button" onclick="updateDescription()" class="btn editBtn btn-primary btn-sm"
-                                id="editButtonEmail" style="display: none">Edit</button>
+                            <div class="d-inline-block"  onmouseover="myFunction(this, 'emailInput', 'editButtonEmail')"  onmouseout="hideEditLink(this, 'emailInput', 'editButtonEmail')">
+
+                                <input type="text" class="edit-input" style="border: 0"
+                                    name="email"
+                                    id="emailInput"
+                                    value="{{ $lead->email }}">
+                                <button type="button" onclick="updateDescription()" class="btn editBtn btn-primary btn-sm"
+                                    id="editButtonEmail" style="display: none">Edit</button>
+                            </div>
                         </form>
                         </p>
 
@@ -212,11 +241,15 @@
                             @csrf
                             @method('PUT')
                             <span class="fa fa-phone" aria-hidden="true"></span>
-                            <input type="text" class="edit-input" style="border: 0"
-                                onfocus="myFunction(this, 'phoneInput', 'editButtonPhone')" name="phone"
-                                value="{{ $lead->phone }}">
-                            <button type="button" onclick="updateDescription()" class="btn btn-primary editBtn btn-sm"
-                                id="editButtonPhone" style="display: none">Edit</button>
+                            <div class="d-inline"  onmouseover="myFunction(this, 'phoneInput', 'editButtonPhone')"  onmouseout="hideEditLink(this, 'phoneInput', 'editButtonPhone')">
+
+                                <input type="text" class="edit-input" style="border: 0"
+                                    name="phone"
+                                    id="phoneInput"
+                                    value="{{ $lead->phone }}">
+                                <button type="button" onclick="updateDescription()" class="btn btn-primary editBtn btn-sm"
+                                    id="editButtonPhone" style="display: none">Edit</button>
+                            </div>
                         </form>
                         </p>
 
@@ -236,8 +269,16 @@
         $('.edit-input').css('border', '0');
         $('[id^="editButton"]').hide();
 
-        $(element).css('border', '1px solid #888');
+        $('#' + inputId).css('border', '1px solid #888');
         $('#' + buttonId).show();
+
+
+    }
+
+    function hideEditLink(element, inputId, buttonId) {
+
+        $('#' + inputId).css('border', '0');
+        $('#' + buttonId).hide();
 
 
     }
