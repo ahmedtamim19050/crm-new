@@ -31,16 +31,16 @@
 
             </li>
 
-            <li><a class="has-arrow ai-icon" href="{{ route('products.index') }}" aria-expanded="false">
+            {{-- <li><a class="has-arrow ai-icon" href="{{ route('products.index') }}" aria-expanded="false">
                 <i class="fab fa-product-hunt"></i>
                     <span class="nav-text">Products</span>
                 </a>
-                {{-- <ul aria-expanded="false">
+                <ul aria-expanded="false">
                     <li><a href="{{ route('products.index')}}">Index</a></li>
  
-                </ul> --}}
+                </ul>
 
-            </li>
+            </li> --}}
 {{-- 
             <li><a class="has-arrow ai-icon" href="{{ route('categories.index') }}" aria-expanded="false">
                     <i class="fas fa-bars "></i>
