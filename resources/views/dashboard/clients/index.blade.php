@@ -51,7 +51,7 @@
                                 <tr>
                                     <td><strong>{{$loop->index +1}}</strong></td>
                                     {{-- <td>{{ $client->created_at->diffForHumans() }}</td> --}}
-                                    <td>{{ $client->name }}</td>
+                                    <td><a href="{{route('clients.show',$client->id)}}" class="text-primary text-decoration-underline">{{ $client->name }}</a> </td>
                                     <td>{{ $client->organisation->name ?? null  }}</td>
                                     <td>{{ $client->email   }}</td>
                                     <td>{{ $client->phone }}</td>
@@ -67,7 +67,7 @@
                                                 <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="{{route('clients.show',$client->id)}}">Show</a>
+                                                {{-- <a class="dropdown-item" href="{{route('clients.show',$client->id)}}">Show</a> --}}
                                                 <a class="dropdown-item" href="{{route('clients.edit',$client->id)}}">Edit</a>
                                                 <x-delete class="dropdown-item" :route="route('clients.destroy',$client->id)"/>
                                             </div>
