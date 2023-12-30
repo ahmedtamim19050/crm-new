@@ -236,6 +236,7 @@
                 $('#infoModal').modal('hide');
                 $('#select_organisation_id').trigger('change');
 
+                toastr.success('', 'Organisation added successfully');
 
             },
             error: function(error) {
@@ -264,6 +265,7 @@
                 $('#select_client_id').trigger('change');
 
 
+                toastr.success('', 'Client added successfully');
             },
             error: function(error) {
                 // Handle error, if needed
