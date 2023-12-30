@@ -49,10 +49,29 @@
                     <div class="card-body">
                         <h6 class="text-uppercase">DETAILS</h6>
                         <hr />
-                        <p><span class="fa fa-tag" aria-hidden="true"></span>
+                        <p>
                             @if ($lead->labelName)
-                                <span class="badge light badge-success text-white"
-                                    style="background-color:{{ $lead->labelName->color }}">{{ $lead->labelName->name }}</span>
+                                {{-- <span class="badge light badge-success text-white"
+                                    style="background-color:{{ $lead->labelName->color }}">{{ $lead->labelName->name }}</span> --}}
+
+                                <form class="updateForm" action="{{ route('leads.update', $lead) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <span class="fa fa-tag" aria-hidden="true"></span>
+
+
+                                    <select class="edit-input" name="label" id="" style="border: 0"
+                                        onfocus="myFunction(this, 'labelInput', 'editButtonLabel')">
+                                        @foreach ($labels as $key => $label)
+                                            <option value="{{ $key }}"
+                                                {{ $key == $lead->labelName->id ? 'selected' : '' }}>{{ $label }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonLabel"
+                                        style="display: none" onclick="updateDescription()">Edit</button>
+
+                                </form>
                             @endif
                             </td>
 
@@ -94,7 +113,7 @@
                         <h6 class="mt-4 text-uppercase"> Expected close date</h6>
                         <hr />
                         <p>
-                        
+
 
                         <form class="updateForm" action="{{ route('leads.update', $lead) }}" method="post">
                             @csrf
@@ -139,7 +158,7 @@
                                     @method('PUT')
                                     <span class="fa fa-building" aria-hidden="true"></span>
 
-                                    
+
                                     <select class="edit-input" name="organisation_id" id="" style="border: 0"
                                         onfocus="myFunction(this, 'organisationInput', 'editButtonOrganisation')">
                                         @foreach ($organisations as $key => $organisation)
@@ -148,8 +167,9 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                    <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonOrganisation"
-                                        style="display: none" onclick="updateDescription()">Edit</button>
+                                    <button type="button" class="btn editBtn btn-primary btn-sm"
+                                        id="editButtonOrganisation" style="display: none"
+                                        onclick="updateDescription()">Edit</button>
                                 </form>
                             @endif
                         </p>
@@ -182,8 +202,8 @@
                             <input type="text" class="edit-input" style="border: 0"
                                 onfocus="myFunction(this, 'emailInput', 'editButtonEmail')" name="email"
                                 value="{{ $lead->email }}">
-                            <button type="button" onclick="updateDescription()" class="btn editBtn btn-primary btn-sm" id="editButtonEmail"
-                                style="display: none">Edit</button>
+                            <button type="button" onclick="updateDescription()" class="btn editBtn btn-primary btn-sm"
+                                id="editButtonEmail" style="display: none">Edit</button>
                         </form>
                         </p>
 
@@ -195,8 +215,8 @@
                             <input type="text" class="edit-input" style="border: 0"
                                 onfocus="myFunction(this, 'phoneInput', 'editButtonPhone')" name="phone"
                                 value="{{ $lead->phone }}">
-                            <button type="button" onclick="updateDescription()" class="btn btn-primary editBtn btn-sm" id="editButtonPhone"
-                                style="display: none">Edit</button>
+                            <button type="button" onclick="updateDescription()" class="btn btn-primary editBtn btn-sm"
+                                id="editButtonPhone" style="display: none">Edit</button>
                         </form>
                         </p>
 

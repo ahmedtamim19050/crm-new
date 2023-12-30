@@ -132,10 +132,11 @@ class LeadController extends Controller
      */
     public function show(Lead $lead)
     {
+        $labels=Label::pluck('name','id')->toArray();
         $clients=Client::where('user_id',auth()->id())->pluck('name','id')->toArray();
         $organisations=Organisation::where('user_id',auth()->id())->pluck('name','id')->toArray();
 
-        return view('dashboard.leads.show',compact('lead','clients','organisations'));
+        return view('dashboard.leads.show',compact('lead','clients','organisations','labels'));
     }
 
     /**
