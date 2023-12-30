@@ -17,11 +17,11 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('external_id');
             $table->unsignedBigInteger('lead_id')->index()->nullable();
-            $table->foreign('lead_id')->references('id')->on('leads');
+            $table->foreign('lead_id')->references('id')->on('leads')->onDelete('cascade');
             $table->unsignedBigInteger('client_id')->index()->nullable();
-            $table->foreign('client_id')->references('id')->on('clients');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->unsignedBigInteger('organisation_id')->index()->nullable();
-            $table->foreign('organisation_id')->references('id')->on('organisations');
+            $table->foreign('organisation_id')->references('id')->on('organisations')->onDelete('cascade');
             $table->string('title');
             $table->string('label')->nullable();
             $table->text('description')->nullable();
@@ -39,9 +39,9 @@ return new class extends Migration
             $table->datetime('closed_at')->nullable();
             $table->enum('closed_status', ['won','lost'])->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('user_owner_id')->nullable();
-            $table->foreign('user_owner_id')->references('id')->on('users');
+            $table->foreign('user_owner_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

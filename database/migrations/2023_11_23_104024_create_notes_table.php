@@ -21,13 +21,13 @@ return new class extends Migration
             $table->boolean('pinned')->default(false);
             $table->timestamp('noted_at')->nullable();
             $table->unsignedBigInteger('user_created_id')->nullable();
-            $table->foreign('user_created_id')->references('id')->on('users');
+            $table->foreign('user_created_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('user_updated_id')->nullable();
-            $table->foreign('user_updated_id')->references('id')->on('users');
+            $table->foreign('user_updated_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('user_deleted_id')->nullable();
-            $table->foreign('user_deleted_id')->references('id')->on('users');
+            $table->foreign('user_deleted_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('user_restored_id')->nullable();
-            $table->foreign('user_restored_id')->references('id')->on('users');
+            $table->foreign('user_restored_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

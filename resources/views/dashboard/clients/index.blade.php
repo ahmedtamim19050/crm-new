@@ -124,4 +124,92 @@
             </div>
         </div>
     </div>
+
+    <div class="modal mt-5 ms-5" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true"
+    data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="infoModalLabel">Add Organisation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ route('organisation.ajax') }}" id="organizationForm">
+                    @csrf
+                    @include('partials.form.text', [
+                        'name' => 'name',
+                        'label' => 'Name',
+                        'value' => old('client_name', $organisation->name ?? null),
+                        'attributes' => [
+                            'required' => true,
+                        ],
+                    ])
+                    @include('partials.form.select', [
+                        'name' => 'label',
+                        'label' => 'Label',
+                        'options' => App\Helper\SelectOptions::labels(),
+                        'value' => old('labels', isset($organisation) ? $organisation->label : null),
+                    ])
+                    @include('partials.form.select', [
+                        'name' => 'user_owner_id',
+                        'label' => 'owner',
+                        'options' => App\Helper\SelectOptions::users(false),
+                        'value' => old('user_owner_id', $organisation->user_owner_id ?? auth()->user()->id),
+                    ])
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="createOrganisation()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    Array.from(document.getElementsByClassName('showmodal')).forEach((e) => {
+        e.addEventListener('click', function(element) {
+            element.preventDefault();
+            if (e.hasAttribute('data-show-modal')) {
+                showModal(e.getAttribute('data-show-modal'));
+            }
+        });
+    });
+    // Show modal dialog
+    function showModal(modal) {
+        const mid = document.getElementById(modal);
+        let myModal = new bootstrap.Modal(mid);
+        myModal.show();
+    }
+</script>
+
+    <script>
+        function createOrganisation() {
+            var formData = $('#organizationForm').serialize();
+            // console.log(formData);
+            $.ajax({
+                url: $('#organizationForm').attr('action'),
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    //    console.log(response.organisations)
+                    $('#select_organisation_id').empty();
+                    $.each(response.organisations, function(index, organisation) {
+                        $('#select_organisation_id').append('<option selected value="' + organisation
+                            .id + '">' +
+                            organisation.name + '</option>');
+                    });
+
+                    $('#infoModal').modal('hide');
+                    $('#select_organisation_id').trigger('change');
+
+                    toastr.success('', 'Organisation added successfully');
+
+                },
+                error: function(error) {
+                    // Handle error, if needed
+                    console.error(error);
+                }
+            });
+        }
+    </script>
 @endsection

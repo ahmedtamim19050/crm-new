@@ -19,10 +19,10 @@ return new class extends Migration
             $table->unsignedBigInteger('team_id')->index()->nullable();
             $table->string('name')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('label')->nullable();
             $table->unsignedBigInteger('user_owner_id')->nullable();
-            $table->foreign('user_owner_id')->references('id')->on('users');
+            $table->foreign('user_owner_id')->references('id')->on('users')->onDelete('cascade');
    
             
             $table->timestamps();

@@ -31,17 +31,31 @@
                     @include('partials.form.text', [
                         'name' => 'meta[l_name]',
                         'label' => 'Last name',
-                        'value' => old('client_name', isset($client) ? $client->l_name : null ),
+                        'value' => old('client_name', isset($client) ? $client->l_name : null),
                     ])
                 </div>
             </div>
             {{-- @dd($client->organisation->pluck('id')->toArray() ); --}}
-            @include('partials.form.select', [
-                'name' => 'organisation_id',
-                'label' => 'Organisation',
-                'options' => $organisations,
-                'value' => old('organisation', isset($client) ? $client->organisation->id : null),
-            ])
+
+
+            <div class="d-flex align-items-center">
+                <div class="col-md-10">
+
+                    @include('partials.form.select', [
+                        'name' => 'organisation_id',
+                        'label' => 'Organisation',
+                        'options' => $organisations,
+                        'value' => old(
+                            'organisation',
+                            isset($client) ? ($client->organisation ? $client->organisation->id : '') : null),
+                    ])
+                </div>
+                <div class="col-md-2 ms-2 mt-2">
+                    <button type="button" class="btn btn-dark btn-sm showmodal" data-show-modal="infoModal">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
             {{-- @include('partials.form.select', [
                 'name' => 'label',
                 'label' => 'Label',
@@ -69,7 +83,7 @@
             @include('partials.form.text', [
                 'name' => 'meta[position]',
                 'label' => 'Position',
-                'value' => old('position', isset($client) ? $client->position : null ),
+                'value' => old('position', isset($client) ? $client->position : null),
             ])
         </div>
     </div>

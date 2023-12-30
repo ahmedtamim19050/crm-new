@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('external_id');
             $table->unsignedBigInteger('client_id')->index()->nullable();
-            $table->foreign('client_id')->references('id')->on('clients');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->unsignedBigInteger('organisation_id')->index()->nullable();
             $table->foreign('organisation_id')->references('id')->on('organisations');
             $table->string('title');
@@ -34,9 +34,9 @@ return new class extends Migration
             $table->string('country')->nullable();
             $table->string("currency", 3)->default("USD");
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('user_owner_id')->nullable();
-            $table->foreign('user_owner_id')->references('id')->on('users');
+            $table->foreign('user_owner_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

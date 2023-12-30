@@ -25,7 +25,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->boolean('active')->default(true);
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             // $table->unsignedBigInteger('user_updated_id')->nullable();
             // $table->foreign('user_updated_id')->references('id')->on('users');
             // $table->unsignedBigInteger('user_deleted_id')->nullable();
@@ -33,7 +33,7 @@ return new class extends Migration
             // $table->unsignedBigInteger('user_restored_id')->nullable();
             // $table->foreign('user_restored_id')->references('id')->on('users');
             $table->unsignedBigInteger('user_owner_id')->nullable();
-            $table->foreign('user_owner_id')->references('id')->on('users');
+            $table->foreign('user_owner_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
