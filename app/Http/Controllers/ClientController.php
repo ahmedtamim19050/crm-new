@@ -135,4 +135,25 @@ class ClientController extends Controller
         $client->delete();
         return redirect()->route('clients.index')->with('success','Client Delete Successfully');
     }
+    public function clientAjax(Request $request) {
+        $request->validate([
+            'name'=>'required'
+        ]);
+        $client = Client::create([
+            'name' => $request->name,
+            'user_owner_id' => $request->user_owner_id,
+            'organisation_id' => $request->organisation_id,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'user_id'=>auth()->id(),
+
+        ]);
+        $clients = Client::all();
+        return response()->json([
+            'success' => true,
+            'message' => 'Contact added successfully',
+            'data' => $client,
+            'clients' => $clients,
+        ]);
+    }
 }

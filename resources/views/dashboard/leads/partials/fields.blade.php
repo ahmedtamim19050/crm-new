@@ -8,12 +8,22 @@
     <div class="row">
         <div class="col-sm-6 border-right">
 
-            @include('partials.form.select', [
-                'name' => 'client_id',
-                'label' => 'Customer',
-                'options' => $clients,
-                'value' => old('client_id', isset($lead) ? $lead->client->id : null),
-            ])
+       
+            <div class="d-flex align-items-center">
+                <div class="col-md-10">
+                    @include('partials.form.select', [
+                        'name' => 'client_id',
+                        'label' => 'Customer',
+                        'options' => $clients,
+                        'value' => old('client_id', isset($lead) ? $lead->client->id : null),
+                    ])
+                </div>
+                <div class="col-md-2 ms-2 mt-2">
+                    <button type="button" class="btn btn-dark btn-sm showmodal" data-show-modal="clientModal">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
             <div class="d-flex align-items-center">
                 <div class="col-md-10">
 

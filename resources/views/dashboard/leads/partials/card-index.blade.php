@@ -143,6 +143,60 @@
         </div>
     </div>
 </div>
+<div class="modal mt-5 ms-5" id="clientModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true"
+    data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="infoModalLabel">Add Client</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ route('client.ajax') }}" id="clientForm">
+                    @csrf
+                   <div class="row">
+                    <div class="col-sm-6">
+
+                        @include('partials.form.text', [
+                            'name' => 'name',
+                            'label' => 'Name',
+                            'value' => old('client_name', $client->name ?? null),
+                        ])
+                    </div>
+                    <div class="col-sm-6">
+
+                        @include('partials.form.text', [
+                            'name' => 'meta[l_name]',
+                            'label' => 'Last name',
+                            'value' => old('client_name', isset($client) ? $client->l_name : null),
+                        ])
+                    </div>
+                   </div>
+                    @include('partials.form.select', [
+                        'name' => 'user_owner_id',
+                        'label' => 'owner',
+                        'options' => App\Helper\SelectOptions::users(false),
+                        'value' => old('user_owner_id', $organisation->user_owner_id ?? auth()->user()->id),
+                    ])
+                    @include('partials.form.text', [
+                        'name' => 'phone',
+                        'label' => 'Phone',
+                        'value' => old('phone', $client->phone ?? null),
+                    ])
+                    @include('partials.form.text', [
+                        'name' => 'email',
+                        'label' => 'Email',
+                        'value' => old('email', $client->email ?? null),
+                    ])
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="createClient()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     Array.from(document.getElementsByClassName('showmodal')).forEach((e) => {
@@ -171,15 +225,43 @@
             type: 'POST',
             data: formData,
             success: function(response) {
-        //    console.log(response.organisations)
+                //    console.log(response.organisations)
                 $('#select_organisation_id').empty();
                 $.each(response.organisations, function(index, organisation) {
-                    $('#select_organisation_id').append('<option selected value="' + organisation.id + '">' +
+                    $('#select_organisation_id').append('<option selected value="' + organisation
+                        .id + '">' +
                         organisation.name + '</option>');
                 });
 
                 $('#infoModal').modal('hide');
                 $('#select_organisation_id').trigger('change');
+
+
+            },
+            error: function(error) {
+                // Handle error, if needed
+                console.error(error);
+            }
+        });
+    }
+    function createClient() {
+        var formData = $('#clientForm').serialize();
+        // console.log(formData);
+        $.ajax({
+            url: $('#clientForm').attr('action'),
+            type: 'POST',
+            data: formData,
+            success: function(response) {
+                //    console.log(response.organisations)
+                $('#select_client_id').empty();
+                $.each(response.clients, function(index, client) {
+                    $('#select_client_id').append('<option selected value="' + client
+                        .id + '">' +
+                        client.name + '</option>');
+                });
+
+                $('#clientModal').modal('hide');
+                $('#select_client_id').trigger('change');
 
 
             },
