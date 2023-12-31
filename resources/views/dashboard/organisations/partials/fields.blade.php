@@ -122,7 +122,7 @@
                             'value' => old('niche', isset($organisation) ? $organisation->niche : null),
                         ])
                     </div>
-                    <div class="col-sm-12 d-flex justify-content-between">
+                    {{-- <div class="col-sm-12 d-flex justify-content-between">
                         <p class="text-primary">Add other social url</p>
                         <button type="button" class="btn btn-secondary btn-sm py-2" id="addColumnButton"><i
                                 class="fas fa-plus"></i></button>
@@ -132,7 +132,7 @@
 
                        
 
-                    </div>
+                    </div> --}}
 
 
                 </div>
