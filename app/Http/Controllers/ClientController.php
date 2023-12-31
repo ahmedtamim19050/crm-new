@@ -72,6 +72,7 @@ class ClientController extends Controller
      */
     public function show($id)
     {
+        
         $client=Client::find($id);
         $persons=Person::pluck('last_name','id')->toArray();
         return view('dashboard.clients.show', [
