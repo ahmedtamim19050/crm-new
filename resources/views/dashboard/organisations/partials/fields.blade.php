@@ -26,10 +26,10 @@
                 'rows' => 5,
                 'value' => old('address', $organisation->address ?? null),
             ]) --}}
-               @include('partials.form.text', [
+            @include('partials.form.text', [
                 'name' => 'meta[street]',
                 'label' => 'Street address',
-                'value' => old('meta', isset($organisation) ? $organisation->street :null),
+                'value' => old('meta', isset($organisation) ? $organisation->street : null),
             ])
             <div class="row">
                 <div class="col-sm-12">
@@ -43,72 +43,98 @@
                     @include('partials.form.text', [
                         'name' => 'meta[post_code]',
                         'label' => 'Zip',
-                        'value' => old('post_code',isset($organisation) ? $organisation->post_code : null),
+                        'value' => old('post_code', isset($organisation) ? $organisation->post_code : null),
+                    ])
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    @include('partials.form.text', [
+                        'name' => 'meta[company_email]',
+                        'label' => 'Email',
+                        'value' => old(
+                            'company_email',
+                            isset($organisation) ? $organisation->company_email : null),
+                    ])
+                </div>
+                <div class="col-sm-12">
+                    @include('partials.form.text', [
+                        'name' => 'meta[company_phone]',
+                        'label' => 'Phone',
+                        'value' => old(
+                            'company_phone',
+                            isset($organisation) ? $organisation->company_phone : null),
                     ])
                 </div>
             </div>
 
         </div>
         <div class="col-sm-6">
-         
-         
+
+
             <h6 class="text-uppercase"><span class="fa fa-user" aria-hidden="true"></span> Company Info</h6>
             <hr />
             <span class="autocomplete-person">
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        @include('partials.form.text', [
-                            'name' => 'meta[company_email]',
-                            'label' => 'Email',
-                            'value' => old('company_email',isset($organisation) ? $organisation->company_email : null),
-                        ])
-                    </div>
-                    <div class="col-sm-12">
-                        @include('partials.form.text', [
-                            'name' => 'meta[company_phone]',
-                            'label' => 'Phone',
-                            'value' => old('company_phone',isset($organisation) ? $organisation->company_phone :null),
-                        ])
-                    </div>
-                </div>
+
 
                 <div class="row">
                     <div class="col-sm-12">
                         @include('partials.form.text', [
                             'name' => 'meta[company_twitter]',
                             'label' => 'X/Twitter Profile',
-                            'value' => old('company_twitter',isset($organisation) ? $organisation->company_twitter : null),
+                            'value' => old(
+                                'company_twitter',
+                                isset($organisation) ? $organisation->company_twitter : null),
                         ])
                     </div>
                     <div class="col-sm-12">
                         @include('partials.form.text', [
                             'name' => 'meta[company_tiktok]',
                             'label' => 'Tiktok Profile',
-                            'value' => old('company_tiktok',isset($organisation) ? $organisation->company_tiktok :null),
+                            'value' => old(
+                                'company_tiktok',
+                                isset($organisation) ? $organisation->company_tiktok : null),
                         ])
                     </div>
                     <div class="col-sm-12">
                         @include('partials.form.text', [
                             'name' => 'meta[company_youtube]',
                             'label' => 'Youtube profile',
-                            'value' => old('company_youtube',isset($organisation) ? $organisation->company_youtube :null),
+                            'value' => old(
+                                'company_youtube',
+                                isset($organisation) ? $organisation->company_youtube : null),
                         ])
                     </div>
                     <div class="col-sm-12">
                         @include('partials.form.text', [
                             'name' => 'meta[company_fb]',
                             'label' => 'Facebook profile',
-                            'value' => old('company_youtube',isset($organisation) ? $organisation->company_fb :null),
+                            'value' => old(
+                                'company_youtube',
+                                isset($organisation) ? $organisation->company_fb : null),
                         ])
                     </div>
                     <div class="col-sm-12">
                         @include('partials.form.text', [
                             'name' => 'meta[niche]',
                             'label' => 'Niche',
-                            'value' => old('niche',isset($organisation) ? $organisation->niche :null),
+                            'value' => old('niche', isset($organisation) ? $organisation->niche : null),
                         ])
                     </div>
+                    <div class="col-sm-12 d-flex justify-content-between">
+                        <p class="text-primary">Add other social url</p>
+                        <button type="button" class="btn btn-secondary btn-sm py-2" id="addColumnButton"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                    <div class="col-12 clientRow" id="">
+
+
+                       
+
+                    </div>
+
+
                 </div>
 
 
@@ -118,3 +144,26 @@
     </div>
 
 </div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    var columnCounter = 1;
+
+    $('#addColumnButton').on('click', function() {
+        columnCounter += 1;
+
+        $('.clientRow').each(function() {
+            for (var i = 0; i < 1; i++) {
+                $(this).append(` @include('partials.form.text', [
+                            'name' => 'meta[niche]',
+                            'label' => 'Social name',
+                        ])
+
+                        @include('partials.form.text', [
+                            'name' => 'meta[niche]',
+                            'label' => 'Social Url',
+                        ])
+`);
+            }
+        });
+    });
+</script>
