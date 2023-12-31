@@ -124,7 +124,6 @@ class ClientController extends Controller
             $client->createMetas($request->meta);
         }
         return response()->json(['success' => true, 'message' => 'Lead updated successfully']);
-    //    return redirect()->route('clients.index')->with('success','Client Update Successfully');
     }
 
     /**

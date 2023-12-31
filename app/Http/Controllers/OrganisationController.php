@@ -74,7 +74,8 @@ class OrganisationController extends Controller
     public function show(Organisation $organisation)
     {
         $persons=Client::pluck('name','id')->toArray();
-        return view('dashboard.organisations.show',compact('organisation','persons'));
+        $labels=Label::pluck('name','id')->toArray();
+        return view('dashboard.organisations.show',compact('organisation','persons','labels'));
     }
 
     /**
@@ -98,21 +99,23 @@ class OrganisationController extends Controller
      */
     public function update(Request $request, Organisation $organisation)
     {
-        $request->validate([
-            'name'=>'required',
-            'user_owner_id'=>'required',
-            'address'=>'nullable',
-            'label'=>'required'
-        ]);
+        // $request->validate([
+        //     'name'=>'required',
+        //     'user_owner_id'=>'required',
+        //     'address'=>'nullable',
+        //     'label'=>'required'
+        // ]);
         $organisation->update([
-            'name' => $request->name,
-            'user_owner_id' => $request->user_owner_id,
-            'address' => $request->address,
-            'user_id'=>auth()->id(),
-            'label'=>$request->label,
+            'name' => $request->has('name') ? $request->name : $organisation->name,
+            'user_owner_id' => $request->has('user_owner_id') ? $request->user_owner_id : $organisation->user_owner_id,
+            'address' => $request->has('address') ? $request->address : $organisation->address,
+            'label' => $request->has('label') ? $request->label : $organisation->label,
         ]);
-        $organisation->createMetas($request->meta);
-       return redirect()->route('organisations.index')->with('success','Organisation Update Successfully');
+        if($request->meta){
+
+            $organisation->createMetas($request->meta);
+        }
+        return response()->json(['success' => true, 'message' => 'Lead updated successfully']);
     }
 
     /**
@@ -124,24 +127,11 @@ class OrganisationController extends Controller
     public function destroy(Organisation $organisation)
     {
     
-        // dd($organisation->deals);
-        DB::beginTransaction();
-        try {
-        if($organisation->deals->count() > 0){
-            foreach($organisation->deals as $deal){
-                $deal->update([
-                    'organisation_id'=>null,
-                ]);
-            }
-        }
+    
         $organisation->delete();
-        DB::commit();
+       
         return redirect()->route('organisations.index')->with('success','Organisation Delete Successfully');
-    } catch (\Exception $e) {
-        // dd($e);
-        DB::rollback();
-        return redirect()->route('organisations.index')->with('error', 'Error deleting organisation: ' . $e->getMessage());
-    }
+
     }
     function organisationAjax(Request $request) {
         $request->validate([
@@ -161,5 +151,11 @@ class OrganisationController extends Controller
             'data' => $organisation,
             'organisations' => $organisations, // Include the updated list of organisations
         ]);
+    }
+    public function socialUpdate(Request $request,Organisation $organisation) {
+
+        $organisation->createMetas($request->meta);
+        return back()->with('success','Social url updated Successfully');
+
     }
 }
