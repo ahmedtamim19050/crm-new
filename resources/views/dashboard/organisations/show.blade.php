@@ -177,39 +177,77 @@
                             </form>
                         @endif
 
+                        <div class="d-flex justify-content-between mt-5 align-items-center">
+                            <h6 class="text-uppercase ">Persons </h6>
+                            <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="modal"
+                                data-bs-target="#personModal"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <hr />
+                        @if ($organisation->peoples->count() > 0)
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Gender</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($organisation->peoples as $people)
+                                        <tr>
+                                            <th scope="row">{{ $loop->index + 1 }}</th>
+                                            <td>{{ $people->first_name }} {{ $people->last_name }} </td>
+                                            <td>{{ $people->gender }} </td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm"
+                                                    data-fname="{{ $people->first_name }}"
+                                                    data-lname="{{ $people->last_name }}"
+                                                    data-gender="{{ $people->gender }}"
+                                                    data-id="{{ $people->id }}"
+                                                    
+                                                    type="button"
+                                                    data-bs-toggle="modal" data-bs-target="#personModal"><i
+                                                        class="fas fa-pencil-alt"></i>
+                                                </button>
+                                            </td>
+
+                                        </tr>
+                                    @endforeach
+
+
+                                </tbody>
+                            </table>
+                        @else
+                            <p class="text-center text-danger">Please add person</p>
+                        @endif
                         <h6 class="text-uppercase mt-5">Socail Link</h6>
                         <hr />
                         <p>
-             
-                                <p>
-                                    <i class="fab fa-facebook"></i>
-                                    <span class="ms-2"><a class="text-decoration-underline text-primary"
-                                            href="{{ $organisation->company_fb }} " target="_blank">
-                                            {{ $organisation->company_fb }}</a> </span>
-                                    <button type="button" class="btn btn-primary btn-sm p-2 ms-3"
-                                        data-value="{{ $organisation->company_fb }}" 
-                                        data-name="meta[company_fb]"
-                                        data-title="Facebook url Update" 
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#socialModal">
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </button>
-                                </p>
-                     
+
+                        <p>
+                            <i class="fab fa-facebook"></i>
+                            <span class="ms-2"><a class="text-decoration-underline text-primary"
+                                    href="{{ $organisation->company_fb }} " target="_blank">
+                                    {{ $organisation->company_fb }}</a> </span>
+                            <button type="button" class="btn btn-primary btn-sm p-2 ms-3"
+                                data-value="{{ $organisation->company_fb }}" data-name="meta[company_fb]"
+                                data-title="Facebook url Update" data-bs-toggle="modal" data-bs-target="#socialModal">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                        </p>
+
                         <p>
                             <i class="fab fa-twitter-square"></i>
                             <span class="ms-2"><a class="text-decoration-underline text-primary"
                                     href="{{ $organisation->company_twitter }} " target="_blank">
                                     {{ $organisation->company_twitter }}</a> </span>
 
-                                    <button type="button" class="btn btn-primary btn-sm p-2 ms-3"
-                                    data-value="{{ $organisation->company_twitter }}" 
-                                    data-name="meta[company_twitter]"
-                                    data-title="Twitter url Update" 
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#socialModal">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </button>
+                            <button type="button" class="btn btn-primary btn-sm p-2 ms-3"
+                                data-value="{{ $organisation->company_twitter }}" data-name="meta[company_twitter]"
+                                data-title="Twitter url Update" data-bs-toggle="modal" data-bs-target="#socialModal">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
                         </p>
                         <p>
                             <i class="fab fa-youtube"></i>
@@ -217,14 +255,11 @@
                                     href="{{ $organisation->company_youtube }} " target="_blank">
                                     {{ $organisation->company_youtube }}</a> </span>
 
-                                    <button type="button" class="btn btn-primary btn-sm p-2 ms-3"
-                                    data-value="{{ $organisation->company_youtube }}" 
-                                    data-name="meta[company_youtube]"
-                                    data-title="Youtube url Update" 
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#socialModal">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </button>
+                            <button type="button" class="btn btn-primary btn-sm p-2 ms-3"
+                                data-value="{{ $organisation->company_youtube }}" data-name="meta[company_youtube]"
+                                data-title="Youtube url Update" data-bs-toggle="modal" data-bs-target="#socialModal">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
                         </p>
                         <p>
                             <i class="fab fa-tiktok"></i>
@@ -232,14 +267,11 @@
                                     href="{{ $organisation->company_tiktok }} " target="_blank">
                                     {{ $organisation->company_tiktok }}</a> </span>
 
-                                    <button type="button" class="btn btn-primary btn-sm p-2 ms-3"
-                                    data-value="{{ $organisation->company_tiktok }}" 
-                                    data-name="meta[company_tiktok]"
-                                    data-title="Tiktok url Update" 
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#socialModal">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </button>
+                            <button type="button" class="btn btn-primary btn-sm p-2 ms-3"
+                                data-value="{{ $organisation->company_tiktok }}" data-name="meta[company_tiktok]"
+                                data-title="Tiktok url Update" data-bs-toggle="modal" data-bs-target="#socialModal">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
                         </p>
 
                         {{-- <h6 class="text-uppercase">Owner</h6>
@@ -414,7 +446,7 @@
         </div>
     </div>
     </div>
-
+    {{-- social url modal --}}
     <div class="modal fade" id="socialModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -422,11 +454,11 @@
                     <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <form action="{{route('social.update',$organisation)}}" method="post">
+                <form action="{{ route('social.update', $organisation) }}" method="post">
                     @csrf
-                <div class="modal-body">
+                    <div class="modal-body">
                         <input type="text" name="" id="socialInput" value="" class="form-control">
-                        <button type="submit"></button>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">Close</button>
@@ -435,6 +467,63 @@
                 </form>
             </div>
         </div>
+    </div>
+    {{-- person add modal --}}
+    <div class="modal fade" id="personModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Person</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form action="{{ route('person.store', $organisation) }}" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        @include('partials.form.text', [
+                            'name' => 'f_name',
+                            'label' => 'First Name',
+                            'value' => old('f_name'),
+                            'attributes' => [
+                                'required' => '',
+                            ],
+                        ])
+                        @include('partials.form.text', [
+                            'name' => 'l_name',
+                            'label' => 'Last Name',
+                            'value' => old('l_name'),
+                            'attributes' => [
+                                'required' => '',
+                            ],
+                        ])
+                        <label for="" class="mb-3">Gender</label>
+                        <div class="d-flex">
+                            <div class="form-check">
+                                <input class="form-check-input" value="Male" type="radio" name="gender"
+                                    id="male">
+                                <label class="form-check-label" for="male">
+                                    Male
+                                </label>
+                            </div>
+                            <div class="form-check ms-3">
+                                <input class="form-check-input" type="radio" value="Female" name="gender"
+                                    id="female">
+                                <label class="form-check-label" for="female">
+                                    Female
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="person_id" id="personId">
+
+                    <div class="modal-footer bg-white">
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">Close</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
     </div>
 @endsection
 
@@ -491,6 +580,32 @@
                 modal.find('.modal-title').text(title);
                 modal.find('#socialInput').val(value);
                 $('#socialInput').attr('name', name);
+            });
+        });
+
+        $(document).ready(function() {
+            $('#personModal').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget);
+                var fname = button.data('fname');
+                var lname = button.data('lname');
+                var gender = button.data('gender');
+                var id = button.data('id');
+                // console.log(gender)
+
+                var modal = $(this);
+                // console.log(fname);
+                modal.find('#input_f_name').val(fname);
+                modal.find('#input_l_name').val(lname);
+                modal.find('#personId').val(id);
+                if(gender=='male'){
+                   
+            
+                    modal.find('#male').prop('checked',true);
+                }
+                if(gender=='male'){
+                    modal.find('#female').prop('checked',true);
+                }
+             
             });
         });
     </script>

@@ -30,9 +30,9 @@ class Organisation extends Model
 
 
 
-    public function people()
+    public function peoples()
     {
-        return $this->hasMany(Person::class);
+        return $this->hasMany(Person::class,'organisation_id');
     }
 
     /**

@@ -19,8 +19,8 @@ class OrganisationController extends Controller
      */
     public function index()
     {
-        $organisations=Organisation::where('user_id',auth()->id())->latest()->get();
-        return view('dashboard.organisations.index',compact('organisations'));
+        $organisations = Organisation::where('user_id', auth()->id())->latest()->get();
+        return view('dashboard.organisations.index', compact('organisations'));
     }
 
     /**
@@ -30,10 +30,10 @@ class OrganisationController extends Controller
      */
     public function create()
     {
-        $organisation=new Organisation();
+        $organisation = new Organisation();
         // dd($organisation);
-   
-        return view('dashboard.organisations.create',compact('organisation'));
+
+        return view('dashboard.organisations.create', compact('organisation'));
     }
 
     /**
@@ -46,11 +46,11 @@ class OrganisationController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            'name'=>'required',
-            'user_owner_id'=>'required',
-            'address'=>'nullable',
-            'label'=>'required',
-        
+            'name' => 'required',
+            'user_owner_id' => 'required',
+            'address' => 'nullable',
+            'label' => 'required',
+
         ]);
         // dd($request->meta);
         $organisation = Organisation::create([
@@ -58,11 +58,11 @@ class OrganisationController extends Controller
             'user_owner_id' => $request->user_owner_id,
             'address' => $request->address,
             'external_id' => Uuid::uuid4()->toString(),
-            'user_id'=>auth()->id(),
-            'label'=>$request->label,
+            'user_id' => auth()->id(),
+            'label' => $request->label,
         ]);
         $organisation->createMetas($request->meta);
-       return redirect()->route('organisations.index')->with('success','Organisation Create Successfully');
+        return redirect()->route('organisations.index')->with('success', 'Organisation Create Successfully');
     }
 
     /**
@@ -73,9 +73,9 @@ class OrganisationController extends Controller
      */
     public function show(Organisation $organisation)
     {
-        $persons=Client::pluck('name','id')->toArray();
-        $labels=Label::pluck('name','id')->toArray();
-        return view('dashboard.organisations.show',compact('organisation','persons','labels'));
+        $persons = Client::pluck('name', 'id')->toArray();
+        $labels = Label::pluck('name', 'id')->toArray();
+        return view('dashboard.organisations.show', compact('organisation', 'persons', 'labels'));
     }
 
     /**
@@ -87,7 +87,7 @@ class OrganisationController extends Controller
     public function edit(Organisation $organisation)
     {
 
-        return view('dashboard.organisations.edit',compact('organisation'));
+        return view('dashboard.organisations.edit', compact('organisation'));
     }
 
     /**
@@ -111,7 +111,7 @@ class OrganisationController extends Controller
             'address' => $request->has('address') ? $request->address : $organisation->address,
             'label' => $request->has('label') ? $request->label : $organisation->label,
         ]);
-        if($request->meta){
+        if ($request->meta) {
 
             $organisation->createMetas($request->meta);
         }
@@ -126,23 +126,23 @@ class OrganisationController extends Controller
      */
     public function destroy(Organisation $organisation)
     {
-    
-    
-        $organisation->delete();
-       
-        return redirect()->route('organisations.index')->with('success','Organisation Delete Successfully');
 
+
+        $organisation->delete();
+
+        return redirect()->route('organisations.index')->with('success', 'Organisation Delete Successfully');
     }
-    function organisationAjax(Request $request) {
+    function organisationAjax(Request $request)
+    {
         $request->validate([
-            'name'=>'required'
+            'name' => 'required'
         ]);
         $organisation = Organisation::create([
             'name' => $request->name,
             'user_owner_id' => $request->user_owner_id,
             'external_id' => Uuid::uuid4()->toString(),
-            'user_id'=>auth()->id(),
-            'label'=>$request->label,
+            'user_id' => auth()->id(),
+            'label' => $request->label,
         ]);
         $organisations = Organisation::all();
         return response()->json([
@@ -152,10 +152,35 @@ class OrganisationController extends Controller
             'organisations' => $organisations, // Include the updated list of organisations
         ]);
     }
-    public function socialUpdate(Request $request,Organisation $organisation) {
+    public function socialUpdate(Request $request, Organisation $organisation)
+    {
 
         $organisation->createMetas($request->meta);
-        return back()->with('success','Social url updated Successfully');
-
+        return back()->with('success', 'Social url updated Successfully');
+    }
+    public function personStore(Request $request, Organisation $organisation)
+    {
+        // dd($request->all());
+        if ($request->person_id == !null) {
+            $person = Person::find($request->person_id);
+            $person->update([
+                'first_name' => $request->f_name,
+                'last_name' => $request->l_name,
+                'gender' => $request->gender,
+            ]);
+            return back()->with('success', 'Persone update Successfully');
+        } else {
+            Person::create([
+                'first_name' => $request->f_name,
+                'last_name' => $request->l_name,
+                'gender' => $request->gender,
+                'organisation_id' => $organisation->id,
+                'user_created_id' => auth()->id(),
+    
+            ]);
+            return back()->with('success', 'Persone Add Successfully');
+        }
+     
+       
     }
 }

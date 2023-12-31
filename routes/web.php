@@ -122,6 +122,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function() {
 
     Route::resource('organisations', OrganisationController::class);
     Route::post('company/social/update/{organisation}',[OrganisationController::class,'socialUpdate'])->name('social.update');
+    Route::post('person/store/{organisation}',[OrganisationController::class,'personStore'])->name('person.store');
     Route::post('organisation/create',[OrganisationController::class,'organisationAjax'])->name('organisation.ajax');
 
     Route::resource('categories', CategoryController::class);
