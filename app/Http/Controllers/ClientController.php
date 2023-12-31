@@ -107,20 +107,24 @@ class ClientController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
-            'user_owner_id' => 'required',
+            // 'user_owner_id' => 'required',
             // 'label'=>'required',
         ]);
         $client=Client::find($id);
         $client->update([
-            'name' => $request->name,
-            'user_owner_id' => $request->user_owner_id,
-            'organisation_id' => $request->organisation_id,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'label' => $request->label,
+            'name' => $request->has('name') ? $request->name : $client->name,
+            'user_owner_id' => $request->has('user_owner_id') ? $request->user_owner_id : $client->user_owner_id,
+            'organisation_id' => $request->has('organisation_id') ? $request->organisation_id : $client->organisation_id,
+            'email' => $request->has('email') ? $request->email : $client->email,
+            'phone' => $request->has('phone') ? $request->phone : $client->phone,
+            'label' => $request->has('label') ? $request->phone : $client->label,
         ]);
-        $client->createMetas($request->meta);
-       return redirect()->route('clients.index')->with('success','Client Update Successfully');
+        if($request->has('meta')){
+
+            $client->createMetas($request->meta);
+        }
+        return response()->json(['success' => true, 'message' => 'Lead updated successfully']);
+    //    return redirect()->route('clients.index')->with('success','Client Update Successfully');
     }
 
     /**

@@ -26,9 +26,9 @@
                     <div class="card-body">
                         <h6 class="text-uppercase">DETAILS</h6>
                         <hr />
-                        <p ><i class="far fa-building"></i>
-
-                                <span class="ms-2">{{ $organisation->name }}</span>
+                        <p >
+                            <i class="far fa-building"></i>
+                            <span class="ms-2">{{ $organisation->name }}</span>
 
                         </p>
                         <p>

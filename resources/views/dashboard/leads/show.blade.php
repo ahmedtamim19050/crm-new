@@ -263,7 +263,8 @@
         </div>
     </div>
 @endsection
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+@push('scripts')
 <script>
     function myFunction(element, inputId, buttonId) {
         $('.edit-input').css('border', '0');
@@ -302,6 +303,7 @@
         });
     }
 </script>
+@endpush
 
 
 {{-- <div class="col-xl-7" style="height: 100vh; ">

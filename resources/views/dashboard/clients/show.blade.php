@@ -1,5 +1,18 @@
 @extends('layouts.default')
+<style>
+    .edit-input {
+        padding: 5px 10px;
+    }
 
+    select {
+        -webkit-appearance: none;
+        /* width: 50px; */
+    }
+
+    textarea {
+        resize: none !important;
+    }
+</style>
 @section('content')
     <div class="container-fluid">
         <div class="row page-titles mx-0">
@@ -20,30 +33,106 @@
         <div class="row">
             <div class="col-xl-5">
                 <div class="card">
-                 
+
                     <div class="card-body">
                         <h6 class="text-uppercase">DETAILS</h6>
                         <hr />
-                        <p ><span style="font-weight: 700">First Name :</span> 
+                        <div class="d-flex ">
+                            <span style="font-weight: 700" class="me-3 mt-2">First Name :</span>
 
-                                <span >{{ $client->name }}</span></td>
+                            <form class="updateForm" action="{{ route('clients.update', $client) }}" method="post"
+                                class="">
+                                @csrf
+                                @method('PUT')
+                                {{-- <span class="fa fa-phone" aria-hidden="true"></span> --}}
+                                <div class="d-inline" onmouseover="myFunction(this, 'name', 'editButtonName')"
+                                    onmouseout="hideEditLink(this, 'name', 'editButtonName')">
 
-                        </p>
-                        <p ><span style="font-weight: 700">Last Name :</span> 
+                                    <input type="text" class="edit-input" style="border: 0" name="name" id="name"
+                                        value="{{ $client->name }}">
+                                    <button type="button" onclick="updateDescription()"
+                                        class="btn btn-primary editBtn btn-sm" id="editButtonName" style="display: none"><i
+                                            class="fas fa-pencil-alt"></i></button>
+                                </div>
+                            </form>
 
-                                <span >{{ $client->l_name }}</span></td>
+                        </div>
+                        <div class="d-flex">
+                            <span style="font-weight: 700" class="me-3 mt-2">Last Name :</span>
 
-                        </p>
-                        <h6 class="text-uppercase">Owner</h6>
+                            {{-- <span >{{ $client->l_name }}</span></td> --}}
+
+                            <form class="updateForm" action="{{ route('clients.update', $client) }}" method="post"
+                                class="">
+                                @csrf
+                                @method('PUT')
+                                {{-- <span class="fa fa-phone" aria-hidden="true"></span> --}}
+                                <div class="d-inline" onmouseover="myFunction(this, 'Lname', 'editButtonLName')"
+                                    onmouseout="hideEditLink(this, 'Lname', 'editButtonLName')">
+
+                                    <input type="text" class="edit-input" style="border: 0" name="meta[l_name]"
+                                        id="Lname" value="{{ $client->l_name }}">
+                                    <button type="button" onclick="updateDescription()"
+                                        class="btn btn-primary editBtn btn-sm" id="editButtonLName" style="display: none"><i
+                                            class="fas fa-pencil-alt"></i></button>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="d-flex">
+                            <span style="font-weight: 700" class="me-3 mt-2">Email :</span>
+
+                            {{-- <span >{{ $client->l_name }}</span></td> --}}
+
+                            <form class="updateForm" action="{{ route('clients.update', $client) }}" method="post"
+                                class="">
+                                @csrf
+                                @method('PUT')
+                                {{-- <span class="fa fa-phone" aria-hidden="true"></span> --}}
+                                <div class="" onmouseover="myFunction(this, 'email', 'editButtonEmail')"
+                                    onmouseout="hideEditLink(this, 'email', 'editButtonEmail')">
+
+                                    <input type="text" class="edit-input" style="border: 0" name="email"
+                                        id="email" value="{{ $client->email }}">
+                                    <button type="button" onclick="updateDescription()"
+                                        class="btn btn-primary editBtn btn-sm" id="editButtonEmail" style="display: none"><i
+                                            class="fas fa-pencil-alt"></i></button>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="d-flex">
+                            <span style="font-weight: 700" class="me-3 mt-2">Phone :</span>
+
+                            {{-- <span >{{ $client->l_name }}</span></td> --}}
+
+                            <form class="updateForm" action="{{ route('clients.update', $client) }}" method="post"
+                                class="">
+                                @csrf
+                                @method('PUT')
+                                {{-- <span class="fa fa-phone" aria-hidden="true"></span> --}}
+                                <div class="" onmouseover="myFunction(this, 'phone', 'editButtonPhone')"
+                                    onmouseout="hideEditLink(this, 'phone', 'editButtonPhone')">
+
+                                    <input type="text" class="edit-input" style="border: 0" name="phone"
+                                        id="phone" value="{{ $client->phone }}">
+                                    <button type="button" onclick="updateDescription()"
+                                        class="btn btn-primary editBtn btn-sm" id="editButtonPhone" style="display: none"><i
+                                            class="fas fa-pencil-alt"></i></button>
+                                </div>
+                            </form>
+
+                        </div>
+                        {{-- <h6 class="text-uppercase mt-3">Owner</h6>
                         <hr />
- 
+
                         <p>
-                            <span style="font-weight: 700">Name</span> 
+                            <span style="font-weight: 700">Name</span>
                             @if ($client->ownerUser)
                                 <a href="">{{ $client->ownerUser->name }}</a>
                             @endif
-                        </p>
-   
+                        </p> --}}
+
                     </div>
                 </div>
             </div>
@@ -83,14 +172,15 @@
                                 <div class="tab-pane fade show active" id="activity" role="tabpanel">
                                     <div class="pt-4">
                                         @foreach ($client->activities as $activity)
-                                            
-                                        @include('partials.activity',['activity'=>$activity])
+                                            @include('partials.activity', ['activity' => $activity])
                                         @endforeach
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="notes1">
                                     <div class="pt-4">
-                                        <form action="{{route('note.create',['model' => class_basename(get_class($client)), 'id' => $client->id])}}" method="post">
+                                        <form
+                                            action="{{ route('note.create', ['model' => class_basename(get_class($client)), 'id' => $client->id]) }}"
+                                            method="post">
                                             @csrf
                                             @include('partials.form.textarea', [
                                                 'name' => 'note',
@@ -104,14 +194,15 @@
                                             <button type="submit" class="btn btn-primary">Save</button>
                                         </form>
                                         @foreach ($client->notes as $note)
-                                            
-                                        @include('partials.note-content',['note'=>$note,])
+                                            @include('partials.note-content', ['note' => $note])
                                         @endforeach
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="tasks">
                                     <div class="pt-4">
-                                        <form action="{{route('task.create',['model' => class_basename(get_class($client)), 'id' => $client->id])}}" method="post">
+                                        <form
+                                            action="{{ route('task.create', ['model' => class_basename(get_class($client)), 'id' => $client->id]) }}"
+                                            method="post">
                                             @csrf
                                             @include('partials.form.text', [
                                                 'name' => 'name',
@@ -130,65 +221,67 @@
                                         </form>
 
                                         @foreach ($client->tasks as $task)
-                                            
-                                        @include('partials.task-content',['task'=>$task,])
+                                            @include('partials.task-content', ['task' => $task])
                                         @endforeach
-                           
+
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="calls">
                                     <div class="pt-4">
-                                        <form action="{{route('calls.create',['model' => class_basename(get_class($client)), 'id' => $client->id])}}" method="post">
+                                        <form
+                                            action="{{ route('calls.create', ['model' => class_basename(get_class($client)), 'id' => $client->id]) }}"
+                                            method="post">
                                             @csrf
                                             @include('partials.activities')
                                             <button type="submit" class="btn btn-primary">Save</button>
                                         </form>
                                         @foreach ($client->calls as $call)
-                                            
-                                        @include('partials.call-content',['call'=>$call])
+                                            @include('partials.call-content', ['call' => $call])
                                         @endforeach
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="meeting">
                                     <div class="pt-4">
-                                        <form action="{{route('meeting.create',['model' => class_basename(get_class($client)), 'id' => $client->id])}}" method="post">
+                                        <form
+                                            action="{{ route('meeting.create', ['model' => class_basename(get_class($client)), 'id' => $client->id]) }}"
+                                            method="post">
                                             @csrf
                                             @include('partials.activities')
                                             <button type="submit" class="btn btn-primary">Save</button>
                                         </form>
                                         @foreach ($client->meetings as $call)
-                                            
-                                        @include('partials.call-content',['call'=>$call])
+                                            @include('partials.call-content', ['call' => $call])
                                         @endforeach
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="lunches">
                                     <div class="pt-4">
-                                        <form action="{{route('lunches.create',['model' => class_basename(get_class($client)), 'id' => $client->id])}}" method="post">
+                                        <form
+                                            action="{{ route('lunches.create', ['model' => class_basename(get_class($client)), 'id' => $client->id]) }}"
+                                            method="post">
                                             @csrf
                                             @include('partials.activities')
                                             <button type="submit" class="btn btn-primary">Save</button>
                                             @foreach ($client->lunches as $call)
-                                            
-                                            @include('partials.call-content',['call'=>$call])
+                                                @include('partials.call-content', ['call' => $call])
                                             @endforeach
                                         </form>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="files">
                                     <div class="pt-4">
-                                        <form action="{{route('file.create',['model' => class_basename(get_class($client)), 'id' => $client->id])}}" method="post" enctype="multipart/form-data">
+                                        <form
+                                            action="{{ route('file.create', ['model' => class_basename(get_class($client)), 'id' => $client->id]) }}"
+                                            method="post" enctype="multipart/form-data">
                                             @csrf
                                             @include('partials.form.file', [
                                                 'name' => 'file',
                                                 'label' => 'File',
-                                           
                                             ])
-                                         <button type="submit" class="btn btn-primary">Save</button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
                                         </form>
                                         @foreach ($client->files as $file)
-                                            
-                                        @include('partials.file-content',['file'=>$file])
+                                            @include('partials.file-content', ['file' => $file])
                                         @endforeach
                                     </div>
                                 </div>
@@ -200,7 +293,49 @@
 
 
         </div>
-	</div>
-       
+    </div>
+
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        function myFunction(element, inputId, buttonId) {
+            $('.edit-input').css('border', '0');
+            $('[id^="editButton"]').hide();
+
+            $('#' + inputId).css('border', '1px solid #888');
+            $('#' + buttonId).show();
+
+
+        }
+
+        function hideEditLink(element, inputId, buttonId) {
+
+            $('#' + inputId).css('border', '0');
+            $('#' + buttonId).hide();
+
+
+        }
+
+        function updateDescription() {
+            var formData = $('.updateForm').serialize();
+            // console.log(formData);
+            $.ajax({
+                url: $('.updateForm').attr('action'),
+                type: 'PUT',
+                data: formData,
+                success: function(response) {
+                    console.log(response)
+                    $('.edit-input').css('border', '0');
+                    $('.editBtn').hide();
+                    toastr.success('', 'Client update successfully');
+                },
+                error: function(error) {
+                    // Handle error, if needed
+                    console.error(error);
+                }
+            });
+        }
+    </script>
+@endpush
