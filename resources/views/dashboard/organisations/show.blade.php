@@ -180,7 +180,7 @@
                         <div class="d-flex justify-content-between mt-5 align-items-center">
                             <h6 class="text-uppercase ">Persons </h6>
                             <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="modal"
-                                data-bs-target="#personModal"><i class="fas fa-plus"></i></button>
+                                data-bs-target="#personModal"><i class="fas fa-user-plus"></i></button>
                         </div>
                         <hr />
                         @if ($organisation->peoples->count() > 0)
@@ -207,8 +207,7 @@
                                                     data-id="{{ $people->id }}"
                                                     
                                                     type="button"
-                                                    data-bs-toggle="modal" data-bs-target="#personModal"><i
-                                                        class="fas fa-pencil-alt"></i>
+                                                    data-bs-toggle="modal" data-bs-target="#personModal"><i class="fas fa-user-edit"></i>
                                                 </button>
                                             </td>
 
