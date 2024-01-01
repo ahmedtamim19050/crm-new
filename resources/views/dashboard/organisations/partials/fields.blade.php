@@ -14,12 +14,12 @@
                 'options' => App\Helper\SelectOptions::labels(),
                 'value' => old('labels', isset($organisation) ? $organisation->label : null),
             ])
-            @include('partials.form.select', [
+            {{-- @include('partials.form.select', [
                 'name' => 'user_owner_id',
                 'label' => 'owner',
                 'options' => App\Helper\SelectOptions::users(false),
                 'value' => old('user_owner_id', $organisation->user_owner_id ?? auth()->user()->id),
-            ])
+            ]) --}}
             {{-- @include('partials.form.textarea', [
                 'name' => 'address',
                 'label' => 'Address',
@@ -29,7 +29,7 @@
             @include('partials.form.text', [
                 'name' => 'meta[street]',
                 'label' => 'Street address',
-                'value' => old('meta', isset($organisation) ? $organisation->street : null),
+                'value' => old('street', isset($organisation) ? $organisation->street : null),
             ])
             <div class="row">
                 <div class="col-sm-12">
