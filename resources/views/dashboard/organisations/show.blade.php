@@ -13,6 +13,10 @@
         resize: none !important;
     }
 </style>
+@php
+    $socials = json_decode($organisation->social);
+
+@endphp
 @section('content')
     <div class="container-fluid mx-2">
 
@@ -203,11 +207,9 @@
                                                 <button class="btn btn-secondary btn-sm"
                                                     data-fname="{{ $people->first_name }}"
                                                     data-lname="{{ $people->last_name }}"
-                                                    data-gender="{{ $people->gender }}"
-                                                    data-id="{{ $people->id }}"
-                                                    
-                                                    type="button"
-                                                    data-bs-toggle="modal" data-bs-target="#personModal"><i class="fas fa-user-edit"></i>
+                                                    data-gender="{{ $people->gender }}" data-id="{{ $people->id }}"
+                                                    type="button" data-bs-toggle="modal"
+                                                    data-bs-target="#personModal"><i class="fas fa-user-edit"></i>
                                                 </button>
                                             </td>
 
@@ -273,15 +275,22 @@
                             </button>
                         </p>
 
-                        {{-- <h6 class="text-uppercase">Owner</h6>
+                        <div class="d-flex justify-content-between mt-5 align-items-center">
+                            <h6 class="text-uppercase ">Other Social URL </h6>
+                            <button class="btn btn-secondary btn-sm" data-socials="{{ json_encode($socials) }}"
+                                type="button" data-id="{{$organisation->id}}" data-bs-toggle="modal" data-bs-target="#otherSocial"><i
+                                    class="fas fa-pencil-alt"></i></button>
+                        </div>
                         <hr />
- 
-                        <p>
-                            <span style="font-weight: 700">Name</span> 
-                            @if ($organisation->ownerUser)
-                                <a href="">{{ $organisation->ownerUser->name }}</a>
-                            @endif
-                        </p> --}}
+                        @if($socials)
+                        @foreach ($socials as $social)
+                            <p>
+                                <span style="font-weight: 700">{{ $social->name }} :</span>
+                                <a class="text-decoration-underline text-primary" href="">{{ $social->url }}</a>
+
+                            </p>
+                        @endforeach
+                        @endif
 
                     </div>
                 </div>
@@ -467,6 +476,20 @@
             </div>
         </div>
     </div>
+    {{-- Other social modal --}}
+    <div class="modal fade" id="otherSocial">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Other Socail url Update</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body social-body">
+                  
+                </div> 
+            </div>
+        </div>
+    </div>
     {{-- person add modal --}}
     <div class="modal fade" id="personModal">
         <div class="modal-dialog" role="document">
@@ -581,6 +604,31 @@
                 $('#socialInput').attr('name', name);
             });
         });
+        $(document).ready(function() {
+            $('#otherSocial').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget);
+                var socials = button.data('socials');
+                var organisationId = button.data('id');
+
+                var modal = $(this);
+                $.ajax({
+                    url: '/dashboard/fetchSocialData/'+organisationId,
+                    type: 'GET',
+                    data: {
+                        socials: socials
+                    },
+                    contentType: 'application/json',
+                    success: function(data) {
+                        // console.log(data);
+                        modal.find('.social-body').html(data);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching social data:', error);
+                    }
+                });
+
+            });
+        });
 
         $(document).ready(function() {
             $('#personModal').on('show.bs.modal', function(event) {
@@ -596,16 +644,18 @@
                 modal.find('#input_f_name').val(fname);
                 modal.find('#input_l_name').val(lname);
                 modal.find('#personId').val(id);
-                if(gender=='male'){
-                   
-            
-                    modal.find('#male').prop('checked',true);
+                if (gender == 'male') {
+
+
+                    modal.find('#male').prop('checked', true);
                 }
-                if(gender=='male'){
-                    modal.find('#female').prop('checked',true);
+                if (gender == 'male') {
+                    modal.find('#female').prop('checked', true);
                 }
-             
+
             });
         });
     </script>
+
+    
 @endpush

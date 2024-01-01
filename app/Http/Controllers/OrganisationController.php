@@ -183,4 +183,16 @@ class OrganisationController extends Controller
      
        
     }
+    public function fetchSocialData(Request $request,Organisation $organisation)
+    {
+        $socialData = $request->input('socials');
+        // $socialData= json_decode($socials);
+        // dd($socials[0]);
+
+        return view('dashboard.organisations.partials.other_social_modal',compact('socialData','organisation'));
+    }
+    public function fetchSocialDataUpdate(Request $request, Organisation $organisation) {
+        $organisation->createMetas($request->meta);
+        return back()->with('success', 'Social url updated Successfully');
+    }
 }

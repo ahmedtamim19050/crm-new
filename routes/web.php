@@ -124,6 +124,8 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function() {
     Route::post('company/social/update/{organisation}',[OrganisationController::class,'socialUpdate'])->name('social.update');
     Route::post('person/store/{organisation}',[OrganisationController::class,'personStore'])->name('person.store');
     Route::post('organisation/create',[OrganisationController::class,'organisationAjax'])->name('organisation.ajax');
+    Route::get('/fetchSocialData/{organisation}', [OrganisationController::class, 'fetchSocialData']);
+    Route::post('/fetchSocialData/update/{organisation}', [OrganisationController::class, 'fetchSocialDataUpdate'])->name('other.social.url.update');
 
     Route::resource('categories', CategoryController::class);
     Route::get('deals-kanvan',[DealsController::class,'kanvan'])->name('kanvan');

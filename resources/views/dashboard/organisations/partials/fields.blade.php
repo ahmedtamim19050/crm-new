@@ -1,4 +1,4 @@
-{{-- @dd( $organisation); --}}
+{{-- @dd( $organisation->post_code); --}}
 <div class="card p-4">
     <div class="row">
         <div class="col-sm-6 border-right">
@@ -57,6 +57,17 @@
                             isset($organisation) ? $organisation->company_email : null),
                     ])
                 </div>
+             
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+
+
+            {{-- <h6 class="text-uppercase"><span class="fa fa-user" aria-hidden="true"></span> Company Info</h6>
+            <hr />
+            <span class="autocomplete-person"> --}}
+
                 <div class="col-sm-12">
                     @include('partials.form.text', [
                         'name' => 'meta[company_phone]',
@@ -66,17 +77,6 @@
                             isset($organisation) ? $organisation->company_phone : null),
                     ])
                 </div>
-            </div>
-
-        </div>
-        <div class="col-sm-6">
-
-
-            <h6 class="text-uppercase"><span class="fa fa-user" aria-hidden="true"></span> Company Info</h6>
-            <hr />
-            <span class="autocomplete-person">
-
-
 
                 <div class="row">
                     <div class="col-sm-12">
@@ -122,17 +122,8 @@
                             'value' => old('niche', isset($organisation) ? $organisation->niche : null),
                         ])
                     </div>
-                    {{-- <div class="col-sm-12 d-flex justify-content-between">
-                        <p class="text-primary">Add other social url</p>
-                        <button type="button" class="btn btn-secondary btn-sm py-2" id="addColumnButton"><i
-                                class="fas fa-plus"></i></button>
-                    </div>
-                    <div class="col-12 clientRow" id="">
 
 
-                       
-
-                    </div> --}}
 
 
                 </div>
@@ -140,29 +131,45 @@
 
 
 
+
+        </div>
+        <div class="col-sm-12 d-flex justify-content-between">
+            <p class="text-primary">Add other social url</p>
+            <button type="button" class="btn btn-secondary btn-sm py-2" id="addColumnButton"><i
+                    class="fas fa-plus"></i></button>
+        </div>
+        <div class="row clientRow" id="">
+    
+          
+
         </div>
     </div>
 
 </div>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-    var columnCounter = 1;
+    var columnCounter = 0;
 
     $('#addColumnButton').on('click', function() {
         columnCounter += 1;
 
         $('.clientRow').each(function() {
             for (var i = 0; i < 1; i++) {
-                $(this).append(` @include('partials.form.text', [
-                            'name' => 'meta[niche]',
-                            'label' => 'Social name',
-                        ])
-
+                $(this).append(`
+                <div class="col-md-6">
+                @include('partials.form.text', [
+                    'name' => 'meta[social][${columnCounter-1}][name]',
+                    'label' => 'Social name',
+                ])
+                </div>
+                <div class="col-md-6">
                         @include('partials.form.text', [
-                            'name' => 'meta[niche]',
+                            'name' => 'meta[social][${columnCounter-1}][url]',
                             'label' => 'Social Url',
                         ])
-`);
+                    </div>
+                        `);
+
             }
         });
     });
