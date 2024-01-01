@@ -6,13 +6,13 @@
             @include('partials.form.text', [
                 'name' => 'name',
                 'label' => 'Name',
-                'value' => old('client_name', $organisation->name ?? null),
+
             ])
             @include('partials.form.select', [
                 'name' => 'label',
                 'label' => 'Label',
                 'options' => App\Helper\SelectOptions::labels(),
-                'value' => old('labels', isset($organisation) ? $organisation->label : null),
+   
             ])
             {{-- @include('partials.form.select', [
                 'name' => 'user_owner_id',
@@ -29,21 +29,21 @@
             @include('partials.form.text', [
                 'name' => 'meta[street]',
                 'label' => 'Street address',
-                'value' => old('street', isset($organisation) ? $organisation->street : null),
+      
             ])
             <div class="row">
                 <div class="col-sm-12">
                     @include('partials.form.text', [
                         'name' => 'meta[place]',
                         'label' => 'Place',
-                        'value' => old('place', isset($organisation) ? $organisation->place : null),
+                       
                     ])
                 </div>
                 <div class="col-sm-12">
                     @include('partials.form.text', [
                         'name' => 'meta[post_code]',
                         'label' => 'Zip',
-                        'value' => old('post_code', isset($organisation) ? $organisation->post_code : null),
+                   
                     ])
                 </div>
             </div>
@@ -52,9 +52,7 @@
                     @include('partials.form.text', [
                         'name' => 'meta[company_email]',
                         'label' => 'Email',
-                        'value' => old(
-                            'company_email',
-                            isset($organisation) ? $organisation->company_email : null),
+              
                     ])
                 </div>
              
@@ -72,9 +70,7 @@
                     @include('partials.form.text', [
                         'name' => 'meta[company_phone]',
                         'label' => 'Phone',
-                        'value' => old(
-                            'company_phone',
-                            isset($organisation) ? $organisation->company_phone : null),
+                   
                     ])
                 </div>
 
@@ -83,43 +79,35 @@
                         @include('partials.form.text', [
                             'name' => 'meta[company_twitter]',
                             'label' => 'X/Twitter Profile',
-                            'value' => old(
-                                'company_twitter',
-                                isset($organisation) ? $organisation->company_twitter : null),
+                
                         ])
                     </div>
                     <div class="col-sm-12">
                         @include('partials.form.text', [
                             'name' => 'meta[company_tiktok]',
                             'label' => 'Tiktok Profile',
-                            'value' => old(
-                                'company_tiktok',
-                                isset($organisation) ? $organisation->company_tiktok : null),
+                        
                         ])
                     </div>
                     <div class="col-sm-12">
                         @include('partials.form.text', [
                             'name' => 'meta[company_youtube]',
                             'label' => 'Youtube profile',
-                            'value' => old(
-                                'company_youtube',
-                                isset($organisation) ? $organisation->company_youtube : null),
+           
                         ])
                     </div>
                     <div class="col-sm-12">
                         @include('partials.form.text', [
                             'name' => 'meta[company_fb]',
                             'label' => 'Facebook profile',
-                            'value' => old(
-                                'company_youtube',
-                                isset($organisation) ? $organisation->company_fb : null),
+                 
                         ])
                     </div>
                     <div class="col-sm-12">
                         @include('partials.form.text', [
                             'name' => 'meta[niche]',
                             'label' => 'Niche',
-                            'value' => old('niche', isset($organisation) ? $organisation->niche : null),
+
                         ])
                     </div>
 
