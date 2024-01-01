@@ -47,7 +47,7 @@ class OrganisationController extends Controller
         // dd($request->all());
         $request->validate([
             'name' => 'required',
-            'user_owner_id' => 'required',
+            // 'user_owner_id' => 'required',
             'address' => 'nullable',
             'label' => 'required',
 
