@@ -84,7 +84,10 @@
                 </ol>
             </div>
             <div class="col-md-3 mt-3">
-                <a href="{{ route('deals.create') }}" class="btn btn-primary">Create a Deal</a>
+                <div class="d-flex border-top">
+                    <a href="javascript:void(0);" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addContactModal" class="text-dark py-3">+Add Deal</a>
+                </div>
+            
             </div>
            
         </div>
@@ -119,7 +122,12 @@
                                         <tr>
                                             <td><strong>{{ $loop->index + 1 }}</strong></td>
                                             {{-- <td>{{ $deal->created_at->diffForHumans() }}</td> --}}
-                                            <td>{{ $deal->title }}</td>
+                                            <td>
+                                                <a href="{{ route('deals.show', $deal->id) }}" class="text-primary text-decoration-underline">
+                                                
+                                                    {{ $deal->title }}
+                                                </a>
+                                            </td>
                                             <td>
 
                                                 <span class="badge light badge-success text-white" style="background-color:{{$deal->labelName->color ?? null}}">{{ $deal->labelName->name  ?? null}}</span>
@@ -132,7 +140,8 @@
                                             {{-- <td>{{ $deal->person->name ??  null }}</td> --}}
                                             <td>{{ $deal->ownerUser->name ?? null }}</td>
                                             <td>
-                                                <div class="dropdown">
+                                                <x-delete class="btn btn-danger btn-sm" :route="route('deals.destroy', $deal->id)" />
+                                                {{-- <div class="dropdown">
                                                     <button type="button" class="btn btn-success light sharp"
                                                         data-bs-toggle="dropdown">
                                                         <svg width="20px" height="20px" viewBox="0 0 24 24"
@@ -154,9 +163,9 @@
                                                             href="{{ route('deals.show', $deal->id) }}">Show</a>
                                                         <a class="dropdown-item"
                                                             href="{{ route('deals.edit', $deal->id) }}">Edit</a>
-                                                        <x-delete class="dropdown-item" :route="route('deals.destroy', $deal->id)" />
+                                                      
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -170,4 +179,356 @@
 
         </div>
     </div>
+
+    {{-- modals --}}
+    <div class="modal fade " id="addContactModal">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Deal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form action="{{ route('deals.store') }}" method="post">
+                        @csrf
+                        <div class="row">
+                            <div class="col-sm-6 border-right">
+
+
+                                <div class="d-flex align-items-center">
+                                    <div class="col-md-10">
+                                        @include('partials.form.select', [
+                                            'name' => 'client_id',
+                                            'label' => 'Customer',
+                                            'options' => $clients,
+                                            'value' => old('client_id', isset($lead) ? $lead->client->id : null),
+                                        ])
+                                    </div>
+                                    <div class="col-md-2 ms-2 mt-2">
+                                        <button type="button" class="btn btn-dark btn-sm showmodal"
+                                            data-show-modal="clientModal">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="col-md-10">
+
+                                        @include('partials.form.select', [
+                                            'name' => 'organisation_id',
+                                            'label' => 'Organisation',
+                                            'options' => $organisations,
+                                            'value' => old(
+                                                'organisation_id',
+                                                isset($deal) ? $deal->organisation->id : null),
+                                        ])
+                                    </div>
+                                    <div class="col-md-2 ms-2 mt-2">
+                                        <button type="button" class="btn btn-dark btn-sm showmodal"
+                                            data-show-modal="infoModal">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                @include('partials.form.text', [
+                                    'name' => 'title',
+                                    'label' => 'Title',
+                                    'value' => old('title', $deal->title ?? null),
+                                ])
+                                @include('partials.form.textarea', [
+                                    'name' => 'description',
+                                    'label' => 'Description',
+                                    'rows' => 5,
+                                    'value' => old('description', $deal->description ?? null),
+                                ])
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        @include('partials.form.text', [
+                                            'name' => 'amount',
+                                            'label' => 'Value',
+                                            'value' => old('amount', $deal->amount ?? null),
+                                        ])
+                                    </div>
+                                    <div class="col-sm-6">
+                                        @include('partials.form.select', [
+                                            'name' => 'currency',
+                                            'label' => 'Currency',
+                                            'options' => App\Helper\SelectOptions::currencies(),
+                                            'value' => old('currency', $deal->currency ?? 'USD'),
+                                        ])
+                                    </div>
+                                </div>
+                                @include('partials.form.select', [
+                                    'name' => 'label',
+                                    'label' => 'Label',
+                                    'options' => App\Helper\SelectOptions::labels(),
+                                    'value' => old('labels', isset($deal) ? $deal->label : null),
+                                ])
+
+                                @include('partials.form.select', [
+                                    'name' => 'user_owner_id',
+                                    'label' => 'owner',
+                                    'options' => App\Helper\SelectOptions::users(false),
+                                    'value' => old('user_owner_id', $deal->user_owner_id ?? auth()->user()->id),
+                                ])
+                            </div>
+                            <div class="col-sm-6">
+                                <h6 class="text-uppercase"><span class="fa fa-user" aria-hidden="true"></span> Person</h6>
+                                <hr />
+                                <span class="autocomplete-person">
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            @include('partials.form.text', [
+                                                'name' => 'email',
+                                                'label' => 'Email',
+                                                'value' => old('email', $deal->email ?? null),
+                                                //  'attributes' => [
+                                                //      'disabled' => 'disabled'
+                                                //  ]
+                                            ])
+                                        </div>
+                                        <div class="col-sm-6">
+                                            @include('partials.form.text', [
+                                                'name' => 'phone',
+                                                'label' => 'Phone',
+                                                'value' => old('phone', $deal->phone ?? null),
+                                                //  'attributes' => [
+                                                //      'disabled' => 'disabled'
+                                                //  ]
+                                            ])
+                                        </div>
+
+                                    </div>
+                                </span>
+                                <h6 class="text-uppercase mt-4"><span class="fa fa-building" aria-hidden="true"></span>
+                                    Organization </h6>
+                                <hr />
+                                <span class="autocomplete-organisation">
+
+                                    @include('partials.form.text', [
+                                        'name' => 'address',
+                                        'label' => 'Address',
+                                        'value' => old('address', $deal->address ?? null),
+                                    ])
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            @include('partials.form.text', [
+                                                'name' => 'city',
+                                                'label' => 'City',
+                                                'value' => old('city', $deal->city ?? null),
+                                            ])
+                                        </div>
+                                        <div class="col-sm-6">
+                                            @include('partials.form.text', [
+                                                'name' => 'state',
+                                                'label' => 'state',
+                                                'value' => old('state', $deal->state ?? null),
+                                            ])
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            @include('partials.form.text', [
+                                                'name' => 'code',
+                                                'label' => 'Post code',
+                                                'value' => old('code', $deal->post_code ?? null),
+                                            ])
+                                        </div>
+                                        <div class="col-sm-6">
+                                            @include('partials.form.select', [
+                                                'name' => 'country',
+                                                'label' => 'Country',
+                                                'options' => App\Helper\SelectOptions::countries(),
+                                                'value' => old('country', $deal->country ?? 'United States'),
+                                            ])
+                                        </div>
+                                    </div>
+                                </span>
+                            </div>
+                            <input type="hidden" name="category_id" id="categoryInput" value="">
+                            <button class="btn btn-primary col-md-3 ms-3" type="submit">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal mt-5 ms-5" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true"
+        data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoModalLabel">Add Organisation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('organisation.ajax') }}" id="organizationForm">
+                        @csrf
+                        @include('partials.form.text', [
+                            'name' => 'name',
+                            'label' => 'Name',
+                            'value' => old('client_name', $organisation->name ?? null),
+                            'attributes' => [
+                                'required' => true,
+                            ],
+                        ])
+                        @include('partials.form.select', [
+                            'name' => 'label',
+                            'label' => 'Label',
+                            'options' => App\Helper\SelectOptions::labels(),
+                            'value' => old('labels', isset($organisation) ? $organisation->label : null),
+                        ])
+                        @include('partials.form.select', [
+                            'name' => 'user_owner_id',
+                            'label' => 'owner',
+                            'options' => App\Helper\SelectOptions::users(false),
+                            'value' => old('user_owner_id', $organisation->user_owner_id ?? auth()->user()->id),
+                        ])
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="createOrganisation()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal mt-5 ms-5" id="clientModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true"
+        data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoModalLabel">Add Client</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('client.ajax') }}" id="clientForm">
+                        @csrf
+                        <div class="row">
+                            <div class="col-sm-6">
+
+                                @include('partials.form.text', [
+                                    'name' => 'name',
+                                    'label' => 'Name',
+                                    'value' => old('client_name', $client->name ?? null),
+                                ])
+                            </div>
+                            <div class="col-sm-6">
+
+                                @include('partials.form.text', [
+                                    'name' => 'meta[l_name]',
+                                    'label' => 'Last name',
+                                    'value' => old('client_name', isset($client) ? $client->l_name : null),
+                                ])
+                            </div>
+                        </div>
+                        @include('partials.form.select', [
+                            'name' => 'user_owner_id',
+                            'label' => 'owner',
+                            'options' => App\Helper\SelectOptions::users(false),
+                            'value' => old('user_owner_id', $organisation->user_owner_id ?? auth()->user()->id),
+                        ])
+                        @include('partials.form.text', [
+                            'name' => 'phone',
+                            'label' => 'Phone',
+                            'value' => old('phone', $client->phone ?? null),
+                        ])
+                        @include('partials.form.text', [
+                            'name' => 'email',
+                            'label' => 'Email',
+                            'value' => old('email', $client->email ?? null),
+                        ])
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="createClient()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+@push('scripts')
+<script>
+    Array.from(document.getElementsByClassName('showmodal')).forEach((e) => {
+        e.addEventListener('click', function(element) {
+            element.preventDefault();
+            if (e.hasAttribute('data-show-modal')) {
+                showModal(e.getAttribute('data-show-modal'));
+            }
+        });
+    });
+    // Show modal dialog
+    function showModal(modal) {
+        const mid = document.getElementById(modal);
+        let myModal = new bootstrap.Modal(mid);
+        myModal.show();
+    }
+
+    function createOrganisation() {
+            var formData = $('#organizationForm').serialize();
+            // console.log(formData);
+            $.ajax({
+                url: $('#organizationForm').attr('action'),
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    //    console.log(response.organisations)
+                    $('#select_organisation_id').empty();
+                    $.each(response.organisations, function(index, organisation) {
+                        $('#select_organisation_id').append('<option selected value="' + organisation
+                            .id + '">' +
+                            organisation.name + '</option>');
+                    });
+
+                    $('#infoModal').modal('hide');
+                    $('#select_organisation_id').trigger('change');
+
+                    toastr.success('', 'Organisation added successfully');
+
+                },
+                error: function(error) {
+                    // Handle error, if needed
+                    console.error(error);
+                }
+            });
+        }
+
+        function createClient() {
+            var formData = $('#clientForm').serialize();
+            // console.log(formData);
+            $.ajax({
+                url: $('#clientForm').attr('action'),
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    //    console.log(response.organisations)
+                    $('#select_client_id').empty();
+                    $.each(response.clients, function(index, client) {
+                        $('#select_client_id').append('<option selected value="' + client
+                            .id + '">' +
+                            client.name + '</option>');
+                    });
+
+                    $('#clientModal').modal('hide');
+                    $('#select_client_id').trigger('change');
+
+
+                    toastr.success('', 'Client added successfully');
+                },
+                error: function(error) {
+                    // Handle error, if needed
+                    console.error(error);
+                }
+            });
+        }
+</script>
+
+
+
+@endpush

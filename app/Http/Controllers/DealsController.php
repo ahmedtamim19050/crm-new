@@ -48,11 +48,14 @@ class DealsController extends Controller
     {
 
 
-
+        $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
+        $organisations = Organisation::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
         $deals = Deal::where('user_id', auth()->id())->latest()->paginate(30);
 
         return view('dashboard.deals.index', [
             'deals' => $deals,
+            'clients'=>$clients,
+            'organisations'=>$organisations,
         ]);
     }
 
