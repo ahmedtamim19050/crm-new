@@ -117,9 +117,12 @@
                                     <div class="connectedSortable mx-3 mt-2">
                                         <div class="sub-card draggable-handle draggable " id="drop-item"
                                             data-item-id="{{ $deal->id }}">
-                                            <span class="text-primary sub-title">{{ $deal->title }}</span>
-                                            <p class="font-w600"><a href="{{ route('deals.show', $deal) }}"
-                                                    class="text-black">{{ $deal->description }}</a></p>
+                                            <a href="{{ route('deals.show', $deal->id) }}">
+                                                <span class="text-primary sub-title">{{ $deal->title }}</span>
+                                                <p class="font-w600"><a href="{{ route('deals.show', $deal) }}"
+                                                        class="text-black">{{ $deal->description }}</a></p>
+                                            </a>
+                                           
 
                                         </div>
                                     </div>

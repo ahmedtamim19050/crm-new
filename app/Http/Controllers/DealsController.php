@@ -139,14 +139,16 @@ class DealsController extends Controller
             $address = $deal->person->getPrimaryAddress();
         }
         $persons = Person::pluck('last_name', 'id')->toArray();
+        $labels=Label::pluck('name','id')->toArray();
+        $clients=Client::where('user_id',auth()->id())->pluck('name','id')->toArray();
+        $organisations=Organisation::where('user_id',auth()->id())->pluck('name','id')->toArray();
 
         return view('dashboard.deals.show', [
             'deal' => $deal,
-            'email' => $email ?? null,
-            'phone' => $phone ?? null,
-            'address' => $address ?? null,
-            'organisation_address' => $organisation_address ?? null,
             'persons' => $persons,
+            'labels' => $labels,
+            'clients' => $clients,
+            'organisations' => $organisations,
         ]);
     }
 
@@ -182,7 +184,9 @@ class DealsController extends Controller
 
 
         $deal = $this->dealService->update($request, $deal);
-        return redirect()->route('deals.index')->with('success', 'Deal Update Successfully');
+
+        return response()->json(['success' => true, 'message' => 'Lead updated successfully']);
+    
     }
 
     /**
