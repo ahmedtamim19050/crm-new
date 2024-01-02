@@ -143,22 +143,59 @@
 
         $('.clientRow').each(function() {
             for (var i = 0; i < 1; i++) {
-                $(this).append(`
-                <div class="col-md-6">
+                var newRow =`
+                <div class="row clientNewRow align-items-center">
+                <div class="col-md-5">
                 @include('partials.form.text', [
                     'name' => 'meta[social][${columnCounter-1}][name]',
                     'label' => 'Social name',
                 ])
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                         @include('partials.form.text', [
                             'name' => 'meta[social][${columnCounter-1}][url]',
                             'label' => 'Social Url',
                         ])
                     </div>
-                        `);
+                    <div class="col-md-2">
+                  <button class="btn btn-danger btn-sm deleteNewRow" type="button"><i class="fas fa-trash"></i></button>
+                 </div>
+                 </div>
+                        `;
 
             }
+            $('.clientRow').append(newRow);
         });
+        $('.clientRow').on('click','.deleteNewRow', function () {
+        // $(this).closest('.clientRow').remove();
+        $(this).closest('.clientNewRow').remove();
     });
+    });
+
+    // $('#addColumnButton').on('click', function () {
+    //     columnCounter += 1;
+
+    //     var newRow = `
+    //         <div class="row clientNewRow align-items-center">
+    //             <div class="col-md-5">
+    //                 @include('partials.form.text', [
+    //                     'name' => 'meta[social][${columnCounter}][name]',
+    //                     'label' => 'Social name',
+    //                 ])
+    //             </div>
+    //             <div class="col-md-5">
+    //                 @include('partials.form.text', [
+    //                     'name' => 'meta[social][${columnCounter}][url]',
+    //                     'label' => 'Social Url',
+    //                 ])
+    //             </div>
+    //             <div class="col-md-2">
+    //                 <button class="btn btn-danger btn-sm deleteNewRow" type="button"><i class="fas fa-trash"></i></button>
+    //             </div>
+    //         </div>`;
+
+    //     $('.clientRow').append(newRow);
+    // });
+
+
 </script>
