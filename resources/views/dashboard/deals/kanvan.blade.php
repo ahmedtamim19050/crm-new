@@ -237,12 +237,12 @@
                                     'value' => old('labels', isset($deal) ? $deal->label : null),
                                 ])
 
-                                @include('partials.form.select', [
+                                {{-- @include('partials.form.select', [
                                     'name' => 'user_owner_id',
                                     'label' => 'owner',
                                     'options' => App\Helper\SelectOptions::users(false),
                                     'value' => old('user_owner_id', $deal->user_owner_id ?? auth()->user()->id),
-                                ])
+                                ]) --}}
                             </div>
                             <div class="col-sm-6">
                                 <h6 class="text-uppercase"><span class="fa fa-user" aria-hidden="true"></span> Person</h6>

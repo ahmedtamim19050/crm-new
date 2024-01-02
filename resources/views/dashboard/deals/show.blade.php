@@ -420,7 +420,7 @@
                     console.log(response)
                     $('.edit-input').css('border', '0');
                     $('.editBtn').hide();
-                    toastr.success('', 'Lead Update successfully');
+                    toastr.success('', 'Deal Update successfully');
                 },
                 error: function(error) {
                     // Handle error, if needed

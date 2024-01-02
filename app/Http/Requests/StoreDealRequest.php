@@ -31,7 +31,7 @@ class StoreDealRequest extends FormRequest
             'title' => 'required|max:255',
             'amount' => 'nullable|numeric',
             'code' => 'nullable',
-            'user_owner_id' => 'required',
+            'user_owner_id' => 'nullable',
         ];
     }
 

@@ -383,12 +383,12 @@
                             'options' => App\Helper\SelectOptions::labels(),
                             'value' => old('labels', isset($organisation) ? $organisation->label : null),
                         ])
-                        @include('partials.form.select', [
+                        {{-- @include('partials.form.select', [
                             'name' => 'user_owner_id',
                             'label' => 'owner',
                             'options' => App\Helper\SelectOptions::users(false),
                             'value' => old('user_owner_id', $organisation->user_owner_id ?? auth()->user()->id),
-                        ])
+                        ]) --}}
                     </form>
                 </div>
                 <div class="modal-footer">
