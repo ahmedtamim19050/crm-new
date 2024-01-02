@@ -1,26 +1,28 @@
 <form action="{{route('other.social.url.update',$organisation)}}" method="post">
     @csrf
     @if($socialData)
+    {{-- @dd($socialData); --}}
     @foreach ($socialData as $index=>$socials)
-    
-    <div class="row">
-         @foreach ($socials as $key=>$social)
-         <div class="col-md-6">
-             @include('partials.form.text', [
-                 'name' => "meta[social][$index][$key]",
-                 'label' => "Social $key",
-                  'value'=>$social
-                 
-             ])
-         </div>
-         {{-- <div class="col-md-6">
-             @include('partials.form.text', [
-                 'name' => 'meta[social][url]',
-                 'label' => 'Social Url',
-             ])
-         </div> --}}
-         @endforeach
-     </div>
+    <div class="row align-items-center socialsRow">
+        <div class="col-md-10">
+            <div class="row">
+                @foreach ($socials as $key=>$social)
+
+                <div class="col-md-6">
+                    @include('partials.form.text', [
+                        'name' => "meta[social][$index][$key]",
+                        'label' => "Social $key",
+                         'value'=>$social
+                        
+                    ])
+                </div>
+                @endforeach
+            </div>
+        </div>
+        <div class="col-md-2">
+             <button class="btn btn-danger btn-sm deleteRow" type="button" data-index="{{ $index }}"> <i class="fas fa-trash"></i></button>
+        </div>
+    </div>
      @endforeach
      @endif
      <div class="col-sm-12 d-flex justify-content-between">
@@ -42,7 +44,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-    var columnCounter = {{count($socialData)}};
+    var columnCounter = {{$socialData ? count($socialData) : 0}};
 
     $('#addColumnButton').on('click', function() {
         columnCounter += 1;
@@ -66,5 +68,13 @@
 
             }
         });
+    });
+    $('.deleteRow').on('click', function () {
+        var indexToRemove = $(this).data('index');
+        var socialNewData=@json($socialData);
+        delete socialNewData[indexToRemove];
+        console.log(socialNewData);
+
+        $(this).closest('.socialsRow').remove();
     });
 </script>
