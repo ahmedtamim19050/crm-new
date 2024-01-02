@@ -30,7 +30,7 @@
         <button type="button" class="btn btn-secondary btn-sm py-2" id="addColumnButton"><i
                 class="fas fa-plus"></i></button>
     </div>
-    <div class="row clientRow" id="">
+    <div class="row clientRow align-items-center" id="">
 
       
 
@@ -46,28 +46,29 @@
 <script>
     var columnCounter = {{$socialData ? count($socialData) : 0}};
 
-    $('#addColumnButton').on('click', function() {
+    $('#addColumnButton').on('click', function () {
         columnCounter += 1;
 
-        $('.clientRow').each(function() {
-            for (var i = 0; i < 1; i++) {
-                $(this).append(`
-                <div class="col-md-6">
-                @include('partials.form.text', [
-                    'name' => 'meta[social][${columnCounter}][name]',
-                    'label' => 'Social name',
-                ])
+        var newRow = `
+            <div class="row clientNewRow align-items-center">
+                <div class="col-md-5">
+                    @include('partials.form.text', [
+                        'name' => 'meta[social][${columnCounter}][name]',
+                        'label' => 'Social name',
+                    ])
                 </div>
-                <div class="col-md-6">
-                        @include('partials.form.text', [
-                            'name' => 'meta[social][${columnCounter}][url]',
-                            'label' => 'Social Url',
-                        ])
-                    </div>
-                        `);
+                <div class="col-md-5">
+                    @include('partials.form.text', [
+                        'name' => 'meta[social][${columnCounter}][url]',
+                        'label' => 'Social Url',
+                    ])
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-danger btn-sm deleteNewRow" type="button"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>`;
 
-            }
-        });
+        $('.clientRow').append(newRow);
     });
     $('.deleteRow').on('click', function () {
         var indexToRemove = $(this).data('index');
@@ -77,4 +78,9 @@
 
         $(this).closest('.socialsRow').remove();
     });
+    $('.clientRow').on('click','.deleteNewRow', function () {
+        // $(this).closest('.clientRow').remove();
+        $(this).closest('.clientNewRow').remove();
+    });
+
 </script>
