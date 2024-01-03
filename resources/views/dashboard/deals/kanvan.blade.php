@@ -171,7 +171,7 @@
                                             'name' => 'client_id',
                                             'label' => 'Customer',
                                             'options' => $clients,
-                                            'value' => old('client_id', isset($lead) ? $lead->client->id : null),
+                                          
                                         ])
                                     </div>
                                     <div class="col-md-2 ms-2 mt-2">
@@ -188,9 +188,7 @@
                                             'name' => 'organisation_id',
                                             'label' => 'Organisation',
                                             'options' => $organisations,
-                                            'value' => old(
-                                                'organisation_id',
-                                                isset($deal) ? $deal->organisation->id : null),
+                                         
                                         ])
                                     </div>
                                     <div class="col-md-2 ms-2 mt-2">
@@ -204,13 +202,13 @@
                                 @include('partials.form.text', [
                                     'name' => 'title',
                                     'label' => 'Title',
-                                    'value' => old('title', $deal->title ?? null),
+           
                                 ])
                                 @include('partials.form.textarea', [
                                     'name' => 'description',
                                     'label' => 'Description',
                                     'rows' => 5,
-                                    'value' => old('description', $deal->description ?? null),
+                   
                                 ])
 
                                 <div class="row">
@@ -218,7 +216,7 @@
                                         @include('partials.form.text', [
                                             'name' => 'amount',
                                             'label' => 'Value',
-                                            'value' => old('amount', $deal->amount ?? null),
+                           
                                         ])
                                     </div>
                                     <div class="col-sm-6">
@@ -226,7 +224,7 @@
                                             'name' => 'currency',
                                             'label' => 'Currency',
                                             'options' => App\Helper\SelectOptions::currencies(),
-                                            'value' => old('currency', $deal->currency ?? 'USD'),
+                                    
                                         ])
                                     </div>
                                 </div>
@@ -234,7 +232,7 @@
                                     'name' => 'label',
                                     'label' => 'Label',
                                     'options' => App\Helper\SelectOptions::labels(),
-                                    'value' => old('labels', isset($deal) ? $deal->label : null),
+                                   
                                 ])
 
                                 {{-- @include('partials.form.select', [
@@ -264,10 +262,7 @@
                                             @include('partials.form.text', [
                                                 'name' => 'phone',
                                                 'label' => 'Phone',
-                                                'value' => old('phone', $deal->phone ?? null),
-                                                //  'attributes' => [
-                                                //      'disabled' => 'disabled'
-                                                //  ]
+                                            
                                             ])
                                         </div>
 
@@ -281,7 +276,7 @@
                                     @include('partials.form.text', [
                                         'name' => 'address',
                                         'label' => 'Address',
-                                        'value' => old('address', $deal->address ?? null),
+                                       
                                     ])
 
                                     <div class="row">
@@ -289,14 +284,14 @@
                                             @include('partials.form.text', [
                                                 'name' => 'city',
                                                 'label' => 'City',
-                                                'value' => old('city', $deal->city ?? null),
+                                              
                                             ])
                                         </div>
                                         <div class="col-sm-6">
                                             @include('partials.form.text', [
                                                 'name' => 'state',
                                                 'label' => 'state',
-                                                'value' => old('state', $deal->state ?? null),
+                                               
                                             ])
                                         </div>
                                     </div>
@@ -305,7 +300,7 @@
                                             @include('partials.form.text', [
                                                 'name' => 'code',
                                                 'label' => 'Post code',
-                                                'value' => old('code', $deal->post_code ?? null),
+                                               
                                             ])
                                         </div>
                                         <div class="col-sm-6">
@@ -313,7 +308,7 @@
                                                 'name' => 'country',
                                                 'label' => 'Country',
                                                 'options' => App\Helper\SelectOptions::countries(),
-                                                'value' => old('country', $deal->country ?? 'United States'),
+                                             
                                             ])
                                         </div>
                                     </div>
@@ -341,7 +336,7 @@
                         @include('partials.form.text', [
                             'name' => 'name',
                             'label' => 'Name',
-                            'value' => old('client_name', $organisation->name ?? null),
+                    
                             'attributes' => [
                                 'required' => true,
                             ],
@@ -350,13 +345,13 @@
                             'name' => 'label',
                             'label' => 'Label',
                             'options' => App\Helper\SelectOptions::labels(),
-                            'value' => old('labels', isset($organisation) ? $organisation->label : null),
+                           
                         ])
                         @include('partials.form.select', [
                             'name' => 'user_owner_id',
                             'label' => 'owner',
                             'options' => App\Helper\SelectOptions::users(false),
-                            'value' => old('user_owner_id', $organisation->user_owner_id ?? auth()->user()->id),
+                            
                         ])
                     </form>
                 </div>
@@ -384,7 +379,7 @@
                                 @include('partials.form.text', [
                                     'name' => 'name',
                                     'label' => 'Name',
-                                    'value' => old('client_name', $client->name ?? null),
+                                    
                                 ])
                             </div>
                             <div class="col-sm-6">
@@ -392,7 +387,7 @@
                                 @include('partials.form.text', [
                                     'name' => 'meta[l_name]',
                                     'label' => 'Last name',
-                                    'value' => old('client_name', isset($client) ? $client->l_name : null),
+                                    
                                 ])
                             </div>
                         </div>
@@ -400,17 +395,17 @@
                             'name' => 'user_owner_id',
                             'label' => 'owner',
                             'options' => App\Helper\SelectOptions::users(false),
-                            'value' => old('user_owner_id', $organisation->user_owner_id ?? auth()->user()->id),
+                          
                         ])
                         @include('partials.form.text', [
                             'name' => 'phone',
                             'label' => 'Phone',
-                            'value' => old('phone', $client->phone ?? null),
+                        
                         ])
                         @include('partials.form.text', [
                             'name' => 'email',
                             'label' => 'Email',
-                            'value' => old('email', $client->email ?? null),
+
                         ])
                     </form>
                 </div>
