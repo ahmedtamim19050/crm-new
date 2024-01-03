@@ -62,12 +62,12 @@
                 'options' => App\Helper\SelectOptions::labels(),
                 'value' => old('labels', isset($client) ? $client->label : null),
             ]) --}}
-            @include('partials.form.select', [
+            {{-- @include('partials.form.select', [
                 'name' => 'user_owner_id',
                 'label' => 'owner',
                 'options' => App\Helper\SelectOptions::users(false),
                 'value' => old('user_owner_id', $client->user_owner_id ?? auth()->user()->id),
-            ])
+            ]) --}}
         </div>
         <div class="col-md-6">
             @include('partials.form.text', [

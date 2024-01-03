@@ -46,7 +46,7 @@ class ClientController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
-            'user_owner_id' => 'required',
+            // 'user_owner_id' => 'required',
             // 'label' => 'required',
         
         ]);
@@ -75,9 +75,11 @@ class ClientController extends Controller
         
         $client=Client::find($id);
         $persons=Person::pluck('last_name','id')->toArray();
+        $organisations=Organisation::where('user_id',auth()->id())->pluck('name','id')->toArray();
         return view('dashboard.clients.show', [
             'client' => $client,
             'persons' => $persons,
+            'organisations'=>$organisations,
         ]);
     }
 

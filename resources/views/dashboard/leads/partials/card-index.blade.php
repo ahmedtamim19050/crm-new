@@ -117,7 +117,6 @@
                     @include('partials.form.text', [
                         'name' => 'name',
                         'label' => 'Name',
-                        'value' => old('client_name', $organisation->name ?? null),
                         'attributes' => [
                             'required' => true,
                         ],
@@ -126,13 +125,13 @@
                         'name' => 'label',
                         'label' => 'Label',
                         'options' => App\Helper\SelectOptions::labels(),
-                        'value' => old('labels', isset($organisation) ? $organisation->label : null),
+                    
                     ])
                     @include('partials.form.select', [
                         'name' => 'user_owner_id',
                         'label' => 'owner',
                         'options' => App\Helper\SelectOptions::users(false),
-                        'value' => old('user_owner_id', $organisation->user_owner_id ?? auth()->user()->id),
+                    
                     ])
                 </form>
             </div>
@@ -160,7 +159,7 @@
                         @include('partials.form.text', [
                             'name' => 'name',
                             'label' => 'Name',
-                            'value' => old('client_name', $client->name ?? null),
+                          
                         ])
                     </div>
                     <div class="col-sm-6">
@@ -168,7 +167,7 @@
                         @include('partials.form.text', [
                             'name' => 'meta[l_name]',
                             'label' => 'Last name',
-                            'value' => old('client_name', isset($client) ? $client->l_name : null),
+                        
                         ])
                     </div>
                    </div>
@@ -176,17 +175,17 @@
                         'name' => 'user_owner_id',
                         'label' => 'owner',
                         'options' => App\Helper\SelectOptions::users(false),
-                        'value' => old('user_owner_id', $organisation->user_owner_id ?? auth()->user()->id),
+                      
                     ])
                     @include('partials.form.text', [
                         'name' => 'phone',
                         'label' => 'Phone',
-                        'value' => old('phone', $client->phone ?? null),
+
                     ])
                     @include('partials.form.text', [
                         'name' => 'email',
                         'label' => 'Email',
-                        'value' => old('email', $client->email ?? null),
+
                     ])
                 </form>
             </div>

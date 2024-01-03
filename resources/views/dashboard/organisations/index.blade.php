@@ -39,7 +39,7 @@
                                         <th><strong>Name</strong></th>
                                         <th><strong>Address</strong></th>
                                         <th><strong>Label</strong></th>
-                                        <th> <strong>Owner </strong></th>
+                                        {{-- <th> <strong>Owner </strong></th> --}}
                                         {{-- <th><strong>PRICE</strong></th> --}}
                                         <th></th>
                                     </tr>
@@ -62,7 +62,7 @@
                                                     style="background-color:{{ $organisation->labelName->color ?? null }}">{{ $organisation->labelName->name ?? null }}</span>
 
                                             </td>
-                                            <td>{{ $organisation->ownerUser->name ?? null }}</td>
+                                            {{-- <td>{{ $organisation->ownerUser->name ?? null }}</td> --}}
                                             <td>
                                                 <div class="dropdown">
                                                     <button type="button" class="btn btn-success light sharp"

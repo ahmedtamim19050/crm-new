@@ -247,6 +247,7 @@
                                         @include('partials.form.text', [
                                             'name' => 'amount',
                                             'label' => 'Value',
+                                            'type'=>'number',
                                         
                                         ])
                                     </div>
@@ -266,12 +267,12 @@
               
                                 ])
 
-                                @include('partials.form.select', [
+                                {{-- @include('partials.form.select', [
                                     'name' => 'user_owner_id',
                                     'label' => 'owner',
                                     'options' => App\Helper\SelectOptions::users(false),
                                    
-                                ])
+                                ]) --}}
                             </div>
                             <div class="col-sm-6">
                                 <h6 class="text-uppercase"><span class="fa fa-user" aria-hidden="true"></span> Person</h6>
@@ -419,12 +420,12 @@
                                 ])
                             </div>
                         </div>
-                        @include('partials.form.select', [
+                        {{-- @include('partials.form.select', [
                             'name' => 'user_owner_id',
                             'label' => 'owner',
                             'options' => App\Helper\SelectOptions::users(false),
                             'value' => old('user_owner_id', $organisation->user_owner_id ?? auth()->user()->id),
-                        ])
+                        ]) --}}
                         @include('partials.form.text', [
                             'name' => 'phone',
                             'label' => 'Phone',

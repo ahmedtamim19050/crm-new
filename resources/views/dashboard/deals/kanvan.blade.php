@@ -216,6 +216,7 @@
                                         @include('partials.form.text', [
                                             'name' => 'amount',
                                             'label' => 'Value',
+                                            'type'=>'number'
                            
                                         ])
                                     </div>
@@ -253,9 +254,7 @@
                                                 'name' => 'email',
                                                 'label' => 'Email',
                                                 'value' => old('email', $deal->email ?? null),
-                                                //  'attributes' => [
-                                                //      'disabled' => 'disabled'
-                                                //  ]
+                                        
                                             ])
                                         </div>
                                         <div class="col-sm-6">
@@ -347,12 +346,12 @@
                             'options' => App\Helper\SelectOptions::labels(),
                            
                         ])
-                        @include('partials.form.select', [
+                        {{-- @include('partials.form.select', [
                             'name' => 'user_owner_id',
                             'label' => 'owner',
                             'options' => App\Helper\SelectOptions::users(false),
                             
-                        ])
+                        ]) --}}
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -391,12 +390,12 @@
                                 ])
                             </div>
                         </div>
-                        @include('partials.form.select', [
+                        {{-- @include('partials.form.select', [
                             'name' => 'user_owner_id',
                             'label' => 'owner',
                             'options' => App\Helper\SelectOptions::users(false),
                           
-                        ])
+                        ]) --}}
                         @include('partials.form.text', [
                             'name' => 'phone',
                             'label' => 'Phone',

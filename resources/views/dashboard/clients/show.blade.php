@@ -25,7 +25,7 @@
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('clients.create') }}">Create</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ $client->title }}</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ $client->name }}</a></li>
                 </ol>
             </div>
 
@@ -121,6 +121,38 @@
                                             class="fas fa-pencil-alt"></i></button>
                                 </div>
                             </form>
+
+                        </div>
+                        <div class="d-flex">
+                            <span style="font-weight: 700" class="me-3 mt-2">Organisation :</span>
+
+        
+
+
+                            <form class="updateForm" action="{{ route('clients.update', $client) }}" method="post">
+                                @csrf
+                                @method('PUT')
+                                {{-- <span class="fa fa-building" aria-hidden="true"></span> --}}
+
+                                <div class="d-inline-block"
+                                    onmouseover="myFunction(this, 'organisationInput', 'editButtonOrganisation')"
+                                    onmouseout="hideEditLink(this, 'organisationInput', 'editButtonOrganisation')">
+
+                                    <select class="edit-input" name="organisation_id" id="organisationInput"
+                                        style="border: 0">
+                                        @foreach ($organisations as $key => $organisation)
+                                            <option value="{{ $key }}"
+                                                {{ $key == $client->organisation_id ? 'selected' : '' }}>
+                                                {{ $organisation }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <button type="button" class="btn editBtn btn-primary btn-sm"
+                                        id="editButtonOrganisation" style="display: none"
+                                        onclick="updateDescription()">Edit</button>
+                                </div>
+                            </form>
+                        
 
                         </div>
                         {{-- <h6 class="text-uppercase mt-3">Owner</h6>

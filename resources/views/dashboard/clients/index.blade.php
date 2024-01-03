@@ -42,7 +42,7 @@
                                         <th><strong>Email</strong></th>
                                         <th><strong>Phone</strong></th>
                                         {{-- <th><strong>Label</strong></th> --}}
-                                        <th> <strong>Owner </strong></th>
+                                        {{-- <th> <strong>Owner </strong></th> --}}
                                         {{-- <th><strong>PRICE</strong></th> --}}
                                         <th></th>
                                     </tr>
@@ -63,9 +63,10 @@
                                         <span class="badge light badge-success">{{$client->label}}</span>
                                 
                                      </td> --}}
-                                            <td>{{ $client->ownerUser->name ?? null }}</td>
+                                            {{-- <td>{{ $client->ownerUser->name ?? null }}</td> --}}
                                             <td>
-                                                <div class="dropdown">
+                                                <x-delete class="btn btn-danger btn-sm" :route="route('clients.destroy', $client->id)" />
+                                                {{-- <div class="dropdown">
                                                     <button type="button" class="btn btn-success light sharp"
                                                         data-bs-toggle="dropdown">
                                                         <svg width="20px" height="20px" viewBox="0 0 24 24"
@@ -83,12 +84,12 @@
                                                         </svg>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        {{-- <a class="dropdown-item" href="{{route('clients.show',$client->id)}}">Show</a> --}}
+                                                        <a class="dropdown-item" href="{{route('clients.show',$client->id)}}">Show</a>
                                                         <a class="dropdown-item"
                                                             href="{{ route('clients.edit', $client->id) }}">Edit</a>
-                                                        <x-delete class="dropdown-item" :route="route('clients.destroy', $client->id)" />
+                                                       
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -150,12 +151,12 @@
                         'options' => App\Helper\SelectOptions::labels(),
                         'value' => old('labels', isset($organisation) ? $organisation->label : null),
                     ])
-                    @include('partials.form.select', [
+                    {{-- @include('partials.form.select', [
                         'name' => 'user_owner_id',
                         'label' => 'owner',
                         'options' => App\Helper\SelectOptions::users(false),
                         'value' => old('user_owner_id', $organisation->user_owner_id ?? auth()->user()->id),
-                    ])
+                    ]) --}}
                 </form>
             </div>
             <div class="modal-footer">
