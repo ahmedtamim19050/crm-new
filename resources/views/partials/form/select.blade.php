@@ -7,6 +7,7 @@
     </div>
     @endisset
         <select id="select_{{ $name }}" name="{{ $name }}" class="form-control custom-select @error($name) is-invalid @enderror" @include('partials.form.attributes')>
+            <option value="" selected>Choose option</option>
             @foreach($options as $optionKey => $optionName)
                 <option value="{{ $optionKey }}" {{ ((isset($value) && $value == $optionKey)) ? 'selected' : null }}>{{ $optionName }}</option>
             @endforeach    

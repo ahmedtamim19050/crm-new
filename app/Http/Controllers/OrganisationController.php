@@ -169,7 +169,7 @@ class OrganisationController extends Controller
                 'last_name' => $request->l_name,
                 'gender' => $request->gender,
             ]);
-            return back()->with('success', 'Persone update Successfully');
+            return back()->with('success', 'Person update Successfully');
         } else {
             Person::create([
                 'first_name' => $request->f_name,

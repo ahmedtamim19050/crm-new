@@ -122,7 +122,7 @@
                                                 <p class="font-w600"><a href="{{ route('deals.show', $deal) }}"
                                                         class="text-black">{{ $deal->description }}</a></p>
                                             </a>
-                                           
+
 
                                         </div>
                                     </div>
@@ -171,7 +171,6 @@
                                             'name' => 'client_id',
                                             'label' => 'Customer',
                                             'options' => $clients,
-                                          
                                         ])
                                     </div>
                                     <div class="col-md-2 ms-2 mt-2">
@@ -188,7 +187,6 @@
                                             'name' => 'organisation_id',
                                             'label' => 'Organisation',
                                             'options' => $organisations,
-                                         
                                         ])
                                     </div>
                                     <div class="col-md-2 ms-2 mt-2">
@@ -202,13 +200,11 @@
                                 @include('partials.form.text', [
                                     'name' => 'title',
                                     'label' => 'Title',
-           
                                 ])
                                 @include('partials.form.textarea', [
                                     'name' => 'description',
                                     'label' => 'Description',
                                     'rows' => 5,
-                   
                                 ])
 
                                 {{-- <div class="row">
@@ -233,7 +229,6 @@
                                     'name' => 'label',
                                     'label' => 'Label',
                                     'options' => App\Helper\SelectOptions::labels(),
-                                   
                                 ])
 
                                 {{-- @include('partials.form.select', [
@@ -254,14 +249,12 @@
                                                 'name' => 'email',
                                                 'label' => 'Email',
                                                 'value' => old('email', $deal->email ?? null),
-                                        
                                             ])
                                         </div>
                                         <div class="col-sm-6">
                                             @include('partials.form.text', [
                                                 'name' => 'phone',
                                                 'label' => 'Phone',
-                                            
                                             ])
                                         </div>
 
@@ -275,7 +268,6 @@
                                     @include('partials.form.text', [
                                         'name' => 'address',
                                         'label' => 'Address',
-                                       
                                     ])
 
                                     <div class="row">
@@ -283,14 +275,12 @@
                                             @include('partials.form.text', [
                                                 'name' => 'city',
                                                 'label' => 'City',
-                                              
                                             ])
                                         </div>
                                         <div class="col-sm-6">
                                             @include('partials.form.text', [
                                                 'name' => 'state',
                                                 'label' => 'state',
-                                               
                                             ])
                                         </div>
                                     </div>
@@ -299,7 +289,6 @@
                                             @include('partials.form.text', [
                                                 'name' => 'code',
                                                 'label' => 'Post code',
-                                               
                                             ])
                                         </div>
                                         <div class="col-sm-6">
@@ -307,7 +296,6 @@
                                                 'name' => 'country',
                                                 'label' => 'Country',
                                                 'options' => App\Helper\SelectOptions::countries(),
-                                             
                                             ])
                                         </div>
                                     </div>
@@ -332,26 +320,56 @@
                 <div class="modal-body">
                     <form method="POST" action="{{ route('organisation.ajax') }}" id="organizationForm">
                         @csrf
-                        @include('partials.form.text', [
-                            'name' => 'name',
-                            'label' => 'Name',
-                    
-                            'attributes' => [
-                                'required' => true,
-                            ],
-                        ])
-                        @include('partials.form.select', [
-                            'name' => 'label',
-                            'label' => 'Label',
-                            'options' => App\Helper\SelectOptions::labels(),
-                           
-                        ])
-                        {{-- @include('partials.form.select', [
-                            'name' => 'user_owner_id',
-                            'label' => 'owner',
-                            'options' => App\Helper\SelectOptions::users(false),
-                            
-                        ]) --}}
+                        <div class="row">
+                            <div class="col-md-6">
+                                @include('partials.form.text', [
+                                    'name' => 'name',
+                                    'label' => 'Name',
+                                    'value' => old('client_name', $organisation->name ?? null),
+                                    'attributes' => [
+                                        'required' => true,
+                                    ],
+                                ])
+                            </div>
+                            <div class="col-md-6">
+                                @include('partials.form.select', [
+                                    'name' => 'label',
+                                    'label' => 'Label',
+                                    'options' => App\Helper\SelectOptions::labels(),
+                                    'value' => old('labels', isset($organisation) ? $organisation->label : null),
+                                ])
+                            </div>
+                            <div class="col-md-6">
+                                @include('partials.form.text', [
+                                    'name' => 'meta[street]',
+                                    'label' => 'Street address',
+                                ])
+                            </div>
+                            <div class="col-md-6">
+                                @include('partials.form.text', [
+                                    'name' => 'meta[place]',
+                                    'label' => 'Place',
+                                ])
+                            </div>
+                            <div class="col-md-6">
+                                @include('partials.form.text', [
+                                    'name' => 'meta[post_code]',
+                                    'label' => 'Zip',
+                                ])
+                            </div>
+                            <div class="col-md-6">
+                                @include('partials.form.text', [
+                                    'name' => 'meta[company_email]',
+                                    'label' => 'Email',
+                                ])
+                            </div>
+                            <div class="col-md-6">
+                                @include('partials.form.text', [
+                                    'name' => 'meta[company_phone]',
+                                    'label' => 'Phone',
+                                ])
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -378,7 +396,6 @@
                                 @include('partials.form.text', [
                                     'name' => 'name',
                                     'label' => 'Name',
-                                    
                                 ])
                             </div>
                             <div class="col-sm-6">
@@ -386,7 +403,6 @@
                                 @include('partials.form.text', [
                                     'name' => 'meta[l_name]',
                                     'label' => 'Last name',
-                                    
                                 ])
                             </div>
                         </div>
@@ -399,12 +415,10 @@
                         @include('partials.form.text', [
                             'name' => 'phone',
                             'label' => 'Phone',
-                        
                         ])
                         @include('partials.form.text', [
                             'name' => 'email',
                             'label' => 'Email',
-
                         ])
                     </form>
                 </div>
@@ -544,6 +558,10 @@
 
                     $('#clientModal').modal('hide');
                     $('#select_client_id').trigger('change');
+                    $('#input_email').val(response.email);
+                    $('#input_phone').val(response.phone);
+                    $('#input_address').val(response.street);
+                    $('#input_code').val(response.post_code);
 
 
                     toastr.success('', 'Client added successfully');
@@ -554,5 +572,32 @@
                 }
             });
         }
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#select_organisation_id').on('change', function() {
+                console.log('cliecked')
+                var orgId = $(this).val();
+                $.ajax({
+                    url: '/dashboard/organisation/fetch',
+                    type: 'get',
+                    data: {
+                        orgId: orgId
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log('Ajax response:', response['email']);
+                        $('#input_email').val(response['email']);
+                        $('#input_phone').val(response['phone']);
+                        $('#input_address').val(response['street']);
+                        $('#input_code').val(response['post_code']);
+                    },
+                    error: function(error) {
+                        console.error('Ajax error:', error);
+                    }
+                });
+            });
+        });
     </script>
 @endpush

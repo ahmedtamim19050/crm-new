@@ -48,7 +48,7 @@
                         class="btn btn-primary  rounded me-3 mb-sm-0 mb-2 text-white"><i class="fa fa-user me-3 scale5"
                             aria-hidden="true"></i>New Contact</a> --}}
                         <!-- Add Order -->
-                        <a href="{{route('kanvan')}}" class="mx-3">
+                        <a href="{{ route('kanvan') }}" class="mx-3">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -79,17 +79,18 @@
                                     fill="#43DC80" />
                             </svg>
                         </a>
-                     
+
                     </div>
                 </ol>
             </div>
             <div class="col-md-3 mt-3">
                 <div class="d-flex border-top">
-                    <a href="javascript:void(0);" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addContactModal" class="text-dark py-3">+Add Deal</a>
+                    <a href="javascript:void(0);" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#addContactModal" class="text-dark py-3">+Add Deal</a>
                 </div>
-            
+
             </div>
-           
+
         </div>
         <!-- row -->
 
@@ -123,14 +124,16 @@
                                             <td><strong>{{ $loop->index + 1 }}</strong></td>
                                             {{-- <td>{{ $deal->created_at->diffForHumans() }}</td> --}}
                                             <td>
-                                                <a href="{{ route('deals.show', $deal->id) }}" class="text-primary text-decoration-underline">
-                                                
+                                                <a href="{{ route('deals.show', $deal->id) }}"
+                                                    class="text-primary text-decoration-underline">
+
                                                     {{ $deal->title }}
                                                 </a>
                                             </td>
                                             <td>
 
-                                                <span class="badge light badge-success text-white" style="background-color:{{$deal->labelName->color ?? null}}">{{ $deal->labelName->name  ?? null}}</span>
+                                                <span class="badge light badge-success text-white"
+                                                    style="background-color:{{ $deal->labelName->color ?? null }}">{{ $deal->labelName->name ?? null }}</span>
                                             </td>
 
                                             <td>{{ $deal->amount, $deal->currency }}</td>
@@ -202,7 +205,6 @@
                                             'name' => 'client_id',
                                             'label' => 'Customer',
                                             'options' => $clients,
-                                          
                                         ])
                                     </div>
                                     <div class="col-md-2 ms-2 mt-2">
@@ -219,7 +221,6 @@
                                             'name' => 'organisation_id',
                                             'label' => 'Organisation',
                                             'options' => $organisations,
-                  
                                         ])
                                     </div>
                                     <div class="col-md-2 ms-2 mt-2">
@@ -233,13 +234,11 @@
                                 @include('partials.form.text', [
                                     'name' => 'title',
                                     'label' => 'Title',
-                                 
                                 ])
                                 @include('partials.form.textarea', [
                                     'name' => 'description',
                                     'label' => 'Description',
                                     'rows' => 5,
-                                
                                 ])
 
                                 {{-- <div class="row">
@@ -264,7 +263,6 @@
                                     'name' => 'label',
                                     'label' => 'Label',
                                     'options' => App\Helper\SelectOptions::labels(),
-              
                                 ])
 
                                 {{-- @include('partials.form.select', [
@@ -275,7 +273,8 @@
                                 ]) --}}
                             </div>
                             <div class="col-sm-6">
-                                <h6 class="text-uppercase"><span class="fa fa-user" aria-hidden="true"></span> Person</h6>
+                                <h6 class="text-uppercase"><span class="fa fa-user" aria-hidden="true"></span> Person
+                                </h6>
                                 <hr />
                                 <span class="autocomplete-person">
 
@@ -284,14 +283,12 @@
                                             @include('partials.form.text', [
                                                 'name' => 'email',
                                                 'label' => 'Email',
-                                               
                                             ])
                                         </div>
                                         <div class="col-sm-6">
                                             @include('partials.form.text', [
                                                 'name' => 'phone',
                                                 'label' => 'Phone',
-                                               
                                             ])
                                         </div>
 
@@ -305,7 +302,6 @@
                                     @include('partials.form.text', [
                                         'name' => 'address',
                                         'label' => 'Address',
-                                       
                                     ])
 
                                     <div class="row">
@@ -313,14 +309,12 @@
                                             @include('partials.form.text', [
                                                 'name' => 'city',
                                                 'label' => 'City',
-                                               
                                             ])
                                         </div>
                                         <div class="col-sm-6">
                                             @include('partials.form.text', [
                                                 'name' => 'state',
                                                 'label' => 'state',
-                                              
                                             ])
                                         </div>
                                     </div>
@@ -329,7 +323,6 @@
                                             @include('partials.form.text', [
                                                 'name' => 'code',
                                                 'label' => 'Post code',
-                                              
                                             ])
                                         </div>
                                         <div class="col-sm-6">
@@ -337,7 +330,6 @@
                                                 'name' => 'country',
                                                 'label' => 'Country',
                                                 'options' => App\Helper\SelectOptions::countries(),
-                                              
                                             ])
                                         </div>
                                     </div>
@@ -362,26 +354,56 @@
                 <div class="modal-body">
                     <form method="POST" action="{{ route('organisation.ajax') }}" id="organizationForm">
                         @csrf
-                        @include('partials.form.text', [
-                            'name' => 'name',
-                            'label' => 'Name',
-   
-                            'attributes' => [
-                                'required' => true,
-                            ],
-                        ])
-                        @include('partials.form.select', [
-                            'name' => 'label',
-                            'label' => 'Label',
-                            'options' => App\Helper\SelectOptions::labels(),
-                           
-                        ])
-                        {{-- @include('partials.form.select', [
-                            'name' => 'user_owner_id',
-                            'label' => 'owner',
-                            'options' => App\Helper\SelectOptions::users(false),
-                            'value' => old('user_owner_id', $organisation->user_owner_id ?? auth()->user()->id),
-                        ]) --}}
+                        <div class="row">
+                            <div class="col-md-6">
+                                @include('partials.form.text', [
+                                    'name' => 'name',
+                                    'label' => 'Name',
+                                    'value' => old('client_name', $organisation->name ?? null),
+                                    'attributes' => [
+                                        'required' => true,
+                                    ],
+                                ])
+                            </div>
+                            <div class="col-md-6">
+                                @include('partials.form.select', [
+                                    'name' => 'label',
+                                    'label' => 'Label',
+                                    'options' => App\Helper\SelectOptions::labels(),
+                                    'value' => old('labels', isset($organisation) ? $organisation->label : null),
+                                ])
+                            </div>
+                            <div class="col-md-6">
+                                @include('partials.form.text', [
+                                    'name' => 'meta[street]',
+                                    'label' => 'Street address',
+                                ])
+                            </div>
+                            <div class="col-md-6">
+                                @include('partials.form.text', [
+                                    'name' => 'meta[place]',
+                                    'label' => 'Place',
+                                ])
+                            </div>
+                            <div class="col-md-6">
+                                @include('partials.form.text', [
+                                    'name' => 'meta[post_code]',
+                                    'label' => 'Zip',
+                                ])
+                            </div>
+                            <div class="col-md-6">
+                                @include('partials.form.text', [
+                                    'name' => 'meta[company_email]',
+                                    'label' => 'Email',
+                                ])
+                            </div>
+                            <div class="col-md-6">
+                                @include('partials.form.text', [
+                                    'name' => 'meta[company_phone]',
+                                    'label' => 'Phone',
+                                ])
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -447,23 +469,23 @@
     </div>
 @endsection
 @push('scripts')
-<script>
-    Array.from(document.getElementsByClassName('showmodal')).forEach((e) => {
-        e.addEventListener('click', function(element) {
-            element.preventDefault();
-            if (e.hasAttribute('data-show-modal')) {
-                showModal(e.getAttribute('data-show-modal'));
-            }
+    <script>
+        Array.from(document.getElementsByClassName('showmodal')).forEach((e) => {
+            e.addEventListener('click', function(element) {
+                element.preventDefault();
+                if (e.hasAttribute('data-show-modal')) {
+                    showModal(e.getAttribute('data-show-modal'));
+                }
+            });
         });
-    });
-    // Show modal dialog
-    function showModal(modal) {
-        const mid = document.getElementById(modal);
-        let myModal = new bootstrap.Modal(mid);
-        myModal.show();
-    }
+        // Show modal dialog
+        function showModal(modal) {
+            const mid = document.getElementById(modal);
+            let myModal = new bootstrap.Modal(mid);
+            myModal.show();
+        }
 
-    function createOrganisation() {
+        function createOrganisation() {
             var formData = $('#organizationForm').serialize();
             // console.log(formData);
             $.ajax({
@@ -507,6 +529,10 @@
                             .id + '">' +
                             client.name + '</option>');
                     });
+                    $('#input_email').val(response.email);
+                    $('#input_phone').val(response.phone);
+                    $('#input_address').val(response.street);
+                    $('#input_code').val(response.post_code);
 
                     $('#clientModal').modal('hide');
                     $('#select_client_id').trigger('change');
@@ -520,8 +546,31 @@
                 }
             });
         }
-</script>
-
-
-
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#select_organisation_id').on('change', function() {
+                console.log('cliecked')
+                var orgId = $(this).val();
+                $.ajax({
+                    url: '/dashboard/organisation/fetch',
+                    type: 'get',
+                    data: {
+                        orgId: orgId
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log('Ajax response:', response['email']);
+                        $('#input_email').val(response['email']);
+                        $('#input_phone').val(response['phone']);
+                        $('#input_address').val(response['street']);
+                        $('#input_code').val(response['post_code']);
+                    },
+                    error: function(error) {
+                        console.error('Ajax error:', error);
+                    }
+                });
+            });
+        });
+    </script>
 @endpush

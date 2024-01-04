@@ -117,6 +117,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function() {
     // Route::resource('quotes', QuoteController::class);
     Route::resource('clients', ClientController::class);
     Route::post('client/create',[ClientController::class,'clientAjax'])->name('client.ajax');
+    Route::get('organisation/fetch',[ClientController::class,'orgFecth'])->name('org.fetch');
 
     Route::resource('products', ProductController::class);
 

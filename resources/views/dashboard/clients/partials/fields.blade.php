@@ -23,7 +23,7 @@
                     @include('partials.form.text', [
                         'name' => 'name',
                         'label' => 'Name',
-                        'value' => old('client_name', $client->name ?? null),
+                 
                     ])
                 </div>
                 <div class="col-sm-6">
@@ -31,7 +31,7 @@
                     @include('partials.form.text', [
                         'name' => 'meta[l_name]',
                         'label' => 'Last name',
-                        'value' => old('client_name', isset($client) ? $client->l_name : null),
+      
                     ])
                 </div>
             </div>
@@ -45,9 +45,7 @@
                         'name' => 'organisation_id',
                         'label' => 'Organisation',
                         'options' => $organisations,
-                        'value' => old(
-                            'organisation',
-                            isset($client) ? ($client->organisation ? $client->organisation->id : '') : null),
+                       
                     ])
                 </div>
                 <div class="col-md-2 ms-2 mt-2">
@@ -73,17 +71,17 @@
             @include('partials.form.text', [
                 'name' => 'phone',
                 'label' => 'Phone',
-                'value' => old('phone', $client->phone ?? null),
+
             ])
             @include('partials.form.text', [
                 'name' => 'email',
                 'label' => 'Email',
-                'value' => old('email', $client->email ?? null),
+    
             ])
             @include('partials.form.text', [
                 'name' => 'meta[position]',
                 'label' => 'Position',
-                'value' => old('position', isset($client) ? $client->position : null),
+      
             ])
         </div>
     </div>

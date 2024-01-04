@@ -162,4 +162,15 @@ class ClientController extends Controller
             'clients' => $clients,
         ]);
     }
+    function orgFecth(Request $request)  {
+        $orgId = $request->input('orgId');
+        $organisation=Organisation::find($orgId);
+        // dd($organisation);
+        return $data=[
+            'email'=>$organisation->company_email,
+            'phone'=>$organisation->company_phone,
+            'street'=>$organisation->street,
+            'post_code'=>$organisation->post_code,
+        ];
+    }
 }

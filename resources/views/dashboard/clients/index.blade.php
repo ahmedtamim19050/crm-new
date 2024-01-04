@@ -205,6 +205,10 @@
         </div>
     </div>
 </div>
+@endsection
+@push('scripts')
+    
+
 <script>
     Array.from(document.getElementsByClassName('showmodal')).forEach((e) => {
         e.addEventListener('click', function(element) {
@@ -241,7 +245,8 @@
 
                     $('#infoModal').modal('hide');
                     $('#select_organisation_id').trigger('change');
-
+                    $('#input_email').val(response.company_email);
+                    $('#input_phone').val(response.company_phone);
                     toastr.success('', 'Organisation added successfully');
 
                 },
@@ -252,4 +257,27 @@
             });
         }
     </script>
-@endsection
+    <script>
+        $(document).ready(function () {
+        $('#select_organisation_id').on('change', function () {
+            console.log('cliecked')
+            var orgId = $(this).val();
+            $.ajax({
+                url: '/dashboard/organisation/fetch',
+                type: 'get',
+                data: {orgId: orgId},
+                dataType: 'json',
+                success: function (response) {
+                    console.log('Ajax response:', response['email']);
+                    $('#input_email').val(response['email']);
+                    $('#input_phone').val(response['phone']);
+                },
+                error: function (error) {
+                    console.error('Ajax error:', error);
+                }
+            });
+        });
+    });
+    </script>
+    @endpush
+

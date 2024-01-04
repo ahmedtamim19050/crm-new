@@ -115,7 +115,7 @@
             <span class="autocomplete-organisation">
                 @include('partials.form.text', [
                     'name' => 'address',
-                    'label' => 'Address',
+                    'label' => 'Street',
                    
                 ])
 

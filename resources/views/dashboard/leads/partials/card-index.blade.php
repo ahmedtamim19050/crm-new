@@ -114,25 +114,61 @@
             <div class="modal-body">
                 <form method="POST" action="{{ route('organisation.ajax') }}" id="organizationForm">
                     @csrf
-                    @include('partials.form.text', [
-                        'name' => 'name',
-                        'label' => 'Name',
-                        'attributes' => [
-                            'required' => true,
-                        ],
-                    ])
-                    @include('partials.form.select', [
-                        'name' => 'label',
-                        'label' => 'Label',
-                        'options' => App\Helper\SelectOptions::labels(),
-                    
-                    ])
-                    @include('partials.form.select', [
-                        'name' => 'user_owner_id',
-                        'label' => 'owner',
-                        'options' => App\Helper\SelectOptions::users(false),
-                    
-                    ])
+                    <div class="row">
+                        <div class="col-md-6">
+                            @include('partials.form.text', [
+                                'name' => 'name',
+                                'label' => 'Name',
+                                'value' => old('client_name', $organisation->name ?? null),
+                                'attributes' => [
+                                    'required' => true,
+                                ],
+                            ])
+                        </div>
+                        <div class="col-md-6">
+                            @include('partials.form.select', [
+                                'name' => 'label',
+                                'label' => 'Label',
+                                'options' => App\Helper\SelectOptions::labels(),
+                                'value' => old('labels', isset($organisation) ? $organisation->label : null),
+                            ])
+                        </div>
+                        <div class="col-md-6">
+                            @include('partials.form.text', [
+                                'name' => 'meta[street]',
+                                'label' => 'Street address',
+                      
+                            ])
+                        </div>
+                        <div class="col-md-6">
+                            @include('partials.form.text', [
+                                'name' => 'meta[place]',
+                                'label' => 'Place',
+                               
+                            ])
+                        </div>
+                        <div class="col-md-6">
+                            @include('partials.form.text', [
+                                'name' => 'meta[post_code]',
+                                'label' => 'Zip',
+                           
+                            ])
+                        </div>
+                        <div class="col-md-6">
+                            @include('partials.form.text', [
+                                'name' => 'meta[company_email]',
+                                'label' => 'Email',
+                      
+                            ])
+                        </div>
+                        <div class="col-md-6">
+                            @include('partials.form.text', [
+                                'name' => 'meta[company_phone]',
+                                'label' => 'Phone',
+                           
+                            ])
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -231,7 +267,10 @@
                         .id + '">' +
                         organisation.name + '</option>');
                 });
-
+                $('#input_email').val(response.email);
+                $('#input_phone').val(response.phone);
+                $('#input_address').val(response.street);
+                $('#input_code').val(response.post_code);
                 $('#infoModal').modal('hide');
                 $('#select_organisation_id').trigger('change');
 
@@ -272,4 +311,28 @@
             }
         });
     }
+</script>
+<script>
+    $(document).ready(function () {
+    $('#select_organisation_id').on('change', function () {
+        console.log('cliecked')
+        var orgId = $(this).val();
+        $.ajax({
+            url: '/dashboard/organisation/fetch',
+            type: 'get',
+            data: {orgId: orgId},
+            dataType: 'json',
+            success: function (response) {
+                console.log('Ajax response:', response['email']);
+                $('#input_email').val(response['email']);
+                $('#input_phone').val(response['phone']);
+                $('#input_address').val(response['street']);
+                $('#input_code').val(response['post_code']);
+            },
+            error: function (error) {
+                console.error('Ajax error:', error);
+            }
+        });
+    });
+});
 </script>
