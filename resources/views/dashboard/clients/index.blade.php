@@ -137,26 +137,65 @@
             <div class="modal-body">
                 <form method="POST" action="{{ route('organisation.ajax') }}" id="organizationForm">
                     @csrf
-                    @include('partials.form.text', [
-                        'name' => 'name',
-                        'label' => 'Name',
-                        'value' => old('client_name', $organisation->name ?? null),
-                        'attributes' => [
-                            'required' => true,
-                        ],
-                    ])
-                    @include('partials.form.select', [
-                        'name' => 'label',
-                        'label' => 'Label',
-                        'options' => App\Helper\SelectOptions::labels(),
-                        'value' => old('labels', isset($organisation) ? $organisation->label : null),
-                    ])
-                    {{-- @include('partials.form.select', [
-                        'name' => 'user_owner_id',
-                        'label' => 'owner',
-                        'options' => App\Helper\SelectOptions::users(false),
-                        'value' => old('user_owner_id', $organisation->user_owner_id ?? auth()->user()->id),
-                    ]) --}}
+                    <div class="row">
+                        <div class="col-md-6">
+                            @include('partials.form.text', [
+                                'name' => 'name',
+                                'label' => 'Name',
+                                'value' => old('client_name', $organisation->name ?? null),
+                                'attributes' => [
+                                    'required' => true,
+                                ],
+                            ])
+                        </div>
+                        <div class="col-md-6">
+                            @include('partials.form.select', [
+                                'name' => 'label',
+                                'label' => 'Label',
+                                'options' => App\Helper\SelectOptions::labels(),
+                                'value' => old('labels', isset($organisation) ? $organisation->label : null),
+                            ])
+                        </div>
+                        <div class="col-md-6">
+                            @include('partials.form.text', [
+                                'name' => 'meta[street]',
+                                'label' => 'Street address',
+                      
+                            ])
+                        </div>
+                        <div class="col-md-6">
+                            @include('partials.form.text', [
+                                'name' => 'meta[place]',
+                                'label' => 'Place',
+                               
+                            ])
+                        </div>
+                        <div class="col-md-6">
+                            @include('partials.form.text', [
+                                'name' => 'meta[post_code]',
+                                'label' => 'Zip',
+                           
+                            ])
+                        </div>
+                        <div class="col-md-6">
+                            @include('partials.form.text', [
+                                'name' => 'meta[company_email]',
+                                'label' => 'Email',
+                      
+                            ])
+                        </div>
+                        <div class="col-md-6">
+                            @include('partials.form.text', [
+                                'name' => 'meta[company_phone]',
+                                'label' => 'Phone',
+                           
+                            ])
+                        </div>
+                    </div>
+                  
+            
+                 
+         
                 </form>
             </div>
             <div class="modal-footer">

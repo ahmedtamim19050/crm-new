@@ -145,6 +145,7 @@ class OrganisationController extends Controller
             'label' => $request->label,
         ]);
         $organisations = Organisation::all();
+        $organisation->createMetas($request->meta);
         return response()->json([
             'success' => true,
             'message' => 'Organisation added successfully',

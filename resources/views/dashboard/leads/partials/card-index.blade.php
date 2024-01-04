@@ -39,7 +39,7 @@
                                     <th><strong>Value</strong></th>
                                     <th><strong>Customer</strong></th>
                                     <th> <strong> Organisation </strong></th>
-                                    <th> <strong>Owner </strong></th>
+                                    {{-- <th> <strong>Owner </strong></th> --}}
 
                                     <th></th>
                                 </tr>
@@ -63,7 +63,7 @@
 
                                         <td>{{ $lead->client->name ?? null }}</td>
                                         <td>{{ $lead->organisation->name ?? null }}</td>
-                                        <td>{{ $lead->ownerUser->name ?? null }}</td>
+                                        {{-- <td>{{ $lead->ownerUser->name ?? null }}</td> --}}
                                         <td>
                                             <x-delete class="btn btn-danger btn-sm" :route="route('leads.destroy', $lead)" />
                                         </td>

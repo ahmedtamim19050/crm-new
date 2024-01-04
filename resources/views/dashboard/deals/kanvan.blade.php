@@ -211,7 +211,7 @@
                    
                                 ])
 
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-sm-6">
                                         @include('partials.form.text', [
                                             'name' => 'amount',
@@ -228,7 +228,7 @@
                                     
                                         ])
                                     </div>
-                                </div>
+                                </div> --}}
                                 @include('partials.form.select', [
                                     'name' => 'label',
                                     'label' => 'Label',
