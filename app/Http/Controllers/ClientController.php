@@ -171,6 +171,8 @@ class ClientController extends Controller
             'phone'=>$organisation->company_phone,
             'street'=>$organisation->street,
             'post_code'=>$organisation->post_code,
+            'state'=>$organisation->state,
+            'country'=>$organisation->country,
         ];
     }
 }

@@ -54,8 +54,8 @@ class DealsController extends Controller
 
         return view('dashboard.deals.index', [
             'deals' => $deals,
-            'clients'=>$clients,
-            'organisations'=>$organisations,
+            'clients' => $clients,
+            'organisations' => $organisations,
         ]);
     }
 
@@ -66,7 +66,7 @@ class DealsController extends Controller
      */
     public function create(Request $request)
     {
-       
+
 
         $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
         $organisations = Organisation::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
@@ -85,40 +85,18 @@ class DealsController extends Controller
      */
     public function store(StoreDealRequest $request)
     {
-        // dd($request->all());
-        if (!is_numeric($request->organisation_id)) {
-            $organisation=Organisation::create([
-                'name'=>$request->organisation_id,
-                'user_id'=>auth()->id(),
-                'user_owner_id'=>auth()->id(),
-                'external_id' => Uuid::uuid4()->toString(),
-             
-            ]);
-            $organisation=$organisation->id;
-        }else{
-            $organisation=$request->organisation_id;
-        }
 
-        if (!is_numeric($request->client_id)) {
-            $client=Client::create([
-                'name'=>$request->client_id,
-                'user_id'=>auth()->id(),
-                'user_owner_id'=>auth()->id(),
-                'organisation_id'=>$organisation,
-            ]);
-            $client=$client->id;
-        }else{
-            $client=$request->client_id;
-        }
-  
-        $stage=Category::orderBy('order','asc')->first();
-        if(!$stage){
+        $organisation = $request->organisation_id;
+        $client = $request->client_id;
+
+        $stage = Category::orderBy('order', 'asc')->first();
+        if (!$stage) {
             return redirect()->route('categories.index')->withErrors('Please insert atleast one stages');
         }
-        $this->dealService->create($request, $person ?? null,$client,$organisation);
-        if($request->category_id){
+        $this->dealService->create($request, $person ?? null, $client, $organisation);
+        if ($request->category_id) {
             return redirect()->route('kanvan')->with('success', 'Deal Create Successfully');
-        }else{
+        } else {
 
             return redirect()->route('deals.index')->with('success', 'Deal Create Successfully');
         }
@@ -139,9 +117,9 @@ class DealsController extends Controller
             $address = $deal->person->getPrimaryAddress();
         }
         $persons = Person::pluck('last_name', 'id')->toArray();
-        $labels=Label::pluck('name','id')->toArray();
-        $clients=Client::where('user_id',auth()->id())->pluck('name','id')->toArray();
-        $organisations=Organisation::where('user_id',auth()->id())->pluck('name','id')->toArray();
+        $labels = Label::pluck('name', 'id')->toArray();
+        $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
+        $organisations = Organisation::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
 
         return view('dashboard.deals.show', [
             'deal' => $deal,
@@ -186,7 +164,6 @@ class DealsController extends Controller
         $deal = $this->dealService->update($request, $deal);
 
         return response()->json(['success' => true, 'message' => 'Lead updated successfully']);
-    
     }
 
     /**
@@ -206,16 +183,16 @@ class DealsController extends Controller
         $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
         $organisations = Organisation::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
         $stages = Category::orderBy('order', 'asc')->get();
-        return view('dashboard.deals.kanvan', compact('stages','clients','organisations'));
+        return view('dashboard.deals.kanvan', compact('stages', 'clients', 'organisations'));
     }
     public function kanvanUpdate(Request $request)
     {
         // Retrieve data from the AJAX request
         $dealId = $request->input('dealId');
         $newStageId = $request->input('newStageId');
-        $deal=Deal::find($dealId);
+        $deal = Deal::find($dealId);
         $deal->update([
-            'category_id'=>$newStageId,
+            'category_id' => $newStageId,
         ]);
         return response()->json(['message' => 'Deal updated successfully']);
     }

@@ -25,7 +25,7 @@ class UpdateLeadRequest extends FormRequest
     {
         return [
             'organisation_id' => 'required',
-            'title' => 'required|max:255',
+            'title' => 'nullable|max:255',
             'amount' => 'nullable|numeric',
             // 'user_owner_id' => 'required',
             'code' => 'nullable|numeric',

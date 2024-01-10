@@ -109,8 +109,8 @@
                                         {{-- <th><strong>Created</strong></th> --}}
                                         <th><strong>Title</strong></th>
                                         <th><strong>Label</strong></th>
-                                        <th><strong>Value</strong></th>
-                                        <th><strong>Customer</strong></th>
+                                        {{-- <th><strong>Value</strong></th>
+                                        <th><strong>Customer</strong></th> --}}
                                         <th> <strong> Organisation </strong></th>
                                         {{-- <th> <strong>Contact Person </strong></th> --}}
                                         {{-- <th> <strong>Owner </strong></th> --}}
@@ -136,9 +136,9 @@
                                                     style="background-color:{{ $deal->labelName->color ?? null }}">{{ $deal->labelName->name ?? null }}</span>
                                             </td>
 
-                                            <td>{{ $deal->amount, $deal->currency }}</td>
+                                            {{-- <td>{{ $deal->amount, $deal->currency }}</td>
 
-                                            <td>{{ $deal->client->name ?? null }}</td>
+                                            <td>{{ $deal->client->name ?? null }}</td> --}}
                                             <td>{{ $deal->organisation->name ?? null }}</td>
                                             {{-- <td>{{ $deal->person->name ??  null }}</td> --}}
                                             {{-- <td>{{ $deal->ownerUser->name ?? null }}</td> --}}
@@ -199,7 +199,7 @@
                             <div class="col-sm-6 border-right">
 
 
-                                <div class="d-flex align-items-center">
+                                {{-- <div class="d-flex align-items-center">
                                     <div class="col-md-10">
                                         @include('partials.form.select', [
                                             'name' => 'client_id',
@@ -213,7 +213,7 @@
                                             <i class="fas fa-plus"></i>
                                         </button>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="d-flex align-items-center">
                                     <div class="col-md-10">
 
@@ -565,6 +565,8 @@
                         $('#input_phone').val(response['phone']);
                         $('#input_address').val(response['street']);
                         $('#input_code').val(response['post_code']);
+                        $('#input_state').val(response['state']);
+                        $('#select_country').val(response['country']);
                     },
                     error: function(error) {
                         console.error('Ajax error:', error);

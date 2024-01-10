@@ -80,9 +80,7 @@
                             </td>
 
                         </p>
-                        <p>
-
-
+                        {{-- <p>
                         <form class="updateForm" action="{{ route('leads.update', $lead) }}" method="post">
                             @csrf
                             @method('PUT')
@@ -96,8 +94,8 @@
                                     id="editButtonPrice" style="display: none"><i class="fas fa-pencil-alt"></i></button>
                             </div>
                         </form>
-                        </p>
-                        <p>
+                        </p> --}}
+                        {{-- <p>
 
 
                         <form class="updateForm" action="{{ route('leads.update', $lead) }}" method="post"
@@ -115,7 +113,7 @@
                                         class="fas fa-pencil-alt"></i></button>
                             </div>
                         </form>
-                        </p>
+                        </p> --}}
                         {{-- <p>
                             <span class="fa fa-user-circle" aria-hidden="true"></span> <a
                                 href="">{{ $lead->ownerUser->name ?? null }}</a>
@@ -123,7 +121,6 @@
                         <h6 class="mt-4 text-uppercase"> Expected close date</h6>
                         <hr />
                         <p>
-
 
                         <form class="updateForm" action="{{ route('leads.update', $lead) }}" method="post">
                             @csrf
@@ -140,9 +137,9 @@
                             </div>
                         </form>
                         </p>
-                        <h6 class="mt-4 text-uppercase"> CUSTOMER</h6>
-                        <hr />
-                        <p>
+                        {{-- <h6 class="mt-4 text-uppercase"> CUSTOMER</h6>
+                        <hr /> --}}
+                        {{-- <p>
                             @if ($lead->client)
                                 <form class="updateForm" action="{{ route('leads.update', $lead) }}" method="post">
                                     @csrf
@@ -166,8 +163,8 @@
                                     </div>
                                 </form>
                             @endif
-                        </p>
-                        <h6 class="mt-4 text-uppercase"> ORGANIZATION</h6>
+                        </p> --}}
+                        <h6 class="mt-4 text-uppercase"> Adreess</h6>
                         <hr />
                         <p>
                             @if ($lead->organisation)
@@ -202,12 +199,71 @@
                             @csrf
                             @method('PUT')
                             <span class="fa fa-map-marker me-1" aria-hidden="true"></span>
-                            <div class="d-inline-block" onmouseover="myFunction(this, 'addressInput', 'editButtonAddress')" onmouseout="hideEditLink(this, 'addressInput', 'editButtonAddress')">
+                            <div class="d-inline-block"
+                                onmouseover="myFunction(this, 'addressInput', 'editButtonAddress')"
+                                onmouseout="hideEditLink(this, 'addressInput', 'editButtonAddress')">
                                 <input type="text" class="edit-input" id="addressInput" style="border: 0"
-                                     name="address"
-                                    value="{{ $lead->address }}">
+                                    name="address" value="{{ $lead->address }}">
                                 <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonAddress"
                                     style="display: none" onclick="updateDescription()">Edit</button>
+                            </div>
+                        </form>
+                        </p>
+                        <p>
+                            {{-- {{ $lead->address }} --}}
+                        <form class="updateForm" action="{{ route('leads.update', $lead) }}" method="post">
+                            @csrf
+                            @method('PUT')
+                            <i class="fas fa-street-view"></i>
+                            <div class="d-inline-block"
+                                onmouseover="myFunction(this, 'cityCity', 'editButtoncity')"
+                                onmouseout="hideEditLink(this, 'cityInput', 'editButtoncity')">
+                                <input type="text" class="edit-input" id="cityInput" style="border: 0"
+                                    name="city" value="{{ $lead->city }}">
+                                <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtoncity"
+                                    style="display: none" onclick="updateDescription()">Edit</button>
+                            </div>
+                        </form>
+                        </p>
+                        <p>
+                            {{-- {{ $lead->address }} --}}
+                        <form class="updateForm" action="{{ route('leads.update', $lead) }}" method="post">
+                            @csrf
+                            @method('PUT')
+                            <i class="fas fa-sign"></i>
+                            <div class="d-inline-block"
+                                onmouseover="myFunction(this, 'stateCity', 'editButtonState')"
+                                onmouseout="hideEditLink(this, 'stateCity', 'editButtonState')">
+                                <input type="text" class="edit-input" id="stateCity" style="border: 0"
+                                    name="state" value="{{ $lead->state }}">
+                                <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonState"
+                                    style="display: none" onclick="updateDescription()">Edit</button>
+                            </div>
+                        </form>
+                        </p>
+                        <p>
+                            <form class="updateForm" action="{{ route('leads.update', $lead) }}"
+                            method="post">
+                            @csrf
+                            @method('PUT')
+                            <i class="fas fa-globe-europe"></i>
+    
+                            <div class="d-inline-block"
+                                onmouseover="myFunction(this, 'countryInput', 'editButtonCountry')"
+                                onmouseout="hideEditLink(this, 'countryInput', 'editButtonCountry')">
+    
+    
+                                <select class="edit-input" name="country" id="countryInput" style="border: 0">
+                                    @foreach (App\Helper\SelectOptions::countries() as $key => $country)
+                                        <option value="{{ $key }}"
+                                            {{ $key == $lead->country ? 'selected' : '' }}>
+                                            {{ $country }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonCountry"
+                                    style="display: none" onclick="updateDescription()">
+                                    <i class="fas fa-check"></i></button>
                             </div>
                         </form>
                         </p>
@@ -224,14 +280,14 @@
                             @csrf
                             @method('PUT')
                             <span class="fa fa-envelope" aria-hidden="true"></span>
-                            <div class="d-inline-block"  onmouseover="myFunction(this, 'emailInput', 'editButtonEmail')"  onmouseout="hideEditLink(this, 'emailInput', 'editButtonEmail')">
+                            <div class="d-inline-block" onmouseover="myFunction(this, 'emailInput', 'editButtonEmail')"
+                                onmouseout="hideEditLink(this, 'emailInput', 'editButtonEmail')">
 
-                                <input type="text" class="edit-input" style="border: 0"
-                                    name="email"
-                                    id="emailInput"
-                                    value="{{ $lead->email }}">
-                                <button type="button" onclick="updateDescription()" class="btn editBtn btn-primary btn-sm"
-                                    id="editButtonEmail" style="display: none">Edit</button>
+                                <input type="text" class="edit-input" style="border: 0" name="email"
+                                    id="emailInput" value="{{ $lead->email }}">
+                                <button type="button" onclick="updateDescription()"
+                                    class="btn editBtn btn-primary btn-sm" id="editButtonEmail"
+                                    style="display: none">Edit</button>
                             </div>
                         </form>
                         </p>
@@ -241,14 +297,14 @@
                             @csrf
                             @method('PUT')
                             <span class="fa fa-phone" aria-hidden="true"></span>
-                            <div class="d-inline"  onmouseover="myFunction(this, 'phoneInput', 'editButtonPhone')"  onmouseout="hideEditLink(this, 'phoneInput', 'editButtonPhone')">
+                            <div class="d-inline" onmouseover="myFunction(this, 'phoneInput', 'editButtonPhone')"
+                                onmouseout="hideEditLink(this, 'phoneInput', 'editButtonPhone')">
 
-                                <input type="text" class="edit-input" style="border: 0"
-                                    name="phone"
-                                    id="phoneInput"
-                                    value="{{ $lead->phone }}">
-                                <button type="button" onclick="updateDescription()" class="btn btn-primary editBtn btn-sm"
-                                    id="editButtonPhone" style="display: none">Edit</button>
+                                <input type="text" class="edit-input" style="border: 0" name="phone"
+                                    id="phoneInput" value="{{ $lead->phone }}">
+                                <button type="button" onclick="updateDescription()"
+                                    class="btn btn-primary editBtn btn-sm" id="editButtonPhone"
+                                    style="display: none">Edit</button>
                             </div>
                         </form>
                         </p>
@@ -265,45 +321,45 @@
 @endsection
 
 @push('scripts')
-<script>
-    function myFunction(element, inputId, buttonId) {
-        $('.edit-input').css('border', '0');
-        $('[id^="editButton"]').hide();
+    <script>
+        function myFunction(element, inputId, buttonId) {
+            $('.edit-input').css('border', '0');
+            $('[id^="editButton"]').hide();
 
-        $('#' + inputId).css('border', '1px solid #888');
-        $('#' + buttonId).show();
-
-
-    }
-
-    function hideEditLink(element, inputId, buttonId) {
-
-        $('#' + inputId).css('border', '0');
-        $('#' + buttonId).hide();
+            $('#' + inputId).css('border', '1px solid #888');
+            $('#' + buttonId).show();
 
 
-    }
+        }
 
-    function updateDescription() {
-        var formData = $('.updateForm').serialize();
-        // console.log(formData);
-        $.ajax({
-            url: $('.updateForm').attr('action'),
-            type: 'PUT',
-            data: formData,
-            success: function(response) {
-                console.log(response)
-                $('.edit-input').css('border', '0');
-                $('.editBtn').hide();
-                toastr.success('', 'Lead Update successfully');
-            },
-            error: function(error) {
-                // Handle error, if needed
-                console.error(error);
-            }
-        });
-    }
-</script>
+        function hideEditLink(element, inputId, buttonId) {
+
+            $('#' + inputId).css('border', '0');
+            $('#' + buttonId).hide();
+
+
+        }
+
+        function updateDescription() {
+            var formData = $('.updateForm').serialize();
+            // console.log(formData);
+            $.ajax({
+                url: $('.updateForm').attr('action'),
+                type: 'PUT',
+                data: formData,
+                success: function(response) {
+                    console.log(response)
+                    $('.edit-input').css('border', '0');
+                    $('.editBtn').hide();
+                    toastr.success('', 'Lead Update successfully');
+                },
+                error: function(error) {
+                    // Handle error, if needed
+                    console.error(error);
+                }
+            });
+        }
+    </script>
 @endpush
 
 

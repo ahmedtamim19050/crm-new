@@ -165,7 +165,7 @@
                             <div class="col-sm-6 border-right">
 
 
-                                <div class="d-flex align-items-center">
+                                {{-- <div class="d-flex align-items-center">
                                     <div class="col-md-10">
                                         @include('partials.form.select', [
                                             'name' => 'client_id',
@@ -179,7 +179,7 @@
                                             <i class="fas fa-plus"></i>
                                         </button>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="d-flex align-items-center">
                                     <div class="col-md-10">
 
@@ -379,7 +379,7 @@
             </div>
         </div>
     </div>
-    <div class="modal mt-5 ms-5" id="clientModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true"
+    {{-- <div class="modal mt-5 ms-5" id="clientModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true"
         data-bs-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -406,12 +406,6 @@
                                 ])
                             </div>
                         </div>
-                        {{-- @include('partials.form.select', [
-                            'name' => 'user_owner_id',
-                            'label' => 'owner',
-                            'options' => App\Helper\SelectOptions::users(false),
-                          
-                        ]) --}}
                         @include('partials.form.text', [
                             'name' => 'phone',
                             'label' => 'Phone',
@@ -428,7 +422,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
 
 @push('scripts')
@@ -540,38 +534,40 @@
             });
         }
 
-        function createClient() {
-            var formData = $('#clientForm').serialize();
-            // console.log(formData);
-            $.ajax({
-                url: $('#clientForm').attr('action'),
-                type: 'POST',
-                data: formData,
-                success: function(response) {
-                    //    console.log(response.organisations)
-                    $('#select_client_id').empty();
-                    $.each(response.clients, function(index, client) {
-                        $('#select_client_id').append('<option selected value="' + client
-                            .id + '">' +
-                            client.name + '</option>');
-                    });
+        // function createClient() {
+        //     var formData = $('#clientForm').serialize();
+        //     // console.log(formData);
+        //     $.ajax({
+        //         url: $('#clientForm').attr('action'),
+        //         type: 'POST',
+        //         data: formData,
+        //         success: function(response) {
+        //             //    console.log(response.organisations)
+        //             $('#select_client_id').empty();
+        //             $.each(response.clients, function(index, client) {
+        //                 $('#select_client_id').append('<option selected value="' + client
+        //                     .id + '">' +
+        //                     client.name + '</option>');
+        //             });
 
-                    $('#clientModal').modal('hide');
-                    $('#select_client_id').trigger('change');
-                    $('#input_email').val(response.email);
-                    $('#input_phone').val(response.phone);
-                    $('#input_address').val(response.street);
-                    $('#input_code').val(response.post_code);
+        //             $('#clientModal').modal('hide');
+        //             $('#select_client_id').trigger('change');
+        //             $('#input_email').val(response.email);
+        //             $('#input_phone').val(response.phone);
+        //             $('#input_address').val(response.street);
+        //             $('#input_code').val(response.post_code);
+        //             $('#input_state').val(response.state);
+        //             $('#select_country').val(response.country);
 
 
-                    toastr.success('', 'Client added successfully');
-                },
-                error: function(error) {
-                    // Handle error, if needed
-                    console.error(error);
-                }
-            });
-        }
+        //             toastr.success('', 'Client added successfully');
+        //         },
+        //         error: function(error) {
+        //             // Handle error, if needed
+        //             console.error(error);
+        //         }
+        //     });
+        // }
     </script>
 
     <script>
@@ -592,6 +588,8 @@
                         $('#input_phone').val(response['phone']);
                         $('#input_address').val(response['street']);
                         $('#input_code').val(response['post_code']);
+                        $('#input_state').val(response.state);
+                        $('#select_country').val(response.country);
                     },
                     error: function(error) {
                         console.error('Ajax error:', error);

@@ -28,7 +28,7 @@ class StoreLeadRequest extends FormRequest
             // 'person_id' => 'required_without_all:organisation_name,organisation_id,person_name|max:255',
             // 'organisation_name' => 'required_without_all:person_name,person_id|max:255',
             'organisation_id' => 'required',
-            'title' => 'required|max:255',
+            'title' => 'nullable|max:255',
             'amount' => 'nullable|numeric',
             // 'user_owner_id' => 'required',
             'code' => 'nullable',

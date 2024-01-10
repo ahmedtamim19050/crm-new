@@ -50,7 +50,7 @@
                             class="">
                             @csrf
                             @method('PUT')
-                            <i class="far fa-building"></i>
+                            <i class="far fa-building"></i> 
                             <div class="d-inline" onmouseover="myFunction(this, 'name', 'editButtonName')"
                                 onmouseout="hideEditLink(this, 'name', 'editButtonName')">
 
@@ -150,6 +150,46 @@
                                     style="display: none"><i class="fas fa-check"></i></button>
                             </div>
                         </form>
+                        <form class="updateForm" action="{{ route('organisations.update', $organisation) }}"
+                            method="post" class="">
+                            @csrf
+                            @method('PUT')
+                            <i class="fas fa-sign"></i>
+                            <div class="d-inline" onmouseover="myFunction(this, 'state', 'editButtonstate')"
+                                onmouseout="hideEditLink(this, 'state', 'editButtonstate')">
+
+                                <input type="text" class="edit-input" style="border: 0" name="meta[state]"
+                                    id="state" value="{{ $organisation->state }}">
+                                <button type="button" onclick="updateDescription()"
+                                    class="btn btn-primary editBtn btn-sm" id="editButtonstate"
+                                    style="display: none"><i class="fas fa-check"></i></button>
+                            </div>
+                        </form>
+
+                        <form class="updateForm" action="{{ route('organisations.update', $organisation) }}"
+                        method="post">
+                        @csrf
+                        @method('PUT')
+                        <i class="fas fa-globe-europe"></i>
+
+                        <div class="d-inline-block"
+                            onmouseover="myFunction(this, 'countryInput', 'editButtonCountry')"
+                            onmouseout="hideEditLink(this, 'countryInput', 'editButtonCountry')">
+
+
+                            <select class="edit-input" name="meta[country]" id="countryInput" style="border: 0">
+                                @foreach (App\Helper\SelectOptions::countries() as $key => $country)
+                                    <option value="{{ $key }}"
+                                        {{ $key == $organisation->country ? 'selected' : '' }}>
+                                        {{ $country }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonCountry"
+                                style="display: none" onclick="updateDescription()">
+                                <i class="fas fa-check"></i></button>
+                        </div>
+                    </form>
                         </p>
                         @if ($organisation->labelName)
                             {{-- <span class="badge light badge-success text-white"
@@ -187,27 +227,31 @@
                                 data-bs-target="#personModal"><i class="fas fa-user-plus"></i></button>
                         </div>
                         <hr />
-                        @if ($organisation->peoples->count() > 0)
+                        @if ($organisation->clients->count() > 0)
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Gender</th>
+                                        <th scope="col">Phone</th>
+                                        {{-- <th scope="col">Email</th> --}}
 
                                     </tr>
                                 </thead>
+                      
                                 <tbody>
-                                    @foreach ($organisation->peoples as $people)
+                                    @foreach ($organisation->clients as $people)
+
                                         <tr>
                                             <th scope="row">{{ $loop->index + 1 }}</th>
-                                            <td>{{ $people->first_name }} {{ $people->last_name }} </td>
-                                            <td>{{ $people->gender }} </td>
+                                            <td>{{ $people->name }} {{ $people->l_name }} </td>
+                                            <td>{{ $people->phone }} </td>
+                                            {{-- <td>{{ $people->email }} </td> --}}
                                             <td>
                                                 <button class="btn btn-secondary btn-sm"
-                                                    data-fname="{{ $people->first_name }}"
-                                                    data-lname="{{ $people->last_name }}"
-                                                    data-gender="{{ $people->gender }}" data-id="{{ $people->id }}"
+                                                    data-fname="{{ $people->name }}"
+                                                    data-lname="{{ $people->l_name }}"
+                                                    data-phone="{{ $people->phone }}" data-id="{{ $people->id }}"
                                                     type="button" data-bs-toggle="modal"
                                                     data-bs-target="#personModal"><i class="fas fa-user-edit"></i>
                                                 </button>
@@ -502,38 +546,25 @@
                     @csrf
                     <div class="modal-body">
                         @include('partials.form.text', [
-                            'name' => 'f_name',
+                            'name' => 'name',
                             'label' => 'First Name',
-                            'value' => old('f_name'),
                             'attributes' => [
                                 'required' => '',
                             ],
                         ])
-                        @include('partials.form.text', [
-                            'name' => 'l_name',
-                            'label' => 'Last Name',
-                            'value' => old('l_name'),
-                            'attributes' => [
-                                'required' => '',
-                            ],
-                        ])
-                        <label for="" class="mb-3">Gender</label>
-                        <div class="d-flex">
-                            <div class="form-check">
-                                <input class="form-check-input" value="Male" type="radio" name="gender"
-                                    id="male">
-                                <label class="form-check-label" for="male">
-                                    Male
-                                </label>
-                            </div>
-                            <div class="form-check ms-3">
-                                <input class="form-check-input" type="radio" value="Female" name="gender"
-                                    id="female">
-                                <label class="form-check-label" for="female">
-                                    Female
-                                </label>
-                            </div>
+                  
+                        <div>
+                            <label for="l_name" class="form-label">Last name</label>
+                            <input type="text" name="meta[l_name]" id="l_name" class="form-control" required>
                         </div>
+                        @include('partials.form.text', [
+                            'name' => 'phone',
+                            'label' => 'phone',
+                            'attributes' => [
+                                'required' => '',
+                            ],
+                        ])
+                       
                     </div>
                     <input type="hidden" name="person_id" id="personId">
 
@@ -635,23 +666,17 @@
                 var button = $(event.relatedTarget);
                 var fname = button.data('fname');
                 var lname = button.data('lname');
-                var gender = button.data('gender');
+                var phone = button.data('phone');
                 var id = button.data('id');
-                // console.log(gender)
-
+                
                 var modal = $(this);
-                // console.log(fname);
-                modal.find('#input_f_name').val(fname);
-                modal.find('#input_l_name').val(lname);
+                // console.log(modal.find('#input_meta[l_name]'));
+                console.log(lname);
+                modal.find('#input_name').val(fname);
+                modal.find('#l_name').val(lname);
                 modal.find('#personId').val(id);
-                if (gender == 'male') {
-
-
-                    modal.find('#male').prop('checked', true);
-                }
-                if (gender == 'male') {
-                    modal.find('#female').prop('checked', true);
-                }
+                modal.find('#input_phone').val(phone);
+               
 
             });
         });

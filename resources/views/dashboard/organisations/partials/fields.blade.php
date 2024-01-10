@@ -46,17 +46,23 @@
                    
                     ])
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-sm-12">
                     @include('partials.form.text', [
-                        'name' => 'meta[company_email]',
-                        'label' => 'Email',
-              
+                        'name' => 'meta[state]',
+                        'label' => 'State',
+                   
                     ])
                 </div>
-             
+                <div class="col-sm-12">
+                    @include('partials.form.select', [
+                        'name' => 'metaa[country]',
+                        'label' => 'Country',
+                        'options' => App\Helper\SelectOptions::countries(),
+                        
+                    ])
+                </div>
             </div>
+        
 
         </div>
         <div class="col-sm-6">
@@ -65,6 +71,13 @@
             {{-- <h6 class="text-uppercase"><span class="fa fa-user" aria-hidden="true"></span> Company Info</h6>
             <hr />
             <span class="autocomplete-person"> --}}
+                <div class="col-sm-12">
+                    @include('partials.form.text', [
+                        'name' => 'meta[company_email]',
+                        'label' => 'Email',
+              
+                    ])
+                </div>
 
                 <div class="col-sm-12">
                     @include('partials.form.text', [

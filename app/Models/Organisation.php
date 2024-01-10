@@ -24,6 +24,8 @@ class Organisation extends Model
         "niche",
         "company_fb",
         "social",
+        "state",
+        "country",
     ];
 
     protected $guarded = ['id'];
@@ -34,6 +36,10 @@ class Organisation extends Model
     public function peoples()
     {
         return $this->hasMany(Person::class,'organisation_id');
+    }
+    public function clients()
+    {
+        return $this->hasMany(Client::class,'organisation_id');
     }
 
     /**

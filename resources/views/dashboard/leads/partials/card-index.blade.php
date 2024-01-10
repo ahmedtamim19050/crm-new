@@ -34,11 +34,11 @@
                                 <tr>
                                     <th style="width:80px;"><strong>#</strong></th>
                                     <th><strong>Created</strong></th>
-                                    <th><strong>Title</strong></th>
-                                    <th><strong>Label</strong></th>
-                                    <th><strong>Value</strong></th>
-                                    <th><strong>Customer</strong></th>
+                                    {{-- <th><strong>Title</strong></th> --}}
                                     <th> <strong> Organisation </strong></th>
+                                    <th><strong>Label</strong></th>
+                                    <th><strong>Address</strong></th>
+                                    <th><strong>Country</strong></th>
                                     {{-- <th> <strong>Owner </strong></th> --}}
 
                                     <th></th>
@@ -51,7 +51,8 @@
                                         <td>{{ $lead->created_at->diffForHumans() }}</td>
                                         <td>
                                             <a href="{{ route('leads.show', $lead) }}"
-                                                class="text-primary text-decoration-underline">{{ $lead->title }}</a>
+                                                class="text-primary text-decoration-underline">
+                                                {{ $lead->organisation->name ?? null }}</a>
                                         </td>
                                         <td>
 
@@ -59,11 +60,10 @@
                                                 style="background-color:{{ $lead->labelName->color ?? null }}">{{ $lead->labelName->name ?? null }}</span>
                                         </td>
 
-                                        <td>{{ $lead->amount, $lead->currency }}</td>
+                                        <td>{{ $lead->address}},{{ $lead->post_code}},{{ $lead->city}},{{ $lead->state}}</td>
 
-                                        <td>{{ $lead->client->name ?? null }}</td>
-                                        <td>{{ $lead->organisation->name ?? null }}</td>
-                                        {{-- <td>{{ $lead->ownerUser->name ?? null }}</td> --}}
+                                        <td>{{ $lead->country ?? null }}</td>
+     
                                         <td>
                                             <x-delete class="btn btn-danger btn-sm" :route="route('leads.destroy', $lead)" />
                                         </td>
@@ -267,10 +267,13 @@
                         .id + '">' +
                         organisation.name + '</option>');
                 });
+                console.log(response.state);
                 $('#input_email').val(response.email);
                 $('#input_phone').val(response.phone);
                 $('#input_address').val(response.street);
                 $('#input_code').val(response.post_code);
+                $('#input_state').val(response.state);
+                $('#select_country').val(response.country);
                 $('#infoModal').modal('hide');
                 $('#select_organisation_id').trigger('change');
 
@@ -328,6 +331,9 @@
                 $('#input_phone').val(response['phone']);
                 $('#input_address').val(response['street']);
                 $('#input_code').val(response['post_code']);
+                $('#input_state').val(response.state);
+                $('#select_country').val(response.country);
+                console.log(response);
             },
             error: function (error) {
                 console.error('Ajax error:', error);

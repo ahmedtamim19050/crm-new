@@ -163,22 +163,22 @@ class OrganisationController extends Controller
     {
         // dd($request->all());
         if ($request->person_id == !null) {
-            $person = Person::find($request->person_id);
+            $person = Client::find($request->person_id);
             $person->update([
-                'first_name' => $request->f_name,
-                'last_name' => $request->l_name,
-                'gender' => $request->gender,
+                'name' => $request->name,
+                'phone' => $request->phone,
             ]);
+            $person->createMetas($request->meta);
             return back()->with('success', 'Person update Successfully');
         } else {
-            Person::create([
-                'first_name' => $request->f_name,
-                'last_name' => $request->l_name,
-                'gender' => $request->gender,
+            $person=Client::create([
+                'name' => $request->name,
+                'phone' => $request->phone,
                 'organisation_id' => $organisation->id,
-                'user_created_id' => auth()->id(),
+                'user_id' => auth()->id(),
     
             ]);
+            $person->createMetas($request->meta);
             return back()->with('success', 'Persone Add Successfully');
         }
      

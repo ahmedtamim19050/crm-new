@@ -247,6 +247,7 @@
                     $('#select_organisation_id').trigger('change');
                     $('#input_email').val(response.company_email);
                     $('#input_phone').val(response.company_phone);
+                    $('#input_name').val(response.name);
                     toastr.success('', 'Organisation added successfully');
 
                 },

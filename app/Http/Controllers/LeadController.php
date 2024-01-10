@@ -25,7 +25,7 @@ class LeadController extends Controller
      */
     private $leadService;
 
-       /**
+    /**
      * @var PersonService
      */
     private $personService;
@@ -35,24 +35,23 @@ class LeadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-        /**
+    /**
      * @var OrganisationService
      */
-        /**
+    /**
      * @var DealService
      */
     private $dealService;
 
     private $organisationService;
 
-     public function __construct(LeadService $leadService ,DealService $dealService,PersonService $personService, OrganisationService $organisationService)
-     {
-         $this->leadService = $leadService;
-         $this->personService = $personService;
-         $this->organisationService = $organisationService;
-         $this->dealService = $dealService;
-
-     }
+    public function __construct(LeadService $leadService, DealService $dealService, PersonService $personService, OrganisationService $organisationService)
+    {
+        $this->leadService = $leadService;
+        $this->personService = $personService;
+        $this->organisationService = $organisationService;
+        $this->dealService = $dealService;
+    }
 
 
 
@@ -60,15 +59,15 @@ class LeadController extends Controller
     {
 
 
-        $leads = Lead::where('user_id',auth()->id())->latest()->get();
-        $clients=Client::where('user_id',auth()->id())->pluck('name','id')->toArray();
-        $organisations=Organisation::where('user_id',auth()->id())->pluck('name','id')->toArray();
+        $leads = Lead::where('user_id', auth()->id())->latest()->get();
+        $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
+        $organisations = Organisation::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
 
 
         return view('dashboard.leads.index', [
             'leads' => $leads,
-            'clients'=>$clients,
-            'organisations'=>$organisations,
+            'clients' => $clients,
+            'organisations' => $organisations,
         ]);
     }
 
@@ -79,13 +78,13 @@ class LeadController extends Controller
      */
     public function create(Request $request)
     {
-        $clients=Client::where('user_id',auth()->id())->pluck('name','id')->toArray();
-        $organisations=Organisation::where('user_id',auth()->id())->pluck('name','id')->toArray();
+        $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
+        $organisations = Organisation::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
 
         return view('dashboard.leads.create', [
             'clients' => $clients,
             'organisations' => $organisations,
-        
+
         ]);
     }
 
@@ -97,36 +96,14 @@ class LeadController extends Controller
      */
     public function store(StoreLeadRequest $request)
     {
- 
-        if (!is_numeric($request->organisation_id)) {
-            $organisation=Organisation::create([
-                'name'=>$request->organisation_id,
-                'user_id'=>auth()->id(),
-                'user_owner_id'=>auth()->id(),
-                'external_id' => Uuid::uuid4()->toString(),
-             
-            ]);
-            $organisation=$organisation->id;
-        }else{
-            $organisation=$request->organisation_id;
-        }
 
-        if (!is_numeric($request->client_id)) {
-            $client=Client::create([
-                'name'=>$request->client_id,
-                'user_id'=>auth()->id(),
-                'user_owner_id'=>auth()->id(),
-                'organisation_id'=>$organisation,
-            ]);
-            $client=$client->id;
-        }else{
-            $client=$request->client_id;
-        }
-        
 
-        $lead = $this->leadService->create($request,$client,$organisation);
+        $organisation = $request->organisation_id;
+        $client = $request->client_id;
+
+        $lead = $this->leadService->create($request, $client, $organisation);
         $lead->createMetas($request->meta);
-        return redirect()->route('leads.index')->with('success','Lead update successfully');
+        return redirect()->route('leads.index')->with('success', 'Lead update successfully');
     }
 
     /**
@@ -137,11 +114,11 @@ class LeadController extends Controller
      */
     public function show(Lead $lead)
     {
-        $labels=Label::pluck('name','id')->toArray();
-        $clients=Client::where('user_id',auth()->id())->pluck('name','id')->toArray();
-        $organisations=Organisation::where('user_id',auth()->id())->pluck('name','id')->toArray();
+        $labels = Label::pluck('name', 'id')->toArray();
+        $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
+        $organisations = Organisation::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
 
-        return view('dashboard.leads.show',compact('lead','clients','organisations','labels'));
+        return view('dashboard.leads.show', compact('lead', 'clients', 'organisations', 'labels'));
     }
 
     /**
@@ -152,12 +129,12 @@ class LeadController extends Controller
      */
     public function edit(Lead $lead)
     {
-        $clients=Client::where('user_id',auth()->id())->pluck('name','id')->toArray();
-        $organisations=Organisation::where('user_id',auth()->id())->pluck('name','id')->toArray();
+        $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
+        $organisations = Organisation::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
         return view('dashboard.leads.edit', [
             'lead' => $lead,
-            'clients'=>$clients,
-            'organisations'=>$organisations,
+            'clients' => $clients,
+            'organisations' => $organisations,
         ]);
     }
 
@@ -172,11 +149,11 @@ class LeadController extends Controller
     {
         $lead = Lead::find($leadId);
 
-        if ($request->person_name && !$request->person_id) {
-            $person = $this->personService->createFromRelated($request);
-        } elseif ($request->person_id) {
-            $person = Person::find($request->person_id);
-        }
+        // if ($request->person_name && !$request->person_id) {
+        //     $person = $this->personService->createFromRelated($request);
+        // } elseif ($request->person_id) {
+        //     $person = Person::find($request->person_id);
+        // }
 
         $lead = $this->leadService->update($request, $lead);
 
@@ -196,32 +173,34 @@ class LeadController extends Controller
     public function destroy(Lead $lead)
     {
         $lead->delete();
-        
-        return redirect(route('leads.index'))->with('success','Lead Delete successfully');
+
+        return redirect(route('leads.index'))->with('success', 'Lead Delete successfully');
     }
-    
-    public function convert(Lead $lead) {
+
+    public function convert(Lead $lead)
+    {
         $email = $lead->getPrimaryEmail();
         $phone = $lead->getPrimaryPhone();
         $address = $lead->getPrimaryAddress();
-        $labels=Label::pluck('name','id')->toArray();
+        $labels = Label::pluck('name', 'id')->toArray();
 
         return view('dashboard.leads.convert', [
             'lead' => $lead,
             'email' => $email ?? null,
             'phone' => $phone ?? null,
             'address' => $address ?? null,
-            'labels'=>$labels,
+            'labels' => $labels,
         ]);
     }
-    public function convertStore(StoreLeadRequest $request, Lead $lead) {
-        if ($request->person_name && ! $request->person_id) {
+    public function convertStore(StoreLeadRequest $request, Lead $lead)
+    {
+        if ($request->person_name && !$request->person_id) {
             $person = $this->personService->createFromRelated($request);
         } elseif ($request->person_id) {
             $person = Person::find($request->person_id);
         }
 
-        if ($request->organisation_name && ! $request->organisation_id) {
+        if ($request->organisation_name && !$request->organisation_id) {
             $organisation = $this->organisationService->createFromRelated($request);
         } elseif ($request->organisation_id) {
             $organisation = Organisation::find($request->organisation_id);
@@ -232,6 +211,6 @@ class LeadController extends Controller
         $lead->update([
             'converted_at' => Carbon::now(),
         ]);
-        return redirect(route('deals.index'))->with('success','Lead Convert successfully');
+        return redirect(route('deals.index'))->with('success', 'Lead Convert successfully');
     }
 }
