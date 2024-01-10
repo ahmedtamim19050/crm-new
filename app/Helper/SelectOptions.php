@@ -87,20 +87,31 @@ class SelectOptions
     
         return $array;
         }
-    public static function countries($null = true)
-    {
-        $array = [];
-
-        if ($null) {
-            $array[''] = '';
+        public static function countries($null = true)
+        {
+            $array = [];
+        
+            // if ($null) {
+            //     $array[''] = '';
+            // }
+        
+            // API endpoint URL
+            $apiUrl = 'https://countriesnow.space/api/v0.1/countries';
+            $apiResponse = file_get_contents($apiUrl);
+            if ($apiResponse !== false) {
+                $data = json_decode($apiResponse, true);
+                if ($data !== null && isset($data['data'])) {
+                    foreach ($data['data'] as $country) {
+                        // $countryCode = $country['country_code'];
+                        $countryName = $country['country'];
+        
+                        // Add country code and name to the array
+                        $array[$countryName] = $countryName;
+                    }
+                }
+            }
+        
+            return $array;
         }
-    
-        $array = array_merge($array, [
-            'US' => 'Us',
-            'UK' => 'UK',
-            'other' => "Other",
-        ]);
-    
-        return $array;
-        }
+        
 }
