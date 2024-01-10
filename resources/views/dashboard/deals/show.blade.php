@@ -55,7 +55,7 @@
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('leads.create') }}">Create</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('deals.create') }}">Create</a></li>
                     <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ $deal->title }}</a></li>
                 </ol>
             </div>
@@ -99,7 +99,7 @@
                             </div>
                         </form>
 
-                        <form class="updateForm" action="{{ route('deals.update', $deal) }}" method="post">
+                        {{-- <form class="updateForm" action="{{ route('deals.update', $deal) }}" method="post">
                             @csrf
                             @method('PUT')
                             <i class="las la-dollar-sign"
@@ -112,7 +112,7 @@
                                 <button type="button" class="btn editBtn btn-primary btn-sm" onclick="updateDescription()"
                                     id="editButtonPrice" style="display: none"><i class="fas fa-pencil-alt"></i></button>
                             </div>
-                        </form>
+                        </form> --}}
                         <form class="updateForm" action="{{ route('deals.update', $deal) }}" method="post">
                             @csrf
                             @method('PUT')
@@ -142,7 +142,7 @@
 
                         @if ($deal->labelName)
                         {{-- <span class="badge light badge-success text-white"
-                            style="background-color:{{ $lead->labelName->color }}">{{ $lead->labelName->name }}</span> --}}
+                            style="background-color:{{ $deal->labelName->color }}">{{ $deal->labelName->name }}</span> --}}
 
                         <form class="updateForm" action="{{ route('deals.update', $deal) }}" method="post">
                             @csrf
@@ -167,37 +167,84 @@
                             </div>
                         </form>
                     @endif
-                    
-{{-- 
-                        <p><span class="fa fa-user-circle" aria-hidden="true"></span> <a
-                                href="">{{ $deal->ownerUser->name ?? null }}</a></p> --}}
-                        <h6 class="mt-4 text-uppercase"> CUSTOMER</h6>
-                        <hr />
-                        <p>
-                            @if ($deal->client)
-                            <form class="updateForm" action="{{ route('deals.update', $deal) }}" method="post">
-                                @csrf
-                                @method('PUT')
-                                <i class="far fa-user"></i>
 
-                                <div class="d-inline-block"
-                                    onmouseover="myFunction(this, 'clientInput', 'editButtonClient')"
-                                    onmouseout="hideEditLink(this, 'clientInput', 'editButtonClient')">
+                    <h6 class="mt-4 text-uppercase"> Address</h6>
+                    <hr />
+                
+                    <p>
+                        {{-- {{ $deal->address }} --}}
+                    <form class="updateForm" action="{{ route('deals.update', $deal) }}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <span class="fa fa-map-marker me-1" aria-hidden="true"></span>
+                        <div class="d-inline-block"
+                            onmouseover="myFunction(this, 'addressInput', 'editButtonAddress')"
+                            onmouseout="hideEditLink(this, 'addressInput', 'editButtonAddress')">
+                            <input type="text" class="edit-input" id="addressInput" style="border: 0"
+                                name="address" value="{{ $deal->address }}">
+                            <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonAddress"
+                                style="display: none" onclick="updateDescription()">Edit</button>
+                        </div>
+                    </form>
+                    </p>
+                    <p>
+                        {{-- {{ $deal->address }} --}}
+                    <form class="updateForm" action="{{ route('deals.update', $deal) }}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <i class="fas fa-street-view"></i>
+                        <div class="d-inline-block"
+                            onmouseover="myFunction(this, 'cityCity', 'editButtoncity')"
+                            onmouseout="hideEditLink(this, 'cityInput', 'editButtoncity')">
+                            <input type="text" class="edit-input" id="cityInput" style="border: 0"
+                                name="city" value="{{ $deal->city }}">
+                            <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtoncity"
+                                style="display: none" onclick="updateDescription()">Edit</button>
+                        </div>
+                    </form>
+                    </p>
+                    <p>
+                        {{-- {{ $deal->address }} --}}
+                    <form class="updateForm" action="{{ route('deals.update', $deal) }}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <i class="fas fa-sign"></i>
+                        <div class="d-inline-block"
+                            onmouseover="myFunction(this, 'stateCity', 'editButtonState')"
+                            onmouseout="hideEditLink(this, 'stateCity', 'editButtonState')">
+                            <input type="text" class="edit-input" id="stateCity" style="border: 0"
+                                name="state" value="{{ $deal->state }}">
+                            <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonState"
+                                style="display: none" onclick="updateDescription()">Edit</button>
+                        </div>
+                    </form>
+                    </p>
+                    <p>
+                        <form class="updateForm d-flex align-items-center" action="{{ route('deals.update', $deal) }}"
+                        method="post">
+                        @csrf
+                        @method('PUT')
+                        <i class="fas fa-globe-europe"></i>
 
-                                    <select class="edit-input" name="client_id" id="clientInput" style="border: 0">
-                                        @foreach ($clients as $key => $client)
-                                            <option value="{{ $key }}"
-                                                {{ $key == $deal->client_id ? 'selected' : '' }}>{{ $client }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <button type="button" class="btn editBtn btn-primary btn-sm"
-                                        id="editButtonClient" style="display: none"
-                                        onclick="updateDescription()">Edit</button>
-                                </div>
-                            </form>
-                        @endif
-                        </p>
+                        <div class="d-inline-block d-flex col-8"
+                            onmouseover="myFunction(this, 'countryInput', 'editButtonCountry')"
+                            onmouseout="hideEditLink(this, 'countryInput', 'editButtonCountry')">
+
+
+                            <select class="edit-input" name="country" id="countryInput" style="border: 0">
+                                @foreach (App\Helper\SelectOptions::countries() as $key => $country)
+                                    <option value="{{ $key }}"
+                                        {{ $key == $deal->country ? 'selected' : '' }}>
+                                        {{ $country }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonCountry"
+                                style="display: none" onclick="updateDescription()">
+                                <i class="fas fa-check"></i></button>
+                        </div>
+                    </form>
+             
                         <h6 class="mt-4 text-uppercase"> ORGANIZATION</h6>
                         <hr />
                         <p>

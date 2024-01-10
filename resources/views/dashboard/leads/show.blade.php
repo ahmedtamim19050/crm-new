@@ -164,7 +164,7 @@
                                 </form>
                             @endif
                         </p> --}}
-                        <h6 class="mt-4 text-uppercase"> Adreess</h6>
+                        <h6 class="mt-4 text-uppercase"> Address</h6>
                         <hr />
                         <p>
                             @if ($lead->organisation)
