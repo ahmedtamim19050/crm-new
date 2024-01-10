@@ -242,13 +242,13 @@
                         </form>
                         </p>
                         <p>
-                            <form class="updateForm" action="{{ route('leads.update', $lead) }}"
+                            <form class="updateForm  d-flex align-items-center" action="{{ route('leads.update', $lead) }}"
                             method="post">
                             @csrf
                             @method('PUT')
                             <i class="fas fa-globe-europe"></i>
     
-                            <div class="d-inline-block"
+                            <div class="d-inline-block d-flex"
                                 onmouseover="myFunction(this, 'countryInput', 'editButtonCountry')"
                                 onmouseout="hideEditLink(this, 'countryInput', 'editButtonCountry')">
     

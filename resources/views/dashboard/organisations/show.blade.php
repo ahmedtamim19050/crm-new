@@ -50,7 +50,10 @@
                             class="">
                             @csrf
                             @method('PUT')
-                            <i class="far fa-building"></i> 
+                            <a href="" data-toggle="tooltip" data-placement="top" title="Organisation">
+
+                                <i class="far fa-building" ></i> 
+                            </a>
                             <div class="d-inline" onmouseover="myFunction(this, 'name', 'editButtonName')"
                                 onmouseout="hideEditLink(this, 'name', 'editButtonName')">
 
@@ -99,7 +102,8 @@
                         </form>
                         </p>
                         <p>
-
+                            <h6 class="mt-4 text-uppercase"> Address</h6>
+                            <hr />
                         <form class="updateForm" action="{{ route('organisations.update', $organisation) }}" method="post"
                             class="">
                             @csrf
@@ -166,13 +170,13 @@
                             </div>
                         </form>
 
-                        <form class="updateForm" action="{{ route('organisations.update', $organisation) }}"
+                        <form class="updateForm  d-flex align-items-center" action="{{ route('organisations.update', $organisation) }}"
                         method="post">
                         @csrf
                         @method('PUT')
                         <i class="fas fa-globe-europe"></i>
 
-                        <div class="d-inline-block"
+                        <div class="d-inline-block d-flex"
                             onmouseover="myFunction(this, 'countryInput', 'editButtonCountry')"
                             onmouseout="hideEditLink(this, 'countryInput', 'editButtonCountry')">
 
