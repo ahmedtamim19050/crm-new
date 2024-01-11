@@ -124,7 +124,7 @@
 
                         </div>
                         <div class="d-flex">
-                            <span style="font-weight: 700" class="me-3 mt-2">Organisation :</span>
+                            <span style="font-weight: 700" class="me-3 mt-2">Organization :</span>
 
         
 
