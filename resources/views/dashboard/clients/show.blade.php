@@ -140,9 +140,10 @@
 
                                     <select class="edit-input" name="organisation_id" id="organisationInput"
                                         style="border: 0">
+                                        <option value="">Choose option</option>
                                         @foreach ($organisations as $key => $organisation)
                                             <option value="{{ $key }}"
-                                                {{ $key == $client->organisation_id ? 'selected' : '' }}>
+                                               {{ $client->organisations->contains('id', $key) ? 'selected' : '' }}>
                                                 {{ $organisation }}
                                             </option>
                                         @endforeach

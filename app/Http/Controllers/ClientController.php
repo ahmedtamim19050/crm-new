@@ -118,7 +118,7 @@ class ClientController extends Controller
         $client->update([
             'name' => $request->has('name') ? $request->name : $client->name,
             'user_owner_id' => $request->has('user_owner_id') ? $request->user_owner_id : $client->user_owner_id,
-            'organisation_id' => $request->has('organisation_id') ? $request->organisation_id : $client->organisation_id,
+            // 'organisation_id' => $request->has('organisation_id') ? $request->organisation_id : $client->organisation_id,
             'email' => $request->has('email') ? $request->email : $client->email,
             'phone' => $request->has('phone') ? $request->phone : $client->phone,
             'label' => $request->has('label') ? $request->phone : $client->label,
@@ -126,6 +126,9 @@ class ClientController extends Controller
         if($request->has('meta')){
 
             $client->createMetas($request->meta);
+        }
+        if($request->has('organisation_id')){
+            $client->organisations()->sync($request->organisation_id);
         }
         return response()->json(['success' => true, 'message' => 'Lead updated successfully']);
     }
