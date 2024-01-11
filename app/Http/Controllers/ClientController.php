@@ -61,6 +61,7 @@ class ClientController extends Controller
 
         ]);
         $client->createMetas($request->meta);
+        $client->organisations()->attach($request->organisation_id);
        return redirect()->route('clients.index')->with('success','Contact Create Successfully');
     }
 

@@ -55,7 +55,17 @@
                                             <td><a href="{{ route('clients.show', $client->id) }}"
                                                     class="text-primary text-decoration-underline">{{ $client->name }}</a>
                                             </td>
-                                            <td>{{ $client->organisation->name ?? null }}</td>
+                                            <td>
+                                                @if($client->organisations->count() > 0)
+                                                @foreach($client->organisations as $organisation)
+                                                {{ $organisation->name }},
+                                                @endforeach
+                                                @else
+                                                <p class="text-danger">Organization not yet</p>
+                                                @endif
+                                            </td>
+                                            
+    
                                             <td>{{ $client->email }}</td>
                                             <td>{{ $client->phone }}</td>
                                             {{-- <td>

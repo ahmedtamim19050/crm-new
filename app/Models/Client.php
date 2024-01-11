@@ -89,4 +89,9 @@ class Client extends Model
     {
         return $this->belongsTo(Organisation::class);
     }
+    
+    public function organisations()
+    {
+        return $this->belongsToMany(Organisation::class);
+    }
 }

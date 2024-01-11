@@ -45,6 +45,7 @@ class OrganisationController extends Controller
      */
     public function store(Request $request)
     {
+      
     
         $organisation = Organisation::create([
             'name' => $request->name,
@@ -55,6 +56,7 @@ class OrganisationController extends Controller
             'label' => $request->label,
         ]);
         $organisation->createMetas($request->meta);
+      
         return redirect()->route('organisations.index')->with('success', 'Organisation Create Successfully');
     }
 
@@ -104,6 +106,7 @@ class OrganisationController extends Controller
             'address' => $request->has('address') ? $request->address : $organisation->address,
             'label' => $request->has('label') ? $request->label : $organisation->label,
         ]);
+       
         if ($request->meta) {
 
             $organisation->createMetas($request->meta);
@@ -127,6 +130,7 @@ class OrganisationController extends Controller
     }
     function organisationAjax(Request $request)
     {
+        // dd($request->all());
        
         $organisation = Organisation::create([
             'name' => $request->name,
@@ -138,6 +142,7 @@ class OrganisationController extends Controller
         ]);
         $organisations = Organisation::all();
         $organisation->createMetas($request->meta);
+        $organisation->clients()->attach($request->client_id);
 
         $data = [
             'name' => $organisation->name,
@@ -181,11 +186,11 @@ class OrganisationController extends Controller
                 'name' => $request->name,
                 'phone' => $request->phone,
                 'email' => $request->email,
-                'organisation_id' => $organisation->id,
                 'user_id' => auth()->id(),
     
             ]);
             $person->createMetas($request->meta);
+            $person->organisations()->attach($organisation->id);
             return back()->with('success', 'Persone Add Successfully');
         }
      

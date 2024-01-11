@@ -37,10 +37,10 @@ class Organisation extends Model
     {
         return $this->hasMany(Person::class,'organisation_id');
     }
-    public function clients()
-    {
-        return $this->hasMany(Client::class,'organisation_id');
-    }
+    // public function clients()
+    // {
+    //     return $this->hasMany(Client::class,'organisation_id');
+    // }
 
     /**
      * Get all of the organisation emails.
@@ -103,5 +103,9 @@ class Organisation extends Model
     public function labelName()
     {
         return $this->belongsTo(Label::class,'label');
+    }
+    public function clients()
+    {
+        return $this->belongsToMany(Client::class);
     }
 }

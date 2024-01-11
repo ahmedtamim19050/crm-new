@@ -170,6 +170,11 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
+    @php
+        $clients = App\Models\Client::where('user_id', auth()->id())
+            ->pluck('name', 'id')
+            ->toArray();
+    @endphp
 
     <div class="modal mt-5 ms-5" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true"
         data-bs-backdrop="static">
@@ -184,6 +189,11 @@
                         @csrf
                         <div class="row">
                             <div class="col-sm-6 border-right">
+                                @include('partials.form.select', [
+                                    'name' => 'client_id',
+                                    'label' => 'Customer',
+                                    'options' => $clients,
+                                ])
 
                                 @include('partials.form.text', [
                                     'name' => 'name',
@@ -236,8 +246,8 @@
                                         'name' => 'meta[company_email]',
                                         'label' => 'Email',
                                         'attributes' => [
-                                        'required' => 'required',
-                                    ],
+                                            'required' => 'required',
+                                        ],
                                     ])
                                 </div>
 
@@ -246,8 +256,8 @@
                                         'name' => 'meta[company_phone]',
                                         'label' => 'Phone',
                                         'attributes' => [
-                                        'required' => 'required',
-                                    ],
+                                            'required' => 'required',
+                                        ],
                                     ])
                                 </div>
 
@@ -303,61 +313,57 @@
             </div>
         </div>
     </div>
-<div class="modal mt-5 ms-5" id="clientModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true"
-    data-bs-backdrop="static">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="infoModalLabel">Add Contact</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="POST" action="{{ route('client.ajax') }}" id="clientForm">
-                    @csrf
-                   <div class="row">
-                    <div class="col-sm-6">
+    <div class="modal mt-5 ms-5" id="clientModal" tabindex="-1" aria-labelledby="infoModalLabel"
+        aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoModalLabel">Add Contact</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('client.ajax') }}" id="clientForm">
+                        @csrf
+                        <div class="row">
+                            <div class="col-sm-6">
 
-                        @include('partials.form.text', [
-                            'name' => 'name',
-                            'label' => 'Name',
-                          
-                        ])
-                    </div>
-                    <div class="col-sm-6">
+                                @include('partials.form.text', [
+                                    'name' => 'name',
+                                    'label' => 'Name',
+                                ])
+                            </div>
+                            <div class="col-sm-6">
 
-                        @include('partials.form.text', [
-                            'name' => 'meta[l_name]',
-                            'label' => 'Last name',
-                        
-                        ])
-                    </div>
-                   </div>
-                    {{-- @include('partials.form.select', [
+                                @include('partials.form.text', [
+                                    'name' => 'meta[l_name]',
+                                    'label' => 'Last name',
+                                ])
+                            </div>
+                        </div>
+                        {{-- @include('partials.form.select', [
                         'name' => 'user_owner_id',
                         'label' => 'owner',
                         'options' => App\Helper\SelectOptions::users(false),
                       
                     ]) --}}
-                    @include('partials.form.text', [
-                        'name' => 'phone',
-                        'label' => 'Phone',
-
-                    ])
-                    @include('partials.form.text', [
-                        'name' => 'email',
-                        'label' => 'Email',
-
-                    ])
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="createClient()">Save</button>
+                        @include('partials.form.text', [
+                            'name' => 'phone',
+                            'label' => 'Phone',
+                        ])
+                        @include('partials.form.text', [
+                            'name' => 'email',
+                            'label' => 'Email',
+                        ])
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="createClient()">Save</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-    
+
 
 
 
@@ -433,7 +439,7 @@
                             .id + '">' +
                             organisation.name + '</option>');
                     });
-                   
+
                     console.log(response.data);
                     $('#infoModal').modal('hide');
                     $('#input_email').val(response.data.email);
@@ -454,7 +460,8 @@
             });
 
         }
-                function createClient() {
+
+        function createClient() {
             var formData = $('#clientForm').serialize();
             // console.log(formData);
             $.ajax({
