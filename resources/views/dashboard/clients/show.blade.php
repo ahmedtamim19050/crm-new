@@ -31,7 +31,7 @@
 
         </div>
         <div class="row">
-            <div class="col-xl-5">
+            <div class="col-xl-6">
                 <div class="card">
 
                     <div class="card-body">
@@ -168,7 +168,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-7" style="height: 100vh; ">
+            <div class="col-xl-6" style="height: 100vh; ">
                 <div class="card " style="overflow:hidden;overflow-y: scroll;">
                     {{-- <div class="card-header">
 					<h4 class="card-title">Custom Tab 1</h4>
