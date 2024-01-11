@@ -52,7 +52,7 @@
                             @method('PUT')
                             <a href="" data-toggle="tooltip" data-placement="top" title="Organisation">
 
-                                <i class="far fa-building" ></i> 
+                                <i class="far fa-building"></i>
                             </a>
                             <div class="d-inline" onmouseover="myFunction(this, 'name', 'editButtonName')"
                                 onmouseout="hideEditLink(this, 'name', 'editButtonName')">
@@ -102,8 +102,8 @@
                         </form>
                         </p>
                         <p>
-                            <h6 class="mt-4 text-uppercase"> Address</h6>
-                            <hr />
+                        <h6 class="mt-4 text-uppercase"> Address</h6>
+                        <hr />
                         <form class="updateForm" action="{{ route('organisations.update', $organisation) }}" method="post"
                             class="">
                             @csrf
@@ -165,35 +165,35 @@
                                 <input type="text" class="edit-input" style="border: 0" name="meta[state]"
                                     id="state" value="{{ $organisation->state }}">
                                 <button type="button" onclick="updateDescription()"
-                                    class="btn btn-primary editBtn btn-sm" id="editButtonstate"
-                                    style="display: none"><i class="fas fa-check"></i></button>
+                                    class="btn btn-primary editBtn btn-sm" id="editButtonstate" style="display: none"><i
+                                        class="fas fa-check"></i></button>
                             </div>
                         </form>
 
-                        <form class="updateForm  d-flex align-items-center" action="{{ route('organisations.update', $organisation) }}"
-                        method="post">
-                        @csrf
-                        @method('PUT')
-                        <i class="fas fa-globe-europe"></i>
+                        <form class="updateForm  d-flex align-items-center"
+                            action="{{ route('organisations.update', $organisation) }}" method="post">
+                            @csrf
+                            @method('PUT')
+                            <i class="fas fa-globe-europe"></i>
 
-                        <div class="d-inline-block d-flex"
-                            onmouseover="myFunction(this, 'countryInput', 'editButtonCountry')"
-                            onmouseout="hideEditLink(this, 'countryInput', 'editButtonCountry')">
+                            <div class="d-inline-block d-flex"
+                                onmouseover="myFunction(this, 'countryInput', 'editButtonCountry')"
+                                onmouseout="hideEditLink(this, 'countryInput', 'editButtonCountry')">
 
 
-                            <select class="edit-input" name="meta[country]" id="countryInput" style="border: 0">
-                                @foreach (App\Helper\SelectOptions::countries() as $key => $country)
-                                    <option value="{{ $key }}"
-                                        {{ $key == $organisation->country ? 'selected' : '' }}>
-                                        {{ $country }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonCountry"
-                                style="display: none" onclick="updateDescription()">
-                                <i class="fas fa-check"></i></button>
-                        </div>
-                    </form>
+                                <select class="edit-input" name="meta[country]" id="countryInput" style="border: 0">
+                                    @foreach (App\Helper\SelectOptions::countries() as $key => $country)
+                                        <option value="{{ $key }}"
+                                            {{ $key == $organisation->country ? 'selected' : '' }}>
+                                            {{ $country }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonCountry"
+                                    style="display: none" onclick="updateDescription()">
+                                    <i class="fas fa-check"></i></button>
+                            </div>
+                        </form>
                         </p>
                         @if ($organisation->labelName)
                             {{-- <span class="badge light badge-success text-white"
@@ -242,22 +242,21 @@
 
                                     </tr>
                                 </thead>
-                      
+
                                 <tbody>
                                     @foreach ($organisation->clients as $people)
-
                                         <tr>
                                             <th scope="row">{{ $loop->index + 1 }}</th>
                                             <td>{{ $people->name }} {{ $people->l_name }} </td>
                                             <td>{{ $people->phone }} </td>
                                             {{-- <td>{{ $people->email }} </td> --}}
                                             <td>
-                                                <button class="btn btn-secondary btn-sm"
-                                                    data-fname="{{ $people->name }}"
-                                                    data-lname="{{ $people->l_name }}"
-                                                    data-phone="{{ $people->phone }}" data-id="{{ $people->id }}"
-                                                    type="button" data-bs-toggle="modal"
-                                                    data-bs-target="#personModal"><i class="fas fa-user-edit"></i>
+                                                <button class="btn btn-secondary btn-sm" data-fname="{{ $people->name }}"
+                                                    data-lname="{{ $people->l_name }}" data-phone="{{ $people->phone }}"
+                                                    data-id="{{ $people->id }}" data-email="{{ $people->email }}"
+                                                    data-position="{{ $people->position }}" type="button"
+                                                    data-bs-toggle="modal" data-bs-target="#personModal"><i
+                                                        class="fas fa-user-edit"></i>
                                                 </button>
                                             </td>
 
@@ -326,18 +325,19 @@
                         <div class="d-flex justify-content-between mt-5 align-items-center">
                             <h6 class="text-uppercase ">Other Social URL </h6>
                             <button class="btn btn-secondary btn-sm" data-socials="{{ json_encode($socials) }}"
-                                type="button" data-id="{{$organisation->id}}" data-bs-toggle="modal" data-bs-target="#otherSocial"><i
-                                    class="fas fa-pencil-alt"></i></button>
+                                type="button" data-id="{{ $organisation->id }}" data-bs-toggle="modal"
+                                data-bs-target="#otherSocial"><i class="fas fa-pencil-alt"></i></button>
                         </div>
                         <hr />
-                        @if($socials)
-                        @foreach ($socials as $social)
-                            <p>
-                                <span style="font-weight: 700">{{ $social->name }} :</span>
-                                <a class="text-decoration-underline text-primary" href="">{{ $social->url }}</a>
+                        @if ($socials)
+                            @foreach ($socials as $social)
+                                <p>
+                                    <span style="font-weight: 700">{{ $social->name }} :</span>
+                                    <a class="text-decoration-underline text-primary"
+                                        href="">{{ $social->url }}</a>
 
-                            </p>
-                        @endforeach
+                                </p>
+                            @endforeach
                         @endif
 
                     </div>
@@ -533,8 +533,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body social-body">
-                  
-                </div> 
+
+                </div>
             </div>
         </div>
     </div>
@@ -549,37 +549,58 @@
                 <form action="{{ route('person.store', $organisation) }}" method="post">
                     @csrf
                     <div class="modal-body">
-                        @include('partials.form.text', [
-                            'name' => 'name',
-                            'label' => 'First Name',
-                            'attributes' => [
-                                'required' => '',
-                            ],
-                        ])
-                  
-                        <div>
-                            <label for="l_name" class="form-label">Last name</label>
-                            <input type="text" name="meta[l_name]" id="l_name" class="form-control" required>
-                        </div>
-                        @include('partials.form.text', [
-                            'name' => 'phone',
-                            'label' => 'phone',
-                            'attributes' => [
-                                'required' => '',
-                            ],
-                        ])
-                       
-                    </div>
-                    <input type="hidden" name="person_id" id="personId">
+                        <div class="row">
+                            <div class="col-sm-6 border-right">
 
-                    <div class="modal-footer bg-white">
-                        <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">Close</button>
-                        <button type="submit" class="btn btn-primary">Update</button>
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        @include('partials.form.text', [
+                                            'name' => 'name',
+                                            'label' => 'First name',
+                                            'attributes' => [
+                                                'required' => 'required',
+                                            ],
+                                        ])
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div>
+                                            <label for="l_name" class="form-label">Last name</label>
+                                            <input type="text" name="meta[l_name]" id="l_name"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-6">
+                                @include('partials.form.text', [
+                                    'name' => 'phone',
+                                    'label' => 'Phone',
+                                ])
+                                @include('partials.form.text', [
+                                    'name' => 'email',
+                                    'label' => 'Email',
+                                    'attributes' => [
+                                                'required' => 'required',
+                                            ],
+                                ])
+
+                                <label for="position" class="form-label">Position</label>
+                                <input type="text" name="meta[position]" id="position" class="form-control">
+                            </div>
+                        </div>
+                        <input type="hidden" name="person_id" id="personId">
+
+                        <div class="modal-footer bg-white">
+                            <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">Close</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
                     </div>
+                </form>
             </div>
-            </form>
         </div>
-    </div>
 
     </div>
 @endsection
@@ -647,7 +668,7 @@
 
                 var modal = $(this);
                 $.ajax({
-                    url: '/dashboard/fetchSocialData/'+organisationId,
+                    url: '/dashboard/fetchSocialData/' + organisationId,
                     type: 'GET',
                     data: {
                         socials: socials
@@ -669,22 +690,24 @@
             $('#personModal').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget);
                 var fname = button.data('fname');
+                var email = button.data('email');
                 var lname = button.data('lname');
                 var phone = button.data('phone');
+                var position = button.data('position');
                 var id = button.data('id');
-                
+
                 var modal = $(this);
                 // console.log(modal.find('#input_meta[l_name]'));
                 console.log(lname);
                 modal.find('#input_name').val(fname);
+                modal.find('#input_email').val(email);
                 modal.find('#l_name').val(lname);
                 modal.find('#personId').val(id);
                 modal.find('#input_phone').val(phone);
-               
+                modal.find('#position').val(position);
+
 
             });
         });
     </script>
-
-    
 @endpush

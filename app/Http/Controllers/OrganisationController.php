@@ -19,8 +19,9 @@ class OrganisationController extends Controller
      */
     public function index()
     {
+        $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
         $organisations = Organisation::where('user_id', auth()->id())->latest()->get();
-        return view('dashboard.organisations.index', compact('organisations'));
+        return view('dashboard.organisations.index', compact('organisations','clients'));
     }
 
     /**
@@ -44,15 +45,7 @@ class OrganisationController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        $request->validate([
-            'name' => 'required',
-            // 'user_owner_id' => 'required',
-            'address' => 'nullable',
-            'label' => 'required',
-
-        ]);
-        // dd($request->meta);
+    
         $organisation = Organisation::create([
             'name' => $request->name,
             'user_owner_id' => $request->user_owner_id,
@@ -134,22 +127,34 @@ class OrganisationController extends Controller
     }
     function organisationAjax(Request $request)
     {
-        $request->validate([
-            'name' => 'required'
-        ]);
+       
         $organisation = Organisation::create([
             'name' => $request->name,
             'user_owner_id' => $request->user_owner_id,
             'external_id' => Uuid::uuid4()->toString(),
             'user_id' => auth()->id(),
             'label' => $request->label,
+            
         ]);
         $organisations = Organisation::all();
         $organisation->createMetas($request->meta);
+
+        $data = [
+            'name' => $organisation->name,
+            'city' => $organisation->place,
+            'state' => $organisation->state,
+            'post_code' => $organisation->post_code,
+            'country' => $organisation->country,
+            'street' => $organisation->street,
+            'phone' => $organisation->company_phone,
+            'email' => $organisation->company_email,
+       
+        ];
         return response()->json([
             'success' => true,
             'message' => 'Organisation added successfully',
-            'data' => $organisation,
+            'organisation' => $organisation,
+            'data' => $data,
             'organisations' => $organisations, // Include the updated list of organisations
         ]);
     }
@@ -167,6 +172,7 @@ class OrganisationController extends Controller
             $person->update([
                 'name' => $request->name,
                 'phone' => $request->phone,
+                'email' => $request->email,
             ]);
             $person->createMetas($request->meta);
             return back()->with('success', 'Person update Successfully');
@@ -174,6 +180,7 @@ class OrganisationController extends Controller
             $person=Client::create([
                 'name' => $request->name,
                 'phone' => $request->phone,
+                'email' => $request->email,
                 'organisation_id' => $organisation->id,
                 'user_id' => auth()->id(),
     

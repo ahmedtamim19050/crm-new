@@ -50,11 +50,11 @@
                     <h2 class="title-num text-black font-w700">Deals</h2>
                     {{-- <span class="fs-14">Created by Lidya Chan on June 31, 2021</span> --}}
                 </div>
-                {{-- <div class="d-sm-flex d-block align-items-center">
-                    <a href="{{ route('categories.index') }}" class="btn btn-light rounded me-3 mb-sm-0 mb-2"><i
-                            class="fas fa-stream"></i> Stages</a>
+                <div class="d-sm-flex d-block align-items-center">
+                    <a href="javascript:void(0);" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addContactModal"
+                    class="text-dark py-3">+Add Deal</a>
         
-                </div> --}}
+                </div>
             </div>
             <div class="mt-3">
                 {{-- <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addContactModal"
@@ -119,8 +119,9 @@
                                             data-item-id="{{ $deal->id }}">
                                             <a href="{{ route('deals.show', $deal->id) }}">
                                                 <span class="text-primary sub-title">{{ $deal->title }}</span>
-                                                <p class="font-w600"><a href="{{ route('deals.show', $deal) }}"
+                                                <p class="font-w600 mb-0"><a href="{{ route('deals.show', $deal) }}"
                                                         class="text-black">{{ $deal->description }}</a></p>
+                                                        <small>{{$deal->organisation->name}}</small>
                                             </a>
 
 
@@ -230,6 +231,13 @@
                                     'label' => 'Label',
                                     'options' => App\Helper\SelectOptions::labels(),
                                 ])
+                                  <div class="col-sm-12">
+                                    @include('partials.form.text', [
+                                        'type' => 'date',
+                                        'name' => 'meta[close_date]',
+                                        'label' => 'Expected Close Date',
+                                    ])
+                                </div>
 
                                 {{-- @include('partials.form.select', [
                                     'name' => 'user_owner_id',
@@ -309,76 +317,7 @@
         </div>
     </div>
 
-    <div class="modal mt-5 ms-5" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true"
-        data-bs-backdrop="static">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="infoModalLabel">Add Organisation</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{ route('organisation.ajax') }}" id="organizationForm">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-6">
-                                @include('partials.form.text', [
-                                    'name' => 'name',
-                                    'label' => 'Name',
-                                    'value' => old('client_name', $organisation->name ?? null),
-                                    'attributes' => [
-                                        'required' => true,
-                                    ],
-                                ])
-                            </div>
-                            <div class="col-md-6">
-                                @include('partials.form.select', [
-                                    'name' => 'label',
-                                    'label' => 'Label',
-                                    'options' => App\Helper\SelectOptions::labels(),
-                                    'value' => old('labels', isset($organisation) ? $organisation->label : null),
-                                ])
-                            </div>
-                            <div class="col-md-6">
-                                @include('partials.form.text', [
-                                    'name' => 'meta[street]',
-                                    'label' => 'Street address',
-                                ])
-                            </div>
-                            <div class="col-md-6">
-                                @include('partials.form.text', [
-                                    'name' => 'meta[place]',
-                                    'label' => 'Place',
-                                ])
-                            </div>
-                            <div class="col-md-6">
-                                @include('partials.form.text', [
-                                    'name' => 'meta[post_code]',
-                                    'label' => 'Zip',
-                                ])
-                            </div>
-                            <div class="col-md-6">
-                                @include('partials.form.text', [
-                                    'name' => 'meta[company_email]',
-                                    'label' => 'Email',
-                                ])
-                            </div>
-                            <div class="col-md-6">
-                                @include('partials.form.text', [
-                                    'name' => 'meta[company_phone]',
-                                    'label' => 'Phone',
-                                ])
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="createOrganisation()">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
+  
     {{-- <div class="modal mt-5 ms-5" id="clientModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true"
         data-bs-backdrop="static">
         <div class="modal-dialog">
@@ -486,116 +425,4 @@
         });
     </script>
 
-    <script>
-        Array.from(document.getElementsByClassName('showmodal')).forEach((e) => {
-            e.addEventListener('click', function(element) {
-                element.preventDefault();
-                if (e.hasAttribute('data-show-modal')) {
-                    showModal(e.getAttribute('data-show-modal'));
-                }
-            });
-        });
-        // Show modal dialog
-        function showModal(modal) {
-            const mid = document.getElementById(modal);
-            let myModal = new bootstrap.Modal(mid);
-            myModal.show();
-        }
-    </script>
-    {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
-
-    <script>
-        function createOrganisation() {
-            var formData = $('#organizationForm').serialize();
-            // console.log(formData);
-            $.ajax({
-                url: $('#organizationForm').attr('action'),
-                type: 'POST',
-                data: formData,
-                success: function(response) {
-                    //    console.log(response.organisations)
-                    $('#select_organisation_id').empty();
-                    $.each(response.organisations, function(index, organisation) {
-                        $('#select_organisation_id').append('<option selected value="' + organisation
-                            .id + '">' +
-                            organisation.name + '</option>');
-                    });
-
-                    $('#infoModal').modal('hide');
-                    $('#select_organisation_id').trigger('change');
-
-                    toastr.success('', 'Organisation added successfully');
-
-                },
-                error: function(error) {
-                    // Handle error, if needed
-                    console.error(error);
-                }
-            });
-        }
-
-        // function createClient() {
-        //     var formData = $('#clientForm').serialize();
-        //     // console.log(formData);
-        //     $.ajax({
-        //         url: $('#clientForm').attr('action'),
-        //         type: 'POST',
-        //         data: formData,
-        //         success: function(response) {
-        //             //    console.log(response.organisations)
-        //             $('#select_client_id').empty();
-        //             $.each(response.clients, function(index, client) {
-        //                 $('#select_client_id').append('<option selected value="' + client
-        //                     .id + '">' +
-        //                     client.name + '</option>');
-        //             });
-
-        //             $('#clientModal').modal('hide');
-        //             $('#select_client_id').trigger('change');
-        //             $('#input_email').val(response.email);
-        //             $('#input_phone').val(response.phone);
-        //             $('#input_address').val(response.street);
-        //             $('#input_code').val(response.post_code);
-        //             $('#input_state').val(response.state);
-        //             $('#select_country').val(response.country);
-
-
-        //             toastr.success('', 'Client added successfully');
-        //         },
-        //         error: function(error) {
-        //             // Handle error, if needed
-        //             console.error(error);
-        //         }
-        //     });
-        // }
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('#select_organisation_id').on('change', function() {
-                console.log('cliecked')
-                var orgId = $(this).val();
-                $.ajax({
-                    url: '/dashboard/organisation/fetch',
-                    type: 'get',
-                    data: {
-                        orgId: orgId
-                    },
-                    dataType: 'json',
-                    success: function(response) {
-                        console.log('Ajax response:', response['email']);
-                        $('#input_email').val(response['email']);
-                        $('#input_phone').val(response['phone']);
-                        $('#input_address').val(response['street']);
-                        $('#input_code').val(response['post_code']);
-                        $('#input_state').val(response.state);
-                        $('#select_country').val(response.country);
-                    },
-                    error: function(error) {
-                        console.error('Ajax error:', error);
-                    }
-                });
-            });
-        });
-    </script>
 @endpush

@@ -97,12 +97,15 @@ class LeadController extends Controller
     public function store(StoreLeadRequest $request)
     {
 
-
+       $findOldSameOrg=Lead::where('user_id',auth()->id())->where('organisation_id',$request->organisation_id)->first();
+       if($findOldSameOrg){
+        return back()->withErrors('A Lead has already been created with your Organization');
+       }
         $organisation = $request->organisation_id;
         $client = $request->client_id;
 
         $lead = $this->leadService->create($request, $client, $organisation);
-        $lead->createMetas($request->meta);
+  
         return redirect()->route('leads.index')->with('success', 'Lead update successfully');
     }
 
@@ -157,9 +160,6 @@ class LeadController extends Controller
 
         $lead = $this->leadService->update($request, $lead);
 
-        if ($request->meta) {
-            $lead->createMetas($request->meta);
-        }
 
         return response()->json(['success' => true, 'message' => 'Lead updated successfully']);
     }

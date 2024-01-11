@@ -93,13 +93,12 @@ class DealsController extends Controller
         if (!$stage) {
             return redirect()->route('categories.index')->withErrors('Please insert atleast one stages');
         }
-        $this->dealService->create($request, $person ?? null, $client, $organisation);
-        if ($request->category_id) {
+        $deal=$this->dealService->create($request, $person ?? null, $client, $organisation);
+        $deal->createMetas($request->meta);
+        
+      
             return redirect()->route('kanvan')->with('success', 'Deal Create Successfully');
-        } else {
-
-            return redirect()->route('deals.index')->with('success', 'Deal Create Successfully');
-        }
+       
     }
 
     /**
@@ -111,11 +110,6 @@ class DealsController extends Controller
     public function show($id)
     {
         $deal = Deal::find($id);
-        if ($deal->person) {
-            $email = $deal->person->getPrimaryEmail();
-            $phone = $deal->person->getPrimaryPhone();
-            $address = $deal->person->getPrimaryAddress();
-        }
         $persons = Person::pluck('last_name', 'id')->toArray();
         $labels = Label::pluck('name', 'id')->toArray();
         $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
@@ -162,6 +156,7 @@ class DealsController extends Controller
 
 
         $deal = $this->dealService->update($request, $deal);
+        $deal->createMetas($request->meta);
 
         return response()->json(['success' => true, 'message' => 'Lead updated successfully']);
     }

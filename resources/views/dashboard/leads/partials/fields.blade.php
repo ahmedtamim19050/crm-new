@@ -87,13 +87,7 @@
          
                 
                
-                <div class="col-sm-12">
-                    @include('partials.form.text', [
-                        'type' => 'date',
-                        'name' => 'meta[close_date]',
-                        'label' => 'Expected Close Date',
-                    ])
-                </div>
+              
       
         </div>
         <div class="col-sm-6">

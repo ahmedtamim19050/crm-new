@@ -18,20 +18,21 @@
         <div class="col-sm-6 border-right">
 
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
 
                     @include('partials.form.text', [
                         'name' => 'name',
-                        'label' => 'Name',
-                 
+                        'label' => 'First name',
+                        'attributes' => [
+                            'required' => 'required',
+                        ],
                     ])
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-12">
 
                     @include('partials.form.text', [
                         'name' => 'meta[l_name]',
                         'label' => 'Last name',
-      
                     ])
                 </div>
             </div>
@@ -45,7 +46,6 @@
                         'name' => 'organisation_id',
                         'label' => 'Organisation',
                         'options' => $organisations,
-                       
                     ])
                 </div>
                 <div class="col-md-2 ms-2 mt-2">
@@ -71,17 +71,17 @@
             @include('partials.form.text', [
                 'name' => 'phone',
                 'label' => 'Phone',
-
             ])
             @include('partials.form.text', [
                 'name' => 'email',
                 'label' => 'Email',
-    
+                'attributes' => [
+                    'required' => 'required',
+                ],
             ])
             @include('partials.form.text', [
                 'name' => 'meta[position]',
                 'label' => 'Position',
-      
             ])
         </div>
     </div>

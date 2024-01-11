@@ -168,6 +168,26 @@
                         </form>
                     @endif
 
+                    <h6 class="mt-4 text-uppercase"> Expected close date</h6>
+                    <hr />
+                    <p>
+
+                    <form class="updateForm" action="{{ route('leads.update', $deal) }}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <span class="fa fa-calendar me-1" aria-hidden="true"></span>
+                        <div class="d-inline-block"
+                            onmouseover="myFunction(this, 'closeDateInput', 'editButtonCloseDate')"
+                            onmouseout="hideEditLink(this, 'closeDateInput', 'editButtonCloseDate')">
+
+                            <input type="date" class="edit-input" style="border: 0" name="meta[close_date]"
+                                id="closeDateInput" value="{{ $deal->close_date }}">
+                            <button type="button" class="btn editBtn btn-primary btn-sm" id="editButtonCloseDate"
+                                style="display: none" onclick="updateDescription()">Edit</button>
+                        </div>
+                    </form>
+                    </p>
+
                     <h6 class="mt-4 text-uppercase"> Address</h6>
                     <hr />
                 
@@ -232,6 +252,7 @@
 
 
                             <select class="edit-input" name="country" id="countryInput" style="border: 0">
+                                <option value="">Choose option</option>
                                 @foreach (App\Helper\SelectOptions::countries() as $key => $country)
                                     <option value="{{ $key }}"
                                         {{ $key == $deal->country ? 'selected' : '' }}>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasMeta;
 use App\Traits\HasCrmActivities;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,12 +13,17 @@ class Deal extends Model
 {
     use HasFactory;
     use HasCrmActivities;
+    use HasMeta;
 
     protected $guarded = ['id'];
 
     protected $casts = [
         'expected_close' => 'datetime',
         'closed_at' => 'datetime',
+    ];
+    protected $meta_attributes = [
+        "close_date",
+
     ];
 
     protected $searchable = [

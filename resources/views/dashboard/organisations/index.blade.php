@@ -6,18 +6,18 @@
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
                     <h4>Hi, welcome back!</h4>
-                    <p class="mb-0">Organosation Table</p>
+                    <p class="mb-0">Organizations Table</p>
                 </div>
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Organisation</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Organization</a></li>
                 </ol>
             </div>
             <div class="col-md-3 mt-3">
                 <a href="javascript:void(0);" data-bs-toggle="modal" class="btn btn-primary"
-                    data-bs-target="#addContactModal" class="text-dark py-3">+Add Organisation</a>
+                    data-bs-target="#addContactModal" class="text-dark py-3">+Add Organization</a>
                 {{-- <a href="{{ route('organisations.create') }}" class="btn btn-primary">Create a new Organisation</a> --}}
             </div>
         </div>
@@ -27,7 +27,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Recent Products Queue</h4>
+                        <h4 class="card-title">Recent Organization Queue</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -48,7 +48,7 @@
                                     @foreach ($organisations as $organisation)
                                         <tr>
                                             <td><strong>{{ $loop->index + 1 }}</strong></td>
-                                            <td>{{ $organisation->created_at->diffForHumans() }}</td>
+                                            <td>{{ $organisation->created_at->diffForHumans() }} </td>
                                             <td><a class="text-primary text-decoration-underline"
                                                     href="{{ route('organisations.show', $organisation) }}">
                                                     {{ $organisation->name }}

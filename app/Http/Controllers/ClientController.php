@@ -173,6 +173,7 @@ class ClientController extends Controller
             'post_code'=>$organisation->post_code,
             'state'=>$organisation->state,
             'country'=>$organisation->country,
+            'city'=>$organisation->place,
         ];
     }
 }

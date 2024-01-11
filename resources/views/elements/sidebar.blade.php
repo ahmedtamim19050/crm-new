@@ -4,7 +4,7 @@
         <ul class="metismenu" id="menu">
             <li><a class="has-arrow ai-icon" href="{{ route('organisations.index') }}" aria-expanded="false">
                 <i class="far fa-building"></i>
-                    <span class="nav-text">Organisations</span>
+                    <span class="nav-text">Organizations</span>
                 </a>
 
 

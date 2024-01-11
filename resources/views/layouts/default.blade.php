@@ -43,7 +43,7 @@
     @livewireStyles
     @yield('css')
     <style>
-        .table-responsive{
+        .table-responsive {
             height: 70vh !important;
         }
     </style>
@@ -76,7 +76,7 @@
         ***********************************-->
 
         <div class="nav-header">
-            <a href="{{ url('index') }}" class="brand-logo">
+            <a href="{{ route('dashboard') }}" class="brand-logo">
                 <svg class="logo-abbr" width="52" height="52" viewBox="0 0 52 52" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path class="svg-logo-path"
@@ -171,6 +171,195 @@
     ***********************************-->
     <!-- Required vendors -->
 
+    <div class="modal mt-5 ms-5" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true"
+        data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoModalLabel">Add Organisation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('organisation.ajax') }}" id="organizationForm">
+                        @csrf
+                        <div class="row">
+                            <div class="col-sm-6 border-right">
+
+                                @include('partials.form.text', [
+                                    'name' => 'name',
+                                    'label' => 'Name',
+                                    'attributes' => [
+                                        'required' => 'required',
+                                    ],
+                                ])
+                                @include('partials.form.select', [
+                                    'name' => 'label',
+                                    'label' => 'Label',
+                                    'options' => App\Helper\SelectOptions::labels(),
+                                ])
+                                @include('partials.form.text', [
+                                    'name' => 'meta[street]',
+                                    'label' => 'Street address',
+                                ])
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        @include('partials.form.text', [
+                                            'name' => 'meta[place]',
+                                            'label' => 'Place',
+                                        ])
+                                    </div>
+                                    <div class="col-sm-12">
+                                        @include('partials.form.text', [
+                                            'name' => 'meta[post_code]',
+                                            'label' => 'Zip',
+                                        ])
+                                    </div>
+                                    <div class="col-sm-12">
+                                        @include('partials.form.text', [
+                                            'name' => 'meta[state]',
+                                            'label' => 'State',
+                                        ])
+                                    </div>
+                                    <div class="col-sm-12">
+                                        @include('partials.form.select', [
+                                            'name' => 'meta[country]',
+                                            'label' => 'Country',
+                                            'options' => App\Helper\SelectOptions::countries(),
+                                        ])
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="col-sm-12">
+                                    @include('partials.form.text', [
+                                        'name' => 'meta[company_email]',
+                                        'label' => 'Email',
+                                        'attributes' => [
+                                        'required' => 'required',
+                                    ],
+                                    ])
+                                </div>
+
+                                <div class="col-sm-12">
+                                    @include('partials.form.text', [
+                                        'name' => 'meta[company_phone]',
+                                        'label' => 'Phone',
+                                        'attributes' => [
+                                        'required' => 'required',
+                                    ],
+                                    ])
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        @include('partials.form.text', [
+                                            'name' => 'meta[company_twitter]',
+                                            'label' => 'X/Twitter Profile',
+                                        ])
+                                    </div>
+                                    <div class="col-sm-12">
+                                        @include('partials.form.text', [
+                                            'name' => 'meta[company_tiktok]',
+                                            'label' => 'Tiktok Profile',
+                                        ])
+                                    </div>
+                                    <div class="col-sm-12">
+                                        @include('partials.form.text', [
+                                            'name' => 'meta[company_youtube]',
+                                            'label' => 'Youtube profile',
+                                        ])
+                                    </div>
+                                    <div class="col-sm-12">
+                                        @include('partials.form.text', [
+                                            'name' => 'meta[company_fb]',
+                                            'label' => 'Facebook profile',
+                                        ])
+                                    </div>
+                                    <div class="col-sm-12">
+                                        @include('partials.form.text', [
+                                            'name' => 'meta[niche]',
+                                            'label' => 'Niche',
+                                        ])
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<div class="modal mt-5 ms-5" id="clientModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true"
+    data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="infoModalLabel">Add Contact</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ route('client.ajax') }}" id="clientForm">
+                    @csrf
+                   <div class="row">
+                    <div class="col-sm-6">
+
+                        @include('partials.form.text', [
+                            'name' => 'name',
+                            'label' => 'Name',
+                          
+                        ])
+                    </div>
+                    <div class="col-sm-6">
+
+                        @include('partials.form.text', [
+                            'name' => 'meta[l_name]',
+                            'label' => 'Last name',
+                        
+                        ])
+                    </div>
+                   </div>
+                    {{-- @include('partials.form.select', [
+                        'name' => 'user_owner_id',
+                        'label' => 'owner',
+                        'options' => App\Helper\SelectOptions::users(false),
+                      
+                    ]) --}}
+                    @include('partials.form.text', [
+                        'name' => 'phone',
+                        'label' => 'Phone',
+
+                    ])
+                    @include('partials.form.text', [
+                        'name' => 'email',
+                        'label' => 'Email',
+
+                    ])
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="createClient()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+
 
     @if (!empty(config('dz.public.global.js.top')))
         @foreach (config('dz.public.global.js.top') as $script)
@@ -190,15 +379,145 @@
     {{-- @livewireScripts --}}
     @stack('scripts')
 
-    @if(session()->has('success'))
-    <x-alert.success/>
+    @if (session()->has('success'))
+        <x-alert.success />
     @endif
 
-    @if(session()->has('errors'))
-    @foreach (session('errors')->all() as $item)
-    <x-alert.error :error="$item"/>
-    @endforeach
+    @if (session()->has('errors'))
+        @foreach (session('errors')->all() as $item)
+            <x-alert.error :error="$item" />
+        @endforeach
     @endif
+
+
+    <script>
+        Array.from(document.getElementsByClassName('showmodal')).forEach((e) => {
+            e.addEventListener('click', function(element) {
+                element.preventDefault();
+                if (e.hasAttribute('data-show-modal')) {
+                    showModal(e.getAttribute('data-show-modal'));
+                }
+            });
+        });
+        // Show modal dialog
+        function showModal(modal) {
+            const mid = document.getElementById(modal);
+            let myModal = new bootstrap.Modal(mid);
+            myModal.show();
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $("#organizationForm").validate({
+                submitHandler: function(form) {
+                    createOrganisation();
+                }
+            });
+        });
+
+
+        function createOrganisation() {
+            var formData = $('#organizationForm').serialize();
+            $.ajax({
+                url: $('#organizationForm').attr('action'),
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    //    console.log(response.organisations)
+                    $('#select_organisation_id').empty();
+                    $.each(response.organisations, function(index, organisation) {
+                        $('#select_organisation_id').append('<option selected value="' +
+                            organisation
+                            .id + '">' +
+                            organisation.name + '</option>');
+                    });
+                   
+                    console.log(response.data);
+                    $('#infoModal').modal('hide');
+                    $('#input_email').val(response.data.email);
+                    $('#input_phone').val(response.data.phone);
+                    $('#input_address').val(response.data.street);
+                    $('#input_city').val(response.data.city);
+                    $('#input_state').val(response.data.state);
+                    $('#input_code').val(response.data.post_code);
+                    $('#input_state').val(response.data.state);
+                    $('#select_country').val(response.data.country);
+                    toastr.success('', 'Organisation added successfully');
+
+                },
+                error: function(error) {
+                    // Handle error, if needed
+                    console.error(error);
+                }
+            });
+
+        }
+                function createClient() {
+            var formData = $('#clientForm').serialize();
+            // console.log(formData);
+            $.ajax({
+                url: $('#clientForm').attr('action'),
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    //    console.log(response.organisations)
+                    $('#select_client_id').empty();
+                    $.each(response.clients, function(index, client) {
+                        $('#select_client_id').append('<option selected value="' + client
+                            .id + '">' +
+                            client.name + '</option>');
+                    });
+
+                    $('#clientModal').modal('hide');
+                    $('#select_client_id').trigger('change');
+                    $('#input_email').val(response.email);
+                    $('#input_phone').val(response.phone);
+                    $('#input_address').val(response.street);
+                    $('#input_code').val(response.post_code);
+                    $('#input_state').val(response.state);
+                    $('#select_country').val(response.country);
+
+
+                    toastr.success('', 'Client added successfully');
+                },
+                error: function(error) {
+                    // Handle error, if needed
+                    console.error(error);
+                }
+            });
+        }
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#select_organisation_id').on('change', function() {
+                console.log('cliecked')
+                var orgId = $(this).val();
+                $.ajax({
+                    url: '/dashboard/organisation/fetch',
+                    type: 'get',
+                    data: {
+                        orgId: orgId
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log('Ajax response:', response['email']);
+                        $('#input_email').val(response['email']);
+                        $('#input_phone').val(response['phone']);
+                        $('#input_address').val(response['street']);
+                        $('#input_code').val(response['post_code']);
+                        $('#input_state').val(response.state);
+                        $('#input_city').val(response.city);
+                        $('#select_country').val(response.country);
+                    },
+                    error: function(error) {
+                        console.error('Ajax error:', error);
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 

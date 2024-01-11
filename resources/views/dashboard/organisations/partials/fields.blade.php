@@ -2,6 +2,21 @@
 <div class="card p-4">
     <div class="row">
         <div class="col-sm-6 border-right">
+             <div class="d-flex align-items-center">
+                <div class="col-md-10">
+                    @include('partials.form.select', [
+                        'name' => 'client_id',
+                        'label' => 'Customer',
+                        'options' => $clients,
+                      
+                    ])
+                </div>
+                <div class="col-md-2 ms-2 mt-2">
+                    <button type="button" class="btn btn-dark btn-sm showmodal" data-show-modal="clientModal">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
 
             @include('partials.form.text', [
                 'name' => 'name',
@@ -14,18 +29,6 @@
                 'options' => App\Helper\SelectOptions::labels(),
    
             ])
-            {{-- @include('partials.form.select', [
-                'name' => 'user_owner_id',
-                'label' => 'owner',
-                'options' => App\Helper\SelectOptions::users(false),
-                'value' => old('user_owner_id', $organisation->user_owner_id ?? auth()->user()->id),
-            ]) --}}
-            {{-- @include('partials.form.textarea', [
-                'name' => 'address',
-                'label' => 'Address',
-                'rows' => 5,
-                'value' => old('address', $organisation->address ?? null),
-            ]) --}}
             @include('partials.form.text', [
                 'name' => 'meta[street]',
                 'label' => 'Street address',
@@ -55,7 +58,7 @@
                 </div>
                 <div class="col-sm-12">
                     @include('partials.form.select', [
-                        'name' => 'metaa[country]',
+                        'name' => 'meta[country]',
                         'label' => 'Country',
                         'options' => App\Helper\SelectOptions::countries(),
                         

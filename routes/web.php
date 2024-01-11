@@ -121,7 +121,12 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function() {
 
     Route::resource('products', ProductController::class);
 
-    Route::resource('organisations', OrganisationController::class);
+    // Route::resource('organisations', OrganisationController::class);
+    Route::get('organizations',[OrganisationController::class,'index'])->name('organisations.index');
+    Route::get('organizations/{organisation}',[OrganisationController::class,'show'])->name('organisations.show');
+    Route::post('corganizations/store',[OrganisationController::class,'store'])->name('organisations.store');
+    Route::put('corganizations/update/{organisation}',[OrganisationController::class,'update'])->name('organisations.update');
+    Route::delete('corganizations/delete/{organisation}',[OrganisationController::class,'destroy'])->name('organisations.destroy');
     Route::post('company/social/update/{organisation}',[OrganisationController::class,'socialUpdate'])->name('social.update');
     Route::post('person/store/{organisation}',[OrganisationController::class,'personStore'])->name('person.store');
     Route::post('organisation/create',[OrganisationController::class,'organisationAjax'])->name('organisation.ajax');
