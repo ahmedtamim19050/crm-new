@@ -9,6 +9,7 @@ use App\Models\Person;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 
 class OrganisationController extends Controller
 {
@@ -21,7 +22,10 @@ class OrganisationController extends Controller
     {
         $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
         $organisations = Organisation::where('user_id', auth()->id())->latest()->get();
-        return view('dashboard.organisations.index', compact('organisations','clients'));
+        $countries = Cache::remember('countries', 600, function () {
+            return DB::table('countries')->pluck('name', 'name')->toArray();
+        });
+        return view('dashboard.organisations.index', compact('organisations','clients','countries'));
     }
 
     /**
@@ -70,7 +74,10 @@ class OrganisationController extends Controller
     {
         $persons = Client::pluck('name', 'id')->toArray();
         $labels = Label::pluck('name', 'id')->toArray();
-        return view('dashboard.organisations.show', compact('organisation', 'persons', 'labels'));
+        $countries = Cache::remember('countries', 600, function () {
+            return DB::table('countries')->pluck('name', 'name')->toArray();
+        });
+        return view('dashboard.organisations.show', compact('organisation', 'persons', 'labels','countries'));
     }
 
     /**

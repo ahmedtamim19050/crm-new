@@ -16,7 +16,8 @@ use App\Services\OrganisationService;
 use App\Services\PersonService;
 use Carbon\Carbon;
 use Ramsey\Uuid\Uuid;
-
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 class LeadController extends Controller
 {
@@ -62,12 +63,15 @@ class LeadController extends Controller
         $leads = Lead::where('user_id', auth()->id())->latest()->get();
         $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
         $organisations = Organisation::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
-
+        $countries = Cache::remember('countries', 600, function () {
+            return DB::table('countries')->pluck('name', 'name')->toArray();
+        });
 
         return view('dashboard.leads.index', [
             'leads' => $leads,
             'clients' => $clients,
             'organisations' => $organisations,
+            'countries'=>$countries,
         ]);
     }
 
@@ -120,8 +124,11 @@ class LeadController extends Controller
         $labels = Label::pluck('name', 'id')->toArray();
         $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
         $organisations = Organisation::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
+        $countries = Cache::remember('countries', 600, function () {
+            return DB::table('countries')->pluck('name', 'name')->toArray();
+        });
 
-        return view('dashboard.leads.show', compact('lead', 'clients', 'organisations', 'labels'));
+        return view('dashboard.leads.show', compact('lead', 'clients', 'organisations', 'labels','countries'));
     }
 
     /**

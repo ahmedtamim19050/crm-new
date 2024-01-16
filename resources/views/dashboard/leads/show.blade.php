@@ -237,7 +237,7 @@
     
                                 <select class="edit-input" name="country" id="countryInput" style="border: 0">
                                     <option value="">Choose option</option>
-                                    @foreach (App\Helper\SelectOptions::countries() as $key => $country)
+                                    @foreach ($countries as $key => $country)
                                         <option value="{{ $key }}"
                                             {{ $key == $lead->country ? 'selected' : '' }}>
                                             {{ $country }}

@@ -1,7 +1,15 @@
 @php
+use Illuminate\Support\Facades\Cache;
     $controller = DzHelper::controller();
     $page = $action = DzHelper::action();
     $action = $controller . '_' . $action;
+
+    $countries = Cache::remember('countries', 600, function () {
+        // This callback will be executed if the 'countries' key is not found in the cache
+        return DB::table('countries')
+            ->pluck('name', 'name')
+            ->toArray();
+    });
 @endphp
 
 <!DOCTYPE html>
@@ -234,7 +242,7 @@
                                         @include('partials.form.select', [
                                             'name' => 'meta[country]',
                                             'label' => 'Country',
-                                            'options' => App\Helper\SelectOptions::countries(),
+                                            'options' => $countries,
                                         ])
                                     </div>
                                 </div>

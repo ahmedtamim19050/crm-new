@@ -13,6 +13,8 @@ use App\Services\DealService;
 use App\Services\OrganisationService;
 use App\Services\PersonService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
 
 class DealsController extends Controller
@@ -51,11 +53,15 @@ class DealsController extends Controller
         $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
         $organisations = Organisation::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
         $deals = Deal::where('user_id', auth()->id())->latest()->paginate(30);
+        $countries = Cache::remember('countries', 600, function () {
+            return DB::table('countries')->pluck('name', 'name')->toArray();
+        });
 
         return view('dashboard.deals.index', [
             'deals' => $deals,
             'clients' => $clients,
             'organisations' => $organisations,
+            'countries'=>$countries,
         ]);
     }
 
@@ -114,6 +120,9 @@ class DealsController extends Controller
         $labels = Label::pluck('name', 'id')->toArray();
         $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
         $organisations = Organisation::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
+        $countries = Cache::remember('countries', 600, function () {
+            return DB::table('countries')->pluck('name', 'name')->toArray();
+        });
 
         return view('dashboard.deals.show', [
             'deal' => $deal,
@@ -121,6 +130,7 @@ class DealsController extends Controller
             'labels' => $labels,
             'clients' => $clients,
             'organisations' => $organisations,
+            'countries'=>$countries,
         ]);
     }
 
@@ -178,7 +188,11 @@ class DealsController extends Controller
         $clients = Client::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
         $organisations = Organisation::where('user_id', auth()->id())->pluck('name', 'id')->toArray();
         $stages = Category::orderBy('order', 'asc')->get();
-        return view('dashboard.deals.kanvan', compact('stages', 'clients', 'organisations'));
+        $countries = Cache::remember('countries', 600, function () {
+            return DB::table('countries')->pluck('name', 'name')->toArray();
+        });
+
+        return view('dashboard.deals.kanvan', compact('stages', 'clients', 'organisations','countries'));
     }
     public function kanvanUpdate(Request $request)
     {

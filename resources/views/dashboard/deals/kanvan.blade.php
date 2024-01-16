@@ -303,7 +303,7 @@
                                             @include('partials.form.select', [
                                                 'name' => 'country',
                                                 'label' => 'Country',
-                                                'options' => App\Helper\SelectOptions::countries(),
+                                                'options' => $countries,
                                             ])
                                         </div>
                                     </div>

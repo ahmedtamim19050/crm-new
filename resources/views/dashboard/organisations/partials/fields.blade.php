@@ -63,7 +63,7 @@
                     @include('partials.form.select', [
                         'name' => 'meta[country]',
                         'label' => 'Country',
-                        'options' => App\Helper\SelectOptions::countries(),
+                        'options' => $countries,
                         
                     ])
                 </div>
