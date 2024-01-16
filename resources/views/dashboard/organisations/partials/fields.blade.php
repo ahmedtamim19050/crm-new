@@ -21,6 +21,9 @@
             @include('partials.form.text', [
                 'name' => 'name',
                 'label' => 'Name',
+                'attributes'=>[
+                    'required'=>true,
+                ]
 
             ])
             @include('partials.form.select', [

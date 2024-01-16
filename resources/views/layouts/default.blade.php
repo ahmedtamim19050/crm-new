@@ -354,6 +354,10 @@
                             'name' => 'email',
                             'label' => 'Email',
                         ])
+                        @include('partials.form.text', [
+                            'name' => 'meta[position]',
+                            'label' => 'Position',
+                        ])
                     </form>
                 </div>
                 <div class="modal-footer">
