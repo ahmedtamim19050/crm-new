@@ -127,7 +127,7 @@
                         @csrf
 
                         @include('dashboard.clients.partials.fields')
-                        <a href="" class="btn btn-outline-secondary">Cancel</a>
+
                         <button type="submit" class="btn btn-primary">Save</button>
 
                     </form>

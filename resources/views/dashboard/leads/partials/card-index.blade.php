@@ -94,7 +94,7 @@
 
                     @include('dashboard.leads.partials.fields')
 
-                    <a href="" class="btn btn-outline-secondary">Cancel</a>
+        
                     <button type="submit" class="btn btn-primary">Save</button>
 
                 </form>
@@ -152,7 +152,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
                 <button type="button" class="btn btn-primary" onclick="createClient()">Save</button>
             </div>
         </div>
