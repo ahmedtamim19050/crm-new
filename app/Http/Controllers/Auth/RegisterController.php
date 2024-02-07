@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Package;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -41,6 +42,17 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm()
+    {
+        
+        if(request()->package !== null){
+
+            return view('auth.register');
+        }else{
+            return redirect('/')->withErrors('Please select package');
+        }
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -53,6 +65,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'package'=>'nullable',
         ]);
     }
 
@@ -64,10 +77,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $package=Package::find($data['package']);
+        // dd($package);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'monthly_charge'=>$package->price,
+            'client_limit'=>$package->client_limit,
+            'organization_limit'=>$package->organization_limit,
+            'deal_limit'=>$package->deal_limit,
+            'lead_limit'=>$package->lead_limit,
         ]);
     }
 }

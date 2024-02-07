@@ -11,7 +11,7 @@
                         <img src="{{ asset('images/logo-full.png')}}" alt="">
                     </div>
                     <h4 class="text-center mb-4">Sign up your account</h4>
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register',['package'=>request()->package]) }}">
                         @csrf
                   
                         <div class="form-group">

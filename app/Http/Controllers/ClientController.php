@@ -44,25 +44,31 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|max:255',
-            // 'user_owner_id' => 'required',
-            // 'label' => 'required',
-        
-        ]);
-        $client = Client::create([
-            'name' => $request->name,
-            'user_owner_id' => $request->user_owner_id,
-            'organisation_id' => $request->organisation_id,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'user_id'=>auth()->id(),
-            'label'=>$request->label,
+      
+        if(auth()->user()->clients->count() < auth()->user()->client_limit){
 
-        ]);
-        $client->createMetas($request->meta);
-        $client->organisations()->attach($request->organisation_id);
-       return redirect()->route('clients.index')->with('success','Contact Create Successfully');
+            $request->validate([
+                'name' => 'required|max:255',
+                // 'user_owner_id' => 'required',
+                // 'label' => 'required',
+            
+            ]);
+            $client = Client::create([
+                'name' => $request->name,
+                'user_owner_id' => $request->user_owner_id,
+                'organisation_id' => $request->organisation_id,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'user_id'=>auth()->id(),
+                'label'=>$request->label,
+    
+            ]);
+            $client->createMetas($request->meta);
+            $client->organisations()->attach($request->organisation_id);
+           return redirect()->route('clients.index')->with('success','Contact Create Successfully');
+        }else{
+            return back()->withErrors('Finish your client limitation');
+        }
     }
 
     /**

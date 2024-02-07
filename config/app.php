@@ -1,5 +1,6 @@
 <?php
 
+use App\Facades\Settings\SettingsFacade;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -213,6 +214,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'DzHelper' => App\Helper\DzHelper::class,
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+        'Settings' => SettingsFacade::class,
     ])->toArray(),
 
 ];

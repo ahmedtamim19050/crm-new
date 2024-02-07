@@ -48,6 +48,7 @@
             <div class="me-auto  mb-lg-0 mb-3">
                 <div class="mb-4">
                     <h2 class="title-num text-black font-w700">Deals</h2>
+                    <p class="mb-0">{{ auth()->user()->deal_limit -  auth()->user()->deals()->count() }} Left Deals</p>
                     {{-- <span class="fs-14">Created by Lidya Chan on June 31, 2021</span> --}}
                 </div>
                 <div class="d-sm-flex d-block align-items-center">

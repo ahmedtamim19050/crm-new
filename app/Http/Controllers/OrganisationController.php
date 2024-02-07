@@ -50,7 +50,7 @@ class OrganisationController extends Controller
     public function store(Request $request)
     {
       
-    
+        if(auth()->user()->organisations->count() < auth()->user()->organization_limit){
         $organisation = Organisation::create([
             'name' => $request->name,
             'user_owner_id' => $request->user_owner_id,
@@ -61,7 +61,11 @@ class OrganisationController extends Controller
         ]);
         $organisation->createMetas($request->meta);
       
-        return redirect()->route('organisations.index')->with('success', 'Organisation Create Successfully');
+        return redirect()->route('organisations.index')->with('success', 'Organization Create Successfully');
+    }
+    else{
+        return back()->withErrors('Finish your Organization limitation');
+    }
     }
 
     /**

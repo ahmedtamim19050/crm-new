@@ -351,31 +351,8 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-7 col-sm-9">
-                    <div class="single-pricing text-center mt-30 wow fadeIn" data-wow-duration="1.3s"
-                        data-wow-delay="0.2s"
-                        style="visibility: visible; animation-duration: 1.3s; animation-delay: 0.2s; animation-name: fadeIn;">
-                        <div class="pricing-title">
-                            <h4 class="title">Basic</h4>
-                        </div>
-                        <div class="pricing-price">
-                            <span class="price">$49</span>
-                            <p class="text">Monthly</p>
-                        </div>
-                        <div class="pricing-list">
-                            <ul class="list">
-                                <li>Increase traffic 130%</li>
-                                <li>Backlink analysis</li>
-                                <li>Organic traffic 215%</li>
-                                <li>10 Free Optimization</li>
-                                <li>24/7 support</li>
-                            </ul>
-                        </div>
-                        <div class="pricing-btn">
-                            <a class="main-btn main-btn-2" href="#">Purchase Now</a>
-                        </div>
-                    </div>
-                </div>
+                @foreach ($packages as $package)
+                    
                 <div class="col-lg-4 col-md-7 col-sm-9">
                     <div class="single-pricing pricing-active text-center mt-30 wow fadeIn" data-wow-duration="1.3s"
                         data-wow-delay="0.5s"
@@ -384,51 +361,23 @@
                             <img src="{{asset('frontend-assets/images/price-shape.png')}}" alt="">
                         </div>
                         <div class="pricing-title">
-                            <h4 class="title">Standard</h4>
+                            <h4 class="title">{{$package->title}}</h4>
                         </div>
                         <div class="pricing-price">
-                            <span class="price">$99</span>
+                            <span class="price">{{Settings::price($package->price)}}</span>
                             <p class="text">Monthly</p>
                         </div>
                         <div class="pricing-list">
                             <ul class="list">
-                                <li>Increase traffic 130%</li>
-                                <li>Backlink analysis</li>
-                                <li>Organic traffic 215%</li>
-                                <li>10 Free Optimization</li>
-                                <li>24/7 support</li>
+                               {!! $package->description !!}
                             </ul>
                         </div>
                         <div class="pricing-btn">
-                            <a class="main-btn" href="#">Purchase Now</a>
+                            <a class="main-btn" href="{{route('register',['package'=>$package->id])}}">Purchase Now</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-7 col-sm-9">
-                    <div class="single-pricing text-center mt-30 wow fadeIn" data-wow-duration="1.3s"
-                        data-wow-delay="0.9s"
-                        style="visibility: visible; animation-duration: 1.3s; animation-delay: 0.9s; animation-name: fadeIn;">
-                        <div class="pricing-title">
-                            <h4 class="title">Professional</h4>
-                        </div>
-                        <div class="pricing-price">
-                            <span class="price">$199</span>
-                            <p class="text">Monthly</p>
-                        </div>
-                        <div class="pricing-list">
-                            <ul class="list">
-                                <li>Increase traffic 130%</li>
-                                <li>Backlink analysis</li>
-                                <li>Organic traffic 215%</li>
-                                <li>10 Free Optimization</li>
-                                <li>24/7 support</li>
-                            </ul>
-                        </div>
-                        <div class="pricing-btn">
-                            <a class="main-btn main-btn-2" href="#">Purchase Now</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

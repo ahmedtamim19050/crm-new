@@ -61,7 +61,7 @@ class DealsController extends Controller
             'deals' => $deals,
             'clients' => $clients,
             'organisations' => $organisations,
-            'countries'=>$countries,
+            'countries' => $countries,
         ]);
     }
 
@@ -91,20 +91,23 @@ class DealsController extends Controller
      */
     public function store(StoreDealRequest $request)
     {
+        if (auth()->user()->deals->count() < auth()->user()->deal_limit) {
 
-        $organisation = $request->organisation_id;
-        $client = $request->client_id;
+            $organisation = $request->organisation_id;
+            $client = $request->client_id;
 
-        $stage = Category::orderBy('order', 'asc')->first();
-        if (!$stage) {
-            return redirect()->route('categories.index')->withErrors('Please insert atleast one stages');
-        }
-        $deal=$this->dealService->create($request, $person ?? null, $client, $organisation);
-        $deal->createMetas($request->meta);
-        
-      
+            $stage = Category::orderBy('order', 'asc')->first();
+            if (!$stage) {
+                return redirect()->route('categories.index')->withErrors('Please insert atleast one stages');
+            }
+            $deal = $this->dealService->create($request, $person ?? null, $client, $organisation);
+            $deal->createMetas($request->meta);
+
+
             return redirect()->route('kanvan')->with('success', 'Deal Create Successfully');
-       
+        }else{
+            return back()->withErrors('Finish your Deal limitation');
+        }
     }
 
     /**
@@ -130,7 +133,7 @@ class DealsController extends Controller
             'labels' => $labels,
             'clients' => $clients,
             'organisations' => $organisations,
-            'countries'=>$countries,
+            'countries' => $countries,
         ]);
     }
 
@@ -192,7 +195,7 @@ class DealsController extends Controller
             return DB::table('countries')->pluck('name', 'name')->toArray();
         });
 
-        return view('dashboard.deals.kanvan', compact('stages', 'clients', 'organisations','countries'));
+        return view('dashboard.deals.kanvan', compact('stages', 'clients', 'organisations', 'countries'));
     }
     public function kanvanUpdate(Request $request)
     {
