@@ -86,17 +86,17 @@ class Deal extends Model
 
     public function client()
     {
-        return $this->belongsTo(Client::class,'client_id');
+        return $this->belongsTo(Client::class, 'client_id');
     }
 
-  
+
 
     public function createdByUser()
     {
         return $this->belongsTo(User::class, 'user_created_id');
     }
 
- 
+
     public function deletedByUser()
     {
         return $this->belongsTo(User::class, 'user_deleted_id');
@@ -122,7 +122,7 @@ class Deal extends Model
      */
     public function labelName()
     {
-        return $this->belongsTo(Label::class,'label');
+        return $this->belongsTo(Label::class, 'label');
     }
 
     public function addresses()
@@ -137,10 +137,5 @@ class Deal extends Model
     //         return $this->addresses()->first();
     //     }
     // }
-    protected static function booted()
-    {
-        static::addGlobalScope('myDeal', function (Builder $builder) {
-            $builder->where('user_id', auth()->id());
-        });
-    }
+  
 }
