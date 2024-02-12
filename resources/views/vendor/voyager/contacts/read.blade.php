@@ -303,23 +303,7 @@
             });
         </script>
     @endif
-    <script>
-        var deleteFormAction;
-        $('.delete').on('click', function(e) {
-            var form = $('#delete_form')[0];
 
-            if (!deleteFormAction) {
-                // Save form action initial value
-                deleteFormAction = form.action;
-            }
-
-            form.action = deleteFormAction.match(/\/[0-9]+$/) ?
-                deleteFormAction.replace(/([0-9]+$)/, $(this).data('id')) :
-                deleteFormAction + '/' + $(this).data('id');
-
-            $('#delete_modal').modal('show');
-        });
-    </script>
     <script>
         function myFunction(element, inputId, buttonId) {
             $('.edit-input').css('border', '0');
@@ -359,69 +343,5 @@
             });
         }
     </script>
-    <script>
-        $(document).ready(function() {
-            $('#socialModal').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget);
-                var title = button.data('title');
-                var value = button.data('value');
-                var name = button.data('name');
 
-                var modal = $(this);
-                console.log(value);
-                modal.find('.modal-title').text(title);
-                modal.find('#socialInput').val(value);
-                $('#socialInput').attr('name', name);
-            });
-        });
-        $(document).ready(function() {
-            $('#otherSocial').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget);
-                var socials = button.data('socials');
-                var organisationId = button.data('id');
-
-                var modal = $(this);
-                $.ajax({
-                    url: '/dashboard/fetchSocialData/' + organisationId,
-                    type: 'GET',
-                    data: {
-                        socials: socials
-                    },
-                    contentType: 'application/json',
-                    success: function(data) {
-                        // console.log(data);
-                        modal.find('.social-body').html(data);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error fetching social data:', error);
-                    }
-                });
-
-            });
-        });
-
-        $(document).ready(function() {
-            $('#personModal').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget);
-                var fname = button.data('fname');
-                var email = button.data('email');
-                var lname = button.data('lname');
-                var phone = button.data('phone');
-                var position = button.data('position');
-                var id = button.data('id');
-
-                var modal = $(this);
-                // console.log(modal.find('#input_meta[l_name]'));
-                console.log(lname);
-                modal.find('#input_name').val(fname);
-                modal.find('#input_email').val(email);
-                modal.find('#l_name').val(lname);
-                modal.find('#personId').val(id);
-                modal.find('#input_phone').val(phone);
-                modal.find('#position').val(position);
-
-
-            });
-        });
-    </script>
 @stop
