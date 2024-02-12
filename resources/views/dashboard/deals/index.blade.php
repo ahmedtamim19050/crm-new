@@ -38,7 +38,7 @@
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
                     <h4>Hi, welcome back!</h4>
-                    <p class="mb-0">{{ auth()->user()->deal_limit -  auth()->user()->deals()->count() }} Left Deals</p>
+                    <p class="mb-0">{{ auth()->user()->deal_limit - auth()->user()->deals()->count() }} Left Deals</p>
                 </div>
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -136,7 +136,7 @@
                                                     style="background-color:{{ $deal->labelName->color ?? null }}">{{ $deal->labelName->name ?? null }}</span>
                                             </td>
 
-                                            {{-- <td>{{ $deal->amount, $deal->currency }}</td>
+                                            {{-- <td>{{ $deal->amount  }}, {{$deal->currency}}</td>
 
                                             <td>{{ $deal->client->name ?? null }}</td> --}}
                                             <td>{{ $deal->organisation->name ?? null }}</td>
@@ -407,7 +407,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                   
+
                     <button type="button" class="btn btn-primary" onclick="createOrganisation()">Save</button>
                 </div>
             </div>
@@ -461,7 +461,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    
+
                     <button type="button" class="btn btn-primary" onclick="createClient()">Save</button>
                 </div>
             </div>
