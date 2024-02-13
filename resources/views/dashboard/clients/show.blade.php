@@ -28,7 +28,7 @@
                     <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ $client->name }}</a></li>
                 </ol>
             </div>
-
+           
         </div>
         <div class="row">
             <div class="col-xl-6">
@@ -92,8 +92,8 @@
                                 <div class="" onmouseover="myFunction(this, 'email', 'editButtonEmail')"
                                     onmouseout="hideEditLink(this, 'email', 'editButtonEmail')">
 
-                                    <input type="text" class="edit-input" style="border: 0" name="email"
-                                        id="email" value="{{ $client->email }}">
+                                    <input type="text" class="edit-input" style="border: 0" name="email" id="email"
+                                        value="{{ $client->email }}">
                                     <button type="button" onclick="updateDescription()"
                                         class="btn btn-primary editBtn btn-sm" id="editButtonEmail" style="display: none"><i
                                             class="fas fa-pencil-alt"></i></button>
@@ -114,11 +114,11 @@
                                 <div class="" onmouseover="myFunction(this, 'phone', 'editButtonPhone')"
                                     onmouseout="hideEditLink(this, 'phone', 'editButtonPhone')">
 
-                                    <input type="text" class="edit-input" style="border: 0" name="phone"
-                                        id="phone" value="{{ $client->phone }}">
+                                    <input type="text" class="edit-input" style="border: 0" name="phone" id="phone"
+                                        value="{{ $client->phone }}">
                                     <button type="button" onclick="updateDescription()"
-                                        class="btn btn-primary editBtn btn-sm" id="editButtonPhone" style="display: none"><i
-                                            class="fas fa-pencil-alt"></i></button>
+                                        class="btn btn-primary editBtn btn-sm" id="editButtonPhone"
+                                        style="display: none"><i class="fas fa-pencil-alt"></i></button>
                                 </div>
                             </form>
 
@@ -126,7 +126,7 @@
                         <div class="d-flex">
                             <span style="font-weight: 700" class="me-3 mt-2">Organization :</span>
 
-        
+
 
 
                             <form class="updateForm" action="{{ route('clients.update', $client) }}" method="post">
@@ -143,7 +143,7 @@
                                         <option value="">Choose option</option>
                                         @foreach ($organisations as $key => $organisation)
                                             <option value="{{ $key }}"
-                                               {{ $client->organisations->contains('id', $key) ? 'selected' : '' }}>
+                                                {{ $client->organisations->contains('id', $key) ? 'selected' : '' }}>
                                                 {{ $organisation }}
                                             </option>
                                         @endforeach
@@ -153,7 +153,7 @@
                                         onclick="updateDescription()">Edit</button>
                                 </div>
                             </form>
-                        
+
 
                         </div>
                         {{-- <h6 class="text-uppercase mt-3">Owner</h6>

@@ -2,6 +2,7 @@
 
 use App\Facades\Settings\SettingsFacade;
 use Illuminate\Support\Facades\Facade;
+use TCG\Voyager\VoyagerServiceProvider;
 
 return [
 
@@ -196,6 +197,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        VoyagerServiceProvider::class
 
     ],
 

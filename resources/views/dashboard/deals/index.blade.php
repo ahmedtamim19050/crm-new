@@ -136,7 +136,7 @@
                                                     style="background-color:{{ $deal->labelName->color ?? null }}">{{ $deal->labelName->name ?? null }}</span>
                                             </td>
 
-                                            {{-- <td>{{ $deal->amount, $deal->currency }}</td>
+                                            {{-- <td>{{ $deal->amount  }}, {{$deal->currency}}</td>
 
                                             <td>{{ $deal->client->name ?? null }}</td> --}}
                                             <td>{{ $deal->organisation->name ?? null }}</td>
@@ -407,7 +407,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                   
+
                     <button type="button" class="btn btn-primary" onclick="createOrganisation()">Save</button>
                 </div>
             </div>
@@ -461,7 +461,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    
+
                     <button type="button" class="btn btn-primary" onclick="createClient()">Save</button>
                 </div>
             </div>
