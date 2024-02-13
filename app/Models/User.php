@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use TCG\Voyager\Models\Role;
 
 class User extends \TCG\Voyager\Models\User
 {
@@ -48,5 +49,8 @@ class User extends \TCG\Voyager\Models\User
     }
     public function deals() {
         return $this->hasMany(Deal::class);
+    }
+    public function package() {
+        return $this->belongsTo(Package::class);
     }
 }

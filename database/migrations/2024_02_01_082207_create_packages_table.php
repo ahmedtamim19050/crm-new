@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
-            $table->string('titles');
+            $table->string('title');
             $table->text('description')->nullable();
             $table->bigInteger('price');
             $table->tinyInteger('status')->default(false);

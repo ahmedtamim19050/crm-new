@@ -137,10 +137,10 @@ class Deal extends Model
     //         return $this->addresses()->first();
     //     }
     // }
-    protected static function booted()
-    {
-        static::addGlobalScope('myDeal', function (Builder $builder) {
-            $builder->where('user_id', auth()->id());
-        });
-    }
+    // protected static function booted()
+    // {
+    //     static::addGlobalScope('myDeal', function (Builder $builder) {
+    //         $builder->where('user_id', auth()->id());
+    //     });
+    // }
 }

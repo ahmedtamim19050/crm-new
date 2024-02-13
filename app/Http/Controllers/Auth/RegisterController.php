@@ -88,6 +88,7 @@ class RegisterController extends Controller
             'organization_limit'=>$package->organization_limit,
             'deal_limit'=>$package->deal_limit,
             'lead_limit'=>$package->lead_limit,
+            'package_id'=>$package->id
         ]);
     }
 }
