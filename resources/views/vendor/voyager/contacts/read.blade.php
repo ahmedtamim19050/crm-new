@@ -1,4 +1,4 @@
-@extends('voyager::master')
+{{-- @extends('voyager::master')
 
 @section('page_title', __('voyager::generic.view') . ' ' . $dataType->getTranslatedAttribute('display_name_singular'))
 
@@ -344,4 +344,4 @@
         }
     </script>
 
-@stop
+@stop --}}
