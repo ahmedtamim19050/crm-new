@@ -38,6 +38,7 @@
                             <h4 class="services-title"><a href="#">SoMe</a></h4>
                             <p class="text">Schedule all social media content and <b>target</b> each post against your
                                 leads spesific needs.</p>
+								<br>Coming soon</br>
                         </div>
                     </div> <!-- single services -->
                 </div>
