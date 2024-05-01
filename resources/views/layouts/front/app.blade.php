@@ -130,7 +130,7 @@
                     </div>
                     <div class="col-lg-8 col-md-6 col-sm-6 col-10" style="margin:0 auto">
                         <div class="header-image">
-                            <img style="height: 40vh" src="{{ asset('frontend-assets/images/xainia-hero.png') }}"
+                            <img style="height: 40vh" src="{{ asset('frontend-assets/images/frontpic_01052024.png') }}"
                                 alt="app" class="image wow fadeInRightBig" data-wow-duration="1.3s"
                                 data-wow-delay="0.5s">
                             <div class="image-shape wow fadeInRightBig" data-wow-duration="1.3s"
