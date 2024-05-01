@@ -38,7 +38,7 @@
                             <h4 class="services-title"><a href="#">SoMe</a></h4>
                             <p class="text">Schedule all social media content and <b>target</b> each post against your
                                 leads spesific needs.</p>
-								<br>Coming soon</br>
+								<br>Coming soon!</br>
                         </div>
                     </div> <!-- single services -->
                 </div>
@@ -52,6 +52,7 @@
                             <h4 class="services-title"><a href="#">Newsletter</a></h4>
                             <p class="text">Target your new leads with the automation tool that <b>integrate</b> directly
                                 to mailchimp.</p>
+								<br>Coming soon!</br>
                         </div>
                     </div> <!-- single services -->
                 </div>
@@ -65,6 +66,7 @@
                             <h4 class="services-title"><a href="#">AI Bot</a></h4>
                             <p class="text">Use our snippet AI bot in your own website, and get all the <b>data back</b>
                                 in to our CRM platform.</p>
+								<br>Coming soon!</br>
                         </div>
                     </div> <!-- single services -->
                 </div>
@@ -77,6 +79,7 @@
                         <div class="services-content">
                             <h4 class="services-title"><a href="#">Project tool</a></h4>
                             <p class="text">Keep track on the client projects and use time tracker for best <b>ROI</B>.
+							<br>Coming soon!</br>
                             </p>
                         </div>
                     </div> <!-- single services -->
@@ -90,6 +93,7 @@
                         <div class="services-content">
                             <h4 class="services-title"><a href="#">Contracts</a></h4>
                             <p class="text">Save your ready made <b>contracts</b> to speed up the process with your leads.
+							<br>Coming soon!</br>
                             </p>
                         </div>
                     </div> <!-- single services -->
@@ -104,6 +108,7 @@
                             <h4 class="services-title"><a href="#">Chat & support </a></h4>
                             <p class="text">Interact thru different AI channels and provide best customer
                                 <b>experience</b>.
+								<br>Coming soon!</br>
                             </p>
                         </div>
                     </div> <!-- single services -->
@@ -117,6 +122,7 @@
                         <div class="services-content">
                             <h4 class="services-title"><a href="#">Analytics</a></h4>
                             <p class="text">Our platform give you all the data you <b>need</b> for follow up your leads.
+							<br>Coming soon!</br>
                             </p>
                         </div>
                     </div> <!-- single services -->
@@ -129,7 +135,7 @@
                         </div>
                         <div class="services-content">
                             <h4 class="services-title"><a href="#">Personas</a></h4>
-                            <p class="text">Our AI generates a user persona based on product or service. </p>
+                            <p class="text">Our AI generates a user persona based on product or service. <br>Coming soon!</br></p>
                         </div>
                     </div> <!-- single services -->
                 </div>
