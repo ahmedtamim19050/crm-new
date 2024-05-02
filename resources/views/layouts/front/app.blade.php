@@ -104,48 +104,7 @@
             </div> <!-- container -->
         </div> <!-- navbar area -->
 
-        <div id="home" class="header-hero bg_cover d-lg-flex align-items-center">
 
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-            <div class="shape shape-4"></div>
-            <div class="shape shape-5"></div>
-            <div class="shape shape-6"></div>
-
-            <div class="container ">
-                <div class="row align-items-center justify-content-center justify-content-lg-between">
-                    <div class="col-lg-12 col-md-10" style="margin-top: 250px">
-                        <div class="header-hero-content">
-                            <h3 class="header-title wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.2s">
-                                <span>Get started for free!</span><br> CRM, SoMe and newsletter in ONE Platform</h3>
-                            <p class="text wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.6s">Manage your
-                                leads, your social media and your newsletters from ONE Platform.</p>
-                            <ul class="d-flex">
-                                <li><a href="/login" rel="nofollow" class="main-btn wow fadeInLeftBig"
-                                        data-wow-duration="1.3s" data-wow-delay="0.8s">Get started for
-                                        free</a><br><b>No credit card required</b></li>
-                            </ul>
-                        </div> <!-- header hero content -->
-                    </div>
-                    <div class="col-lg-8 col-md-6 col-sm-6 col-10" style="margin:0 auto">
-                        <div class="header-image">
-                            <img style="height: 40vh" src="{{ asset('frontend-assets/images/frontpic_01052024.png') }}"
-                                alt="app" class="image wow fadeInRightBig" data-wow-duration="1.3s"
-                                data-wow-delay="0.5s">
-                            <div class="image-shape wow fadeInRightBig" data-wow-duration="1.3s"
-                                data-wow-delay="0.8s">
-                                <img src="{{ asset('frontend-assets/images/image-shape.svg') }}" alt="shape">
-                            </div>
-                        </div> <!-- header image -->
-                    </div>
-                </div> <!-- row -->
-            </div> <!-- container -->
-            <div class="header-shape-1"></div> <!-- header shape -->
-            <div class="header-shape-2">
-                <img src="{{ asset('frontend-assets/images/header-shape-2.svg') }}" alt="shape">
-            </div> <!-- header shape -->
-        </div> <!-- header hero -->
     </header>
 
     <!--====== HEADER PART ENDS ======-->

@@ -30,6 +30,13 @@
            
 
             </li>
+            <li><a class="has-arrow ai-icon" href="{{route('charges')}}" aria-expanded="false">
+                <i class="far fa-money-bill-alt"></i>
+                    <span class="nav-text">Charges</span>
+                </a>
+           
+
+            </li>
 
             {{-- <li><a class="has-arrow ai-icon" href="{{ route('products.index') }}" aria-expanded="false">
                 <i class="fab fa-product-hunt"></i>

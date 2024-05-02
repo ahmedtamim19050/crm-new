@@ -6,9 +6,11 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DealsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FastoAdminController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\OrganisationController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\QuoteController;
 
@@ -28,7 +30,13 @@ use App\Http\Controllers\QuoteController;
 }); */
 
 Route::get('/',[PageController::class,'home'])->name('home');
-Route::middleware(['auth'])->prefix('dashboard')->group(function() {
+Route::get('/payment',[PaymentController::class,'payment'])->name('payment')->middleware('auth','verifiedEmail');
+Route::post('/payment/store',[PaymentController::class,'paymentStore'])->name('payment.store')->middleware('auth');
+Route::get('/verify-email', [HomeController::class, 'verifyMassage'])->name('verify.massage');
+Route::get('verify/email', [HomeController::class, 'verifyEmail'])->name('verify.token');
+Route::get('/agian/verify/email', [HomeController::class, 'againVerifyEmail'])->name('again.verify.token');
+
+Route::middleware(['auth','subscribe'])->prefix('dashboard')->group(function() {
     Route::get('/',[FastoAdminController::class,'dashboard'])->name('dashboard');
     // Route::get('/index','dashboard');
     // Route::get('/index-2','dashboard_2');
@@ -137,6 +145,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function() {
     Route::get('deals-kanvan',[DealsController::class,'kanvan'])->name('kanvan');
     Route::post('deals-kanvan/update',[DealsController::class,'kanvanUpdate'])->name('kanvan.update');
     Route::post('category-drop',[CategoryController::class,'drop'])->name('category.kanvan');
+    Route::get('charges',[PaymentController::class,'charges'])->name('charges');
 });
 
 
@@ -149,3 +158,7 @@ Auth::routes();
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Route::get('/success',function(){
+    return 'hello';
+})->name('checkout-success');

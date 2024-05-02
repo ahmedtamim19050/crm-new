@@ -11,4 +11,6 @@ class PageController extends Controller
         $packages=Package::where('status',true)->latest()->get();
         return view('pages.home',compact('packages'));
     }
+
+
 }
