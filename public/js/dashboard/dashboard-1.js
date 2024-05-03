@@ -119,132 +119,132 @@
 		 chartTimelineRender.render();
 	}
 	
-	var widgetChart1 = function(){
-		var options = {
-          series: [{
-            name: "Desktops",
-            data: [30, 40, 30, 50, 40]
-        }],
-          chart: {
-          height: 270,
-          type: 'line',
-          zoom: {
-            enabled: true
-          },
-		  toolbar:{
-			show:false  
-		  }
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          curve: 'smooth'
-        },
-		colors:['#43DC80'],
-        title: {
-          text: undefined,
-          align: 'left'
-        },
-        grid: {
-			strokeDashArray: 5,
-          row: {
-            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-            opacity: 0
-          },
-        },
-		yaxis:{
-			show:false,
-		},
-        xaxis: {
-          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
-		  axisBorder: {
-			show:false
-		  },
-		  axisTicks:{
-			show:false  
-		  },
-		  labels: {
-			  style: {
-				  colors: '#828690',
-				  fontSize: '14px',
-				   fontFamily: 'Poppins',
-				  fontWeight: 100,
+	// var widgetChart1 = function(){
+	// 	var options = {
+    //       series: [{
+    //         name: "Desktops",
+    //         data: [30, 40, 30, 50, 40]
+    //     }],
+    //       chart: {
+    //       height: 270,
+    //       type: 'line',
+    //       zoom: {
+    //         enabled: true
+    //       },
+	// 	  toolbar:{
+	// 		show:false  
+	// 	  }
+    //     },
+    //     dataLabels: {
+    //       enabled: false
+    //     },
+    //     stroke: {
+    //       curve: 'smooth'
+    //     },
+	// 	colors:['#43DC80'],
+    //     title: {
+    //       text: undefined,
+    //       align: 'left'
+    //     },
+    //     grid: {
+	// 		strokeDashArray: 5,
+    //       row: {
+    //         colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+    //         opacity: 0
+    //       },
+    //     },
+	// 	yaxis:{
+	// 		show:false,
+	// 	},
+    //     xaxis: {
+    //       categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+	// 	  axisBorder: {
+	// 		show:false
+	// 	  },
+	// 	  axisTicks:{
+	// 		show:false  
+	// 	  },
+	// 	  labels: {
+	// 		  style: {
+	// 			  colors: '#828690',
+	// 			  fontSize: '14px',
+	// 			   fontFamily: 'Poppins',
+	// 			  fontWeight: 100,
 				  
-				}
-			}
-        }
-        };
+	// 			}
+	// 		}
+    //     }
+    //     };
 
-        var chart = new ApexCharts(document.querySelector("#widgetChart1"), options);
-        chart.render();
-	}
+    //     var chart = new ApexCharts(document.querySelector("#widgetChart1"), options);
+    //     chart.render();
+	// }
 	
-	var radialChart = function(){
-		 var options = {
-          series: [60],
-          chart: {
-          height: 230,
-          type: 'radialBar',
-          toolbar: {
-            show: false
-          }
-        },
-        plotOptions: {
-          radialBar: {
-             /* hollow: {
-              margin: 0,
-              size: '70%',
-              background: '#fff',
-              image: undefined,
-              imageOffsetX: 0,
-              imageOffsetY: 0,
-              position: 'front',
-            }, */
-			hollow: {
-              margin: 20,
-              size: '65%',
-              background: '#fff',
-              image: undefined,
-              imageOffsetX: 0,
-              imageOffsetY: 0,
-              position: 'front',
-              dropShadow: {
-                enabled: true,
-                top: 3,
-                left: 0,
-                blur: 10,
-                opacity: 0.1
-              }
-            },
-            track: {
-              background: '#F8F8F8',
-              strokeWidth: '100%',
-              margin: 0, // margin is in pixels
-            },
+	// var radialChart = function(){
+	// 	 var options = {
+    //       series: [60],
+    //       chart: {
+    //       height: 230,
+    //       type: 'radialBar',
+    //       toolbar: {
+    //         show: false
+    //       }
+    //     },
+    //     plotOptions: {
+    //       radialBar: {
+    //          /* hollow: {
+    //           margin: 0,
+    //           size: '70%',
+    //           background: '#fff',
+    //           image: undefined,
+    //           imageOffsetX: 0,
+    //           imageOffsetY: 0,
+    //           position: 'front',
+    //         }, */
+	// 		hollow: {
+    //           margin: 20,
+    //           size: '65%',
+    //           background: '#fff',
+    //           image: undefined,
+    //           imageOffsetX: 0,
+    //           imageOffsetY: 0,
+    //           position: 'front',
+    //           dropShadow: {
+    //             enabled: true,
+    //             top: 3,
+    //             left: 0,
+    //             blur: 10,
+    //             opacity: 0.1
+    //           }
+    //         },
+    //         track: {
+    //           background: '#F8F8F8',
+    //           strokeWidth: '100%',
+    //           margin: 0, // margin is in pixels
+    //         },
         
-            dataLabels: {
-              show: true,
-              value: {
-				offsetY:-7,
-                color: '#111',
-                fontSize: '20px',
-                show: true,
-              }
-            }
-          }
-        },
-        fill: {
-            colors: ['#43DC80'],
-        },
-        stroke: {
-        },
-        labels: [''],
-        };
+    //         dataLabels: {
+    //           show: true,
+    //           value: {
+	// 			offsetY:-7,
+    //             color: '#111',
+    //             fontSize: '20px',
+    //             show: true,
+    //           }
+    //         }
+    //       }
+    //     },
+    //     fill: {
+    //         colors: ['#43DC80'],
+    //     },
+    //     stroke: {
+    //     },
+    //     labels: [''],
+    //     };
 
-        var chart = new ApexCharts(document.querySelector("#radialChart"), options);
-        chart.render();
-	}
+    //     var chart = new ApexCharts(document.querySelector("#radialChart"), options);
+    //     chart.render();
+	// }
 	
 	var widgetChart2 = function(){
 		var options = {
@@ -394,6 +394,8 @@
 					radialChart();
 					widgetChart2();
 					donutChart1();
+					radialLeadChart();
+					radialChartOrg();
 			},
 			
 			resize:function(){
