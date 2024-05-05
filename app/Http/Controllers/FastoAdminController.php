@@ -46,6 +46,12 @@ class FastoAdminController extends Controller
             'countsClientsArray',
         ));
     }
+    public function settings(){
+        $user=auth()->user();
+        return view('dashboard.settings',[
+            'intent' => $user->createSetupIntent()
+        ]);
+    }
 
     // DASHBOARD 2 
     public function dashboard_2()

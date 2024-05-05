@@ -146,6 +146,10 @@ Route::middleware(['auth','subscribe'])->prefix('dashboard')->group(function() {
     Route::post('deals-kanvan/update',[DealsController::class,'kanvanUpdate'])->name('kanvan.update');
     Route::post('category-drop',[CategoryController::class,'drop'])->name('category.kanvan');
     Route::get('charges',[PaymentController::class,'charges'])->name('charges');
+    Route::get('settings',[FastoAdminController::class,'settings'])->name('settings');
+    Route::post('update/card',[PaymentController::class,'updateCard'])->name('update.card');
+    Route::post('update/profile',[HomeController::class,'profileUpdate'])->name('profile.update');
+    Route::post('change/password', [HomeController::class, 'changePassword'])->name('change.password');
 });
 
 

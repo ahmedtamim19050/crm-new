@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Cache;
 
 <head>
     <!-- PAGE TITLE HERE -->
-    <title>{{ config('dz.name') }} | @yield('title', $page_title ?? '')</title>
+    <title> CRM | @yield('title', $page_title ?? 'Dashboard')</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Cache;
     <meta name="format-detection" content="telephone=no">
 
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.ico') }}">
 
     @if (!empty(config('dz.public.pagelevel.css.' . $action)))
         @foreach (config('dz.public.pagelevel.css.' . $action) as $style)
@@ -54,6 +54,9 @@ use Illuminate\Support\Facades\Cache;
         .table-responsive {
             height: 70vh !important;
         }
+        .DZ-bt-buy-now, .DZ-bt-support-now {
+            display: none !important;
+        }
     </style>
 
 </head>
@@ -63,13 +66,13 @@ use Illuminate\Support\Facades\Cache;
     <!--*******************
         Preloader start
     ********************-->
-    <div id="preloader">
+    {{-- <div id="preloader">
         <div class="sk-three-bounce">
             <div class="sk-child sk-bounce1"></div>
             <div class="sk-child sk-bounce2"></div>
             <div class="sk-child sk-bounce3"></div>
         </div>
-    </div>
+    </div> --}}
     <!--*******************
         Preloader end
     ********************-->

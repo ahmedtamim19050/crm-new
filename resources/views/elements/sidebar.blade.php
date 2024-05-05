@@ -1,7 +1,19 @@
+<style>
+  [data-sidebar-style="full"][data-layout="vertical"] .deznav .metismenu > li.mm-active > a i{
+        font-weight: 800;
+    }
+</style>
 <div class="deznav">
     <div class="deznav-scroll">
         {{-- <a class="add-project-sidebar btn btn-primary" href="javascript:void(0)"  data-bs-toggle="modal" data-bs-target="#addProjectSidebar" >+ New Project</a> --}}
         <ul class="metismenu" id="menu">
+            <li><a class="has-arrow ai-icon" href="{{ route('dashboard') }}" aria-expanded="false">
+                <i class="fas fa-home"></i>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+
+
+            </li>
             <li><a class="has-arrow ai-icon" href="{{ route('organisations.index') }}" aria-expanded="false">
                 <i class="far fa-building"></i>
                     <span class="nav-text">Organizations</span>
@@ -24,15 +36,22 @@
 
             </li>
             <li><a class="has-arrow ai-icon" href="{{route('kanvan')}}" aria-expanded="false">
-                <i class="far fa-money-bill-alt"></i>
+                <i class="far fa-handshake"></i>
                     <span class="nav-text">Deals</span>
                 </a>
            
 
             </li>
             <li><a class="has-arrow ai-icon" href="{{route('charges')}}" aria-expanded="false">
-                <i class="far fa-money-bill-alt"></i>
+                <i class="fas fa-file-invoice-dollar"></i>
                     <span class="nav-text">Charges</span>
+                </a>
+           
+
+            </li>
+            <li><a class="has-arrow ai-icon" href="{{route('settings')}}" aria-expanded="false">
+                <i class="fas fa-cogs"></i>
+                    <span class="nav-text">Settings</span>
                 </a>
            
 

@@ -46,4 +46,10 @@ class PaymentController extends Controller
 
         return view('dashboard.charges',compact('charges'));
     }
+    public function updateCard(Request $request)  {
+        $user=auth()->user();
+        $user->updateDefaultPaymentMethod($request->payment_method);
+        return back()->with('success', 'Thanks for your subscriptions');
+
+    }
 }
