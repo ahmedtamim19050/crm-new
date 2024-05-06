@@ -415,6 +415,9 @@
                         <div class="pricing-price">
                             <span class="price">{{Settings::price($package->price)}}</span>
                             <p class="text">Monthly</p>
+                            @if($package->trail_days)
+                            <small>Free Trail {{$package->trail_days}} days</small>
+                            @endif
                         </div>
                         <div class="pricing-list">
                             <ul class="list">

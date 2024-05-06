@@ -1,3 +1,4 @@
+
 @extends('layouts.default')
 
 @section('css')
@@ -47,7 +48,6 @@
 @endsection
 
 @section('content')
-
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 ">
@@ -76,8 +76,15 @@
                                         <div class="row mb-4">
 
                                             <div class="col">
-                                                <p class=" mb-0 text-muted">{{auth()->user()->pm_type}} ****{{auth()->user()->pm_last_four}}</p>
+                                                <p class=" mb-0 text-muted">{{ auth()->user()->pm_type }}
+                                                    ****{{ auth()->user()->pm_last_four }}</p>
+                                                @if(auth()->user()->subscription(auth()->user()->package->title)->ends_at == null)
+                                                <a href="{{route('cencel.subscription')}}" class="btn btn-danger btn-sm ">Cancel Subscription</a>
+                                                @else
+                                                <a href="{{route('cencel.subscription')}}" class="btn btn-primary btn-sm">Resume subscription</a>
+                                                @endif
                                              
+
                                             </div>
                                         </div>
                                     </div>
@@ -86,7 +93,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="card p-3">
-                                <form id="cardAddFrom" class="mt-3" action="{{route('update.card')}}" method="POST">
+                                <form id="cardAddFrom" class="mt-3" action="{{ route('update.card') }}" method="POST">
                                     @csrf
                                     <h2 class="h3 mb-4 page-title">
                                         Change Payment Method
@@ -103,7 +110,8 @@
 
                                         <div class="col-md-6" style="margin-top: 15px; ">
                                             <button class="btn  btn-dark btn-sm rounded shadow" style="border-radius: 10px"
-                                                type="button" id="card-button"  data-secret="{{ $intent->client_secret }}">Add</button>
+                                                type="button" id="card-button"
+                                                data-secret="{{ $intent->client_secret }}">Add</button>
 
                                         </div>
                                     </div>
@@ -116,20 +124,22 @@
                     <h2 class="h3 mb-4 page-title">Profile </h2>
 
                     <div class="card p-3">
-                        <form action="{{route('profile.update')}}" method="POST">
-                             @csrf
+                        <form action="{{ route('profile.update') }}" method="POST">
+                            @csrf
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="firstname">Name</label>
-                                    <input type="text" id="name" name="name" class="form-control" placeholder="" value="{{auth()->user()->name}}" required/>
+                                    <input type="text" id="name" name="name" class="form-control" placeholder=""
+                                        value="{{ auth()->user()->name }}" required />
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="lastname">Email</label>
-                                    <input type="text" id="email" name="email" class="form-control"  value="{{auth()->user()->email}}" readonly/>
+                                    <input type="text" id="email" name="email" class="form-control"
+                                        value="{{ auth()->user()->email }}" readonly />
                                 </div>
                             </div>
-                           
-                            
+
+
                             <button type="submit" class="btn btn-primary">Save Change</button>
                         </form>
                     </div>
@@ -156,8 +166,8 @@
                                     Password</label>
 
                                 <div class="col-md-6">
-                                    <input id="new_password" type="password" class="form-control"
-                                        name="new_password" required>
+                                    <input id="new_password" type="password" class="form-control" name="new_password"
+                                        required>
 
 
                                 </div>
@@ -193,53 +203,51 @@
 @endsection
 
 @push('scripts')
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-<script src="https://js.stripe.com/v3/"></script>
+    <script src="https://js.stripe.com/v3/"></script>
 
-<script>
-const stripe = Stripe("{{ env('STRIPE_KEY') }}");
+    <script>
+        const stripe = Stripe("{{ env('STRIPE_KEY') }}");
 
-const elements = stripe.elements();
-const cardElement = elements.create('card');
+        const elements = stripe.elements();
+        const cardElement = elements.create('card');
 
-cardElement.mount('#card-element');
+        cardElement.mount('#card-element');
 
-const cardHolderName = document.getElementById('card-holder-name');
-const cardButton = document.getElementById('card-button');
-const clientSecret = cardButton.dataset.secret;
+        const cardHolderName = document.getElementById('card-holder-name');
+        const cardButton = document.getElementById('card-button');
+        const clientSecret = cardButton.dataset.secret;
 
-cardButton.addEventListener('click', async (e) => {
-const {
-setupIntent,
-error
-} = await stripe.confirmCardSetup(
-clientSecret, {
-payment_method: {
-    card: cardElement,
-    billing_details: {
-        name: cardHolderName.value
-    }
-}
-}
-);
+        cardButton.addEventListener('click', async (e) => {
+            const {
+                setupIntent,
+                error
+            } = await stripe.confirmCardSetup(
+                clientSecret, {
+                    payment_method: {
+                        card: cardElement,
+                        billing_details: {
+                            name: cardHolderName.value
+                        }
+                    }
+                }
+            );
 
-if (error) {
-if (error?.setupIntent) {
-document.getElementById('paymentmethod').value = error.setupIntent.payment_method
-toastr.success('Card added');
-} else {
-toastr.error('Something went wrong. Try again letter');
-}
+            if (error) {
+                if (error?.setupIntent) {
+                    document.getElementById('paymentmethod').value = error.setupIntent.payment_method
+                    toastr.success('Card added');
+                } else {
+                    toastr.error('Something went wrong. Try again letter');
+                }
 
-} else {
-document.getElementById('paymentmethod').value = setupIntent.payment_method
-toastr.success('Card added');
-$('#cardAddFrom').submit();
-}
-});
-
-</script>
-
+            } else {
+                document.getElementById('paymentmethod').value = setupIntent.payment_method
+                toastr.success('Card added');
+                $('#cardAddFrom').submit();
+            }
+        });
+    </script>
 @endpush

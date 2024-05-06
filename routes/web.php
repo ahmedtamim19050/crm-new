@@ -150,6 +150,7 @@ Route::middleware(['auth','subscribe'])->prefix('dashboard')->group(function() {
     Route::post('update/card',[PaymentController::class,'updateCard'])->name('update.card');
     Route::post('update/profile',[HomeController::class,'profileUpdate'])->name('profile.update');
     Route::post('change/password', [HomeController::class, 'changePassword'])->name('change.password');
+    Route::get('cencel/subscription', [PaymentController::class, 'cencel'])->name('cencel.subscription');
 });
 
 

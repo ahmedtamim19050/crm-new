@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Stripe\Product;
 use Stripe\Stripe;
 use Stripe\Price;
+use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
@@ -38,6 +39,10 @@ class PaymentController extends Controller
 
 
         $sub = $user->newSubscription($package->title, $price->id);
+        if ($package->trail_days) {
+            $sub->trialUntil(Carbon::now()->addDays($package->trail_days));
+        }
+
         $sub->create($request->payment_method);
         return redirect()->route('dashboard')->with('success', 'Thanks for your subscriptions');
     }
@@ -51,5 +56,15 @@ class PaymentController extends Controller
         $user->updateDefaultPaymentMethod($request->payment_method);
         return back()->with('success', 'Thanks for your subscriptions');
 
+    }
+    public function cencel()  {
+        if(auth()->user()->subscription(auth()->user()->package->title)->ends_at == null){
+
+            auth()->user()->subscription(auth()->user()->package->title)->cancel();
+            return back()->with('success', 'your subscriptions will be cancelled');
+        }else{
+            auth()->user()->subscription(auth()->user()->package->title)->resume();
+            return back()->with('success', 'your subscriptions will be Resumed');
+        }
     }
 }
