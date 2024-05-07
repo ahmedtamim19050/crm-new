@@ -154,7 +154,7 @@
                                     <label for="new_password" class="col-md-4 control-label">Current
                                         Password</label>
     
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <input id="current-password" type="password" class="form-control"
                                             name="current_password" required>
     
@@ -166,7 +166,7 @@
                                     <label for="new_password" class="col-md-4 control-label mt-2">New
                                         Password</label>
     
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <input id="new_password" type="password" class="form-control" name="new_password"
                                             required>
     
@@ -179,7 +179,7 @@
                                         New
                                         Password</label>
     
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <input id="new_password_confirm" type="password" class="form-control"
                                             name="new_password_confirmation" required>
                                     </div>
