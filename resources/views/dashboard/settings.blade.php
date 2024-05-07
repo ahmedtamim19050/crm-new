@@ -145,53 +145,55 @@
                     </div>
                     <hr class="my-4" />
                     <h2 class="h3 mb-4 page-title">Password Change </h2>
-                    <div class="card p-3">
-                        <form class="form-horizontal" method="POST" action="{{ route('change.password') }}">
-                            @csrf
-
-                            <div class="form-group{{ $errors->has('current_password') ? '  has-error' : '' }}">
-                                <label for="new_password" class="col-md-4 control-label">Current
-                                    Password</label>
-
-                                <div class="col-md-6">
-                                    <input id="current-password" type="password" class="form-control"
-                                        name="current_password" required>
-
-
+                    <div class="row">
+                        <div class="col-md-6 card p-3">
+                            <form class="form-horizontal" method="POST" action="{{ route('change.password') }}">
+                                @csrf
+    
+                                <div class="form-group{{ $errors->has('current_password') ? '  has-error' : '' }}">
+                                    <label for="new_password" class="col-md-4 control-label">Current
+                                        Password</label>
+    
+                                    <div class="col-md-6">
+                                        <input id="current-password" type="password" class="form-control"
+                                            name="current_password" required>
+    
+    
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('new_password') ? ' has-error' : '' }}">
-                                <label for="new_password" class="col-md-4 control-label mt-2">New
-                                    Password</label>
-
-                                <div class="col-md-6">
-                                    <input id="new_password" type="password" class="form-control" name="new_password"
-                                        required>
-
-
+    
+                                <div class="form-group{{ $errors->has('new_password') ? ' has-error' : '' }}">
+                                    <label for="new_password" class="col-md-4 control-label mt-2">New
+                                        Password</label>
+    
+                                    <div class="col-md-6">
+                                        <input id="new_password" type="password" class="form-control" name="new_password"
+                                            required>
+    
+    
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="new_password_confirm" class="col-md-4 control-label mt-2">Confirm
-                                    New
-                                    Password</label>
-
-                                <div class="col-md-6">
-                                    <input id="new_password_confirm" type="password" class="form-control"
-                                        name="new_password_confirmation" required>
+    
+                                <div class="form-group">
+                                    <label for="new_password_confirm" class="col-md-4 control-label mt-2">Confirm
+                                        New
+                                        Password</label>
+    
+                                    <div class="col-md-6">
+                                        <input id="new_password_confirm" type="password" class="form-control"
+                                            name="new_password_confirmation" required>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="form-group mt-3">
-                                <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-danger rounded">
-                                        Update Password
-                                    </button>
+    
+                                <div class="form-group mt-3">
+                                    <div class="col-md-6 col-md-offset-4">
+                                        <button type="submit" class="btn btn-danger rounded">
+                                            Update Password
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
 
 
