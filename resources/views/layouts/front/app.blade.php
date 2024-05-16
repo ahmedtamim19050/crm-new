@@ -93,8 +93,30 @@
 
                                             <a class="page-scroll" href="{{ route('login') }}">Login</a>
                                         @else
-                                            <a class="page-scroll" href="{{ route('dashboard') }}">Dashboard</a>
+                                        <div class="dropdown">
+                                            <button class="page-scroll dropdown-toggle" type="button"
+                                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false"
+                                                style="background: none;border:none;font-weight:600">
+                                                {{auth()->user()->name}}
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+                                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
+                                              document.getElementById('logout-form').submit();">Logout</a>
+
+
+                                                </a>
+
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                    class="d-none">
+                                                    @csrf
+                                                </form>
+                                            </div>
+                                        </div>
                                         @endguest
+                                     
                                     </li>
                                 </ul>
                             </div> <!-- navbar collapse -->
@@ -260,35 +282,35 @@
     </section>
 -->
 
-<!--====== PART ENDS ======-->
+    <!--====== PART ENDS ======-->
 
 
 
 
 
-<!--====== Jquery js ======-->
+    <!--====== Jquery js ======-->
 
-<script src="{{ asset('frontend-assets/js/vendor/jquery-1.12.4.min.js') }}"></script>
-<script src="{{ asset('frontend-assets/js/vendor/modernizr-3.7.1.min.js') }}"></script>
-<script src="{{ asset('frontend-assets/js/popper.min.js') }}"></script>
-<script src="{{ asset('frontend-assets/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('frontend-assets/js/wow.min.js') }}"></script>
-<script src="{{ asset('frontend-assets/js/jquery.easing.min.js') }}"></script>
-<script src="{{ asset('frontend-assets/js/scrolling-nav.js') }}"></script>
-<script src="{{ asset('frontend-assets/js/main.js') }}"></script>
-<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-
-
-<script src="{{ asset('frontend-assets/js/slick.min.js') }}"></script>
-
-<script src="{{ asset('frontend-assets/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('frontend-assets/js/vendor/jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ asset('frontend-assets/js/vendor/modernizr-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('frontend-assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('frontend-assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('frontend-assets/js/wow.min.js') }}"></script>
+    <script src="{{ asset('frontend-assets/js/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('frontend-assets/js/scrolling-nav.js') }}"></script>
+    <script src="{{ asset('frontend-assets/js/main.js') }}"></script>
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 
 
-<script src="{{ asset('frontend-assets/js/swiper.min.js') }}"></script>
+    <script src="{{ asset('frontend-assets/js/slick.min.js') }}"></script>
+
+    <script src="{{ asset('frontend-assets/js/jquery.magnific-popup.min.js') }}"></script>
+
+
+    <script src="{{ asset('frontend-assets/js/swiper.min.js') }}"></script>
 
 
 
-<script src="{{ asset('vendor/toastr/js/toastr.min.js') }}"></script>
+    <script src="{{ asset('vendor/toastr/js/toastr.min.js') }}"></script>
     @if (session()->has('success'))
         <x-alert.success />
     @endif
