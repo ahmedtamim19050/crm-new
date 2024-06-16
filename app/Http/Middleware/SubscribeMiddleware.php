@@ -17,7 +17,7 @@ class SubscribeMiddleware
     public function handle(Request $request, Closure $next)
     {
 
-        if (auth()->user()->subscribed(auth()->user()->package->title)) return $next($request);
-        return redirect()->route('payment');
+        return $next($request);
+   
     }
 }
